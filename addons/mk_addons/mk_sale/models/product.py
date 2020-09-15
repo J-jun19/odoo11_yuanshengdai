@@ -2,7 +2,8 @@
 # Copyright 2018 Jarvis (www.odoomod.com)
 
 # mk_sale--models--product 添加了注释
-# mk_sale--models--product 有有有有有有添加了注释
+# 我在测试checkout功能
+
 
 from odoo import api, models, fields
 
