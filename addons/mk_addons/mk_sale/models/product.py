@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 # Copyright 2018 Jarvis (www.odoomod.com)
 
+# mk_sale--models--product 添加了注释
+
 from odoo import api, models, fields
 
 
