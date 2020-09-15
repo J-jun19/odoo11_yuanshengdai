@@ -1,0 +1,53 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mk_purchase
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20180622\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-09 07:44+0000\n"
+"PO-Revision-Date: 2018-07-09 07:44+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mk_purchase
+#: model:ir.model.fields,field_description:mk_purchase.field_stock_picking_purchase_count
+msgid "# of Purchase Order"
+msgstr "# 采购订单"
+
+#. module: mk_purchase
+#: model:ir.model.fields,field_description:mk_purchase.field_purchase_order_payment_amount
+msgid "Payment Amount"
+msgstr "付款金额"
+
+#. module: mk_purchase
+#: model:ir.model.fields,field_description:mk_purchase.field_purchase_order_payment_percentage
+msgid "Payment Percentage"
+msgstr "付款百分比"
+
+#. module: mk_purchase
+#: model:ir.model,name:mk_purchase.model_account_payment
+#: model:ir.model.fields,field_description:mk_purchase.field_purchase_order_payment_ids
+msgid "Payments"
+msgstr "付款"
+
+#. module: mk_purchase
+#: model:ir.model,name:mk_purchase.model_purchase_order
+msgid "Purchase Order"
+msgstr "采购订单"
+
+#. module: mk_purchase
+#: model:ir.model.fields,field_description:mk_purchase.field_stock_picking_purchase_ids
+msgid "Purchases"
+msgstr "采购"
+
+#. module: mk_purchase
+#: model:ir.model,name:mk_purchase.model_stock_picking
+msgid "Transfer"
+msgstr "调拨"
+

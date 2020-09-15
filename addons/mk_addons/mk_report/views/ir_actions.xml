@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="act_report_xml_view" model="ir.ui.view">
+            <field name="name">ir.actions.report</field>
+            <field name="model">ir.actions.report</field>
+            <field name="inherit_id" ref="base.act_report_xml_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='report_type']" position="after">
+                    <label for="docx_engine"/>
+					<div class="o_row" >
+						<field name="docx_engine"/>
+						<button type="object" name="download_docx_template" string="Default Template"/>
+					</div>
+                    <field name="docx_template" attrs="{'required': [('docx_engine', '=', True)], 'invisible': [('docx_engine', '!=', True)]}"/>
+                    <!--label for="docx_template" attrs="{'invisible': [('docx_engine', '!=', True)]}"/>
+					<div class="o_row" attrs="{'invisible': [('docx_engine', '!=', True)]}">
+						<field name="docx_template" attrs="{'required': [('docx_engine', '=', True)]}"/>
+						<button type="object" name="download_docx_template" string="默认模板"/>
+					</div-->
+                    <field name="docx_convert" attrs="{'invisible': [('docx_engine', '!=', True)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

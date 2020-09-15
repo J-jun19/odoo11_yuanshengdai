@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_res_city_district,access_res_city_district,model_res_city_district,base.group_user,1,0,0,0
+access_res_nation,access_res_nation,model_res_nation,base.group_user,1,0,0,0
+access_product_brand,access_product_brand,model_product_brand,base.group_user,1,1,1,1

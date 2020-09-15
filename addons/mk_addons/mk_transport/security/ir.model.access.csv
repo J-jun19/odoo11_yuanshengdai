@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transport_move,access_transport_move,model_transport_move,base.group_user,1,0,0,0
+access_transport_move_product,access_transport_move_product,model_transport_move_product,base.group_user,1,0,0,0
+access_transport_move_package,access_transport_move_package,model_transport_move_package,base.group_user,1,0,0,0
+access_transport_move_user,access_transport_move,model_transport_move,stock.group_stock_user,1,1,1,1
+access_transport_move_product_user,access_transport_move_product,model_transport_move_product,stock.group_stock_user,1,1,1,1
+access_transport_move_package_user,access_transport_move_package,model_transport_move_package,stock.group_stock_user,1,1,1,1

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <record id="res_partner_purchasesteam_rule" model="ir.rule">
+        <field name="name">Purchase Team Partner</field>
+        <field ref="model_res_partner" name="model_id"/>
+        <field name="domain_force">['|','|','&amp;',('supplier','=',True),('purchase_team_id.member_ids.id','=',user.id),('purchase_team_id','=',False), ('supplier','=',False)]</field>
+    </record>
+
+    <record id="purchase_order_team_rule" model="ir.rule">
+        <field name="name">Team Purchase Order</field>
+        <field ref="model_purchase_order" name="model_id"/>
+        <field name="domain_force">['|',('team_id.member_ids.id','=',user.id),('team_id','=',False)]</field>
+    </record>
+
+    <record id="purchase_order_line_team_rule" model="ir.rule">
+        <field name="name">Team Purchase Order Lines</field>
+        <field ref="model_purchase_order_line" name="model_id"/>
+        <field name="domain_force">['|',('order_id.team_id.member_ids.id','=',user.id),('order_id.team_id','=',False)]</field>
+    </record>
+
+</data>
+</odoo>

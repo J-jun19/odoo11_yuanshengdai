@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem name="Region" id="menu_res_country_mgt" parent="base.menu_administration"/>
+        <menuitem name="Country" action="base.action_country" id="menu_res_country" parent="menu_res_country_mgt"/>
+        <menuitem name="State" action="base.action_country_state" id="menu_res_state" parent="menu_res_country_mgt"/>
+        <menuitem name="City" action="base_address_city.action_res_city_tree" id="menu_res_city" parent="menu_res_country_mgt"/>
+        <menuitem name="District" action="action_res_district" id="menu_res_district" parent="menu_res_country_mgt"/>
+    </data>
+</odoo>

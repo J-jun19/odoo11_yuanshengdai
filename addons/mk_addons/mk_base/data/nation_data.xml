@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="mk_base.nation_01" model="res.nation">
+            <field name="code">01</field>
+            <field name="name">汉族</field>
+        </record>
+        <record id="mk_base.nation_02" model="res.nation">
+            <field name="code">02</field>
+            <field name="name">蒙古族</field>
+        </record>
+        <record id="mk_base.nation_03" model="res.nation">
+            <field name="code">03</field>
+            <field name="name">回族</field>
+        </record>
+        <record id="mk_base.nation_04" model="res.nation">
+            <field name="code">04</field>
+            <field name="name">藏族</field>
+        </record>
+        <record id="mk_base.nation_05" model="res.nation">
+            <field name="code">05</field>
+            <field name="name">维吾尔族</field>
+        </record>
+        <record id="mk_base.nation_06" model="res.nation">
+            <field name="code">06</field>
+            <field name="name">苗族</field>
+        </record>
+        <record id="mk_base.nation_07" model="res.nation">
+            <field name="code">07</field>
+            <field name="name">彝族</field>
+        </record>
+        <record id="mk_base.nation_08" model="res.nation">
+            <field name="code">08</field>
+            <field name="name">壮族</field>
+        </record>
+        <record id="mk_base.nation_09" model="res.nation">
+            <field name="code">09</field>
+            <field name="name">布依族</field>
+        </record>
+        <record id="mk_base.nation_10" model="res.nation">
+            <field name="code">10</field>
+            <field name="name">朝鲜族</field>
+        </record>
+        <record id="mk_base.nation_11" model="res.nation">
+            <field name="code">11</field>
+            <field name="name">满族</field>
+        </record>
+        <record id="mk_base.nation_12" model="res.nation">
+            <field name="code">12</field>
+            <field name="name">侗族</field>
+        </record>
+        <record id="mk_base.nation_13" model="res.nation">
+            <field name="code">13</field>
+            <field name="name">瑶族</field>
+        </record>
+        <record id="mk_base.nation_14" model="res.nation">
+            <field name="code">14</field>
+            <field name="name">白族</field>
+        </record>
+        <record id="mk_base.nation_15" model="res.nation">
+            <field name="code">15</field>
+            <field name="name">土家族</field>
+        </record>
+        <record id="mk_base.nation_16" model="res.nation">
+            <field name="code">16</field>
+            <field name="name">哈尼族</field>
+        </record>
+        <record id="mk_base.nation_17" model="res.nation">
+            <field name="code">17</field>
+            <field name="name">哈萨克族</field>
+        </record>
+        <record id="mk_base.nation_18" model="res.nation">
+            <field name="code">18</field>
+            <field name="name">傣族</field>
+        </record>
+        <record id="mk_base.nation_19" model="res.nation">
+            <field name="code">19</field>
+            <field name="name">黎族</field>
+        </record>
+        <record id="mk_base.nation_20" model="res.nation">
+            <field name="code">20</field>
+            <field name="name">僳僳族</field>
+        </record>
+        <record id="mk_base.nation_21" model="res.nation">
+            <field name="code">21</field>
+            <field name="name">佤族</field>
+        </record>
+        <record id="mk_base.nation_22" model="res.nation">
+            <field name="code">22</field>
+            <field name="name">畲族</field>
+        </record>
+        <record id="mk_base.nation_23" model="res.nation">
+            <field name="code">23</field>
+            <field name="name">高山族</field>
+        </record>
+        <record id="mk_base.nation_24" model="res.nation">
+            <field name="code">24</field>
+            <field name="name">拉祜族</field>
+        </record>
+        <record id="mk_base.nation_25" model="res.nation">
+            <field name="code">25</field>
+            <field name="name">水族</field>
+        </record>
+        <record id="mk_base.nation_26" model="res.nation">
+            <field name="code">26</field>
+            <field name="name">东乡族</field>
+        </record>
+        <record id="mk_base.nation_27" model="res.nation">
+            <field name="code">27</field>
+            <field name="name">纳西族</field>
+        </record>
+        <record id="mk_base.nation_28" model="res.nation">
+            <field name="code">28</field>
+            <field name="name">景颇族</field>
+        </record>
+        <record id="mk_base.nation_29" model="res.nation">
+            <field name="code">29</field>
+            <field name="name">柯尔克孜族</field>
+        </record>
+        <record id="mk_base.nation_30" model="res.nation">
+            <field name="code">30</field>
+            <field name="name">土族</field>
+        </record>
+        <record id="mk_base.nation_31" model="res.nation">
+            <field name="code">31</field>
+            <field name="name">达斡尔族</field>
+        </record>
+        <record id="mk_base.nation_32" model="res.nation">
+            <field name="code">32</field>
+            <field name="name">仫佬族</field>
+        </record>
+        <record id="mk_base.nation_33" model="res.nation">
+            <field name="code">33</field>
+            <field name="name">羌族</field>
+        </record>
+        <record id="mk_base.nation_34" model="res.nation">
+            <field name="code">34</field>
+            <field name="name">布朗族</field>
+        </record>
+        <record id="mk_base.nation_35" model="res.nation">
+            <field name="code">35</field>
+            <field name="name">撒拉族</field>
+        </record>
+        <record id="mk_base.nation_36" model="res.nation">
+            <field name="code">36</field>
+            <field name="name">毛南族</field>
+        </record>
+        <record id="mk_base.nation_37" model="res.nation">
+            <field name="code">37</field>
+            <field name="name">仡佬族</field>
+        </record>
+        <record id="mk_base.nation_38" model="res.nation">
+            <field name="code">38</field>
+            <field name="name">锡伯族</field>
+        </record>
+        <record id="mk_base.nation_39" model="res.nation">
+            <field name="code">39</field>
+            <field name="name">阿昌族</field>
+        </record>
+        <record id="mk_base.nation_40" model="res.nation">
+            <field name="code">40</field>
+            <field name="name">普米族</field>
+        </record>
+        <record id="mk_base.nation_41" model="res.nation">
+            <field name="code">41</field>
+            <field name="name">塔吉克族</field>
+        </record>
+        <record id="mk_base.nation_42" model="res.nation">
+            <field name="code">42</field>
+            <field name="name">怒族</field>
+        </record>
+        <record id="mk_base.nation_43" model="res.nation">
+            <field name="code">43</field>
+            <field name="name">乌孜别克族</field>
+        </record>
+        <record id="mk_base.nation_44" model="res.nation">
+            <field name="code">44</field>
+            <field name="name">俄罗斯族</field>
+        </record>
+        <record id="mk_base.nation_45" model="res.nation">
+            <field name="code">45</field>
+            <field name="name">鄂温克族</field>
+        </record>
+        <record id="mk_base.nation_46" model="res.nation">
+            <field name="code">46</field>
+            <field name="name">德昂族</field>
+        </record>
+        <record id="mk_base.nation_47" model="res.nation">
+            <field name="code">47</field>
+            <field name="name">保安族</field>
+        </record>
+        <record id="mk_base.nation_48" model="res.nation">
+            <field name="code">48</field>
+            <field name="name">裕固族</field>
+        </record>
+        <record id="mk_base.nation_49" model="res.nation">
+            <field name="code">49</field>
+            <field name="name">京族</field>
+        </record>
+        <record id="mk_base.nation_50" model="res.nation">
+            <field name="code">50</field>
+            <field name="name">塔塔尔族</field>
+        </record>
+        <record id="mk_base.nation_51" model="res.nation">
+            <field name="code">51</field>
+            <field name="name">独龙族</field>
+        </record>
+        <record id="mk_base.nation_52" model="res.nation">
+            <field name="code">52</field>
+            <field name="name">鄂伦春族</field>
+        </record>
+        <record id="mk_base.nation_53" model="res.nation">
+            <field name="code">53</field>
+            <field name="name">赫哲族</field>
+        </record>
+        <record id="mk_base.nation_54" model="res.nation">
+            <field name="code">54</field>
+            <field name="name">门巴族</field>
+        </record>
+        <record id="mk_base.nation_55" model="res.nation">
+            <field name="code">55</field>
+            <field name="name">珞巴族</field>
+        </record>
+        <record id="mk_base.nation_56" model="res.nation">
+            <field name="code">56</field>
+            <field name="name">基诺族</field>
+        </record>
+    </data>
+</odoo>

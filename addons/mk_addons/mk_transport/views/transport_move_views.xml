@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_transport_calendar">
+            <field name="name">transport.move.calendar</field>
+            <field name="model">transport.move</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Calendar View" date_start="date_start">
+                    <field name="name"/>
+                    <field name="address_id"/>
+                    <field name="address_dest_id"/>
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_transport_tree" model="ir.ui.view">
+            <field name="name">transport.move.tree</field>
+            <field name="model">transport.move</field>
+            <field name="arch" type="xml">
+                <tree string="Transport list">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_transport_form" model="ir.ui.view">
+            <field name="name">transport.move.form</field>
+            <field name="model">transport.move</field>
+            <field name="arch" type="xml">
+                <form string="Transport">
+                    <header>
+                        <button name="action_done" states="draft" string="Done" groups="base.group_user" type="object" class="oe_highlight"/>
+                        <button name="action_cancel" states="done" string="Cancel" groups="base.group_user" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done" />
+                    </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="address_id" />
+                            <!--field name="location_id" options="{'no_create': True, 'no_open': True}" /-->
+                        </group>
+                        <group>
+                            <field name="address_dest_id" />
+                            <!--field name="location_dest_id" options="{'no_create': True, 'no_open': True}" /-->
+                        </group>
+                        <group>
+                            <field name="carrier_id"/>
+                            <field name="freight"/>
+                        </group>
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Package" groups="stock.group_tracking_lot">
+                            <field name="package_lines">
+                                <tree editable="bottom">
+                                    <field name="picking_id" options="{'no_create': True}" />
+                                    <field name="package_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Product">
+                            <field name="product_lines">
+                                <tree editable="bottom">
+                                    <field name="picking_id" options="{'no_create': True}" />
+                                    <field name="move_id" options="{'no_create': True, 'no_open': True}"/>
+                                    <field name="quantity"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <field name="note" nolabel="1" colspan="2" placeholder="Add an internal note" />
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_transport_search" model="ir.ui.view">
+            <field name="name">transport.move.search</field>
+            <field name="model">transport.move</field>
+            <field name="arch" type="xml">
+                <search string="Transport Lists">
+                    <field name="name" string="Transport List" filter_domain="['|',('name','ilike', self),('origin','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_transport_tree" model="ir.actions.act_window">
+            <field name="name">Transport Operations</field>
+            <field name="res_model">transport.move</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,kanban,form,calendar</field>
+            <field name="domain"></field>
+            <field name="context">{
+                    'contact_display': 'partner_address',
+                    'stock_move_display': 'product_name'
+            }
+            </field>
+            <field name="search_view_id" ref="view_transport_search"/>
+        </record>
+
+        <menuitem id="all_transport" name="All Transports" parent="menu_transport_mgmt" sequence="2" action="action_transport_tree" groups="base.group_user"/>
+
+    <record model="ir.actions.act_window" id="action_transport_view">
+        <field name="context">{}</field>
+        <field name="name">Transports</field>
+        <field name="res_model">transport.move</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+        <field name="context">{'stock_move_display': 'product_name'}</field>
+    </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,310 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mk_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20180622\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-09 06:10+0000\n"
+"PO-Revision-Date: 2018-07-09 06:10+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_alipay
+#: model:ir.model.fields,field_description:mk_base.field_res_users_alipay
+msgid "Alipay"
+msgstr "支付宝"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_birthday
+#: model:ir.model.fields,field_description:mk_base.field_res_users_birthday
+msgid "Birthday"
+msgstr "生日"
+
+#. module: mk_base
+#: model:ir.ui.view,arch_db:mk_base.view_res_partner_filter
+msgid "Birthday of this month"
+msgstr "本月生日"
+
+#. module: mk_base
+#: model:ir.actions.act_window,name:mk_base.action_product_brand
+#: model:ir.model.fields,field_description:mk_base.field_product_product_brand_id
+#: model:ir.model.fields,field_description:mk_base.field_product_template_brand_id
+#: model:ir.ui.menu,name:mk_base.menu_action_product_brand
+msgid "Brand"
+msgstr "品牌"
+
+#. module: mk_base
+#: model:ir.model,name:mk_base.model_res_country_city
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_city_id
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_city_id
+#: model:ir.model.fields,field_description:mk_base.field_res_users_city_id
+#: model:ir.ui.menu,name:mk_base.menu_res_city
+msgid "City"
+msgstr "城市"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_code
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_code
+msgid "Code"
+msgstr "代码"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_category_sequence_id
+msgid "Code Sequence"
+msgstr "代码序列"
+
+#. module: mk_base
+#: model:ir.model,name:mk_base.model_res_partner
+msgid "Contact"
+msgstr "联系人"
+
+#. module: mk_base
+#: model:ir.actions.act_window,name:mk_base.action_res_country
+#: model:ir.ui.menu,name:mk_base.menu_res_country
+msgid "Country"
+msgstr "国家"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand_create_uid
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_create_uid
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_create_uid
+msgid "Created by"
+msgstr "创建人"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand_create_date
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_create_date
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_disable_delete_partner
+msgid "Disable Delete Partner"
+msgstr "禁止删除联系人"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_disable_edit_partner
+msgid "Disable Edit Partner"
+msgstr "禁止编辑联系人"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_disable_export
+msgid "Disable Export"
+msgstr "禁止导出"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_disable_open_partner
+msgid "Disable Open Partner in forms"
+msgstr "禁止表单中打开联系人"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand_display_name
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_display_name
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: mk_base
+#: model:ir.actions.act_window,name:mk_base.action_res_district
+#: model:ir.model,name:mk_base.model_res_city_district
+#: model:ir.model,name:mk_base.model_res_country_district
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_district_id
+#: model:ir.model.fields,field_description:mk_base.field_res_users_district_id
+#: model:ir.ui.menu,name:mk_base.menu_res_district
+msgid "District"
+msgstr "区县"
+
+#. module: mk_base
+#: selection:product.template,state:0
+msgid "End of Lifecycle"
+msgstr "生命周期结束"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_hide_customer
+msgid "Hide Customer"
+msgstr "隐藏客户"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_hide_product_cost
+msgid "Hide Product Cost"
+msgstr "隐藏产品成本"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_hide_product_price
+msgid "Hide Product Sale Price"
+msgstr "隐藏产品销售价格"
+
+#. module: mk_base
+#: model:res.groups,name:mk_base.group_hide_supplier
+msgid "Hide Supplier"
+msgstr "隐藏供应商"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand_id
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_id
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mk_base
+#: selection:product.template,state:0
+msgid "In Development"
+msgstr "开发中"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand___last_update
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district___last_update
+#: model:ir.model.fields,field_description:mk_base.field_res_nation___last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand_write_uid
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_write_uid
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_brand_write_date
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_write_date
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: mk_base
+#. openerp-web
+#: code:addons/mk_base/static/src/xml/base.xml:7
+#, python-format
+msgid "Log out"
+msgstr "登出"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_name
+#: model:ir.model.fields,field_description:mk_base.field_res_nation_name
+msgid "Name"
+msgstr "名称"
+
+#. module: mk_base
+#: model:ir.actions.act_window,name:mk_base.action_res_nation
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_nation_id
+#: model:ir.model.fields,field_description:mk_base.field_res_users_nation_id
+#: model:ir.ui.menu,name:mk_base.menu_action_res_nation
+msgid "Nation"
+msgstr "民族"
+
+#. module: mk_base
+#: selection:product.template,state:0
+msgid "Normal"
+msgstr "常规"
+
+#. module: mk_base
+#: selection:product.template,state:0
+msgid "Obsolete"
+msgstr "作废"
+
+#. module: mk_base
+#. openerp-web
+#: code:addons/mk_base/static/src/xml/base.xml:6
+#, python-format
+msgid "Preferences"
+msgstr "首选项"
+
+#. module: mk_base
+#: model:ir.model,name:mk_base.model_product_product
+msgid "Product"
+msgstr "产品"
+
+#. module: mk_base
+#: model:ir.model,name:mk_base.model_product_category
+msgid "Product Category"
+msgstr "产品类别"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_product_product_manager
+#: model:ir.model.fields,field_description:mk_base.field_product_template_product_manager
+msgid "Product Manager"
+msgstr "产品管理者"
+
+#. module: mk_base
+#: model:ir.model,name:mk_base.model_product_template
+msgid "Product Template"
+msgstr "产品模板"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_qq
+#: model:ir.model.fields,field_description:mk_base.field_res_users_qq
+msgid "QQ"
+msgstr "QQ"
+
+#. module: mk_base
+#: model:ir.ui.menu,name:mk_base.menu_res_country_mgt
+msgid "Region"
+msgstr "地区"
+
+#. module: mk_base
+#: model:ir.module.category,name:mk_base.module_category_mk
+msgid "Security Rights"
+msgstr "安全性权利"
+
+#. module: mk_base
+#: model:ir.ui.view,arch_db:mk_base.product_category_form_view
+msgid "Sequence"
+msgstr "序列"
+
+#. module: mk_base
+#: code:addons/mk_base/controllers/main.py:19
+#: code:addons/mk_base/controllers/main.py:30
+#, python-format
+msgid "Sorry, you are not allowed to export this document."
+msgstr "对不起，您没有导出此文档的权限。"
+
+#. module: mk_base
+#: code:addons/mk_base/controllers/main.py:41
+#, python-format
+msgid "Sorry, you are not allowed to open this document."
+msgstr "对不起，您没有打开此文档的权限。"
+
+#. module: mk_base
+#: model:ir.actions.act_window,name:mk_base.action_res_state
+#: model:ir.ui.menu,name:mk_base.menu_res_state
+msgid "State"
+msgstr "州/省"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_product_product_state
+#: model:ir.model.fields,field_description:mk_base.field_product_template_state
+#: model:ir.ui.view,arch_db:mk_base.product_template_form_view
+msgid "Status"
+msgstr "状态"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_taobao
+#: model:ir.model.fields,field_description:mk_base.field_res_users_taobao
+msgid "Taobao"
+msgstr "淘宝"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_partner_wechat
+#: model:ir.model.fields,field_description:mk_base.field_res_users_wechat
+msgid "Wechat"
+msgstr "微信"
+
+#. module: mk_base
+#: model:ir.model.fields,field_description:mk_base.field_res_city_district_zipcode
+msgid "Zip"
+msgstr "邮政编码"
+
+#. module: mk_base
+#: model:ir.model,name:mk_base.model_ir_mail_server
+msgid "ir.mail_server"
+msgstr "ir.mail_server"
+

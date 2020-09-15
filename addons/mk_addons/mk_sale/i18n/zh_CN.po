@@ -1,0 +1,98 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mk_sale
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20180622\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-09 06:18+0000\n"
+"PO-Revision-Date: 2018-07-09 06:18+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_stock_picking_sale_count
+msgid "# of Sale Order"
+msgstr "#个销售订单"
+
+#. module: mk_sale
+#: model:ir.ui.view,arch_db:mk_sale.view_order_line_tree
+msgid "Average"
+msgstr "平均"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_order_payment_amount
+msgid "Collection Amount"
+msgstr "收款金额"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_order_payment_percentage
+msgid "Collection Percentage"
+msgstr "收款百分比"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_order_payment_ids
+msgid "Collections"
+msgstr "收款"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_order_city_id
+msgid "City"
+msgstr "城市"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_order_country_id
+msgid "Country"
+msgstr "国家/地区"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_report_city_id
+msgid "Partner City"
+msgstr "业务伙伴城市"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_report_state_id
+msgid "Partner State"
+msgstr "业务伙伴州/省"
+
+#. module: mk_sale
+#: model:ir.model,name:mk_sale.model_account_payment
+msgid "Payments"
+msgstr "付款"
+
+#. module: mk_sale
+#: model:ir.model,name:mk_sale.model_sale_order
+msgid "Quotation"
+msgstr "报价单"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_stock_picking_sale_ids
+#: model:ir.ui.view,arch_db:mk_sale.view_picking_form_stock_view_sale
+msgid "Sales"
+msgstr "销售"
+
+#. module: mk_sale
+#: model:ir.model,name:mk_sale.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "销售订单行"
+
+#. module: mk_sale
+#: model:ir.model,name:mk_sale.model_sale_report
+msgid "Sales Orders Statistics"
+msgstr "销售订单统计"
+
+#. module: mk_sale
+#: model:ir.model.fields,field_description:mk_sale.field_sale_order_state_id
+msgid "State"
+msgstr "州/省"
+
+#. module: mk_sale
+#: model:ir.model,name:mk_sale.model_stock_picking
+msgid "Transfer"
+msgstr "调拨"
+

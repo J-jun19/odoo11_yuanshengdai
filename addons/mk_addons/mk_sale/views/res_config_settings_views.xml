@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.sale</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="10"/>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='sale_config_online_confirmation']" position="before">
+                <div class="col-xs-12 col-md-6 o_setting_box">
+                    <div class="o_setting_right_pane">
+                        <label for="so_multiple_validation"/>
+                        <div class="text-muted">
+                            Order Approval
+                        </div>
+                        <div class="content-group">
+                            <div class="mt16">
+                                <field name="so_multiple_validation" class="o_light_label" widget="selection"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div class="content-group" attrs="{'invisible': [('so_multiple_validation', '=', 'one_step')]}">
+                            <div class="row mt16">
+                                <label for="so_multiple_validation_one_step_amount" class="col-md-4 o_light_label"/>
+                                <field name="so_multiple_validation_one_step_amount"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div class="content-group" attrs="{'invisible': [('so_multiple_validation', '=', 'one_step')]}">
+                            <div class="row mt16">
+                                <label for="so_multiple_validation_one_step_group" class="col-md-4 o_light_label"/>
+                                <field name="so_multiple_validation_one_step_group"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div class="content-group" attrs="{'invisible': ['|', ('so_multiple_validation', '=', 'one_step'), ('so_multiple_validation', '=', 'two_step')]}">
+                            <div class="row mt16">
+                                <label for="so_multiple_validation_two_step_amount" class="col-md-4 o_light_label"/>
+                                <field name="so_multiple_validation_two_step_amount"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <div class="content-group" attrs="{'invisible': ['|', ('so_multiple_validation', '=', 'one_step'), ('so_multiple_validation', '=', 'two_step')]}">
+                            <div class="row mt16">
+                                <label for="so_multiple_validation_two_step_group" class="col-md-4 o_light_label"/>
+                                <field name="so_multiple_validation_two_step_group"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

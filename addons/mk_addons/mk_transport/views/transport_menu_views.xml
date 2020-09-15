@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Transport" id="menu_transport_root" sequence="30"
+        web_icon="stock,static/description/icon.png"/>
+
+    <menuitem id="menu_transport_mgmt" name="Operations" parent="menu_transport_root" sequence="2"/>
+
+    <menuitem id="menu_transport_control" name="Master Data" parent="menu_transport_root" sequence="4"/>
+
+    <menuitem id="menu_transport_config_settings" name="Configuration" parent="menu_transport_root"
+        sequence="100" groups="stock.group_stock_manager"/>
+
+    <menuitem id="menu_package" name="Packages" parent="menu_transport_control" action="stock.action_package_view" groups="stock.group_tracking_lot" sequence="102"/>
+    <!--menuitem id="menu_transport_report" name="Reports" sequence="99" parent="menu_mk_transport_root"/-->
+</odoo>

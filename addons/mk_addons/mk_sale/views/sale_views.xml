@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_order_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='amount_total']" position="after">
+                    <field name="payment_percentage"/>
+                </xpath>
+                <xpath expr="//tree" position="inside">
+                    <field name="note"/>
+		    <field name="note_attachment"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_quotation_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='amount_total']" position="after">
+                    <field name="payment_percentage"/>
+                </xpath>
+                <xpath expr="//tree/field[@name='date_order']" position="after">
+ 
+                    <field name="note"/>
+		    <field name="note_attachment"/>
+                </xpath>
+                <xpath expr="//tree" position="inside">
+                    <field name="to_approve"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_approve" type="object" attrs="{'invisible':[('to_approve','=',0)]}" string="Approve Order" class="oe_highlight" groups="sales_team.group_sale_manager"/>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_payment" type="object" class="oe_stat_button" icon="fa-usd">
+                        <div class="o_form_field o_stat_info">
+                            <span class="o_stat_value"><field name="payment_amount" widget="statinfo" nolabel="1"/> [ <field name="payment_percentage" widget="statinfo" nolabel="1"/>%]</span>
+                            <span class="o_stat_text">Collections</span>
+                        </div>
+                    </button>
+                    <button type="object"
+                        name="action_view_purchase_picking"
+                        class="oe_stat_button"
+                        icon="fa-truck" attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('picking_ids','=',[])]}">
+                        <field name="purchase_picking_count" widget="statinfo" string="Purchase Shipment" help="Incoming Shipments"/>
+                        <field name="purchase_picking_ids" invisible="1"/>
+                    </button>
+                </xpath>
+                <xpath expr="//group/group" position="inside">
+                    <field name="note_attachment"/>
+                    <field name="to_approve"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="inside">
+                    <field name="notes"/>
+                </xpath>
+				<xpath expr="//field[@name='order_line']/tree/field[@name='price_unit']" position="after">
+                    <button type="object" name="action_view_product_sales" icon="fa-bars"
+                            attrs="{'invisible': [('id', '=', False)]}"
+                            context="{'partner_id': parent.partner_id, 'create': False}"/>
+                </xpath>
+				<xpath expr="//field[@name='order_line']/form/group/group/field[@name='price_unit']" position="replace">
+					<label for="price_unit"/>
+					<div class="o_row">
+						<field name="price_unit"/>
+						<button type="object" name="action_view_product_sales" icon="fa-bars"
+                                attrs="{'invisible': [('id', '=', False)]}"
+                                context="{'partner_id':parent.partner_id}"/>
+					</div>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/group/group" position="inside">
+                    <field name="notes"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_order_line_tree" model="ir.ui.view">
+            <field name="name">sale.order.line.tree</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree"/>
+            <field name="arch" type="xml">
+                <field name="price_subtotal" position="before">
+                    <field name="price_unit" avg="Average" widget="monetary"/>
+                </field>
+            </field>
+        </record>
+
+
+
+    </data>
+</odoo>

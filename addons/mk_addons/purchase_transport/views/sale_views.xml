@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_order_form" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="action_view_purchase_transport" type="object" class="oe_stat_button" icon="fa-ship">
+                        <div class="o_form_field o_stat_info">
+                            <span class="o_stat_value"><field name="purchase_transport_done_count" widget="statinfo" nolabel="1"/> / <field name="purchase_transport_count" widget="statinfo" nolabel="1"/></span>
+                            <span class="o_stat_text">Purchase Transports</span>
+                        </div>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

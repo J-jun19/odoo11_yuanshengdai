@@ -1,0 +1,267 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* mk_transport
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0-20180622\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-09 07:57+0000\n"
+"PO-Revision-Date: 2018-07-09 07:57+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_stock_picking_transport_done_count
+msgid "# Done Transports"
+msgstr "#个完成运输"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_stock_picking_transport_count
+msgid "# Transports"
+msgstr "#个运输"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_picking_form
+msgid "<span class=\"o_stat_text\">Transports</span>"
+msgstr "<span class=\"o_stat_text\">Transports</span>"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_form
+msgid "Add an internal note"
+msgstr "添加内部备注"
+
+#. module: mk_transport
+#: model:ir.ui.menu,name:mk_transport.all_transport
+msgid "All Transports"
+msgstr "所有运输"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_calendar
+msgid "Calendar View"
+msgstr "日历视图"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_form
+msgid "Cancel"
+msgstr "取消"
+
+#. module: mk_transport
+#: selection:transport.move,state:0
+msgid "Cancelled"
+msgstr "已取消"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_carrier_id
+msgid "Carrier"
+msgstr "承运商"
+
+#. module: mk_transport
+#: model:ir.ui.menu,name:mk_transport.menu_transport_config_settings
+msgid "Configuration"
+msgstr "配置"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_create_uid
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_create_uid
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_create_uid
+msgid "Created by"
+msgstr "创建人"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_create_date
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_create_date
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_create_date
+msgid "Created on"
+msgstr "创建时间"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_address_dest_id
+msgid "Destination Address"
+msgstr "目的地址"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_display_name
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_display_name
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_display_name
+msgid "Display Name"
+msgstr "显示名称"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_form
+#: selection:transport.move,state:0
+msgid "Done"
+msgstr "完成"
+
+#. module: mk_transport
+#: selection:transport.move,state:0
+msgid "Draft"
+msgstr "草稿"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_date_end
+msgid "End Date"
+msgstr "结束日期"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_freight
+msgid "Freight"
+msgstr "运费"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_id
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_id
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_id
+msgid "ID"
+msgstr "ID"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move___last_update
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package___last_update
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product___last_update
+msgid "Last Modified on"
+msgstr "最后修改时间"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_write_uid
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_write_uid
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_write_uid
+msgid "Last Updated by"
+msgstr "最后更新者"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_write_date
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_write_date
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_write_date
+msgid "Last Updated on"
+msgstr "最后更新时间"
+
+#. module: mk_transport
+#: code:addons/mk_transport/models/transport_move.py:45
+#: code:addons/mk_transport/models/transport_move.py:47
+#: code:addons/mk_transport/models/transport_move.py:49
+#, python-format
+msgid "New"
+msgstr "新建"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_note
+msgid "Notes"
+msgstr "备注"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_form
+msgid "Package"
+msgstr "包装"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_package_lines
+msgid "Package Lines"
+msgstr "包裹行"
+
+#. module: mk_transport
+#: model:ir.ui.menu,name:mk_transport.menu_package
+msgid "Packages"
+msgstr "包裹"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_form
+msgid "Product"
+msgstr "产品"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_product_lines
+msgid "Product Lines"
+msgstr "产品行"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_address_id
+msgid "Source Address"
+msgstr "来源地址"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_date_start
+msgid "Start Date"
+msgstr "开始日期"
+
+#. module: mk_transport
+#: model:ir.model.fields,field_description:mk_transport.field_transport_move_state
+msgid "Status"
+msgstr "状态"
+
+#. module: mk_transport
+#: model:ir.model,name:mk_transport.model_stock_move
+msgid "Stock Move"
+msgstr "库存移动"
+
+#. module: mk_transport
+#: model:ir.model,name:mk_transport.model_stock_picking
+msgid "Transfer"
+msgstr "调拨"
+
+#. module: mk_transport
+#: model:ir.ui.menu,name:mk_transport.menu_transport_root
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_form
+msgid "Transport"
+msgstr "运输"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_search
+msgid "Transport List"
+msgstr "运输列表"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_search
+msgid "Transport Lists"
+msgstr "运输列表"
+
+#. module: mk_transport
+#: model:ir.actions.act_window,name:mk_transport.action_transport_tree
+msgid "Transport Operations"
+msgstr "运输作业"
+
+#. module: mk_transport
+#: model:ir.ui.view,arch_db:mk_transport.view_transport_tree
+msgid "Transport list"
+msgstr "运输列表"
+
+#. module: mk_transport
+#: model:ir.actions.act_window,name:mk_transport.action_transport_view
+#: model:ir.model.fields,field_description:mk_transport.field_stock_picking_transport_ids
+msgid "Transports"
+msgstr "运输"
+
+#. module: mk_transport
+#: model:ir.ui.menu,name:mk_transport.menu_transport_mgmt
+msgid "Operations"
+msgstr "作业"
+
+#. module: mk_transport
+#: model:ir.ui.menu,name:mk_transport.menu_transport_control
+msgid "Master Data"
+msgstr "主数据"
+
+#. module: mk_transport
+#: model:ir.model,name:mk_transport.model_transport_container_line
+msgid "transport.container.line"
+msgstr "transport.container.line"
+
+#. module: mk_transport
+#: model:ir.model,name:mk_transport.model_transport_move
+msgid "transport.move"
+msgstr "transport.move"
+
+#. module: mk_transport
+#: model:ir.model,name:mk_transport.model_transport_move_package
+msgid "transport.move.package"
+msgstr "transport.move.package"
+
+#. module: mk_transport
+#: model:ir.model,name:mk_transport.model_transport_move_product
+msgid "transport.move.product"
+msgstr "transport.move.product"
+
