@@ -51,10 +51,13 @@ class Wechat(http.Controller):
                     redirect_url = config.redirect_url
                     state = config.state
                     # 获取服务器域名
-                    request.httprequest.environ.get('HTTP_HOST', '')
+                    host = request.httprequest.environ.get('HTTP_HOST', '')
                     # 拼接获取企业微信code参数的url
-                    url = 'https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=%s&agentid=%s&redirect_uri=%s&state=%s'\
-                          % (corp_id, agent_id, redirect_url, state)
+                    # url = 'https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=%s&agentid=%s&redirect_uri=%s&state=%s'\
+                    #       % (corp_id, agent_id, redirect_url, state)
+
+                    url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=http://%s/wechat/wechat&response_type=code&scope=SCOPE&connect_redirect=1#wechat_redirect'%(corp_id,host)
+
 
                 return self.set_cookie_and_redirect(url)
 
