@@ -47,9 +47,9 @@ class Wechat(http.Controller):
                 if config:
                     # 获取url参数
                     corp_id = config.corp_id
-                    agent_id = config.agent_id
-                    redirect_url = config.redirect_url
-                    state = config.state
+                    # agent_id = config.agent_id
+                    # redirect_url = config.redirect_url
+                    # state = config.state
                     # 获取服务器域名
                     host = request.httprequest.environ.get('HTTP_HOST', '')
                     # 拼接获取企业微信code参数的url
