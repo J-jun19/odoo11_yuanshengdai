@@ -7,10 +7,10 @@
         subtitle on modules listing or apps.openerp.com""",
 
     'description': """
-        Long description of module's purpose
+        use wechat login odoo
     """,
 
-    'author': "My Company",
+    'author': "jiangjun",
     'website': "http://www.yourcompany.com",
 
     # Categories can be used to filter modules in modules listing
@@ -27,6 +27,7 @@
         # 'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
+        'views/inherit_web_login.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
