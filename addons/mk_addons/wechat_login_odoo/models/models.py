@@ -25,3 +25,11 @@ class wechat_corp_config(models.Model):
     corp_agent_secret = fields.Char('应用 Secret')
     corp_secret = fields.Char('通讯录 Secret')
     first = fields.Boolean(u'占位字段')
+
+    @api.onchange('corp_id', 'corp_agent', 'corp_agent_secret', 'corp_secret')
+    def _onchange_filter_spaces(self):
+        """过滤首尾空格"""
+        self.corp_id = self.corp_id.strip() if self.corp_id else ''
+        self.corp_agent = self.corp_agent.strip() if self.corp_agent else ''
+        self.corp_agent_secret = self.corp_agent_secret.strip() if self.corp_agent_secret else ''
+        self.corp_secret = self.corp_secret.strip() if self.corp_secret else ''
