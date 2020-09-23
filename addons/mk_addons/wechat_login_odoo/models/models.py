@@ -33,3 +33,24 @@ class wechat_corp_config(models.Model):
         self.corp_agent = self.corp_agent.strip() if self.corp_agent else ''
         self.corp_agent_secret = self.corp_agent_secret.strip() if self.corp_agent_secret else ''
         self.corp_secret = self.corp_secret.strip() if self.corp_secret else ''
+
+
+class wechat_corp_users(models.Model):
+    _name = 'wechat.corp.users'
+    _description = u'企业微信用户'
+
+    name = fields.Char('姓名', required=True)
+    userid = fields.Char('账号', required=True)
+    gender = fields.Selection([(1, '男'), (2, '女')], string='性别')
+    mobile = fields.Char('手机号')
+    email = fields.Char('邮箱')
+    position = fields.Char('职位')
+    status = fields.Selection([(1, '已关注'), (2, '已禁用'), (4, '未关注')], string='状态', default=4)
+    avatar = fields.Char('头像')
+    department = fields.Integer('部门')
+
+    _sql_constraints = [
+        ('userid_key', 'UNIQUE (userid)', '账号已存在 !'),
+        ('mobile_key', 'UNIQUE (mobile)', '手机号已存在 !'),
+        ('email_key', 'UNIQUE (email)', '邮箱已存在 !'),
+    ]
