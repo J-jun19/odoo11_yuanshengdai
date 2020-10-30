@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!--MM 下载rfq的向导-->
+      <record id="view_lz_dian_cai_form" model="ir.ui.view">
+          <field name="name">lz_dian_cai</field>
+          <field name="model">lz.dian.cai.model</field>
+          <field name="arch" type="xml">
+              <form string="Wizard tools">
+                  <group>
+                      <field name="plant" options="{'no_create': True, 'no_edit': True}" required="1"/>
+                      <field name="holiday" options="{'no_create': True, 'no_edit': True}"/>
+                  </group>
+              </form>
+          </field>
+      </record>
+  </data>
+</odoo>

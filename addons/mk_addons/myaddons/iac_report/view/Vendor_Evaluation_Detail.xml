@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_evaluation_list" model="ir.ui.view">
+            <field name="name">Vendor Evaluation Detail</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.evaluation.detail</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Evaluation Detail" create="false">
+                    <field name="create_date"/>
+                    <field name="plant"/>
+                    <field name="sc_code"/>
+                    <field name="sc_name"/>
+                    <field name="sc_status"/>
+                    <field name="vendor_codes"/>
+                    <field name="vendor_types"/>
+                    <field name="part_class"/>
+                    <field name="part_category"/>
+                    <field name="part_status"/>
+                    <field name="qm_controller"/>
+                    <field name="qm_user"/>
+                    <field name="scm_controller"/>
+                    <field name="scm_user"/>
+                    <field name="qm_score"/>
+                    <field name="scm_score"/>
+                    <field name="gr_qty"/>
+                    <field name="gr_amount"/>
+                    <field name="score_group"/>
+                    <field name="score_item"/>
+                    <field name="score_criteria"/>
+                    <field name="item_status"/>
+                    <field name="weight"/>
+                    <field name="user_score"/>
+                    <field name="supplier_final_score"/>
+                    <field name="supplier_final_class"/>
+                    <field name="part_class_final_score"/>
+                    <field name="part_category_final_class"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='iac_vendor_evaluation_wizard_form' model='ir.ui.view'>
+          <field name='name'>Vendor Evaluation Detail</field>
+          <field name='model'>vendor.evaluation.detail.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Vendor Evaluation">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" />
+                            <field name='supplier_company' options="{'no_create': True,'no_open': True}"/>
+                            <field name='part_category_id' options="{'no_create': True,'no_open': True}"/>
+                            <field name='starttime'/>
+                            <field name='endtime'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_vendor_evaluation_detail_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_wizard_vendor_evaluation"
+                    name="Vendor Evaluation Detail"
+                    res_model="vendor.evaluation.detail.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

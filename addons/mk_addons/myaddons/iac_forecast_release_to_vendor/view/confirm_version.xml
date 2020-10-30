@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- 目的：iac_tconfirm_version 檔, 用來記錄每個採購release出去的版本號-->
+
+    <!--  iac.tconfirm.version  搜索視圖___S -->
+    <record model="ir.ui.view" id="confirm_version_search_view">
+        <field name="name">tconfirm.version.search</field>
+        <field name="model">iac.tconfirm.version</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="vendor_code"/>
+                <field name="material_code"/>
+                <field name="division_code"/>
+            </search>
+        </field>
+    </record>
+	<!--  iac.tconfirm.version  搜索視圖___E -->
+
+    <!--創建 tconfirm.version table 的 tree_____s-->
+    <record id="view_confirm_version_list" model="ir.ui.view">
+        <field name="name">ConfirmVersion</field>
+        <field name="type">tree</field>
+        <field name="model">iac.tconfirm.version</field>
+        <field name="arch" type="xml">
+            <tree string="Confirm Version" create="false">
+                <field name="id" string="id"/>
+                <field name="status" string="status"/>
+                <field name="material_id" string="material_id"/>
+                <field name="vendor_id" string="vendor_id"/>
+                <field name="buyer_id" string="buyer_id"/>
+                <field name="version" string="version"/>
+                <field name="fpversion"/>
+                <field name="division_id"/>
+                <field name="create_date"/>
+                <field name="raw_id"/>
+            </tree>
+        </field>
+    </record>
+    <!--創建 tconfirm.version table 的 tree_____e-->
+
+    <!--定义视图动作  tconfirm.version table 的 action ____s-->
+    <record model="ir.actions.act_window" id="action_confirm_version">
+        <field name="name">ConfirmVersion</field>
+        <field name="res_model">iac.tconfirm.version</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        <!--<field name="target">main</field>-->
+        <!--<field name="view_id" ref="view_confirm_version_list"/>-->
+    </record>
+    <!--定义视图动作  tconfirm.version table 的 action ____e-->
+
+    <!-- -########################################################################-->
+
+    <!-- 取得歷史release版本 的 tree _____s -->
+    <record id='confirm_version_open_tree' model='ir.ui.view'>
+        <field name='name'>confirm version open tree</field>
+        <field name="type">tree</field>
+        <field name='model'>iac.tconfirm.version</field>
+        <field name="arch" type="xml">
+            <tree string="Confirm Version" create="false">
+                <field name="version"/>
+                <field name="create_date"/>
+                <field name="material_id"/>
+                <field name="vendor_id"/>
+                <field name="id"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+    <!-- 取得歷史release版本 的 tree _____e -->
+
+    <!-- 取得歷史release版本 的 action ____s  -->
+    <record model="ir.actions.act_window" id="action_confirm_version_open_tree">
+        <field name="name">confirm version open tree</field>
+        <field name="res_model">iac.tconfirm.version</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="confirm_version_open_tree" />
+        <field name="target">new</field>
+    </record>
+    <!-- 取得歷史release版本 的 action ____e  -->
+
+
+  </data>
+</odoo>

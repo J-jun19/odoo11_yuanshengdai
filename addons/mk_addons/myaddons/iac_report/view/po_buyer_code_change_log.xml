@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <record id="view_po_buyer_code_change_log_list" model="ir.ui.view">
+            <field name="name">Po Buyercode Change Log</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.buyer.code.change.log</field>
+            <field name="arch" type="xml">
+                <tree string="Po Buyer code Change Log" create="false">
+                    <field name="plant"/>
+                    <field name="document_erp_id"/>
+                    <field name="ori_buyer_code"/>
+                    <field name="new_buyer_code"/>
+                    <field name="change_on"/>
+                    <field name="change_by"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='po_buyer_code_change_log_wizard_form' model='ir.ui.view'>
+          <field name='name'>Po Buyer code Change Log</field>
+          <field name='model'>v.po.buyer.code.change.log.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Po Buyer code Change Log" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='plant_id' options="{'no_create': True, 'no_edit': True, 'no_open': True}" required="1"/>
+                            <field name='document_erp_id'/>
+                            <field name='ori_buyer_code'/>
+                            <field name='new_buyer_code'/>
+                            <field name='change_on'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_po_buyer_code_change_log'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_po_buyer_code_change_log"
+                    name="Po Buyer code Change Log"
+                    res_model="v.po.buyer.code.change.log.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

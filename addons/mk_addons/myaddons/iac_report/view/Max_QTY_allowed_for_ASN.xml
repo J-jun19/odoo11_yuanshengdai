@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_max_qty_report_list" model="ir.ui.view">
+            <field name="name">Max Qty Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.max.qty.report</field>
+            <field name="arch" type="xml">
+                <tree string="Max Qty Report" create="false">
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="plant"/>
+                    <field name="material"/>
+                    <field name="material_description"/>
+                    <field name="maxqty"/>
+                    <field name="weekly_qty"/>
+                    <field name="adjust_qty"/>
+                    <field name="allowqty"/>
+                    <field name="lastupdatedate"/>
+                    <field name="status"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_max_qty_form' model='ir.ui.view'>
+          <field name='name'>Max Qty Report Wizard</field>
+          <field name='model'>iac.max.qty.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Max Qty Report Wizard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="part_no"/>
+                            <field name="status"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_max_qty_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_max_qty"
+                    name="Max Qty Report Wizard"
+                    res_model="iac.max.qty.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

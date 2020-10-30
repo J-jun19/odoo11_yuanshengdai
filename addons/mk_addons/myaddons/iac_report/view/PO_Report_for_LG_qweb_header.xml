@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_iac_po_report_for_lg"
+        name="iac_report.qweb_iac_po_report_for_lg"
+        model="iac.po.report.for.lg"
+        string="PO report"
+        report_type="qweb-html"
+
+    />
+</odoo>

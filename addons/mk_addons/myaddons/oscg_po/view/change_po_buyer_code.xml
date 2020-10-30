@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <record id="view_po_buyer_code_change" model="ir.ui.view">
+            <field name="name">PO Buyer Code Change</field>
+            <field name="type">tree</field>
+            <field name="model">iac.purchase.order.buyer.code.change.log</field>
+            <field name="arch" type="xml">
+                <tree string="PO Buyer Code Change" create="false">
+                    <field name="order_id"/>
+                    <field name="ori_buyer_code"/>
+                    <field name="new_buyer_code"/>
+                    <field name="change_by"/>
+                    <field name="change_on"/>
+                    <field name="flag"/>
+                    <field name="message"/>
+                    <field name="po_no"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+       <record id='po_buyer_code_change_wizard_form' model='ir.ui.view'>
+          <field name='name'>PO Buyer Code Change</field>
+          <field name='model'>iac.po.buyer.code.change.wizard</field>
+          <field name='arch' type='xml'>
+              <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="original_purchase_group" options="{'no_create': True, 'no_edit': True, 'no_open': True}" required="1"/>
+                            <field name='new_purchase_group' options="{'no_create': True, 'no_edit': True, 'no_open': True}" required="1"/>
+                            <field name='list_of_po_need_to_be_changed' required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_po_buyer_code_change'
+                        string='Submit'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_view_po_buyer_code_change"
+                    name="PO Buyer Code Change"
+                    res_model="iac.po.buyer.code.change.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

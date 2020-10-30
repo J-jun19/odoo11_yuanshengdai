@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_inforecord_cross_plant_exception_spot_list" model="ir.ui.view">
+            <field name="name">Info Record Cross Plant Exception Spot</field>
+            <field name="type">tree</field>
+            <field name="model">v.inforecord.cross.plant.exception.spot</field>
+            <field name="arch" type="xml">
+                <tree string="Info Record Cross Plant Exception Spot" create="false">
+                    <field name="webflow_number"/>
+                    <field name="approve_date_web"/>
+                    <field name="new_plant"/>
+                    <field name="new_vendor"/>
+                    <field name="new_vendor_name"/>
+                    <field name="material"/>
+                    <field name="material_desc"/>
+                    <field name="new_buyer_code"/>
+                    <field name="new_buyer_name"/>
+                    <field name="new_currency"/>
+                    <field name="new_price"/>
+                    <field name="new_division"/>
+                    <field name="new_division_desc"/>
+                    <field name="new_valid_from"/>
+                    <field name="new_valid_to"/>
+                    <field name="diff"/>
+                    <field name="old_plant"/>
+                    <field name="old_vendor"/>
+                    <field name="old_vendor_name"/>
+                    <field name="old_currency"/>
+                    <field name="old_price"/>
+                    <field name="old_division"/>
+                    <field name="old_division_desc"/>
+                    <field name="cost_up_reason_id"/>
+                    <field name="cost_up_reason_desc"/>
+                    <field name="old_buyer_code"/>
+                    <field name="old_buyer_name"/>
+                    <field name="old_valid_from"/>
+                    <field name="old_valid_to"/>
+                    <field name="data_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_inforecord_cross_plant_exception_list" model="ir.ui.view">
+            <field name="name">Info Record Cross Plant Exception</field>
+            <field name="type">tree</field>
+            <field name="model">v.inforecord.cross.plant.exception</field>
+            <field name="arch" type="xml">
+                <tree string="Info Record Cross Plant Exception" create="false">
+                    <field name="webflow_number"/>
+                    <field name="approve_date_web"/>
+                    <field name="new_plant"/>
+                    <field name="new_vendor"/>
+                    <field name="new_vendor_name"/>
+                    <field name="material"/>
+                    <field name="material_desc"/>
+                    <field name="new_buyer_code"/>
+                    <field name="new_buyer_name"/>
+                    <field name="new_currency"/>
+                    <field name="new_price"/>
+                    <field name="new_division"/>
+                    <field name="new_division_desc"/>
+                    <field name="new_valid_from"/>
+                    <field name="new_valid_to"/>
+                    <field name="diff"/>
+                    <field name="old_plant"/>
+                    <field name="old_vendor"/>
+                    <field name="old_vendor_name"/>
+                    <field name="old_currency"/>
+                    <field name="old_price"/>
+                    <field name="old_division"/>
+                    <field name="old_division_desc"/>
+                    <field name="cost_up_reason_id"/>
+                    <field name="cost_up_reason_desc"/>
+                    <field name="old_buyer_code"/>
+                    <field name="old_buyer_name"/>
+                    <field name="old_valid_from"/>
+                    <field name="old_valid_to"/>
+                    <field name="data_type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="inforecord_cross_plant_exception_wizard_form" model="ir.ui.view">
+            <field name="name">Info Record Cross Plant Exception</field>
+            <field name="model">inforecord.cross.plant.exception.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Info Record Cross Plant Exception">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="new_plant" options="{'no_create': True,'no_open': True}"/>
+                                <field name="new_vendor" options="{'no_create': True,'no_open': True}"/>
+                                <field name="cost_up_reason_id" options="{'no_create': True,'no_open': True}"/>
+                                <field name="one_or_many_material" widget="radio"/>
+                                <field name="part_id" attrs="{'readonly':[('one_or_many_material','!=','one_material_code')],'invisible': [('one_or_many_material','!=', 'one_material_code')]}"/>
+                                <field name="many_material" attrs="{'readonly':[('one_or_many_material','!=','many_material_code')],'invisible': [('one_or_many_material','!=', 'many_material_code')]}"/>
+                                <field name="approve_date_from" required="1"/>
+                                <field name="approve_date_to" required="1"/>
+                                <field name="vendor_spot" widget="checkbox"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="search_inforecord_cross_plant_exception"
+                                string="Search"
+                                class="btn-primary"
+                                type="object"/>
+                        or
+                        <button string="Cancel"
+                                class="btn-default"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_inforecord_cross_plant_exception"
+                    name="Info Record Cross Plant Exception"
+                    res_model="inforecord.cross.plant.exception.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

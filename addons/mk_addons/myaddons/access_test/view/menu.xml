@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- menu -->
+        <!--一級菜單-->
+        <menuitem id="main_access" name="Access"/>
+
+        <!--菜單轉移到ASN下-->
+        <!--二級菜單-->
+        <menuitem id="second_access" name="Access"
+                  parent="main_access" sequence="40"/>
+
+        <!--三級菜單-->
+
+        <menuitem id="third_access"
+                  name="download"
+                  parent="second_access"
+                  action="access_action"
+                  sequence="2"/>
+
+
+    </data>
+</odoo>

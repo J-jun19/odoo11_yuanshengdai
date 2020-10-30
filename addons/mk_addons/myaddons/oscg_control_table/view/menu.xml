@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- menu -->
+        <!--一級菜單-->
+        <menuitem id="main_table_menu" name="Control Table"/>
+
+        <!--菜單轉移到ASN下-->
+        <!--二級菜單-->
+        <menuitem id="control_table_menu" name="Control Table"
+                  parent="oscg_rfq.menu_asn_root" sequence="40"/>
+        <menuitem id="country_menu" name="Country of Origin"
+                  parent="oscg_rfq.menu_asn_root" sequence="50"/>
+        <!--三級菜單-->
+        <menuitem id="table_menu" name="Create" parent="control_table_menu"
+                  action="table_list_action" sequence="1"/>
+        <!--<menuitem id="table_menu_report" name="Template Download" parent="control_table_menu" action="action_iac_control_table_report_form" sequence="2"/>-->
+        <menuitem id="table_menu_import" name="Batch Create" parent="control_table_menu" action="table_import_action" sequence="3"/>
+        <menuitem id="real_table_menu" name="Existed Data" parent="control_table_menu" action="real_table_action" sequence="4"/>
+        <menuitem id="control_table_history_menu" name="History" parent="control_table_menu" action="control_table_history_action" sequence="5"/>
+
+        <menuitem id="query_update_menu"
+                  name="Query/Update"
+                  parent="country_menu"
+                  action="query_update_action"
+                  sequence="1"/>
+        <menuitem id="batch_upload_menu"
+                  name="Batch Upload"
+                  parent="country_menu"
+                  action="batch_upload_action"
+                  sequence="2"/>
+
+
+    </data>
+</odoo>

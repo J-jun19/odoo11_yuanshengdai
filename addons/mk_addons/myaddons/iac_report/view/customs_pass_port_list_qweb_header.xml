@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_iac_customs_pass_port_list"
+        name="iac_report.qweb_iac_customs_pass_port_list"
+        model="iac.customs.pass.port.list"
+        string="核放单打印"
+        report_type="qweb-html"
+
+    />
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_vendor" name="Vendor" sequence="1"/>
+
+        <menuitem id="menu_new_vendor" name="New Vendor" parent="menu_vendor" sequence="1"/>
+        <menuitem id="menu_new_vendor_reg" name="Registration" parent="menu_new_vendor" action="action_view_vendor_register_form" sequence="1"/>
+        <menuitem id="menu_new_vendor_bank" name="Bank Info." parent="menu_new_vendor" action="action_view_vendor_form" sequence="2"/>
+        <menuitem id="menu_new_vendor_copy" name="Vendor Copy" parent="menu_new_vendor" action="action_view_vendor_copy_form" sequence="3"/>
+
+        <menuitem id="menu_vendor_gsp" name="GV/SC/PLM" parent="menu_vendor" sequence="2"/>
+        <menuitem id="menu_vendor_gsp_sc" name="Supplier Company" parent="menu_vendor_gsp" action="action_view_supplier_company_form" sequence="1"/>
+        <menuitem id="menu_vendor_gsp_gs" name="GV/SC Bind" parent="menu_vendor_gsp" action="action_view_global_vendor_form" sequence="2"/>
+        <menuitem id="menu_vendor_gsp_plm" name="GV/PLM Bind" parent="menu_vendor_gsp" action="action_view_vendor_plm_form" sequence="3"/>
+
+        <menuitem id="menu_vendor_change" name="Vendor Change" parent="menu_vendor" sequence="3"/>
+        <menuitem id="menu_vendor_change_block" name="Block/Unblock" parent="menu_vendor_change" action="action_view_vendor_block_form" sequence="1"/>
+        <menuitem id="menu_vendor_change_bank" name="Basic Data" parent="menu_vendor_change" action="action_view_vendor_change_basic_form" sequence="2"/>
+        <menuitem id="menu_vendor_change_pmt" name="PMT/Inco Term" parent="menu_vendor_change" action="action_view_buyer_change_terms_form" sequence="3"/>
+        <menuitem id="menu_vendor_change_specific" name="Specific Data" parent="menu_vendor_change" action="action_view_buyer_change_master_form" sequence="4"/>
+        
+        <menuitem id="menu_vendor_change_buyer_email" name="Buyer Email" parent="menu_vendor_change" action="action_wizard_vendor_buyer_email" sequence="6"/>
+
+        <menuitem id="menu_vendor_other" name="Other Vendor" parent="menu_vendor" sequence="4"/>
+        <menuitem id="menu_vendor_other_spot" name="Spot Vendor" parent="menu_vendor_other" action="action_view_spot_vendor_form" sequence="1"/>
+        <menuitem id="menu_vendor_other_mold" name="Mold Vendor" parent="menu_vendor_other" action="action_view_mold_vendor_form" sequence="2"/>
+        <menuitem id="menu_vendor_other_bvi" name="BVI Vendor" parent="menu_vendor_other" action="action_view_bvi_vendor_form" sequence="3"/>
+
+        <!--旧公告功能,废弃
+        <menuitem id="menu_vendor_bulletin" name="Bulletin" parent="menu_vendor" sequence="6"/>
+        <menuitem id="menu_vendor_bulletin_message" name="Publish" parent="menu_vendor_bulletin" action="mail.action_view_mail_message" sequence="1"/>
+        <menuitem id="menu_vendor_bulletin_white_list" name="Recipient" parent="menu_vendor_bulletin" action="action_view_mail_message_white_form" sequence="2"/>
+        <menuitem id="menu_vendor_bulletin_white_upload" name="Import Recipient" parent="menu_vendor_bulletin" action="action_message_white_import" sequence="3"/>
+        -->
+
+        <menuitem id="menu_vendor_attachment" name="Doc Control" parent="menu_vendor" sequence="7"/>
+        <menuitem id="menu_wizard_iac_vendor_register_attachment" name="Registration Doc" parent="menu_vendor_attachment" action="action_wizard_iac_vendor_register_attachment" sequence="1"/>
+        <menuitem id="menu_wizard_iac_vendor_attachment" name="Other Doc" parent="menu_vendor_attachment" action="action_wizard_iac_vendor_attachment" sequence="2"/>
+
+        <menuitem id="menu_vendor_setting" name="Setting" parent="menu_vendor" sequence="8"/>
+        <menuitem id="menu_vendor_setting_type" name="Doc Type" parent="menu_vendor_setting" action="action_view_attachment_type_list" sequence="1"/>
+        <menuitem id="menu_vendor_setting_config" name="Doc Config" parent="menu_vendor_setting" action="action_view_attachment_config_list" sequence="2"/>
+        <menuitem id="menu_vendor_setting_qvl" name="QVL Score" parent="menu_vendor_setting" action="action_view_vendor_qvl_list" sequence="3"/>
+
+        <menuitem id="menu_vendor_admin" name="Administration" parent="menu_vendor" sequence="9"/>
+        <menuitem id="menu_vendor_setting_account_group" name="Account Group" parent="menu_vendor_admin" action="action_view_account_group_list" sequence="1"/>
+
+        <menuitem id="menu_workspace" name="Workspace" sequence="12"/>
+        <menuitem id="menu_workspace_vendor" name="Vendor" parent="menu_workspace" sequence="1"/>
+        <menuitem id="menu_workspace_select_vendor_code" name="Select Vendor" parent="menu_workspace_vendor" action="action_wizard_iac_select_vendor_code" sequence="1"/>
+        <menuitem id="menu_agent_setting" name="Agent" parent="menu_workspace" sequence="2"/>
+        <menuitem id="menu_agent_setting_agent" name="Set Agent User" parent="menu_agent_setting" action="action_agent_users_list" sequence="1"/>
+        <menuitem id="menu_wizard_iac_agent_users" name="Set Workspace" parent="menu_agent_setting" action="action_wizard_iac_agent_users" sequence="2"/>
+        <menuitem id="menu_agent_history" name="History" parent="menu_workspace" sequence="3"/>
+        <menuitem id="menu_agent_history_log" name="Agent History" parent="menu_agent_history" action="action_agent_users_history_list" sequence="1"/>
+
+    </data>
+</odoo>

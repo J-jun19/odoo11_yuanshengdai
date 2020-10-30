@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<odoo>
+
+<!--menuitem -->
+<menuitem id="menu_todo_task"
+          name="Todos"
+          action="action_todo_task"/>
+</odoo>

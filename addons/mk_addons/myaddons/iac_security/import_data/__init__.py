@@ -1,0 +1,11 @@
+import vendor_register
+import vendor
+import external_user_import
+import internal_user_import
+import global_vendor_import
+import supplier_company_import
+import vendor_attachment_import
+import vendor_plm_import
+import vendor_product_import
+import vendor_factory_import
+import vendor_material_import

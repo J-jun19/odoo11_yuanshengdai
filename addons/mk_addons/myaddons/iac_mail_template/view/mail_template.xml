@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+
+        <record id='iac_country_origin_form' model='ir.ui.view'>
+          <field name='name'>Country Origin Report Wizard</field>
+          <field name='model'>iac.email.pool</field>
+          <field name='arch' type='xml'>
+              <form string="Country Origin Report Wizard">
+                <sheet>
+                    <group>
+                        <group>
+
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='job_evaluation_mail'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="mail_action"
+                    name="Country Origin Report Wizard"
+                    res_model="iac.email.pool"
+                    view_mode="form"
+
+                    target="new"/>
+
+
+    </data>
+</odoo>

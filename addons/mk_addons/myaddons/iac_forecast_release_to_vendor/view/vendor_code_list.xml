@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+        <!-- List Materials   選擇FCST_ server action_____s-->
+        <record id="list_materials_action_server" model="ir.actions.server">
+            <field name="name">List Materials</field>  <!-- 選擇FCST-->
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_iac_traw_data_vendor_list"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.button_to_list_material()
+            </field>
+        </record>
+
+        <record id="action_list_materials" model="ir.values">
+            <field name="name">List Materials</field> <!-- 選擇FCST-->
+            <field name="model_id" ref="model_iac_traw_data_vendor_list"/>
+            <field name="model">iac.traw.data.vendor.list</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%list_materials_action_server" name="value"/>
+        </record>
+        <!-- List Materials 選擇FCST_server action_____e-->
+
+        <!-- Remind Vendor 催簽mail ___s -->
+        <record id="iac_traw_data_submit_action_server" model="ir.actions.server">
+            <field name="name">Remind Vendor</field>  <!--催簽-->
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_iac_traw_data_vendor_list"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.button_remind_mail()
+            </field>
+        </record>
+
+        <record id="action_iac_traw_data_submit" model="ir.values">
+            <field name="name">Remind Vendor</field> <!-- 催簽 -->
+            <field name="model_id" ref="model_iac_traw_data_vendor_list"/>
+            <field name="model">iac.traw.data.vendor.list</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%iac_traw_data_submit_action_server" name="value"/>
+        </record>
+        <!-- Remind Vendor 催簽mail ___e -->
+
+        <!-- 单笔和批量變更FCST  Cancel Release ___S -->
+        <record id="iac_traw_data_change_action_server" model="ir.actions.server">
+            <field name="name">Cancel Release</field>  <!-- 變更-->
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_iac_traw_data_vendor_list"/>
+            <field name="state">code</field>
+            <field name="code">
+                if records:
+                action = records.button_changeFCST_mail()
+            </field>
+        </record>
+
+        <record id="action_iac_traw_data_change" model="ir.values">
+            <field name="name">Cancel Release</field> <!-- 變更-->
+            <field name="model_id" ref="model_iac_traw_data_vendor_list"/>
+            <field name="model">iac.traw.data.vendor.list</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%iac_traw_data_change_action_server" name="value"/>
+        </record>
+        <!-- 单笔和批量變更FCST  Cancel Release___E -->
+
+       <!--##顯示 Search vendor list ______________s #####-->
+
+       <!-- 第1個-標題的 第1個- action 的 彈跳windows  的 form ___s-->
+       <record id='buyerconfirm_wizard_form' model='ir.ui.view'>
+          <field name='name'>iac vendor code wizard form view</field>
+          <field name='model'>iac.vendor.code.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Buyer confirm forecast Search">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='plant_id' options="{'no_create': True, 'no_edit': True,'on_change': '_onchange_plant_id'}" required='1'/>
+                            <field name='vendor_id' options="{'no_create': True, 'no_edit': True}" domain="[('plant', '=', plant_id)]" attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                            <field name='buyer_id' options="{'no_create': True, 'no_edit': True}" required='1'/>
+                            <field name='storage_location_id' options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                  <footer>
+                <button name='search_buyer_confirm'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+       </record>
+       <!-- 第1個-標題的 第1個- action 的 彈跳windows  的 form ___e-->
+
+       <!-- 第1個-標題的 第1個- action 的 彈跳windows-Buyer confirm forecast-___s  -->
+       <act_window id="action_wizard_buyerconfirm" name="Search vendor list (EDI830廠商不能分批發送)"
+                   res_model="iac.vendor.code.wizard" view_mode="form" target="new"/>
+       <!-- 第1個-標題的 第1個- action 的 彈跳windows-Buyer confirm forecast-___e  -->
+
+       <!--##顯示 Search vendor list ______________e #####-->
+
+       <!--##顯示  vendor code list ______________s #####-->
+        <!-- iac.traw.data.vendor.list 查詢到的結果清單tree _____s-->
+        <record id="view_vendor_code_list_tree" model="ir.ui.view">
+            <field name="name">Vendor Code List</field>
+            <field name="model">iac.traw.data.vendor.list</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Code List tree" create="false" delete="false">
+                    <!--<field name="raw_id" />-->
+                    <field name="vendor_id"/>
+                    <field name="edi_830"/>   <!--顯示屬於EDI830的廠商  20180806 laura add-->
+                    <button name="get_version" string="History" type="object" /> <!--  取得歷史 release版本-->
+                    <field name="last_version"/> <!--  最新release版本-->
+                    <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <!--<field name="release_version_no"/> &lt;!&ndash;  最新release版本&ndash;&gt;-->
+                    <!--<field name="fpversion"/>-->
+                    <field name="storage_location_id"/>
+                    <field name="id" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        <!-- iac.traw.data.vendor.list 查詢到的結果清單tree _____e-->
+
+        <!--  iac.traw.data.vendor.list 查詢到的結果清單action _____s-->
+        <record id="action_vendor_code_list_form" model="ir.actions.act_window">
+            <field name="name">Vendor Code Form</field>
+            <field name="res_model">iac.traw.data.vendor.list</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="view_vendor_code_list_tree" />
+            <field name="context">{ 'tree_view_ref':'view_vendor_code_list_tree'}</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <!--  iac.traw.data.vendor.list 查詢到的結果清單action _____e-->
+
+       <!--##顯示  vendor code list ______________e #####-->
+
+  </data>
+</odoo>

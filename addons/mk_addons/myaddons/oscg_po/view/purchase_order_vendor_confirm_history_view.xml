@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- vendor confirm-->
+      <record id="view_po_vendor_confirm_his_list" model="ir.ui.view">
+          <field name="name">Purchase Order Vendor Confirm</field>
+          <field name="type">tree</field>
+          <field name="model">iac.purchase.order.vendor.confirm.his</field>
+          <field name="arch" type="xml">
+              <tree string="Purchase Order" create="false">
+                  <field name="name"/>
+                  <field name="plant_id"/>
+                  <field name="storage_location_id"/>
+                  <field name="purchase_org_id"/>
+                  <field name="vendor_id"/>
+                  <field name="order_amt"/>
+                  <field name="currency"/>
+                  <field name="order_date"/>
+                  <field name="state"/>
+                  <field name="changed"/>
+                  <field name="odoo_deletion_flag"/>
+                  <field name="po_change_type"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_po_vendor_confirm_his_form" model="ir.ui.view">
+          <field name="name">Purchase Order Vendor Confirm</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.vendor.confirm.his</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Vendor Confirm" create="false" >
+                  <header>
+                      <button String="Submit" type="object" attrs="{'invisible': [('is_submit','=',True)]}" class="oe_highlight" name="button_to_submit"/>
+
+                      <button String="Set All To Confirm" attrs="{'invisible': [('is_submit','=',True)]}" type="object" class="oe_highlight" name="button_set_all_confirm"/>
+                      <button String="Set All To Exception" attrs="{'invisible': [('is_submit','=',True)]}" type="object" class="oe_highlight" name="button_set_all_exception"/>
+
+                      <field name="state" widget="statusbar" statusbar_visible="new_po_wait_confirm,chg_po_wait_confirm,confirmed,exception" readonly="1"/>
+                  </header>
+                  <sheet>
+                      <group>
+                          <group>
+                              <field name="is_submit" invisible="1"/>
+                              <field name="name" readonly="1"/>
+                              <field name="plant_id" readonly="1"/>
+                              <field name="purchase_org_id" readonly="1"/>
+                              <field name="vendor_id" readonly="1"/>
+                              <field name="order_amt" readonly="1"/>
+                              <field name="changed" readonly="1"/>
+                              <field name="odoo_deletion_flag" readonly="1"/>
+                              <field name="state" readonly="1"/>
+                              <field name="state_msg" readonly="1"/>
+                              <field name="ori_payment_term" readonly="1"/>
+                              <field name="ori_incoterm_id" readonly="1"/>
+                              <field name="ori_incoterm1" readonly="1"/>
+                          </group>
+                          <group>
+                              <field name="payment_term_id" readonly="1"/>
+                              <field name="incoterm_id" readonly="1"/>
+                              <field name="incoterm1" readonly="1"/>
+                              <field name="order_type" readonly="1"/>
+
+                              <field name="contact_person" readonly="1"/>
+                              <field name="contact_phone" readonly="1"/>
+                              <field name="currency" readonly="1"/>
+                              <field name="order_reason" readonly="1"/>
+
+                              <field name="new_payment_term" />
+                              <field name="new_incoterm" />
+                              <field name="new_incoterm1" />
+                              <field name="storage_location_id"   options="{'no_create': True,'no_open': True}"/>
+                          </group>
+
+
+                      </group>
+                      <notebook>
+                          <page string="Purchase Order Lines">
+                              <field name="confirm_line_ids">
+                                  <tree string="Purchase Order Lines" edit="true" editable="top" create="false" delete="false">
+                                      <field name="is_submit" invisible="1"/>
+                                      <button name="button_to_toggle" type="object" string="Toggle State" attrs="{'invisible': [('is_submit','=',True)]}"  class="oe_highlight"/>
+                                      <field name="state" required="1"/>
+                                      <field name="vendor_exception_reason" attrs="{'readonly': [('is_submit','=',True)]}"/>
+                                      <field name="order_line_code" readonly="1"/>
+                                      <field name="part_id" readonly="1"/>
+                                      <field name="vendor_part_no" readonly="1"/>
+                                      <field name="price" readonly="1"/>
+                                      <field name="price_unit" readonly="1"/>
+                                      <field name="quantity" readonly="1"/>
+                                      <field name="delivery_date" readonly="1"/>
+                                      <field name="vendor_delivery_date" attrs="{'readonly': [('is_submit','=',True)]}"/>
+                                      <field name="odoo_deletion_flag" readonly="1"/>
+                                      <field name="ori_qty" readonly="1" string="Last Quantity"/>
+                                      <field name="new_qty" readonly="1"/>
+                                      <field name="ori_price" readonly="1" string="Last Price"/>
+                                      <field name="new_price" readonly="1"/>
+                                      <field name="ori_delivery_date" readonly="1" string="Last Delivery Date"/>
+                                      <field name="new_delivery_date" readonly="1"/>
+                                  </tree>
+                              </field>
+                          </page>
+                      </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record id="view_po_line_vendor_confirm_his_form" model="ir.ui.view">
+          <field name="name">Purchase Order Line Confirm History</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.vendor.confirm.line.his</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Line Vendor Confirm" create="false">
+                  <header>
+                      <button String="Set To Confirmed" states="wait_vendor_confirm,vendor_exception" type="object" class="oe_highlight" name="button_to_confirm" />
+                      <button String="Set To Exception" states="wait_vendor_confirm,vendor_confirmed,vendor_exception" type="object" class="oe_highlight" name="button_to_exception" />
+                      <field name="state" widget="statusbar" statusbar_visible="wait_vendor_confirm,vendor_exception,vendor_confirmed" readonly="1"/>
+                  </header>
+                  <sheet>
+                      <group string="Purchase Order Line Vendor Confirm">
+                          <group >
+
+                              <field name="order_line_code" options="{'no_create': True, 'no_edit': True}" readonly="1"/>
+                              <field name="part_id" readonly="1" />
+
+                              <field name="purchase_req_item_no" readonly="1"/>
+                              <field name="gr_qty" readonly="1"/>
+                              <field name="price" readonly="1"/>
+                              <field name="quantity" readonly="1"/>
+                              <field name="delivery_date" readonly="1"/>
+                              <field name="id" invisible="1"/>
+
+
+                          </group>
+                          <group >
+                              <field name="line_amount" readonly="1"/>
+                              <field name="division" readonly="1"/>
+                              <field name="purchase_req_no" readonly="1"/>
+                              <field name="open_qty" readonly="1"/>
+                              <field name="on_road_qty" readonly="1"/>
+                              <field name="price_unit" readonly="1"/>
+                              <field name="vendor_delivery_date" />
+                          </group>
+                          <group colspan="4" String="Vendor Exception Info" attrs="{'invisible': [('state', 'in', ['wait_vendor_confirm','vendor_confirmed'])]}">
+                              <field name="vendor_exception_reason"/>
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record id="view_iac_purchase_order_vendor_confirm_his_search" model="ir.ui.view">
+          <field name="name">iac.purchase.order.vendor.confirm.his.search</field>
+          <field name="model">iac.purchase.order.vendor.confirm.his</field>
+          <field name="arch" type="xml">
+              <search string="pm_events">
+                  <field name="name" filter_domain="[('name','ilike',self)]" string="PO No"/>
+                  <filter name="current_wait_confirm" string="Current Wait Confirm" domain="[('data_type','=','current'),'|',('state','=','new_po_wait_confirm'),('state','=','chg_po_wait_confirm')]"/>
+                  <filter name="last_confirmed" string="Last Confirmed" domain="[('data_type','=','current'),('state','=','vendor_confirmed')]"/>
+                  <filter name="last_exception" string="Last Exception" domain="[('data_type','=','current'),('state','=','vendor_exception')]"/>
+                  <filter name="history_confirmed" string="History Confirmed" domain="[('data_type', '=', 'history'),('state','=','vendor_confirmed')]"/>
+                  <filter name="history_exception" string="History Exception" domain="[('data_type', '=', 'history'),('state','=','vendor_exception')]"/>
+
+                  <group expand="0" string="Group By">
+                      <filter string="Vendor" domain="" context="{'group_by':'vendor_id'}"/>
+                      <filter string="Plant" domain="" context="{'group_by':'plant_id'}"/>
+                  </group>
+              </search>
+          </field>
+      </record>
+
+
+      <record model="ir.actions.act_window"  id="action_view_po_vendor_confirm_his_list">
+          <field name="name">PO Vendor Confirm History</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">iac.purchase.order.vendor.confirm.his</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="target">main</field>
+          <field name="context">{'search_default_current_wait_confirm': 1}</field>
+          <field name="view_id" ref="view_po_vendor_confirm_his_list"/>
+      </record>
+
+      <!-- 处理Vendor Confirm 期初数据生成的job-->
+      <!--
+      <record model="iac.interface.timer"  id="iac_interface_timer_vendor_confirm_his">
+            <field name="name">Vendor Confirm History Trans</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">date</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.purchase.order.vendor.confirm.his</field>
+            <field name="function">proc_tans_vendor_confirm</field>
+        </record>
+      -->
+
+      <!--Buyer Confirm -->
+<!--
+      <record id="view_po_buyer_confirm_his_list" model="ir.ui.view">
+          <field name="name">Purchase Order</field>
+          <field name="type">tree</field>
+          <field name="model">iac.purchase.order.vendor.confirm.his.buyer</field>
+          <field name="arch" type="xml">
+              <tree string="Purchase Order" create="false">
+                  <field name="name"/>
+                  <field name="plant_id"/>
+                  <field name="purchase_org_id"/>
+                  <field name="vendor_id"/>
+                  <field name="order_amt"/>
+                  <field name="currency"/>
+                  <field name="order_date"/>
+                  <field name="state"/>
+                  <field name="changed"/>
+                  <field name="odoo_deletion_flag"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_po_buyer_confirm_his_form" model="ir.ui.view">
+          <field name="name">Purchase Order Buyer Confirm</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.vendor.confirm.his.buyer</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Vendor Confirm" create="false" edit="false">
+                  <header>
+                      <button String="Submit To SAP" states="vendor_exception" type="object" class="oe_highlight" name="button_submit_to_sap" />
+                      <button String="Send Back To Vendor" states="vendor_exception" type="object" class="oe_highlight" name="button_send_back_to_vendor" />
+                      <field name="state" widget="statusbar" statusbar_visible="vendor_exception" readonly="1"/>
+                  </header>
+                  <sheet>
+                      <group>
+                          <group>
+                              <field name="name" readonly="1"/>
+                              <field name="plant_id" readonly="1"/>
+                              <field name="purchase_org_id" readonly="1"/>
+                              <field name="vendor_id" readonly="1"/>
+                              <field name="order_amt" readonly="1"/>
+                              <field name="changed" readonly="1"/>
+                              <field name="odoo_deletion_flag" readonly="1"/>
+                              <field name="state" readonly="1"/>
+                              <field name="state_msg" readonly="1"/>
+                          </group>
+                          <group>
+                              <field name="payment_term_id" readonly="1"/>
+                              <field name="incoterm_id" readonly="1"/>
+                              <field name="incoterm1" readonly="1"/>
+                              <field name="order_type" readonly="1"/>
+
+                              <field name="contact_person" readonly="1"/>
+                              <field name="contact_phone" readonly="1"/>
+                              <field name="currency" readonly="1"/>
+
+                          </group>
+
+
+                      </group>
+                      <notebook>
+                          <page string="Purchase Order Lines">
+                              <field name="confirm_line_ids" readonly="1">
+                                  <tree string="Purchase Order Lines">
+                                      <field name="state"/>
+                                      <field name="order_line_code"/>
+                                      <field name="part_id"/>
+                                      <field name="division"/>
+                                      <field name="vendor_part_no"/>
+                                      <field name="price"/>
+                                      <field name="price_unit"/>
+                                      <field name="quantity" />
+                                      <field name="storage_location" />
+                                      <field name="delivery_date"/>
+
+                                      <field name="odoo_deletion_flag" />
+                                  </tree>
+                              </field>
+                          </page>
+                      </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record id="view_po_line_buyer_confirm_his_form" model="ir.ui.view">
+          <field name="name">Purchase Order Line Confirm History</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.vendor.confirm.line.his.buyer</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Line Buyer Confirm" create="false">
+                  <sheet>
+                      <group string="Purchase Order Line Buyer Confirm">
+                          <group >
+
+                              <field name="order_line_code" options="{'no_create': True, 'no_edit': True}" readonly="1"/>
+                              <field name="part_id" readonly="1" />
+                              <field name="purchase_req_item_no" readonly="1"/>
+                              <field name="gr_qty" readonly="1"/>
+                              <field name="price" readonly="1"/>
+                              <field name="quantity" readonly="1"/>
+                              <field name="delivery_date" readonly="1"/>
+                              <field name="id" invisible="1"/>
+
+
+                          </group>
+                          <group >
+                              <field name="line_amount" readonly="1"/>
+                              <field name="division" readonly="1"/>
+                              <field name="purchase_req_no" readonly="1"/>
+                              <field name="open_qty" readonly="1"/>
+                              <field name="on_road_qty" readonly="1"/>
+                              <field name="price_unit" readonly="1"/>
+                              <field name="vendor_delivery_date" />
+                          </group>
+                          <group colspan="4">
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record model="ir.actions.act_window"  id="action_view_po_buyer_confirm_his_list">
+          <field name="name">PO Vendor Confirm</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">iac.purchase.order.vendor.confirm.his.buyer</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="target">main</field>
+          <field name="domain">[('state','=','vendor_exception')]</field>
+          <field name="view_id" ref="view_po_buyer_confirm_his_list"/>
+      </record>
+
+-->
+
+  </data>
+</odoo>

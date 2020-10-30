@@ -1,0 +1,1294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <!--基础模块筛选规则 -->
+        <!--buyer 只能看到自己的料号,适用于buyer角色 -->
+        <record id="ir_rule_material_master_filter_by_buyer_id" model="ir.rule">
+            <field name="name">Rule Material Master Filter By Buyer Id</field>
+            <field name="model_id" ref="oscg_vendor.model_material_master"/>
+            <field name="domain_force">[('buyer_code_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--as 只能看到自己的料号,适用于as角色 -->
+        <!--
+        <record id="ir_rule_material_master_filter_by_source_code" model="ir.rule">
+            <field name="name">Rule Material Master Filter By Source Code</field>
+            <field name="model_id" ref="oscg_vendor.model_material_master"/>
+            <field name="domain_force">[('sourcer','in',user.source_code_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--cm 只能看到自己的料号,适用于CM角色 -->
+        <!--
+        <record id="ir_rule_material_master_filter_by_division_id" model="ir.rule">
+            <field name="name">Rule Material Master Filter By Division Id</field>
+            <field name="model_id" ref="oscg_vendor.model_material_master"/>
+            <field name="domain_force">[('division_id','in',user.division_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_CM_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--po 模块相关的记录删选规则 -->
+
+        <!--po只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_iac_purchase_order_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Purchase Order Filter By Plant</field>
+            <field name="model_id" ref="oscg_po.model_iac_purchase_order"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--po change只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_iac_purchase_order_change_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Purchase Order Change Filter By Plant</field>
+            <field name="model_id" ref="oscg_po.model_iac_purchase_order_change"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--po 只能看到当前user归属的 buyer_code -->
+        <!--适用于 buyer角色 -->
+        <record id="ir_rule_iac_purchase_order_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Purchase Order Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_po.model_iac_purchase_order"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--po change只能看到当前user归属的 buyer_code -->
+        <!--适用于 buyer角色 -->
+        <record id="ir_rule_iac_purchase_order_change_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Purchase Order Change Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_po.model_iac_purchase_order_change"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--po vendor confirm 只能看到当前user归属的 vendor_id -->
+        <!--适用于 vendor 角色 -->
+        <record id="ir_rule_iac_purchase_order_vendor_confirm_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Purchase Order Vendor Confirm Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_po.model_iac_purchase_order_vendor_confirm"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--ASN模块相关 -->
+		<!-- 适用于全部role,vendor 筛选用来开立asn的vendor -->
+	
+        <record id="ir_rule_global_iac_vendor_asn_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Vendor Asn Filter By Plant and state</field>
+            <field name="model_id" ref="oscg_po.model_iac_vendor_asn"/>
+            <field name="domain_force">[('plant','in',user.plant_id_list),('state','not in',['draft'])]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        
+
+        <!--iac_asn只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_asn_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Purchase Order Change Filter By Plant</field>
+            <field name="model_id" ref="oscg_po.model_iac_asn"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--ASN 只能看到归属自己vendor的条目 -->
+        <!--适用于 vendor 角色 -->
+        <record id="ir_rule_iac_asn_filter_by_vendor_id" model="ir.rule">
+            <field name="name">Rule ASN Filter By Vendor ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--ASN Cancel 只能看到归属自己vendor的条目 -->
+        <!--适用于 vendor 角色 iac.asn.vendor.cancel-->
+
+
+        <record id="ir_rule_iac_asn_vendor_cancel_filter_by_vendor_id" model="ir.rule">
+            <field name="name">Rule ASN Vendor Cancel Filter By Vendor ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_vendor_cancel"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--ASN 条目只能看到归属自己buyer_code的条目 -->
+        <!--适用于 buyer 角色 -->
+        <!--
+        <record id="ir_rule_iac_asn_line_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule ASN Line Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_line"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--Buyer 审核入库单时只能看到谁属于自己的资料,header层面-->
+        <!--适用于 buyer 角色 -->
+        <!--<record id="ir_rule_buyer_approve_godown_entry_by_buyer_code" model="ir.rule">-->
+            <!--<field name="name">Rule Buyer approve godown entry by buyer code</field>-->
+            <!--<field name="model_id" ref="oscg_rfq.model_iac_customs_sas_header"/>-->
+            <!--<field name="domain_force">[('state','=','wait_mm_approve'),('sas_stock_line_ids.part_id.buyer_code_id','in',user.buyer_id_list)]</field>-->
+            <!--<field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>-->
+            <!--<field name="perm_read" eval="True"/>-->
+            <!--<field name="perm_create" eval="True"/>-->
+            <!--<field name="perm_unlink" eval="False"/>-->
+            <!--<field name="perm_write" eval="True"/>-->
+        <!--</record>-->
+
+        <!--Buyer 审核入库单时只能看到谁属于自己的资料,header层面-->
+        <!--适用于 buyer 角色 -->
+        <!--<record id="ir_rule_buyer_approve_godown_entry_by_buyer_code" model="ir.rule">-->
+            <!--<field name="name">Rule Buyer approve godown entry by buyer code</field>-->
+            <!--<field name="model_id" ref="oscg_rfq.model_iac_customs_sas_header"/>-->
+            <!--<field name="domain_force">[('state','=','wait_mm_approve'),('buyer_code_ids.buyer_code_id','in',user.buyer_id_list)]</field>-->
+            <!--<field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>-->
+            <!--<field name="perm_read" eval="True"/>-->
+            <!--<field name="perm_create" eval="True"/>-->
+            <!--<field name="perm_unlink" eval="False"/>-->
+            <!--<field name="perm_write" eval="True"/>-->
+        <!--</record>-->
+
+        <!--Buyer 审核入库单时只能看到谁属于自己的资料,header层面-->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_buyer_approve_godown_entry_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Buyer approve godown entry by buyer code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_customs_sas_header"/>
+            <field name="domain_force">[('state','=','wait_mm_approve'),('buyer_code_ids.buyer_code_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--Buyer 查看出入库单清单时只能看到谁属于自己的资料,header层面-->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_buyer_approve_godown_entry_inherit_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Buyer approve godown entry inherit by buyer code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_customs_sas_header_inherit"/>
+            <field name="domain_force">[('buyer_code_ids.buyer_code_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--Buyer 查看出入库单清单时只能看到属于自己的资料,line层面-->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_buyer_approve_godown_entry_inherit_line_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Buyer approve godown entry inherit line by buyer code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_customs_sas_line_inherit"/>
+            <field name="domain_force">[('buyer_code_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+
+        <!--Buyer 审核入库单时只能看到谁属于自己的资料,line层面-->
+        <!--适用于 buyer 角色 -->
+        <!--<record id="ir_rule_buyer_approve_enter_line_by_buyer_code" model="ir.rule">-->
+            <!--<field name="name">Rule Buyer approve enter line by buyer code</field>-->
+            <!--<field name="model_id" ref="oscg_rfq.model_iac_customs_sas_line"/>-->
+            <!--<field name="domain_force">[('state','=','wait_mm_approve'),('buyer_code_id','in',user.buyer_id_list)]</field>-->
+            <!--<field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>-->
+            <!--<field name="perm_read" eval="True"/>-->
+            <!--<field name="perm_create" eval="True"/>-->
+            <!--<field name="perm_unlink" eval="False"/>-->
+            <!--<field name="perm_write" eval="True"/>-->
+        <!--</record>-->
+
+        <!--Buyer 审核入库单时只能看到谁属于自己的资料,line层面-->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_buyer_approve_enter_line_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Buyer approve enter line by buyer code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_customs_sas_line"/>
+            <field name="domain_force">[('state','=','wait_mm_approve'),('buyer_code_id','in',user.buyer_id_list)]</field>
+            <!--<field name="domain_force">[('state','=','wait_mm_approve'),('sas_stock_id.buyer_code_ids.buyer_code_id','in',user.buyer_id_list)]</field>-->
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--vendor查看只属于自己的出入库单清单-->
+        <!--适用于 vendor 角色 -->
+        <record id="ir_rule_vendor_over_entry_godown_by_vendor_code" model="ir.rule">
+            <field name="name">Rule Vencor over entry godown by vendor code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_customs_sas_header_inherit"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--<record id="ir_rule_vendor_over_entry_godown_by_vendor_code_header" model="ir.rule">-->
+            <!--<field name="name">Rule Vencor over entry godown by vendor code header</field>-->
+            <!--<field name="model_id" ref="oscg_rfq.model_iac_customs_sas_header"/>-->
+            <!--<field name="domain_force">[('vendor_id','in',user.vendor_ids.ids)]</field>-->
+            <!--<field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>-->
+            <!--<field name="perm_read" eval="True"/>-->
+            <!--<field name="perm_create" eval="False"/>-->
+            <!--<field name="perm_unlink" eval="False"/>-->
+            <!--<field name="perm_write" eval="False"/>-->
+        <!--</record>-->
+
+        <!--vendor查看只属于自己的核放单清单-->
+        <!--适用于 vendor 角色 -->
+        <record id="ir_rule_vendor_over_check_list_by_vendor_code" model="ir.rule">
+            <field name="name">Rule Vencor over check list by vendor code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_customs_pass_port_header_inherit"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--ASN  Buyer Change 只能看到归属自己buyer_code和厂家列表的条目 -->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_iac_asn_buyer_change_filter_by_plant_info" model="ir.rule">
+            <field name="name">Rule ASN  Buyer Change Filter By Plant Info</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_buyer_change"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--ASN Line Buyer Change 只能看到归属自己buyer_code的条目 -->
+        <!--适用于 buyer 角色 -->
+
+        <!--
+        <record id="ir_rule_iac_asn_line_buyer_change_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule ASN Line Buyer Change Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_line_buyer_change"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--ASN  Buyer Cancel 只能看到归属自己buyer_code和厂家列表的条目 -->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_iac_asn_buyer_cancel_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule ASN  Buyer Cancel Filter By Plant Info</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_buyer_cancel"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--ASN Line Buyer Cancel 只能看到归属自己buyer_code的条目 -->
+        <!--适用于 buyer 角色 -->
+        <!--
+        <record id="ir_rule_iac_asn_line_buyer_cancel_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule ASN Line Buyer Cancel Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_line_buyer_cancel"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--ASN 只能看到归属自己source_code的条目 -->
+        <!--适用于 as 角色 -->
+        <!--
+        <record id="ir_rule_iac_asn_filter_by_source_code" model="ir.rule">
+            <field name="name">Rule ASN Line Filter By Source Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_line"/>
+            <field name="domain_force">[('source_code','in',user.source_code_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--ASN 只能看到归属自己division_id的条目 -->
+        <!--适用于 cm 角色 -->
+        <!--
+        <record id="ir_rule_iac_asn_filter_by_division_id" model="ir.rule">
+            <field name="name">Rule ASN Filter By Division ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_asn_line"/>
+            <field name="domain_force">[('division_id','in',user.division_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_CM_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!-- RFQ 模块相关-->
+        <!--iac_vendor_rfq 只能看到当前user的归属Plant,筛选能够开立rfq的vendor-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_vendor_rfq_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Vendor RFQ Filter By Plant and state</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_vendor_rfq"/>
+            <field name="domain_force">[('plant','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--iac_rfq_quote只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_quote_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ Quote Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--iac_rfq_create只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_create_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ Crate Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_create"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ Quote只能看到自己Buyer Code 所属的 -->
+        <!--适用于 buyer 角色 -->
+
+        <record id="ir_rule_iac_rfq_create_filter_by_buyer_id" model="ir.rule">
+            <field name="name">Rule RFQ Create Filter By Buyer ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_create"/>
+            <field name="domain_force">[('buyer_code','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ Quote只能看到自己Buyer Code 所属的 -->
+        <!--适用于 buyer 角色 -->
+
+        <record id="ir_rule_iac_rfq_filter_by_buyer_id" model="ir.rule">
+            <field name="name">Rule RFQ Quote Filter By Buyer ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote"/>
+            <field name="domain_force">[('buyer_code','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--RFQ Quote List 只能看到自己 所属的 料号列表-->
+        <!--适用于 as 角色 -->
+
+        <record id="ir_rule_iac_rfq_quote_filter_by_source_code" model="ir.rule">
+            <field name="name">Rule RFQ Quote List Filter By Source Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote"/>
+            <field name="domain_force">[('source_code','in',user.source_code_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--iac_rfq_quote_as只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_quote_as_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ Quote AS Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote_as"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ AS REVIEW 只能看到自己 所属的 料号列表-->
+        <!--适用于 as 角色 -->
+        <record id="ir_rule_iac_rfq_quote_as_filter_by_source_code" model="ir.rule">
+            <field name="name">Rule RFQ Quote AS Filter By Source Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote_as"/>
+            <field name="domain_force">[('source_code','in',user.source_code_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--RFQ AS UPLOAD LIST 只能看到自己source_code 为自己的数据 上传的 料号列表-->
+        <!--适用于 as 角色 -->
+
+        <!--由于导入的数据的时序问题,启用这个会导致数据无法导入,限制source_code导入的功能将由硬编码实现
+        <record id="ir_rule_iac_rfq_import_as_filter_by_source_code" model="ir.rule">
+            <field name="name">Rule RFQ Import AS Filter By Source Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_import_as"/>
+            <field name="domain_force">[('source_code','in',[g.source_code for g in user.work_user_id.partner_id.source_code_ids])]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--RFQ AS UPLOAD LIST 只能看到自己创建的数据-->
+        <!--适用于 as 角色 -->
+        <record id="ir_rule_iac_rfq_import_as_filter_by_create_uid" model="ir.rule">
+            <field name="name">Rule RFQ Import AS Filter By Create User Id</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_import_as"/>
+            <field name="domain_force">[('create_uid', '=', user.id),('state','=','as_uploaded')]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--iac_rfq_import_as只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_import_as_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ Import AS Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_import_as"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ AS UPLOAD LIST 只能看到自己 buyer_code 为自己的数据 上传的 料号列表-->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_iac_rfq_import_as_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule RFQ Import AS Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_import_as"/>
+            <field name="domain_force">[('buyer_code','in',user.buyer_id_list),('state','not in',['cm_uploaded'])]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ Quote只能看到自己 所属的 料号列表-->
+        <!--适用于 cm 角色 -->
+        <!--
+        <record id="ir_rule_iac_rfq_filter_by_division_id" model="ir.rule">
+            <field name="name">Rule Quote List By Division ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote"/>
+            <field name="domain_force">[('division_id','in',user.division_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_CM_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+
+        <!--RFQ Quote List  Vendor Confirm 只能看到自己 所属的 quote-->
+        <!--适用于 vendor 角色 -->
+
+        <record id="ir_rule_iac_rfq_quote_filter_by_vendor_id" model="ir.rule">
+            <field name="name">Rule Quote List Filter By Vendor ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id),('state','=','sent')]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ Quote List  Vendor Confirm 只能看到自己 所属的 quote-->
+        <!--适用于 vendor 角色 -->
+
+        <record id="ir_rule_iac_rfq_quote_vendor_filter_by_vendor_id" model="ir.rule">
+            <field name="name">Rule Vendor Confirm Filter By Vendor ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_quote_vendor"/>
+            <field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--iac_rfq_mass_line_buyer只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_mass_line_buyer_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ Mass Line Buyer Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_mass_line_buyer"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--久未降价RFQ 条目 筛选 buyer只能看到自己的buyer_code 相关的RFQ 条目 -->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_iac_rfq_mass_line_buyer_filter_by_buyer_id" model="ir.rule">
+            <field name="name">Rule RFQ Mass Line Buyer Filter By Buyer ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_mass_line_buyer"/>
+            <field name="domain_force">[('buyer_code_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--buyer在For Buyer菜單下只能看到自己上傳的資料-->
+        <record id="ir_rule_iac_rfq_import_buyer_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule RFQ Import Buyer Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_import_buyer"/>
+            <field name="domain_force">[('buyer_code','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--As在For As菜單下只能看到自己上傳的資料-->
+        <record id="ir_rule_iac_rfq_import_as_filter_by_plant_code" model="ir.rule">
+            <field name="name">Rule RFQ Import AS Filter By Plant Code</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_import_as"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_AS_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+
+        <!--iac_rfq_mass_line_cm只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_mass_line_cm_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ Mass Line CM Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_mass_line_cm"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--久未降价RFQ 条目 筛选 cm只能看到自己的division 相关的RFQ 条目 -->
+        <!--适用于 cm 角色 -->
+        <!--
+        <record id="ir_rule_iac_rfq_mass_line_cm_filter_by_division_id" model="ir.rule">
+            <field name="name">Rule RFQ Mass Line CM Filter By Division ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_mass_line_cm"/>
+            <field name="domain_force">[('division_id','in',user.division_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_CM_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        -->
+
+        <!--iac_rfq_mm_release只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_global_iac_rfq_mm_release_cm_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule RFQ MM Release Filter By Plant</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_mm_release"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True" />
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--RFQ批量送签管理 MM Release 筛选 buyer只能看到自己的buyer_code 相关的RFQ 条目 -->
+        <!--适用于 buyer 角色 -->
+        <record id="ir_rule_iac_rfq_mm_release_filter_by_buyer_id" model="ir.rule">
+            <field name="name">Rule RFQ MM Release Filter By Buyer ID</field>
+            <field name="model_id" ref="oscg_rfq.model_iac_rfq_mm_release"/>
+            <field name="domain_force">[('buyer_code','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--Vendor 模块相关的记录规则 -->
+        <!-- 定义记录规则 -->
+        <record id="ir_rule_buyer_plant_filter_by_plant_id" model="ir.rule">
+            <field name="name">Buyer Rule Plant By Plant Id</field>
+            <field name="model_id" ref="oscg_vendor.model_pur_org_data"/>
+            <field name="domain_force">[('id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="ir_rule_vendor_plant_filter_by_plant_id" model="ir.rule">
+            <field name="name">Vendor Rule Plant By Plant Id</field>
+            <field name="model_id" ref="oscg_vendor.model_pur_org_data"/>
+            <field name="domain_force">[('id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+        </record>
+
+        <!-- vendor只能访问自己的资料 -->
+        <record id="vendor_register_rule" model="ir.rule">
+            <field name="name">vendor register</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+        </record>
+
+        <!-- vendor只能访问自己的资料,适用于Vendor角色 -->
+        <record id="iac_vendor_rule" model="ir.rule">
+            <field name="name">vendor</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor"/>
+            <field name="domain_force">[('user_id','=',user.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+        </record>
+
+        <!--wjb vendor 专用 -->
+        <record id="vendor_rule" model="ir.rule">
+            <field name="name">vendor</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_vendor"/>
+            <field name="domain_force">[('user_id','=',user.id),('plant','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+        </record>
+
+        <!-- buyer查询vendor_attachment 只能查询自己归属的vendor对应的attachment ,使用buyer email来过滤vendor-->
+        <record id="rule_buyer_iac_vendor_attachment_filter_by_vendor_id" model="ir.rule">
+            <field name="name">buyer attachment filter by vendor_id</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_attachment"/>
+            <field name="domain_force">[('vendor_id','in',user.buyer_vendor_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+
+        <!-- buyer查询vendor_register_attachment 只能查询自己归属的vendor_reg_id对应的attachment ,使用buyer email来过滤vendor_reg-->
+        <record id="rule_buyer_iac_vs_doc_filter_by_vendor_reg_id" model="ir.rule">
+            <field name="name">buyer attachment filter by vendor_reg_id</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register_attachment"/>
+            <field name="domain_force">[('vendor_reg_id','in',user.buyer_vendor_reg_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+
+        <!-- File reviewer  角色只能看到指派给自己的 vendor_attachment 附件,并且附件的文件类型已经指派给了自己 IAC_qs_groups-->
+        <record id="rule_file_reviewer_iac_vendor_attachment_filter_by_user_id" model="ir.rule">
+            <field name="name">File reviewer attachment filter by user_id file_type</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_attachment"/>
+            <field name="domain_force">[('approver_id','=',user.id),('type','in',user.file_type_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_qs_groups'))]"/>
+        </record>
+
+        <!-- File reviewer  角色只能看到指派给自己的 vendor_register_attachment 附件,并且附件的文件类型已经指派给了自己 IAC_qs_groups-->
+        <record id="rule_file_reviewer_iac_vs_doc_filter_by_user_id" model="ir.rule">
+            <field name="name">File reviewer attachment filter by user_id file_type</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register_attachment"/>
+            <field name="domain_force">[('approver_id','=',user.id),('type','in',user.file_type_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_qs_groups'))]"/>
+        </record>
+
+        <!-- buyer能访问buyer email是自己邮箱的资料 -->
+        <record id="vendor_register_buyer_rule" model="ir.rule">
+            <field name="name">vendor register buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="domain_force">[('buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="vendor_vendor_buyer_rule" model="ir.rule">
+            <field name="name">vendor vendor buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_vendor"/>
+            <field name="domain_force">[('buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+
+        <!-- vendor只能访问自己的变更资料 -->
+        <record id="vendor_change_basic_rule" model="ir.rule">
+            <field name="name">vendor change basic</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_basic"/>
+            <field name="domain_force">[('vendor_reg_id','in',user.vendor_reg_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+        </record>
+
+        <!-- buyer能访问自己创建的vendor change资料 -->
+        <record id="vendor_copy_buyer_rule" model="ir.rule">
+            <field name="name">vendor copy buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_copy"/>
+            <field name="domain_force">[('buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="vendor_block_buyer_rule" model="ir.rule">
+            <field name="name">vendor block buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_block"/>
+            <field name="domain_force">[('vendor_id.buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="vendor_change_basic_buyer_rule" model="ir.rule">
+            <field name="name">vendor change basic buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_basic"/>
+            <field name="domain_force">[('buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="vendor_change_master_buyer_rule" model="ir.rule">
+            <field name="name">vendor change master buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_master"/>
+            <field name="domain_force">[('vendor_id.buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="vendor_change_terms_buyer_rule" model="ir.rule">
+            <field name="name">vendor change terms buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_terms"/>
+            <field name="domain_force">[('vendor_id.buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+        <record id="vendor_change_manufacture_buyer_rule" model="ir.rule">
+            <field name="name">vendor change manufacture buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_manufacture"/>
+            <field name="domain_force">[('vendor_reg_id.buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+
+        <!-- 特殊厂商spot，mold，bvi vendor -->
+        <record id="spot_vendor_buyer_rule" model="ir.rule">
+            <field name="name">spot vendor buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_spot_vendor"/>
+            <field name="domain_force">[('plant','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_spot_vendor_groups'))]"/>
+        </record>
+        <record id="mold_vendor_buyer_rule" model="ir.rule">
+            <field name="name">mold vendor buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_mold_vendor"/>
+            <field name="domain_force">[('buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_mold_vendor_groups'))]"/>
+        </record>
+        <record id="bvi_vendor_buyer_rule" model="ir.rule">
+            <field name="name">bvi vendor buyer rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_bvi_vendor"/>
+            <field name="domain_force">[('buyer_email','=',user.partner_id.email)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_bvi_vendor_groups'))]"/>
+        </record>
+
+        <!-- 供应商评鉴权限 begin -->
+        <!--
+        <record id="group_scm_user_pc_score_rule" model="ir.rule">
+            <field name="name">SCM user Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category"/>
+            <field name="domain_force">['|',('scm_partner_id','=',user.partner_id.id),('scm_controller_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_scm_user'))]"/>
+        </record>
+        <record id="group_qm_user_pc_score_rule" model="ir.rule">
+            <field name="name">QM user Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category"/>
+            <field name="domain_force">['|',('qm_partner_id','=',user.partner_id.id),('qm_controller_id','=',user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_qm_user'))]"/>
+        </record>
+        -->
+
+        <!--scm controller 在提交或者调整分数视图中只显示scm_state=['scoring','disapprove']的资料-->
+        <record id="group_scm_controller_clt_score_rule" model="ir.rule">
+            <field name="name">SCM controller Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category"/>
+            <field name="domain_force">[('scm_state','in',['scoring','disapprove']),('plant_id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_scm_controller'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--qm controller 在提交或者调整分数视图中只显示qm_state=['scoring','disapprove']的资料-->
+        <record id="group_qm_controller_clt_score_rule" model="ir.rule">
+            <field name="name">QM controller Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category"/>
+            <field name="domain_force">[('qm_state','in',['scoring','disapprove']),('plant_id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_qm_controller'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--scm leader 核准分数视图中只显示scm_state=['to approve']的资料-->
+        <record id="group_scm_leader_approve_score_rule" model="ir.rule">
+            <field name="name">SCM leader Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category_inherit"/>
+            <field name="domain_force">[('scm_state','in',['to approve'])]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_scm_leader'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--qm leader 核准分数视图中只显示qm_state=['to approve']的资料-->
+        <record id="group_qm_leader_approve_score_rule" model="ir.rule">
+            <field name="name">QM leader Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category_inherit"/>
+            <field name="domain_force">[('qm_state','in',['to approve'])]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_qm_leader'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--scm contorller在提交或者调整分数的form视图对应的line层面只能看到属于scm的资料-->
+        <record id="group_scm_controller_clt_score_line_rule" model="ir.rule">
+            <field name="name">SCM controller line Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category_line"/>
+            <field name="domain_force">[('group_code','=','SCM')]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_scm_controller'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--qm contorller在提交或者调整分数的form视图对应的line层面只能看到属于qm的资料-->
+        <record id="group_qm_controller_clt_score_line_rule" model="ir.rule">
+            <field name="name">QM controller line Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category_line"/>
+            <field name="domain_force">[('group_code','=','QM')]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_qm_controller'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--scm leader在核准分数的form视图对应的line层面只能看到属于scm的资料-->
+        <record id="group_scm_leader_approve_score_line_rule" model="ir.rule">
+            <field name="name">SCM leader line Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category_line"/>
+            <field name="domain_force">[('group_code','=','SCM')]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_scm_leader'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--qm leader在核准分数的form视图对应的line层面只能看到属于qm的资料-->
+        <record id="group_qm_leader_approve_score_line_rule" model="ir.rule">
+            <field name="name">QM leader line Rule</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_score_part_category_line"/>
+            <field name="domain_force">[('group_code','=','QM')]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_qm_leader'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--scm controller 只能看到状态是disapprove或者in_review状态的D class sc -->
+        <!--适用于 scm controller角色 -->
+        <record id="ir_rule_iac_class_supplier_company_scm_controller_filter_by_state" model="ir.rule">
+            <field name="name">Rule Class SC SCM Controller Filter By State</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_class_supplier_company_scm_controller"/>
+            <field name="domain_force">[('state','in',['disapprove','in_review'])]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_scm_controller'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--qm leader 只能看到状态是to approve状态的D class sc -->
+        <!--适用于 qm leader角色 -->
+        <record id="ir_rule_iac_class_supplier_company_qm_leader_filter_by_state" model="ir.rule">
+            <field name="name">Rule Class SC QM Leader Filter By State</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_class_supplier_company_qm_leader"/>
+            <field name="domain_force">[('state','in',['to approve'])]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.group_qm_leader'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!-- 供应商评鉴权限 end -->
+
+        <!-- 代理人 -->
+        <record id="iac_agent_users_rule" model="ir.rule">
+            <field name="name">agent users rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_agent_users"/>
+            <field name="domain_force">[('principal_user_id','=',user.id)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+        <record id="iac_agent_users_history_rule" model="ir.rule">
+            <field name="name">agent users history rule</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_agent_users_history"/>
+            <field name="domain_force">[('principal_user_id','=',user.id)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!-- buyer筛选自己的归属厂别 -->
+        <record id="ir_rule_buyer_plant_filter_by_plant_id" model="ir.rule">
+            <field name="name">Buyer Rule Plant By Plant Id</field>
+            <field name="model_id" ref="oscg_vendor.model_pur_org_data"/>
+            <field name="domain_force">[('id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+        </record>
+
+        <!-- vendor 筛选自己的归属厂,所有vendor_id归属的厂列表 -->
+        <record id="ir_rule_vendor_plant_filter_by_plant_id" model="ir.rule">
+            <field name="name">Vendor Rule Plant By Plant Id</field>
+            <field name="model_id" ref="oscg_vendor.model_pur_org_data"/>
+            <field name="domain_force">[('id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+        </record>
+
+        <!-- vendor 只能看到自己的公告信息-->
+        <record id="ir_rule_iac_bulletin_filter_by_vendor_id" model="ir.rule">
+            <field name="name">Rule Bulletin Filter By Vendor Code</field>
+            <field name="model_id" ref="iac_vendor_evaluation.model_iac_bulletin_publish"/>
+            <!--<field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>-->
+            <field name="domain_force">[('vendor_id','in',user.vendor_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+
+        <!--王宁的rule -->
+
+        <!--po只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_iac_control_table_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Control Table Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table"/>
+            <field name="domain_force">[('buyer','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <record id="ir_rule_iac_control_table_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Control Table Filter By Plant</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table"/>
+            <field name="domain_force">[('plant_code','in',user.plant_id_list)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--control table 只能看到当前user归属的 buyer_code -->
+        <!--适用于 buyer角色 -->
+        <record id="ir_rule_iac_control_table_real_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Control Table Real Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table_real"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--po只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_iac_control_table_real_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Control Table Real Filter By Plant</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table_real"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <record id="ir_rule_iac_control_table_real_filter_by_supplier_manager" model="ir.rule">
+            <field name="name">Rule Control Table Real Filter By Supplier Manager</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table_real"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_setsupplier_groups'))]"/>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <record id="ir_rule_iac_control_table_history_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Control Table History Filter By Buyer Code</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table_history"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--po只能看到当前user的归属Plant-->
+        <!-- 适用于全部Role-->
+        <record id="ir_rule_iac_control_table_history_filter_by_plant_id" model="ir.rule">
+            <field name="name">Rule Control Table History Filter By Plant</field>
+            <field name="model_id" ref="oscg_control_table.model_iac_control_table_history"/>
+            <field name="domain_force">[('plant_id','in',user.plant_id_list)]</field>
+            <field name="global" eval="True"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+        <!-- 王宁的rule-->
+
+
+        <!-- laura的rule -->
+        <!--FCST  只能看到?前user??的 buyer_code -->
+        <!--适用于 buyer角色 -->
+        <record id="ir_rule_buyer_code_fcst_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule buyer code fcst Filter By Buyer Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_buyer_code_fcst"/>
+            <field name="domain_force">[('id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--FCST- confirm_data  只能看到?前user??___s  -->
+        <!--适用于 buyer 角色 : 只能看到?前user?? buyer_code -->
+        <record id="ir_rule_iac_tconfirm_data_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule iac tconfirm data Filter By Buyer Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_tconfirm_data"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--适用于 vendor 角色 : 只能看到?前user?? vendor_code -->
+        <record id="ir_rule_iac_tconfirm_data_filter_by_vendor_code" model="ir.rule">
+            <field name="name">Rule iac tconfirm data Filter By Vendor Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_tconfirm_data"/>
+            <!--<field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>-->
+            <field name="domain_force">[('vendor_id','in',user.vendor_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+        <!--FCST- confirm_data  只能看到?前user??___e  -->
+
+        <!--FCST- iac.tupload.lt.history  只能看到?前user??___s  -->
+        <!--适用于 buyer 角色 : 只能看到?前user?? buyer_code -->
+        <record id="ir_rule_iac_tupload_lt_history_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule iac tupload lt history Filter By Buyer Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_tupload_lt_history"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--适用于 vendor 角色 : 只能看到?前user?? vendor_code -->
+        <record id="ir_rule_iac_tupload_lt_history_filter_by_vendor_code" model="ir.rule">
+            <field name="name">Rule iac tupload lt history Filter By Vendor Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_tupload_lt_history"/>
+            <!--<field name="domain_force">[('vendor_id','=',user.vendor_id.id)]</field>-->
+            <field name="domain_force">[('vendor_id','in',user.vendor_ids.ids)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_vendor_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+        <!--FCST- iac.tupload.lt.history  只能看到?前user??___e  -->
+
+        <!-- laura的rule -->
+		
+		<!--buyer在Release菜單下只能看到自己的料-->
+        <record id="ir_rule_iac_traw_data_temp_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule Traw Data Temp Filter By Buyer Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_traw_data_temp"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+
+        <!--FCST- confirm_data_temp (FCST Release History) 只能看到當前user資料 20180705 laura add___s  -->
+        <!--适用于 buyer 角色 : 只能看到當前user資料 buyer_code -->
+        <record id="ir_rule_iac_tconfirm_data_temp_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule iac tconfirm data temp Filter By Buyer Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_tconfirm_data_temp"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+        <!--FCST- confirm_data_temp (FCST Release History) 只能看到當前user資料 20180705 laura add___e  -->
+
+        <!--FCST-  RawDataTemp (Release) 只能看到當前user資料 20180705 laura add___s  -->
+        <!--适用于 buyer 角色 : 只能看到當前user資料 buyer_code -->
+        <record id="ir_rule_iac_traw_data_temp_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule iac traw data temp Filter By Buyer Code</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_traw_data_temp"/>
+            <field name="domain_force">[('buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4, ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_write" eval="True"/>
+        </record>
+        <!--FCST-  RawDataTemp (Release) 只能看到當前user資料 20180705 laura add___e  -->
+
+        <!--采购只能看到自己名下的smart po recover-->
+        <record id="ir_rule_iac_smart_po_recover_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule iac smart po recover filter by buyer code</field>
+            <field name="model_id" ref="oscg_po.model_iac_smart_po_recover"/>
+            <field name="domain_force">[('order_id.buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4,ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+        <!--采购只能看到自己名下的smart po cancel-->
+        <record id="ir_rule_iac_smart_po_cancel_filter_by_buyer_code" model="ir.rule">
+            <field name="name">Rule iac smart po cancel filter by buyer code</field>
+            <field name="model_id" ref="oscg_po.model_iac_smart_po_cancel"/>
+            <field name="domain_force">[('order_id.buyer_id','in',user.buyer_id_list)]</field>
+            <field name="groups" eval="[(4,ref('oscg_vendor.IAC_buyer_groups'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+            <field name="perm_write" eval="False"/>
+        </record>
+
+    </data>
+</openerp>

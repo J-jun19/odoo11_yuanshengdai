@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="module_category_ep_common" model="ir.module.category">
+            <field name="name">Main user role</field>
+            <field name="sequence">22</field>
+        </record>
+        <!-- EP系统IAC公司内部管理员 -->
+        <record id="group_ep_administration" model="res.groups">
+            <field name="name">System administrator</field>
+            <field name="category_id" ref="module_category_ep_common"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <!-- EP系统外部供应商 -->
+        <record id="IAC_vendor_groups" model="res.groups">
+            <field name="name">External vendor</field>
+            <field name="category_id" ref="module_category_ep_common"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="module_category_ep" model="ir.module.category">
+            <field name="name">IAC common role</field>
+            <field name="sequence">23</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_buyer_groups" model="res.groups">
+            <field name="name">Buyer</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_super_buyer_groups" model="res.groups">
+            <field name="name">Super Buyer</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_AS_groups" model="res.groups">
+            <field name="name">AS</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_CM_groups" model="res.groups">
+            <field name="name">CM</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_qs_groups" model="res.groups">
+            <field name="name">File reviewer</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_ASN_ctrl" model="res.groups">
+            <field name="name">ASN controller</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_ASN_rule" model="res.groups">
+            <field name="name">MAX ASN Rule</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_warehouse" model="res.groups">
+            <field name="name">Warehouse</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_LG_user" model="res.groups">
+            <field name="name">LG users</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="module_category_ep_vendor" model="ir.module.category">
+            <field name="name">IAC vendor role</field>
+            <field name="sequence">24</field>
+        </record>
+        <record id="IAC_setsupplier_groups" model="res.groups">
+            <field name="name">Supplier manager</field>
+            <field name="category_id" ref="module_category_ep_vendor"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_spot_vendor_groups" model="res.groups">
+            <field name="name">Spot</field>
+            <field name="category_id" ref="module_category_ep_vendor"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_mold_vendor_groups" model="res.groups">
+            <field name="name">Mold</field>
+            <field name="category_id" ref="module_category_ep_vendor"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="IAC_bvi_vendor_groups" model="res.groups">
+            <field name="name">BVI</field>
+            <field name="category_id" ref="module_category_ep_vendor"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="module_category_ep_vs" model="ir.module.category">
+            <field name="name">IAC vendor scoring role</field>
+            <field name="sequence">25</field>
+        </record>
+        <record id="group_scm_controller" model="res.groups">
+            <field name="name">SCM controller</field>
+            <field name="category_id" ref="module_category_ep_vs"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_qm_controller" model="res.groups">
+            <field name="name">QM controller</field>
+            <field name="category_id" ref="module_category_ep_vs"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_qm_leader" model="res.groups">
+            <field name="name">QM Leader</field>
+            <field name="category_id" ref="module_category_ep_vs"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_scm_user" model="res.groups">
+            <field name="name">SCM User</field>
+            <field name="category_id" ref="module_category_ep_vs"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_qm_user" model="res.groups">
+            <field name="name">QM User</field>
+            <field name="category_id" ref="module_category_ep_vs"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_scm_leader" model="res.groups">
+            <field name="name">SCM leader</field>
+            <field name="category_id" ref="module_category_ep_vs"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="module_category_ep_others" model="ir.module.category">
+            <field name="name">IAC additional role</field>
+            <field name="sequence">26</field>
+        </record>
+        <record id="IAC_TP02INTER_groups" model="res.groups">
+            <field name="name">TP02INTER</field>
+            <field name="category_id" ref="module_category_ep_others"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_bow_of_price" model="res.groups">
+            <field name="name">Bow List Of Price</field>
+            <field name="category_id" ref="module_category_ep_others"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_cetificated_vendor" model="res.groups">
+            <field name="name">Certificated Vendor List </field>
+            <field name="category_id" ref="module_category_ep_others"/>
+        </record>
+        <record id="group_set_bulletin" model="res.groups">
+            <field name="name">Setup Bulletin Info</field>
+            <field name="category_id" ref="module_category_ep_others"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_upd_epd_file" model="res.groups">
+            <field name="name">Update EPD Files</field>
+            <field name="category_id" ref="module_category_ep_others"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_vendor_global" model="res.groups">
+            <field name="name">Global Vendor Report</field>
+            <field name="category_id" ref="module_category_ep_others"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_vendor_qm" model="res.groups">
+            <field name="name">QM Vendor Report</field>
+            <field name="category_id" ref="module_category_ep_others"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="module_category_ep_report" model="ir.module.category">
+            <field name="name">IAC report role</field>
+            <field name="sequence">27</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_vendor" model="res.groups">
+            <field name="name">Report vendor</field>
+            <field name="category_id" ref="module_category_ep_report"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_PO" model="res.groups">
+            <field name="name">Report PO</field>
+            <field name="category_id" ref="module_category_ep_report"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_RFQ" model="res.groups">
+            <field name="name">Report RFQ</field>
+            <field name="category_id" ref="module_category_ep_report"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_GR" model="res.groups">
+            <field name="name">Report GR</field>
+            <field name="category_id" ref="module_category_ep_report"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_file" model="res.groups">
+            <field name="name">Report file</field>
+            <field name="category_id" ref="module_category_ep_report"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="group_report_others" model="res.groups">
+            <field name="name">Report others</field>
+            <field name="category_id" ref="module_category_ep_report"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <!--Ning add buyer manager begin-->
+        <record id="IAC_buyer_manager_groups" model="res.groups">
+            <field name="name">Buyer Manager</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <!--end-->
+
+        <!--Ning add IM begin-->
+        <record id="IAC_IM_groups" model="res.groups">
+            <field name="name">IM</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <!--end-->
+
+        <!--ning add frm begin-->
+        <record id="IAC_FRM_groups" model="res.groups">
+            <field name="name">FRM</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+        <!--end-->
+
+        <!--zhen add subcontractor begin-->
+        <record id="IAC_Subcontractor_groups" model="res.groups">
+            <field name="name">Subcontractor</field>
+            <field name="category_id" ref="module_category_ep"/>
+            <field name="implied_ids" eval="[(4,ref('base.group_user'))]"/>
+        </record>
+        <!--end-->
+
+    </data>
+</odoo>

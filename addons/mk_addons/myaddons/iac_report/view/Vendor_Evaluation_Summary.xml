@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_evaluation_summary_list" model="ir.ui.view">
+            <field name="name">Vendor Evaluation Summary</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.evaluation.summary</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Evaluation Summary" create="false">
+                    <field name="sc_code"/>
+                    <field name="sc_name"/>
+                    <field name="state"/>
+                    <field name="supplier_final_score"/>
+                    <field name="supplier_final_class"/>
+                    <field name="part_category"/>
+                    <field name="part_class_final_score"/>
+                    <field name="part_category_final_class"/>
+                    <field name="create_date"/>
+                    <field name="plant"/>
+                    <field name="scm_user"/>
+                    <field name="scm_score"/>
+                    <field name="qm_user"/>
+                    <field name="qm_score"/>
+                    <field name="scm_controller"/>
+                    <field name="qm_controller"/>
+                    <field name="qm_leader"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='iac_vendor_evaluation_summary_wizard_form' model='ir.ui.view'>
+          <field name='name'>Vendor Evaluation Summary</field>
+          <field name='model'>vendor.evaluation.summary.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Vendor Evaluation Summary">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" />
+                            <field name='supplier_company' options="{'no_create': True,'no_open': True}"/>
+                            <field name='part_category_id' options="{'no_create': True,'no_open': True}"/>
+                            <field name='starttime'/>
+                            <field name='endtime'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_vendor_evaluation_summary_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_wizard_vendor_evaluation_summary"
+                    name="Vendor Evaluation Summary"
+                    res_model="vendor.evaluation.summary.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

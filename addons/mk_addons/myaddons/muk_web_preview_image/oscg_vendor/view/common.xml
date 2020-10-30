@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 附件类型 -->
+        <record id="view_attachment_type_form" model="ir.ui.view">
+            <field name="name">iac.attachment.type.form</field>
+            <field name="model">iac.attachment.type</field>
+            <field name="arch" type="xml">
+                <form string="Attachment">
+                    <sheet>
+                        <group colspan="4">
+                           <field name="name"/>
+                           <field name="description"/>
+                           <field name="special_approved"/>
+                           <field name="time_sensitive"/>
+                           <field name="sub_group"/>
+                            <field name="approver_ids" options="{'no_create': True}"/>
+                           <field name="active"/>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_attachment_type_list" model="ir.ui.view">
+            <field name="name">iac.attachment.type.list</field>
+            <field name="model">iac.attachment.type</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="special_approved"/>
+                    <field name="time_sensitive"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 附件配置 -->
+        <record id="view_attachment_config_form" model="ir.ui.view">
+            <field name="name">iac.attachment.config.form</field>
+            <field name="model">iac.attachment.config</field>
+            <field name="arch" type="xml">
+                <form string="Attachment">
+                    <sheet>
+                        <group colspan="4">
+                           <field name="model_obj"/>
+                           <field name="type" options="{'no_create': True,'no_open': True}"/>
+                           <field name="is_required"/>
+                           <field name="is_displayed"/>
+                           <field name="sequence"/>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_attachment_config_list" model="ir.ui.view">
+            <field name="name">iac.attachment.config.list</field>
+            <field name="model">iac.attachment.config</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment">
+                    <field name="model_obj"/>
+                    <field name="type"/>
+                    <field name="is_required"/>
+                    <field name="is_displayed"/>
+                    <field name="sequence"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window" id="action_view_attachment_type_list">
+            <field name="name">Attachment Type</field>
+            <field name="res_model">iac.attachment.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_attachment_type_list" />
+        </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window" id="action_view_attachment_config_list">
+            <field name="name">Attachment config</field>
+            <field name="res_model">iac.attachment.config</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_attachment_config_list" />
+        </record>
+
+        <!-- 新厂商注册评分 -->
+        <record id="view_iac_vendor_qvl_form" model="ir.ui.view">
+            <field name="name">iac.vendor.qvl.form</field>
+            <field name="model">iac.vendor.qvl</field>
+            <field name="arch" type="xml">
+                <form string="QVL Score Information">
+                    <sheet>
+                        <group colspan="4">
+                            <field name="name"/>
+                            <field name="rate"/>
+                            <field name="stage"/>
+                        </group>
+                        <notebook>
+                            <page string="Lines">
+                                <field name="line_ids">
+                                    <tree string="line_ids" editable="bottom">
+                                        <field name="item" />
+                                        <field name="sequence" />
+                                        <field name="description_en" />
+                                        <field name="description_cn" />
+                                        <field name="top_score" />
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_iac_vendor_qvl_list" model="ir.ui.view">
+            <field name="name">iac.vendor.qvl.list</field>
+            <field name="model">iac.vendor.qvl</field>
+            <field name="arch" type="xml">
+                <tree string="QVL Score Information">
+                    <field name="name"/>
+                    <field name="rate"/>
+                    <field name="stage"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window" id="action_view_vendor_qvl_list">
+            <field name="name">Vendor QVL</field>
+            <field name="res_model">iac.vendor.qvl</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_iac_vendor_qvl_list" />
+        </record>
+
+        <record model="ir.ui.view" id="view_inherit_res_partner_form">
+            <field name="name">res_partner.inherit.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="category_id" position="after">
+                    <field name="plant_ids" widget="many2many_tags" options="{'no_create': True,'no_open': True}"/>
+                    <field name="division_code_ids" widget="many2many_tags" options="{'no_create': True,'no_open': True}"/>
+                    <field name="in_cm_group" invisible="1"/>
+                    <field name="in_as_group" invisible="1"/>
+                </field>
+                <page name="sales_purchases" position="after">
+                    <page string="Department">
+                        <group string="Buyer Code" name="buyer_code">
+                            <field name="buyer_code_ids" attrs="{'readonly':[('plant_ids','=',False)]}">
+                                <tree string="Buyer Code" editable="bottom">
+                                    <field name="buyer_code_id" options="{'no_create': True,'no_open': True}"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Source Code" name="source_code">
+                            <field name="source_code_ids" attrs="{'invisible':[('in_as_group','=',False)]}">
+                                <tree string="Source Code" editable="bottom">
+                                    <field name="source_code_id" options="{'no_create': True,'no_open': True}"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="iac_division_code_search_view">
+            <field name="name">Division Code Search</field>
+            <field name="model">division.code</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="division"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_division_code_list" model="ir.ui.view">
+            <field name="name">iac.division.code.list</field>
+            <field name="model">division.code</field>
+            <field name="arch" type="xml">
+                <tree string="Division Code">
+                    <field name="division"/>
+                    <field name="division_description"/>
+                    <field name="language_key"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="iac_material_group_search_view">
+            <field name="name">Material Group Search</field>
+            <field name="model">material.group</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="material_group"/>
+                    <field name="description"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_material_group_list" model="ir.ui.view">
+            <field name="name">iac.material.group.list</field>
+            <field name="model">material.group</field>
+            <field name="arch" type="xml">
+                <tree string="Material Group">
+                    <field name="material_group"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- 代理人视图 -->
+        <record id="view_agent_users_form" model="ir.ui.view">
+            <field name="name">iac.agent.users.form</field>
+            <field name="model">iac.agent.users</field>
+            <field name="arch" type="xml">
+                <form string="Agent">
+                    <sheet>
+                        <group>
+                           <field name="agent_user_id" options="{'no_create': True}" context="{'filter_user_by_user_plant': True}"/>
+                           <field name="expired_date"/>
+                            <!--
+                            <field name="password_str" required="True" password="True"/>
+                            -->
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_agent_users_list" model="ir.ui.view">
+            <field name="name">iac.agent.users.list</field>
+            <field name="model">iac.agent.users</field>
+            <field name="arch" type="xml">
+                <tree string="Agent">
+                     <field name="agent_user_id"/>
+                     <field name="expired_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <act_window id="action_agent_users_list" name="Set Agent" res_model="iac.agent.users" view_mode="tree,form" />
+
+        <!-- 代理人历史视图 -->
+        <record id="view_agent_users_history_form" model="ir.ui.view">
+            <field name="name">iac.agent.users.history.form</field>
+            <field name="model">iac.agent.users.history</field>
+            <field name="arch" type="xml">
+                <form string="Agent History">
+                    <sheet>
+                        <group>
+                            <field name="principal_user_id"/>
+                           <field name="agent_user_id"/>
+                            <field name="start_date"/>
+                           <field name="expired_date"/>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_agent_users_history_list" model="ir.ui.view">
+            <field name="name">iac.agent.users.history.list</field>
+            <field name="model">iac.agent.users.history</field>
+            <field name="arch" type="xml">
+                <tree string="Agent History">
+                     <field name="principal_user_id"/>
+                   <field name="agent_user_id"/>
+                    <field name="start_date"/>
+                   <field name="expired_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <act_window id="action_agent_users_history_list" name="Set Agent" res_model="iac.agent.users.history" view_mode="tree,form" />
+
+        <record id='iac_agent_users_wizard_form' model='ir.ui.view'>
+          <field name='name'>iac agent users wizard form view</field>
+          <field name='model'>iac.agent.users.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Borrow Agent Users">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="work_user_name" readonly="1"/>
+                            <field name="principal_user_id" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='set_work_user'
+                        string='Setting'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+      <act_window id="action_wizard_iac_agent_users" name="Set Workspace" res_model="iac.agent.users.wizard" view_mode="form" target="new"/>
+
+        <record model="ir.ui.view" id="iac_plant_search_view">
+            <field name="name">Plant Search</field>
+            <field name="model">pur.org.data</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="plant_code"/>
+                    <field name="plant_name_cn"/>
+                    <field name="plant_name_en"/>
+                </search>
+            </field>
+        </record>
+        <record id="view_plant_list" model="ir.ui.view">
+            <field name="name">Plant List</field>
+            <field name="model">pur.org.data</field>
+            <field name="arch" type="xml">
+                <tree string="Plant">
+                    <field name="plant_code"/>
+                    <field name="plant_name_cn"/>
+                    <field name="plant_name_en"/>
+                    <field name="purchase_org"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_vendor_account_group_form" model="ir.ui.view">
+            <field name="name">iac.vendor.account.group.form</field>
+            <field name="model">iac.vendor.account.group</field>
+            <field name="arch" type="xml">
+                <form string="Account Group">
+                    <sheet>
+                        <group>
+                           <field name="vendor_type"/>
+                           <field name="plant_id" options="{'no_create': True}"/>
+                           <field name="local_foreign"/>
+                           <field name="account_group"/>
+                           <field name="comment"/>
+                       </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_vendor_account_group_list" model="ir.ui.view">
+            <field name="name">iac.vendor.account.group.list</field>
+            <field name="model">iac.vendor.account.group</field>
+            <field name="arch" type="xml">
+                <tree string="Account Group">
+                    <field name="vendor_type"/>
+                    <field name="plant_id"/>
+                    <field name="local_foreign"/>
+                    <field name="account_group"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_view_account_group_list">
+            <field name="name">Account Group</field>
+            <field name="res_model">iac.vendor.account.group</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="view_id" ref="view_vendor_account_group_list" />
+        </record>
+  </data>
+</odoo>

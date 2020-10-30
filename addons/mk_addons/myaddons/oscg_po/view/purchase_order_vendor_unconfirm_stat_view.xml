@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- vendor confirm-->
+      <record id="view_po_line_vendor_unconfirm_stat_list" model="ir.ui.view">
+          <field name="name">Purchase Order Unconfirmed List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.purchase.order.line.vendor.unconfirm.stat</field>
+          <field name="arch" type="xml">
+              <tree string="Purchase Order Line Unconfirmed List" create="false">
+                  <field name="order_code"/>
+                  <field name="document_line_erp_id"/>
+                  <field name="order_date"/>
+                  <field name="vendor_code"/>
+                  <field name="vendor_name"/>
+                  <field name="division_code"/>
+                  <field name="part_no"/>
+                  <field name="part_description"/>
+                  <field name="plant_code"/>
+                  <field name="increase_qty"/>
+                  <field name="decrease_qty"/>
+                  <field name="price"/>
+                  <field name="price_unit"/>
+                  <field name="currency"/>
+                  <field name="buyer_erp_id"/>
+                  <field name="cancel_qty"/>
+                  <field name="change_state"/>
+                  <field name="last_change_date"/>
+                  <field name="date_range"/>
+              </tree>
+          </field>
+      </record>
+
+
+      <record model="ir.actions.act_window"  id="action_view_po_line_vendor_unconfirm_stat_list">
+          <field name="name">Vendor Unconfirmed PO Statistics</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">iac.purchase.order.line.vendor.unconfirm.stat</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="target">main</field>
+          <field name="domain">[('state','=','wait_vendor_confirm')]</field>
+          <field name="view_id" ref="view_po_line_vendor_unconfirm_stat_list"/>
+      </record>
+
+
+
+  </data>
+</odoo>

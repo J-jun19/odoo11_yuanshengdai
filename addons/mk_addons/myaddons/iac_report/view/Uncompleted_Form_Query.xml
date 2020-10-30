@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window id="action_wizard_uncompleted_form_report"
+                    name="未完成表單查詢"
+                    res_model="v.uncompleted.form.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+</odoo>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--# 報表名稱：PO Price 不同於 Info Record Price 報表 (改變寫法: call SP,將資料寫到 table裡 )-->
+        <!--#  Category :  Report: PO-->
+        <!--#  數據源   select * from "public"."v_po_price_vs_rfq"-->
+        <!--# author : IAC.Laura  20180523-->
+
+        <record id="view_po_price_vs_rfq_report" model="ir.ui.view">
+            <field name="name">po price vs rfq report</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.price.vs.rfq.report</field>
+            <field name="arch" type="xml">
+                <tree string="po price vs rfq report" create="false">
+                    <!--<field name="id"/>-->
+                    <field name="plant"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="part"/>
+                    <field name="po_no"/>
+                    <field name="po_line"/>
+                    <field name="po_qty"/>
+                    <field name="open_qty"/>
+                    <field name="rfq_price"/>
+                    <field name="po_price"/>
+                    <field name="buyer_code"/>
+                    <field name="price_control"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='po_price_vs_rfq_wizard_form' model='ir.ui.view'>
+          <field name='name'>po price vs rfq report</field>
+          <field name='model'>v.po.price.vs.rfq.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="po price vs rfq report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="part_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="po_no" options="{'no_create_edit': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_po_price_vs_rfq_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_price_disageement_report"
+                    name="PO Price 不同於 Info Record Price 報表"
+                    res_model="v.po.price.vs.rfq.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+    </data>
+
+</odoo>

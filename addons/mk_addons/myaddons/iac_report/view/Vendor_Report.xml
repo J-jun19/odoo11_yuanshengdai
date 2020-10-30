@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--<record id="view_vendor_report_11" model="ir.ui.view">-->
+            <!--<field name="name">vendor.report</field>-->
+            <!--<field name="model">iac.vendor.register.report</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Registration" create="false">-->
+                    <!--<field name="state"/>-->
+                    <!--<field name="vendor_code"/>-->
+                    <!--<field name="name1_cn"/>-->
+                    <!--<field name="name1_en"/>-->
+                    <!--<field name="short_name"/>-->
+                    <!--<field name="mother_name_en"/>-->
+                    <!--<field name="buyer_email"/>-->
+                    <!--<field name="user_id"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+        <record id="view_vendor_report_form" model="ir.ui.view">
+            <field name="name">vendor.report.form</field>
+            <field name="model">iac.vendor.register.report</field>
+            <field name="arch" type="xml">
+                <form string="vendor report">
+                   <sheet>
+                        <group>
+                            <group>
+                                <field name="plant_id" options="{'no_create_edit': True,'no_create':True, 'no_open': True,'on_change': '_onchange_plant_id'}" required="True" />
+                                <field name="vendor_ref_id" options="{'no_create_edit': True,'no_create':True, 'no_open': True,'on_change':'_onchange_vendor_ref_id'}" required="True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Vendor Register info">
+                                <group>
+                                    <group>
+                                        <field name="user_id" readonly="True" options="{'no_open': True}"/>
+                                        <field name="name1_cn" readonly="True"/>
+                                        <field name="name2_cn" readonly="True"/>
+                                        <field name="name1_en" readonly="True"/>
+                                        <field name="name2_en" readonly="True"/>
+                                        <field name="mother_name_en" readonly="True"/>
+                                        <field name="mother_name_cn" readonly="True"/>
+                                        <field name="mother_address_en" readonly="True"/>
+                                        <field name="mother_address_cn" readonly="True" options="{'no_open': True}"/>
+                                        <field name="capital" readonly="True"/>
+                                        <field name="employee_number" readonly="True"/>
+                                        <field name="conglomerate" readonly="True"/>
+                                        <field name="shareholders" readonly="True"/>
+                                        <field name="company_telephone1" readonly="True"/>
+                                        <field name="company_telephone2" readonly="True"/>
+                                        <field name="company_fax" readonly="True"/>
+                                        <field name="duns_number" readonly="True"/>
+                                        <field name="iso_certificate" readonly="True" options="{'no_create_edit': True}"/>
+                                        <field name="state_msg" readonly="1"/>
+                                        <field name="webflow_number" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name="buyer_email" readonly="True"/>
+                                        <field name="web_site" readonly="True"/>
+                                        <field name="license_number" readonly="True"/>
+                                        <field name="vat_number" readonly="True"/>
+                                        <field name="short_name" readonly="True"/>
+                                        <field name="contact_person" readonly="True"/>
+                                        <field name="sales_telephone" readonly="True"/>
+                                        <field name="sales_mobile" readonly="True"/>
+                                        <field name="sales_email" readonly="True"/>
+                                        <field name="address_street" readonly="True"/>
+                                        <field name="address_city" readonly="True"/>
+                                        <field name="address_district" readonly="True"/>
+                                        <field name="address_pobox" readonly="True"/>
+                                        <field name="address_country" readonly="True" options="{'no_create_edit': True,'no_open':True}"/>
+                                        <field name="address_postalcode" readonly="True"/>
+                                        <field name="currency" readonly="True" options="{'no_create_edit': True,'no_open': True}"/>
+                                        <field name="factory_count" readonly="True"/>
+                                        <field name="supplier_type" readonly="True"/>
+                                        <field name="supplier_category" readonly="True"/>
+                                        <field name="other_emails" readonly="True"/>
+                                        <field name="reject_reason" readonly="True"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string = 'Vendor bank info'>
+                                <group>
+                                    <group>
+                                        <field name ="vendor_bank_name" readonly="True"/>
+                                        <field name ="vendor_branch_name" readonly="True"/>
+                                        <field name ="vendor_bank_street" readonly="True"/>
+                                        <field name ="vendor_bank_city" readonly="True"/>
+                                        <field name ="vendor_bank_country" readonly="True" options = "{'no_open': True}"/>
+                                        <field name ="vendor_swift_code" readonly="True"/>
+                                        <field name ="vendor_transfer_number" readonly="True"/>
+                                        <field name="account_number" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name ="vendor_state" readonly="True"/>
+                                        <field name ="vendor_state_msg" readonly="True"/>
+                                        <field name ="vendor_webflow_number" readonly="True"/>
+                                        <field name ="vendor_vendor_type" readonly="True"/>
+                                        <field name ="vendor_creation_date" readonly="True"/>
+                                        <field name ="vendor_order_currency" readonly="True"/>
+                                        <field name ="vendor_vendor_sap_status" readonly="True"/>
+                                    </group>
+                                </group>
+                            </page>
+                            <page string = 'Buyer maintain MM data'>
+                                <group>
+                                    <group>
+                                        <field name ="vendor_rma_terms" readonly="True"/>
+                                        <field name ="vendor_it_level" readonly="True"/>
+                                        <field name ="vendor_payment_term" readonly="True" options = "{'no_open': True}"/>
+                                        <field name ="vendor_incoterm" readonly="True" options = "{'no_open': True}"/>
+                                        <field name ="vendor_destination" readonly="True"/>
+                                        <field name ="vendor_reason" readonly="True"/>
+                                        <field name ="vendor_vmi_supplier" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name ="vendor_vmi_due" readonly="True"/>
+                                        <field name ="vendor_si_supplier" readonly="True"/>
+                                        <field name ="vendor_import_required" readonly="True"/>
+                                        <field name ="vendor_local_foreign" readonly="True"/>
+<!--如下兩個文件暫時不提供連接出去的功能，不然帶出來的畫面功能太多，不好控制-->
+                                        <field name="vendor_purchase_contract" widget="dms_file" string="Purchase contract"
+                                               directory="model_muk_dms_directory.1" readonly="True"/>
+                                        <field name="vendor_probity_agreement" widget="dms_file" string="Probity agreement"
+                                               directory="model_muk_dms_directory.1" readonly="True"/>
+
+                                    </group>
+                                </group>
+                            </page>
+                            <page string="Products">
+                                <field name="product_ids" readonly="True">
+                                    <tree string="product_ids" readonly="True">
+                                        <field name="product_type" readonly="True"
+                                               options="{'no_create_edit': True,'no_create':True}" required="1"/>
+                                        <field name="product_class" readonly="True"
+                                               options="{'no_create_edit': True,'no_create':True}"/>
+                                        <field name="brand_name" readonly="True"/>
+                                        <field name="capacity_month" readonly="True"/>
+                                        <field name="major_customer" readonly="True"/>
+                                        <field name="material_group_name" invisible="1" readonly="True"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Factory">
+                                <field name="factory_ids" readonly="True">
+                                    <tree string="factory_ids">
+                                        <field name="factory_type" readonly="True"/>
+                                        <field name="factory_name" readonly="True"/>
+                                        <field name="factory_location" readonly="True"/>
+                                        <field name="factory_address" readonly="True"/>
+                                        <field name="main_flag" readonly="True"/>
+                                        <field name="ur_flag" readonly="True"/>
+                                        <field name="relation" readonly="True"/>
+                                        <field name="qa_contact" readonly="True"/>
+                                        <field name="qa_tel" readonly="True"/>
+                                        <field name="qa_email" readonly="True"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Attachment">
+                                <field name="attachment_ids" readonly="True">
+                                    <tree string="Attachment" create="false" delete="false">
+                                        <field name="type" readonly="True"/>
+                                        <field name="file_id" widget="dms_file" string="Attachment"
+                                               directory="model_muk_dms_directory.1"/>
+                                        <field name="approver_id" options="{'no_create_edit': True}"/>
+                                        <field name="expiration_date" readonly="True"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Buyer Approve New Registration">
+                                <group>
+                                    <group>
+                                        <field name="reason_one" readonly="True" options="{'no_create_edit': True, 'no_open': True}"/>
+                                        <field name="material_use_range" readonly="True"/>
+                                        <field name="corporation_description" readonly="True"/>
+                                        <field name="supplier_description" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name="use_project" readonly="True"/>
+                                        <field name="project_status" readonly="True"/>
+                                        <field name="apply_reason" widget="many2many_tags"
+                                               options="{'no_create_edit': True}" readonly="True"/>
+
+                                        <field name="applyfile_id" widget="dms_file" string="Apply File"
+                                               directory="model_muk_dms_directory.1" readonly="True"/>
+
+                                        <field name="apply_memo" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name="is_scene" readonly="True"/>
+                                        <field name="is_outerbuy" readonly="True"/>
+                                        <field name="delivery_hours" readonly="True"/>
+                                        <field name="comment" readonly="True"/>
+                                    </group>
+                                    <group>
+                                        <field name="material_ids" readonly="True">
+                                            <tree string="material_ids" editable="bottom">
+                                                <field name="division_code" options="{'no_create_edit': True}"
+                                                       readonly="True"/>
+                                                <field name="project" required="1" readonly="True"/>
+                                                <field name="material_group" options="{'no_create_edit': True}"
+                                                       readonly="True"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_wizard_iac_vendor_report"
+                    name="Vendor Report"
+                    res_model="iac.vendor.register.report"
+                    view_mode="form"
+                    target="current"/>
+    </data>
+</odoo>

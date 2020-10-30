@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+
+
+        <!--定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_asn">
+            <field name="name">max_asn</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "ASN",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "MAXASN": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                            "hour":9,
+                            "minute":15
+                    }
+                    ]]>
+            </field>
+        </record>
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_asnjit">
+            <field name="name">asnjit</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "ASNJIT",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "ASNJITRule": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                        "hour":13,
+                        "minute":18
+                    }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_gr">
+            <field name="name">gr</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">interval</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "GR",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "GoodsReceipts": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_info">
+            <field name="name">info</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "INFO",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "SourceList": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "InforecordHistory": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                            "hour":2,
+                            "minute":30
+                    }
+                    ]]>
+            </field>
+        </record>
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_iqcdata">
+            <field name="name">iqcdata</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "IQCDATA",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "VS_WEBFLOW_IQC_DATA": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                        "hour":2,
+                        "minute":30
+                    }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_master">
+            <field name="name">master</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "MASTER",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "Company": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "PurOrgData": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "MaterialGroup": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "BuyerCode": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "ShipInstruct": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "PaymentTerm": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "VendorGroup": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "IncoTerm": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "DivisionCode": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "PaymentInfo": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "StorageLocation": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                        "hour":1,
+                        "minute":30
+                    }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_master_plm">
+            <field name="name">master_plm</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                                {
+                                    "group_name": "MASTER_PLM",
+                                    "specific_group_line": 1,
+                                    "dict_group_line": {
+                                        "PLMActualVendor": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "GoodsReceipts": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        }
+                                    }
+                                }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                        "hour":1,
+                        "minute":30
+                    }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_part">
+            <field name="name">part</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                                {
+                                    "group_name": "PART",
+                                    "specific_group_line": 1,
+                                    "dict_group_line": {
+                                        "MaterialDescription": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "MaterialMaster": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "MaterialPlant": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "MaterialMAP": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "MaterialCustMaster": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "MaterialDivision": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        }
+                                    }
+                                }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+			         {
+                        "hour":1,
+                        "minute":40
+                    }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_po">
+            <field name="name">po</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">interval</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                                {
+                                    "group_name": "PO",
+                                    "specific_group_line": 1,
+                                    "dict_group_line": {
+                                        "POHeader": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0,
+                                            "select_count_sql_2":"\"and sap_log_id='%s'\"%(sap_log_id,)"
+                                        },
+                                        "POPartner": {
+                                            "step_1": 0,
+                                            "step_2": 0,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0
+                                        },
+                                        "PODetail": {
+                                            "step_1": 1,
+                                            "step_2": 1,
+                                            "start_id_step_1": 0,
+                                            "start_id_step_2": 0,
+                                            "select_count_sql_2":"\"and sap_log_id='%s'\"%(sap_log_id,)"
+                                        }
+                                    }
+                                }
+                    ]]>
+            </field>
+        </record>
+
+
+        <record model="iac.interface.timer"  id="iac_interface_timer_vendor">
+            <field name="name">vendor</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                {
+                    "group_name": "VENDOR",
+                    "specific_group_line": 1,
+                    "dict_group_line": {
+                        "Vendor": {
+                            "step_1": 1,
+                            "step_2": 0,
+                            "start_id_step_1": 0,
+                            "start_id_step_2": 0
+                        },
+                        "VendorPlant": {
+                            "step_1": 1,
+                            "step_2": 0,
+                            "start_id_step_1": 0,
+                            "start_id_step_2": 0
+                        },
+                        "VendorBank": {
+                            "step_1": 1,
+                            "step_2": 0,
+                            "start_id_step_1": 0,
+                            "start_id_step_2": 0
+                        },
+                        "VendorCertified": {
+                            "step_1": 1,
+                            "step_2": 0,
+                            "start_id_step_1": 0,
+                            "start_id_step_2": 0
+                        },
+                        "Address": {
+                            "step_1": 1,
+                            "step_2": 0,
+                            "start_id_step_1": 0,
+                            "start_id_step_2": 0
+                        }
+                    }
+                }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                    {
+                        "hour":3,
+                        "minute":30
+                    }
+                    ]]>
+            </field>
+        </record>
+
+        <!--FORECAST 定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_job_forecast">
+            <field name="name">job_forecast</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.job.group.master</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="args"><![CDATA[
+                        {
+                            "group_name": "FORECAST",
+                            "specific_group_line": 1,
+                            "dict_group_line": {
+                                "IAC_TRAW": {
+                                    "step_1": 1,
+                                    "step_2": 1,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "IAC_TCOLUMN_TITLE": {
+                                    "step_1": 1,
+                                    "step_2": 0,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                },
+                                "IAC_TDELIVERY_HOLIDAY": {
+                                    "step_1": 1,
+                                    "step_2": 0,
+                                    "start_id_step_1": 0,
+                                    "start_id_step_2": 0
+                                }
+                            }
+                        }
+                    ]]>
+            </field>
+            <field name="cron_text"><![CDATA[
+                        {
+                            "hour": 8
+                        }
+                    ]]>
+            </field>
+
+        </record>
+
+
+        <!---久未异动的定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_rfq_mass">
+            <field name="name">job_gen_rfq_mass</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.rfq.mass.job</field>
+            <field name="function">proc_trans_group_base</field>
+            <field name="cron_text"><![CDATA[
+                        {
+                            "day_of_week": 1,
+							   "hour": 14
+                        }
+                    ]]>
+            </field>
+        </record>
+
+        <!--ASN VMI 定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_asn_vmi">
+            <field name="name">job_gen_asn_vmi</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">date</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.asn.vmi</field>
+            <field name="function">job_iac_asn_vmi</field>
+        </record>
+
+        <!--ASN BUY SELL 定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_asn_buy_sell">
+            <field name="name">job_gen_ans_buy_sell</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">date</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.asn.buy.sell</field>
+            <field name="function">job_iac_asn_buy_sell</field>
+        </record>
+
+        <!--ASN CLEAN 定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_asn_clean">
+            <field name="name">job_asn_clean</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">date</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.asn.clean</field>
+            <field name="function">job_asn_clean</field>
+        </record>
+
+        <!--最新汇率获取 定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_job_currency_exchange">
+            <field name="name">job_currency_exchange</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">date</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.currency.exchange</field>
+            <field name="function">job_iac_currency_exchange_update</field>
+        </record>
+
+
+        <!--自动將本周iac_tconfirm_data備份temp table  定时任务 -->
+        <record model="iac.interface.timer"  id="iac_interface_timer_backup_confirm_data">
+            <field name="name">job_backup_confirm_data</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">task.backup.confirm.data</field>
+            <field name="function">job_backup_confirm_data</field>
+            <field name="cron_text"><![CDATA[
+                        {
+                            "day_of_week": 1,
+							   "hour": 14
+                        }
+                    ]]>
+            </field>
+        </record>
+
+        <record model="iac.interface.timer"  id="iac_bulletin_publish_send_email">
+            <field name="name">Bulletin Publish Send Notify Email</field>
+            <field name="job_active" eval="True"/>
+            <field name="trigger_type">cron</field>
+            <field name="interval_type">minutes</field>
+            <field name="interval_number">1</field>
+            <field name="model">iac.bulletin.publish</field>
+            <field name="function">job_send_notify_mail</field>
+            <field name="cron_text"><![CDATA[
+                        {
+                            "hour": 6
+                        }
+                    ]]>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

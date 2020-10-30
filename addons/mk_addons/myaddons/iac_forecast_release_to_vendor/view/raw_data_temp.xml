@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- action :  release to vendor_____s-->
+    <record id="iac_traw_data_temp_release_fcst_action_server" model="ir.actions.server">
+        <field name="name">Release to vendor</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_iac_traw_data_temp"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+            action = records.button_to_release_fsct_to_vendor()
+        </field>
+    </record>
+
+    <record id="action_iac_traw_data_temp_release_fcst" model="ir.values">
+        <field name="name">Release to vendor</field>
+        <field name="model_id" ref="model_iac_traw_data_temp"/>
+        <field name="model">iac.traw.data.temp</field>
+        <field name="key2">client_action_multi</field>
+        <field eval="'ir.actions.server,%d'%iac_traw_data_temp_release_fcst_action_server" name="value"/>
+    </record>
+    <!-- action :  release to vendor_____e-->
+
+
+    <!--  RawDataTemp   搜索視圖___S -->
+    <record model="ir.ui.view" id="raw_data_temp_search_view">
+        <field name="name">traw.data.temp.search</field>
+        <field name="model">iac.traw.data.temp</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="vendor_code"/>
+                <field name="buyer_code"/>
+                <field name="vendor_name_cn"/>
+                <field name="material_code"/>
+                <field name="division_code"/>
+                <field name="fpversion"/>
+            </search>
+        </field>
+    </record>
+	<!--  RawDataTemp   搜索視圖___E -->
+
+    <!--創建   RawDataTemp  tree _____s-->
+    <record id="view_raw_data_temp_tree" model="ir.ui.view">
+        <field name="name">RawDataTemp</field>
+        <field name="type">tree</field>
+        <field name="model">iac.traw.data.temp</field>
+        <field name="arch" type="xml">
+            <tree string="Raw Data Temp" create="false">
+                <field name="status" /> <!--T: true有效,F:  false無效,D: done已發出-->
+                <!--<field name="today_str"/>-->
+                <field name='fpversion' />
+                <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='qty_w1'/>
+                <field name='qty_w1_r'/>
+                <field name='qty_w2'/>
+                <field name='qty_w3'/>
+                <field name='qty_w4'/>
+                <field name='qty_w5'/>
+                <field name='qty_w6'/>
+                <field name='qty_w7'/>
+                <field name='qty_w8'/>
+                <field name='qty_w9'/>
+                <field name='qty_w10'/>
+                <field name='qty_w11'/>
+                <field name='qty_w12'/>
+                <field name='qty_w13'/>
+                <field name='qty_m1'/>
+                <field name='qty_m2'/>
+                <field name='qty_m3'/>
+                <field name='qty_m4'/>
+                <field name='qty_m5'/>
+                <field name='qty_m6'/>
+                <field name='qty_m7'/>
+                <field name='qty_m8'/>
+                <field name='qty_m9'/>
+                <field name='buyer_id'/>
+                <field name="plant_code" options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name="storage_location_id"/>
+                <field name='raw_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name="id"/>
+            </tree>
+        </field>
+    </record>
+    <!--創建   RawDataTemp  tree _____e-->
+
+    <!--定义视图动作-RawDataTemp___s -->
+    <record model="ir.actions.act_window" id="action_raw_data_temp">
+        <field name="name">RawDataTemp</field>
+        <field name="res_model">iac.traw.data.temp</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        <field name="target">main</field>
+        <field name="view_id" ref="view_raw_data_temp_tree"/>
+        <!--<field name="domain">[('status','in',['T'])]</field>-->
+        <field name="domain">[('status','in',['T']),('fpversion','>=',datetime.datetime.now().strftime("%Y%m%d"))]</field>
+        <!--<filter string="Today" domain="[('start_at', '>=', datetime.datetime.combine(context_today(), datetime.time(0,0,0)))]" />-->
+        <!--<field name="domain">[('state', '=', 'In-Process'),('sale_date','&lt;=',time.strftime('%d/%m/%Y')),('sale_date','&gt;=', ((context_today() -  relativedelta(months=2)).strftime('%d/%m/%Y')))]</field>-->
+    </record>
+    <!--定义视图动作-RawDataTemp___e -->
+
+  </data>
+</odoo>

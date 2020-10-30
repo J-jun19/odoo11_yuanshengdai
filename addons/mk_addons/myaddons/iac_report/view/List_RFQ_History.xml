@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_rfq_history_report_list" model="ir.ui.view">
+            <field name="name">Info Record History Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.report.rfq.history</field>
+            <field name="arch" type="xml">
+                <tree string="Info Record History Report" create="false">
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="description"/>
+                    <field name="part_no"/>
+                    <field name="purchase_org"/>
+                    <field name="creation_date"/>
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="currency"/>
+                    <field name="price"/>
+                    <field name="previous_price"/>
+                    <field name="price_unit"/>
+                    <field name="price_control"/>
+                    <field name="pur_grp"/>
+                    <field name="buyer_name"/>
+                    <field name="division"/>
+                    <field name="final_status"/>
+                    <field name="ep_status"/>
+                    <field name="detail_status"/>
+                    <field name="rfq_no"/>
+                    <field name="reason"/>
+                    <field name="cw"/>
+                    <field name="rw"/>
+                    <field name="ltime"/>
+                    <field name="moq"/>
+                    <field name="mpq"/>
+                    <field name="taxcode"/>
+                    <field name="create_mode"/>
+                    <field name="material_group"/>
+                    <field name="vendor_part_no"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_rfq_history_form' model='ir.ui.view'>
+          <field name='name'>Info Record History Report</field>
+          <field name='model'>iac.rfq.history.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Info Record History Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" />
+                            <field name="material_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="part_no"/>
+                            <field name="buyer_code"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="valid_from"/>
+                            <field name="valid_to"/>
+                            <field name="division_id"/>
+                            <field name="vendor_code"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_rfq_history_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_rfq_history"
+                    name="Info Record History Report"
+                    res_model="iac.rfq.history.wizard"
+                    view_mode="form"
+                    target="new"/>
+        <!--<act_window id="action_max_qty"-->
+                    <!--name="Rfq History Report"-->
+                    <!--res_model="iac.rfq.history.wizard"-->
+                    <!--view_mode="form"-->
+                    <!--target="new"/>-->
+    </data>
+</odoo>

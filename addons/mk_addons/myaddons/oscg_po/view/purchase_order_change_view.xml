@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="view_purchase_order_change_view_list" model="ir.ui.view">
+          <field name="name">Purchase Order Change</field>
+          <field name="type">tree</field>
+          <field name="model">iac.purchase.order.change</field>
+          <field name="arch" type="xml">
+              <tree string="Purchase Order Change" create="false">
+                  <field name="plant_id" />
+                  <field name="order_id" string="Purchase Order" />
+                  <field name="buyer_erp_id" />
+                  <field name="order_date" string="PO Date"/>
+                  <field name="create_date" string="PO Change Date"/>
+                  <field name="order_amt" />
+                  <field name="currency_id" />
+
+                  <field name="state"/>
+                  <field name="approve_role_list"/>
+                  <field name="po_change_type"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_po_change_view_form" model="ir.ui.view">
+          <field name="name">Purchase Order Change</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.change</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Change" create="false">
+                  <header>
+                      <button String="送签" states="pending,to_approve" type="object" class="oe_highlight" name="button_to_approve_one" />
+                      <button String="编辑订单行" states="pending,to_approve,unapproved" type="object" class="oe_highlight" name="button_to_edit_po_line" />
+                      <button String="Call SAP" states="to sap" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" />
+                      <field name="state" widget="statusbar" statusbar_visible="pending,to approve,done" readonly="1"/>
+                  </header>
+                  <sheet>
+                      <group string="Purchase Order Change">
+                          <group>
+                              <field name="plant_id" readonly="1"/>
+                              <field name="order_id" readonly="1"/>
+                              <field name="buyer_erp_id" readonly="1"/>
+                              <field name="order_code" readonly="1"/>
+                              <field name="order_date" readonly="1"/>
+                              <field name="order_amt" readonly="1"/>
+                              <field name="currency_id" readonly="1"/>
+
+                              <field name="vendor_code" readonly="1"/>
+                              <field name="vendor_name" readonly="1"/>
+                              <field name="manually_po_reason_type" readonly="1"/>
+                              <field name="slocation_id" options="{'no_create': True,'no_open': True}" readonly="1"/>
+                          </group>
+                          <group>
+                              <field name="ori_payment_term" readonly="1"/>
+                              <field name="ori_incoterm_id" readonly="1"/>
+                              <field name="ori_incoterm1" readonly="1"/>
+                              <field name="new_payment_term"/>
+                              <field name="new_incoterm"/>
+                              <field name="new_incoterm1"/>
+
+                              <field name="state_msg" readonly="1"/>
+                              <field name="approve_role_list" readonly="1"/>
+                              <field name="webflow_number" readonly="1"/>
+                              <field name="manually_po_comment" readonly="1"/>
+                              <field name="order_reason" readonly="1"/>
+                          </group>
+                      </group>
+                      <notebook>
+                          <page string="Purchase Order Change Lines">
+                              <field name="line_ids" context="{'order_id': order_id}">
+                                  <tree string="Purchase Order Change Lines" delete="false" create="false" edit="false">
+                                      <field name="order_line_code_2"/>
+                                      <field name="part_id"/>
+                                      <field name="division"/>
+
+                                      <field name="ori_price" string="Last Price"/>
+                                      <field name="new_price" />
+                                      <field name="price_unit" string="Last Price Unit"/>
+                                      <field name="last_price_unit" />
+                                      <field name="original_qty"/>
+                                      <field name="ori_qty" string="Last Quantity"/>
+                                      <field name="new_qty"/>
+                                      <field name="ori_delivery_date" string="Last Delivery Date"/>
+                                      <field name="new_delivery_date"/>
+                                      <field name="purchase_req_no"/>
+                                      <field name="purchase_req_item_no"/>
+                                      <field name="odoo_deletion_flag"/>
+
+
+                                  </tree>
+                              </field>
+                          </page>
+                      </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="view_po_line_change_view_form" model="ir.ui.view">
+          <field name="name">Purchase Order Line Change</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.line.change</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Line Change" create="false">
+                  <sheet>
+                      <group string="Purchase Order Line Change">
+                          <group >
+
+                              <field name="order_line_code" options="{'no_create': True, 'no_edit': True}" readonly="1"/>
+                              <field name="part_id" readonly="1" />
+
+                              <field name="purchase_req_item_no" readonly="1"/>
+                              <field name="gr_qty" readonly="1"/>
+                              <field name="ori_price" readonly="1" string="Last Price"/>
+                              <field name="ori_qty" readonly="1" string="Last Quantity"/>
+                              <field name="ori_delivery_date" readonly="1" string="Last Delivery Date"/>
+                              <field name="price_unit" readonly="1" string="Last Price Unit"/>
+                              <field name="id" invisible="1"/>
+
+
+                          </group>
+                          <group >
+                              <field name="line_amount" readonly="1"/>
+                              <field name="division" readonly="1"/>
+                              <field name="purchase_req_no" readonly="1"/>
+                              <field name="open_qty" readonly="1"/>
+                              <field name="on_road_qty" readonly="1"/>
+                              <field name="new_price" attrs="{'readonly': [('odoo_deletion_flag', '=', True)]}"/>
+                              <field name="new_qty" attrs="{'readonly': [('odoo_deletion_flag', '=', True)]}"/>
+                              <field name="new_delivery_date" attrs="{'readonly': [('odoo_deletion_flag', '=', True)]}"/>
+                              <field name="last_price_unit"/>
+                              <field name="odoo_deletion_flag"/>
+                          </group>
+                          <group colspan="4">
+                              <field name="internal_comment" />
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record id="view_iac_purchase_order_change_search" model="ir.ui.view">
+          <field name="name">iac.purchase.order.change.search</field>
+          <field name="model">iac.purchase.order.change</field>
+          <field name="arch" type="xml">
+              <search string="pm_events">
+                  <field name="plant_id" filter_domain="[('plant_id','ilike',self)]" string="Plant Info"/>
+                  <field name="vendor_id" filter_domain="[('vendor_id','ilike',self)]" string="Vendor Info"/>
+                  <group expand="0" string="Group By">
+                      <filter string="Vendor" domain="" context="{'group_by':'vendor_id'}"/>
+                      <filter string="Plant" domain="" context="{'group_by':'plant_id'}"/>
+                      <field name="order_id" filter_domain="[('order_id','ilike',self)]" string="Purchase Order"/>
+                  </group>
+              </search>
+          </field>
+      </record>
+
+
+      <record model="ir.actions.act_window"  id="action_view_purchase_order_change_view_form">
+          <field name="name">Purchase Order Change</field>
+          <field name="res_model">iac.purchase.order.change</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="target">main</field>
+          <field name="view_id" ref="view_purchase_order_change_view_list"/>
+          <field name="domain">[('state','in',['pending','webflow_error','to_approve','unapproved','to_sap'
+              ,'sap_error'])]</field>
+          <field name="search_view_id" ref="view_iac_purchase_order_change_search"/>
+      </record>
+
+      <!-- 单笔和批量po_change送签 -->
+      <record id="iac_purchase_order_change_submit_action_server" model="ir.actions.server">
+          <field name="name">送签</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_iac_purchase_order_change"/>
+          <field name="state">code</field>
+          <field name="code">
+              if records:
+              action = records.button_to_approve()
+          </field>
+      </record>
+
+      <record id="action_iac_purchase_order_change_submit" model="ir.values">
+          <field name="name">送签</field>
+          <field name="model_id" ref="model_iac_purchase_order_change"/>
+          <field name="model">iac.purchase.order.change</field>
+          <field name="key2">client_action_multi</field>
+          <field eval="'ir.actions.server,%d'%iac_purchase_order_change_submit_action_server" name="value"/>
+      </record>
+
+
+      <record id="action_server_iac_purchase_order_change_submit_sap" model="ir.actions.server">
+          <field name="name">send to SAP</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_iac_purchase_order_change"/>
+          <field name="state">code</field>
+          <field name="code">
+              if records:
+              action = records.button_to_sap()
+          </field>
+      </record>
+
+      <record id="action_valueiac_purchase_order_change_submit" model="ir.values">
+          <field name="name">send to SAP</field>
+          <field name="model_id" ref="model_iac_purchase_order_change"/>
+          <field name="model">iac.purchase.order.change</field>
+          <field name="key2">client_action_multi</field>
+          <field eval="'ir.actions.server,%d'%action_server_iac_purchase_order_change_submit_sap" name="value"/>
+      </record>
+
+
+      <!-- po line change  po line add 相关  -->
+
+      <record id="view_purchase_order_line_change_edit_view_form" model="ir.ui.view">
+          <field name="name">Purchase Order Change</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.change.edit</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Change" create="false">
+                  <header>
+                      <button String="新建订单行"  type="object" class="btn-primary" name="button_to_add_po_line" />
+                      <button String="返回"  type="object" class="oe_highlight" name="button_to_return" />
+
+                  </header>
+                  <sheet>
+                      <group string="Purchase Order Line Change Edit">
+                          <group>
+                              <field name="order_id" readonly="1" />
+                              <field name="buyer_erp_id" readonly="1"/>
+                              <field name="order_date" readonly="1"/>
+
+                              <field name="vendor_code" readonly="1"/>
+                              <field name="ori_payment_term" readonly="1"/>
+                              <field name="ori_incoterm_id" readonly="1"/>
+                              <field name="ori_incoterm1" readonly="1"/>
+                          </group>
+                          <group>
+                              <field name="plant_id" readonly="1"/>
+                              <field name="order_amt" readonly="1"/>
+                              <field name="currency_id" readonly="1"/>
+                              <field name="vendor_name" readonly="1"/>
+                              <field name="new_payment_term"/>
+                              <field name="new_incoterm"/>
+                              <field name="new_incoterm1"/>
+                              <field name="order_reason"/>
+
+                          </group>
+                          <group>
+                              <field name="part_id" context="{'order_id': order_id,'change_id':id}" options="{'no_create': True, 'no_edit': True,'on_change': 'onchange_part_id'}"></field>
+                          </group>
+                      </group>
+                      <notebook>
+                          <page string="Purchase Order Change Lines">
+                              <field name="line_ids" context="{'order_id': order_id}">
+                                  <tree string="Purchase Order Change Lines" create="false"  delete="false">
+                                      <field name="order_line_code_2"/>
+                                      <field name="part_id"/>
+                                      <field name="division"/>
+
+                                      <field name="ori_price" string="Last Price"/>
+                                      <field name="new_price" />
+                                      <field name="price_unit" string="Last Price Unit"/>
+                                      <field name="last_price_unit"/>
+                                      <field name="original_qty" string="Original Quantity"/>
+                                      <field name="ori_qty" string="Last Quantity"/>
+                                      <field name="new_qty"/>
+                                      <field name="ori_delivery_date" string="Last Delivery Date"/>
+                                      <field name="new_delivery_date"/>
+                                      <field name="odoo_deletion_flag"/>
+
+                                  </tree>
+                              </field>
+                          </page>
+                      </notebook>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record id="view_iac_purchase_order_line_change_add_view_form" model="ir.ui.view">
+          <field name="name">Purchase Order Line Change</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.line.change.add</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Line Change" create="false">
+
+                  <sheet>
+
+
+                      <group string="Purchase Order Line Add">
+                          <group >
+
+                              <field name="order_line_code" options="{'no_create': True, 'no_edit': True}" readonly="1"/>
+                              <field name="part_id"  context="{'change_id': order_change_id}"  options="{'no_create': True, 'no_edit': True,'on_change': '_onchange_part_id'}"/>
+
+                              <field name="purchase_req_item_no" readonly="1"/>
+                              <field name="gr_qty" readonly="1"/>
+                              <field name="ori_price" readonly="1"/>
+                              <field name="ori_qty" readonly="1"/>
+                              <field name="ori_delivery_date" readonly="1"/>
+                              <field name="price_unit" readonly="1"/>
+                              <field name="id" invisible="1"/>
+
+
+                          </group>
+                          <group >
+                              <field name="line_amount" readonly="1"/>
+                              <field name="division" readonly="1"/>
+                              <field name="purchase_req_no" readonly="1"/>
+                              <field name="open_qty" readonly="1"/>
+                              <field name="on_road_qty" readonly="1"/>
+                              <field name="new_price" required="1"/>
+                              <field name="new_qty" required="1"/>
+                              <field name="new_delivery_date" required="1" />
+                              <field name="last_price_unit" required="1" />
+                          </group>
+                          <group colspan="4">
+                              <field name="internal_comment" />
+
+                          </group>
+                      </group>
+
+                  </sheet>
+                  <footer>
+                      <button string='Save And Return' name="button_to_return" type="object" class="btn-primary"/>
+                      <button string="Cancel" class="btn-default" special="cancel"/>
+                  </footer>
+              </form>
+          </field>
+      </record>
+
+      <!--使用这个action 从order_change ->order_line_change_edit  -->
+      <record model="ir.actions.act_window"  id="action_view_purchase_order_line_change_edit_view_form">
+          <field name="name">Purchase Order Line Edit Form</field>
+          <field name="res_model">iac.purchase.order.change.edit</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">main</field>
+          <field name="view_id" ref="view_purchase_order_line_change_edit_view_form"/>
+      </record>
+
+
+      <!-- 从order_line_change_edit_item -> order_line_change_add_item  -->
+      <record model="ir.actions.act_window"  id="action_view_iac_purchase_order_line_change_add_view_form">
+          <field name="name">Purchase Order Line Edit Form</field>
+          <field name="res_model">iac.purchase.order.line.change.add</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">main</field>
+          <field name="view_id" ref="view_iac_purchase_order_line_change_add_view_form"/>
+      </record>
+
+
+      <!--使用这个action 从order_change ->order_change  -->
+      <record model="ir.actions.act_window"  id="action_view_purchase_order_change_form_view">
+          <field name="name">Purchase Order Line Edit Form</field>
+          <field name="res_model">iac.purchase.order.change</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">main</field>
+          <field name="view_id" ref="view_po_change_view_form"/>
+      </record>
+
+
+      <!-- 单笔和批量送计算签核角色列表 -->
+      <record id="action_server_iac_purchase_order_change_get_approve_list" model="ir.actions.server">
+          <field name="name">Get Approve List</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_iac_purchase_order_change"/>
+          <field name="state">code</field>
+          <field name="code">
+              if records:
+              action = records.button_to_get_approve_list()
+          </field>
+      </record>
+
+
+      <record id="ir_values_iac_purchase_order_change_get_approve_list" model="ir.values">
+          <field name="name">Get Approve List</field>
+          <field name="model_id" ref="model_iac_purchase_order_change"/>
+          <field name="model">iac.purchase.order.change</field>
+          <field name="key2">client_action_multi</field>
+          <field eval="'ir.actions.server,%d'%action_server_iac_purchase_order_change_get_approve_list" name="value"/>
+      </record>
+
+  </data>
+</odoo>

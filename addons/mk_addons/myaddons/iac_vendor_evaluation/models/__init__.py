@@ -1,0 +1,13 @@
+import base
+import vendor_evaluation
+import dclass_evaluation
+import task
+import iac_supplier_company_risk
+import iac_supplier_company
+import iac_bulletin
+import iac_bulletin_to_vendor
+import iac_temp_job
+import iso_file_expire_to_mail
+import iac_vendor_exclude
+import iac_supplier_company_delete
+import iac_vendor_class_call_sap

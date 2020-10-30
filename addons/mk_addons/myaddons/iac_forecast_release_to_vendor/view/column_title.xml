@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- 目的：iac_column_title 檔,  tile 的動態標題 -->
+
+
+    <!--創建 iac.tcolumn.title 的 tree_____s-->
+    <record id="view_column_title" model="ir.ui.view">
+        <field name="name">ColumnTitle</field>
+        <field name="type">tree</field>
+        <field name="model">iac.tcolumn.title</field>
+        <field name="arch" type="xml">
+            <tree string="Column Title" create="false" delete="false">
+                <field name='fpversion'/>
+                <field name='qty_m1'/>
+                <field name='qty_m2'/>
+                <field name='qty_m3'/>
+                <field name='qty_m4'/>
+                <field name='qty_m5'/>
+                <field name='qty_m6'/>
+                <field name='qty_m7'/>
+                <field name='qty_m8'/>
+                <field name='qty_m9'/>
+                <field name='qty_w1'/>
+                <field name='qty_w1_r'/>
+                <field name='qty_w10'/>
+                <field name='qty_w11'/>
+                <field name='qty_w12'/>
+                <field name='qty_w13'/>
+                <field name='qty_w2'/>
+                <field name='qty_w3'/>
+                <field name='qty_w4'/>
+                <field name='qty_w5'/>
+                <field name='qty_w6'/>
+                <field name='qty_w7'/>
+                <field name='qty_w8'/>
+                <field name='qty_w9'/>
+                <field name='b001'/>
+                <field name='b002'/>
+                <field name='b004'/>
+                <field name='b005'/>
+                <field name='b012'/>
+                <field name='b017b'/>
+                <field name='b902q'/>
+                <field name='b902s'/>
+                <field name="id"/>
+                <field name='division'/>
+                <field name='flag'/>
+                <field name='plant'/>
+                <field name='vendor_code'/>
+                <field name='vendor_name'/>
+                <field name='buyer_code'/>
+                <field name='po'/>
+                <field name='pr'/>
+                <field name='quota'/>
+                <field name='remark'/>
+                <field name='round_value'/>
+                <field name='stock'/>
+                <field name='intransit_qty'/>
+                <field name='leadtime'/>
+                <field name='material'/>
+                <field name='max_surplus_qty'/>
+                <field name='mfgpn_info'/>
+                <field name='mquota_flag'/>
+                <field name='open_po'/>
+                <field name='creation_date'/>
+                <field name='custpn_info'/>
+                <field name='description'/>
+                <field name='alt_flag'/>
+                <field name='alt_grp'/>
+            </tree>
+        </field>
+    </record>
+    <!--創建 iac.tcolumn.title 的 tree_____e-->
+
+    <!--定义视图动作 iac.tcolumn.title 的 action ____s-->
+    <record model="ir.actions.act_window" id="action_column_title">
+        <field name="name">ColumnTitle</field>
+        <field name="res_model">iac.tcolumn.title</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+    </record>
+    <!--定义视图动作 iac.tcolumn.title 的 action ____e-->
+
+  </data>
+</odoo>

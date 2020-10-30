@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_iac_customs_sas_tree" model="ir.ui.view">
+            <field name="name">IAC Customs Sas</field>
+            <field name="type">tree</field>
+            <field name="model">iac.asn.customs.sas.search.data</field>
+            <field name="arch" type="xml">
+                <tree string="IAC Customs Sas" create="false">
+                    <field name="plant_id" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="vendor_id" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="sas_stock_no" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="dcl_type_cd" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="sas_dcl_no" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="sas_stock_preent_no" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="master_cuscd" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="stock_typecd" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="business_typecd" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="centralized_dcl_typecd" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="package_qty" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="gross_wt" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="net_wt" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="pack_type" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="owner_system" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="state" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="prepass_typecd" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="has_open_asn" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="orig_sas_no" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="pass_port_no" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="lg_approver_id" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="lg_approve_time" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="create_date" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='view_iac_customs_sas_report_entry_godown_form' model='ir.ui.view'>
+            <field name='name'>IAC Customs Sas</field>
+            <field name='model'>iac.asn.customs.sas.search.data</field>
+            <field name='arch' type='xml'>
+                <form string="IAC Customs Sas" create="false" edit="false">
+                    <sheet>
+                        <group string="出入库单表头">
+                              <group>
+                                  <field name="plant_id" readonly="1"/>
+                                  <field name="vendor_id" readonly="1" options="{'no_create': True,'no_open': True}"/>
+                                  <field name="sas_stock_no" readonly="1"/>
+                                  <field name="sas_dcl_no" readonly="1"/>
+                                  <field name="sas_stock_preent_no" readonly="1"/>
+                                  <field name="stock_typecd" readonly="1"/>
+                                  <field name="business_typecd" readonly="1"/>
+
+                                  <field name="centralized_dcl_typecd" readonly="1"/>
+                                  <field name="usetocod" readonly="1"/>
+                                  <!--<field name="manually_po_reason_type" readonly="1"/>-->
+                                  <!--<field name="slocation_id" options="{'no_create': True,'no_open': True}" readonly="1"/>-->
+                              </group>
+                              <group>
+                                  <field name="orig_sas_no" string="对应的入库单编号"/>
+                                  <field name="package_qty" readonly="1"/>
+                                  <field name="gross_wt" readonly="1"/>
+                                  <!--<field name="net_wt"/>-->
+                                  <!--<field name="new_incoterm"/>-->
+                                  <!--<field name="new_incoterm1"/>-->
+
+                                  <field name="net_wt" readonly="1"/>
+                                  <field name="owner_system" readonly="1"/>
+                                  <field name="pack_type" readonly="1"/>
+                                  <field name="create_date" readonly="1"/>
+                                  <field name="stucd" readonly="1"/>
+                                  <field name="opt_status" readonly="1"/>
+                                  <field name="opt_remark" readonly="1"/>
+                                  <field name="opt_time" readonly="1"/>
+                              </group>
+                          </group >
+                        <notebook>
+                            <page string="出入库单明细" options="{'no_create': True,'no_open': True}" readonly="1">
+                                <field name="sas_stock_line_ids">
+                                      <tree string="Entry Godown List" delete="false" create="false" edit="false">
+                                          <field name="sas_stock_no"/>
+                                          <field name="sas_stock_seqno"/>
+                                          <field name="sas_dcl_seqno"/>
+                                          <field name="gds_mtno" />
+                                          <field name="gdecd" />
+                                          <field name="gds_nm" />
+                                          <field name="gds_spcf_model_desc" />
+                                          <field name="dcl_unitcd"/>
+                                          <field name="dcl_unit_id" string="申报单位名称"/>
+                                          <field name="lawf_unitcd"/>
+                                          <field name="lawf_unit_id" string="法1单位名称"/>
+                                          <field name="secd_lawf_unitcd"/>
+                                          <field name="secd_lawf_unit_id" string="法2单位名称"/>
+                                          <field name="natcd"/>
+                                          <field name="destination_natcd"/>
+                                          <field name="dcl_uprc_amt"/>
+                                          <field name="dcl_total_amt"/>
+                                          <field name="dcl_currcd"/>
+                                          <field name="lawf_qty"/>
+                                          <field name="secd_lawf_qty"/>
+                                          <field name="dcl_qty"/>
+                                          <field name="lvyrlf_modecd"/>
+                                          <field name="orig_sas_no" string="对应的入库单编号"/>
+                                          <field name="usetocod"/>
+                                          <!--<field name="gds_nm" />-->
+                                          <!--<field name="gds_spcf_model_desc" />-->
+                                          <!--<field name="dcl_unitcd"/>-->
+                                          <!--<field name="lawf_unitcd"/>-->
+                                          <!--<field name="secd_lawf_unitcd"/>-->
+                                          <!--<field name="natcd"/>-->
+                                          <!--<field name="destination_natcd"/>-->
+                                          <!--<field name="dcl_uprc_amt"/>-->
+                                          <!--<field name="dcl_total_amt"/>-->
+                                          <!--<field name="dcl_currcd"/>-->
+                                          <!--<field name="lawf_qty"/>-->
+                                          <!--<field name="dcl_qty"/>-->
+                                          <!--<field name="lvyrlf_modecd"/>-->
+                                          <!--<field name="open_asn_qty"/>-->
+                                          <!--<field name="usetocod"/>-->
+                                      </tree>
+                                  </field>
+                            </page>
+                            </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record id='view_iac_customs_sas_report_form' model='ir.ui.view'>
+          <field name='name'>Customs Sas Report</field>
+          <field name='model'>iac.asn.customs.sas.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Customs Sas Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <!--<field name="material_id" options="{'no_create': True,'no_open': True}"/>-->
+                            <field name="vendor_code"/>
+                            <field name="sas_dcl_no"/>
+                            <!--<field name="part_no"/>-->
+                            <field name="sas_stock_no"/>
+                            <field name="sas_stock_preent_no"/>
+                            <field name="stock_typecd"/>
+                            <field name="state"/>
+                            <field name="from_date" required="1"/>
+                            <field name="to_date" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_customs_sas_data'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <!--<act_window id="action_wizard_customs_sas_report_pdf"-->
+                    <!--name="ASN CUSTOMS SAS REPORT"-->
+                    <!--res_model="iac.asn.customs.sas.report.wizard"-->
+                    <!--view_type="form"-->
+                    <!--view_mode="tree"-->
+                    <!--target="new"/>-->
+        <record model="ir.actions.act_window" id="action_wizard_customs_sas_report_pdf">
+                <field name="name">ASN CUSTOMS SAS REPORT</field>
+                <field name="res_model">iac.asn.customs.sas.report.wizard</field>
+                <!--<field name="view_type">tree</field>-->
+                <field name="view_mode">form</field>
+                <field name="target">new</field>
+                <!--<field name="view_id" ref="view_entry_godown_detailed_tree"/>-->
+                <!--<field name="domain">[('state','not in',['cancel'])]</field>-->
+        </record>
+    </data>
+</odoo>

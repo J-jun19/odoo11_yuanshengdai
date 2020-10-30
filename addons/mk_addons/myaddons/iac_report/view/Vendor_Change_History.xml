@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_iac_vendor_change_history_list" model="ir.ui.view">
+            <field name="name">Vendor Change History Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.change.history</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Change History Report" create="false">
+                    <field name="id"/>
+                    <field name="plant_code"/>
+                    <field name="sc_code"/>
+                    <field name="sc_name"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="current_class"/>
+                    <field name="vendor_sap_status"/>
+                    <field name="create_date"/>
+                    <field name="action"/>
+                    <field name="state"/>
+                    <field name="login"/>
+                    <field name="display_name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_vendor_change_history_wizard_form' model='ir.ui.view'>
+          <field name='name'>Vendor Change History Report</field>
+          <field name='model'>iac.vendor.change.history.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Vendor Change History Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="sc_code"/>
+                            <field name="vendor_code"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_vendor_change_history_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_vendor_change_history"
+                    name="Vendor Change History Report"
+                    res_model="iac.vendor.change.history.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

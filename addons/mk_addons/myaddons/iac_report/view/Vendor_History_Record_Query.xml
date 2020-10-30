@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window id="action_wizard_vendor_history_record_report"
+                    name="評鑒:供應商評分評鑑歷史記錄查詢"
+                    res_model="v.vendor.history.record.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+
+</odoo>

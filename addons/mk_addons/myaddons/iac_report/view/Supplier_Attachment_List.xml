@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_supplier_attachment" model="ir.ui.view">
+            <field name="name">Supplier Attachment List</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.file.info</field>
+            <field name="arch" type="xml">
+                <tree string="Supplier Attachment List" create="false">
+                    <field name="company_no"/>
+                    <field name="vendor_code"/>
+                    <field name="name1_cn"/>
+                    <field name="file_type"/>
+                    <field name="file_descp"/>
+                    <field name="file_id" widget="dms_file" directory="model_muk_dms_directory.1"/>
+                    <field name="state"/>
+                    <field name="create_date"/>
+
+                    <field name="approver"/>
+                    <field name="last_change_date"/>
+                    <field name="memo"/>
+                    <field name="expiration_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='supplier_attachment_form' model='ir.ui.view'>
+          <field name='name'>Supplier Attachment List</field>
+          <field name='model'>v.vendor.file.info</field>
+          <field name='arch' type='xml'>
+              <form string="Supplier Attachment List" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="company_no"/>
+                            <field name="vendor_code"/>
+                            <field name="name1_cn"/>
+                            <field name="file_type"/>
+                            <field name="file_descp"/>
+                            <field name="file_id" widget="dms_file" directory="model_muk_dms_directory.1"/>
+                            <field name="state"/>
+                            <field name="create_date"/>
+
+                            <field name="approver"/>
+                            <field name="last_change_date"/>
+                            <field name="memo"/>
+                            <field name="expiration_date"/>
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+          </field>
+        </record>
+
+        <record id='supplier_attachment_wizard_form' model='ir.ui.view'>
+          <field name='name'>Supplier Attachment List</field>
+          <field name='model'>v.vendor.file.info.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Supplier Attachment List">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="supplier_company" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vendor_code" options="{'no_create': True,'no_open': True}"/>
+                            <field name="file_description" options="{'no_create': True,'no_open': True}"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_supplier_attachment_list'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_supplier_attachment"
+                     name="Supplier Attachment List"
+                     res_model="v.vendor.file.info.wizard"
+                     view_mode="form"
+                     target="new"/>
+    </data>
+</odoo>

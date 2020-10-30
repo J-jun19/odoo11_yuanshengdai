@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- Currency Exchange-->
+
+      <record id="iac_purchase_order_file_form_view" model="ir.ui.view">
+          <field name="name">muk_dms_file.form</field>
+          <field name="model">iac.purchase.order.file</field>
+          <field name="arch" type="xml">
+              <form string="File">
+                  <sheet>
+                      <group>
+                          <group>
+                              <field name="filename"/>
+                              <field name="file" filename="filename" widget="preview_file"/>
+                              <field name="link_download" widget="url" />
+                              <field name="order_id" invisible="1"/>
+                              <field name="directory" invisible="1"/>
+                          </group>
+
+                      </group>
+                  </sheet>
+                  <footer>
+                      <button string='Save And Return' name="button_to_return" type="object" class="btn-primary"/>
+                      <button string="Cancel" class="btn-default" special="cancel"/>
+                  </footer>
+              </form>
+          </field>
+      </record>
+
+
+      <record id="action_iac_purchase_order_file" model="ir.actions.act_window">
+          <field name="name">Purchase Order File</field>
+          <field name="view_mode">form</field>
+          <field name="res_model">iac.purchase.order.file</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+      </record>
+
+
+  </data>
+</odoo>

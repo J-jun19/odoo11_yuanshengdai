@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_rfq_history"
+        name="iac_report.qweb_rfq_history"
+        model="v_rfq_history"
+        string="Attachment"
+        report_type="qweb-html" />
+
+    <report id="cust_report_rfq_history"
+        name="iac_report.rfq_history_cust_report"
+        model="v_rfq_history"
+        string="Attachment and Country"
+        report_type="qweb-html" />
+
+</odoo>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+      <record id="view_iac_admin_maintain_vendor_vat" model="ir.ui.view">
+            <field name="name">Maintain Vendor Vat Nub</field>
+            <field name="type">tree</field>
+            <field name="model">iac.admin.maintain.vendor.vat</field>
+            <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <field name="arch" type="xml">
+                <tree string="Maintain Vendor Vat Nub" create="false" editable="bottom" export="false">
+                    <!--<button name="button_to_change_vatnub" type='object' string="还原可退数量" class="oe_highlight"/>-->
+                    <field name="vendor_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="vat_number"/>
+                    <field name="name1_cn" readonly="True"/>
+                    <field name="webflow_number" readonly="True"/>
+                    <field name="state_msg" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+
+
+      <record id="view_asn_vat_nub" model="ir.ui.view">
+          <field name="name">Maintain Vendor Vat Nub</field>
+          <field name="type">form</field>
+          <field name="model">iac.admin.search.vendor.vat.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Maintain Vendor Vat Nub" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vendor_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                            <!--<field name="display_flag"/>-->
+                            <!--<field name="valid_to"/>-->
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name='search_vendor_vat_nub'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                    <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+              </form>
+
+          </field>
+
+        </record>
+
+        <record model="ir.actions.act_window" id="action_admin_asn_maintain_vat_number">
+            <field name="name">Maintain Vendor Vat Nub</field>
+            <field name="res_model">iac.admin.search.vendor.vat.wizard</field>
+             <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <!--<field name="view_type">tree</field>-->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+  </data>
+</odoo>

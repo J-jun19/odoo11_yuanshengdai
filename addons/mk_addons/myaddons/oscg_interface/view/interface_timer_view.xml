@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <!--接口配置相关 -->
+      <record id="iac_interface_timer_view" model="ir.ui.view">
+          <field name="model">iac.interface.timer</field>
+          <field name="arch" type="xml">
+              <form string="Scheduled Actions">
+                  <header>
+                      <button name="method_direct_trigger" type="object" string="Run Manually" class="oe_highlight"/>
+                      <button name="button_reload_job" type="object" string="Reload Job" class="oe_highlight"/>
+                  </header>
+                  <sheet>
+
+                       <group col="4">
+                           <field name="name"/>
+                           <field name="trigger_type" />
+                           <field name="run_date" attrs="{'readonly': [('trigger_type', 'not in', ['date'])]}"/>
+                           <field name="job_active"/>
+                       </group>
+
+                      <notebook>
+                          <page string="Information">
+                              <group col="4">
+                                  <field name="cron_text" attrs="{'readonly': [('trigger_type', 'not in', ['cron'])]}"/>
+                                  <field name="interval_number" attrs="{'readonly': [('trigger_type', 'not in', ['interval','date'])]}"/>
+                                  <field name="interval_type" attrs="{'readonly': [('trigger_type', 'not in', ['interval','date'])]}"/>
+
+                              </group>
+                          </page>
+                          <page string="Technical Data">
+                              <group string="Action to Trigger">
+                                  <field name="model"/>
+                                  <field name="function"/>
+                                  <field name="args"/>
+                              </group>
+
+                          </page>
+                      </notebook>
+                      <group colspan="4">
+                          <field name="job_exe_ids">
+                              <tree string="Log Lines" editable="bottom">
+                                  <field name="job_name"/>
+                                  <field name="state"/>
+                                  <field name="executed_time" />
+                                  <field name="job_err_msg"/>
+
+
+                              </tree>
+                              <form string="Log Line Form">
+                                  <group col="4">
+                                      <field name="job_name"/>
+                                      <field name="state"/>
+                                      <field name="executed_time" />
+                                      <field name="job_err_msg"/>
+                                  </group>
+                              </form>
+                          </field>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="iac_interface_timer_view_tree" model="ir.ui.view">
+          <field name="model">iac.interface.timer</field>
+          <field name="arch" type="xml">
+              <tree string="Scheduled Actions">
+
+                  <field name="name"/>
+                  <field name="trigger_type"/>
+                  <field name="interval_type"/>
+                  <field name="interval_number"/>
+
+                  <field name="run_date"/>
+                  <field name="model"/>
+                  <field name="function"/>
+              </tree>
+          </field>
+      </record>
+
+
+
+      <record id="iac_interface_timer_view_search" model="ir.ui.view">
+          <field name="model">iac.interface.timer</field>
+          <field name="arch" type="xml">
+              <search string="Scheduled Actions">
+                  <field name="name" string="Scheduled Action"/>
+                  <field name="trigger_type"/>
+                  <field name="interval_type"/>
+
+                  <group expand="0" string="Group By">
+                      <filter string="User" domain="[]" context="{'group_by':'user_id'}"/>
+
+                  </group>
+              </search>
+          </field>
+      </record>
+
+      <record id="action_iac_interface_timer" model="ir.actions.act_window">
+          <field name="name">Scheduled Actions</field>
+          <field name="res_model">iac.interface.timer</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+
+          <field name="view_id" ref="iac_interface_timer_view_tree"/>
+      </record>
+
+      <menuitem id="menu_iac_interface_timer_item" name="Timer Job Config" action="action_iac_interface_timer" parent="menu_interface_cfg_base"/>
+
+
+  </data>
+</odoo>

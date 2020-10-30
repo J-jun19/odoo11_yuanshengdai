@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <record id="view_vendor_list" model="ir.ui.view">
+        <field name="name">Bank Info.</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.vendor</field>
+        <field name="arch" type="xml">
+            <tree string="Bank Info." create="false">
+                <field name="state"/>
+                <field name="name"/>
+                <field name="vendor_code"/>
+                <field name="user_id"/>
+                <field name="buyer_email"/>
+                <field name="current_class" />
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_vendor_form" model="ir.ui.view">
+        <field name="name">Bank Info.</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.vendor</field>
+        <field name="arch" type="xml">
+            <form string="Bank Info." create="false">
+                <header>
+                    <button String="提交" states="draft" type="object" class="oe_highlight" name="button_submit" groups="oscg_vendor.IAC_vendor_groups"/>
+                    <button String="拒绝" states="submit" type="object" class="oe_highlight" name="button_reject" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="送签" states="submit,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="Call SAP" states="sap error" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submit,to approve,to sap,done" readonly="1"/>
+                </header>
+                <sheet string="Bank Info.">
+                <group col="4">
+                    <field name="name" readonly="1"/>
+                    <field name="vendor_code" readonly="1"/>
+                    <field name="user_id" readonly="1"/>
+                    <field name="vendor_reg_id" readonly="1"/>
+                    <field name="buyer_email" readonly="1"/>
+                    <field name="current_class" readonly="1"/>
+                    <field name="state_msg" readonly="1"/>
+                    <field name="webflow_number"/>
+                </group>
+                <notebook>
+                    <page string="Bank Info">
+                       <group>
+                           <field name="bank_name" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="branch_name" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="account_number" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="swift_code" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="transfer_number" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="bank_street" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="bank_city" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                           <field name="bank_country" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                    </page>
+                    <page string="Bank Attachment">
+                        <field name="attachment_ids" widget="one2many_list" attrs="{'readonly': [('state', 'not in', ['draft', 'submit', 'unapproved'])]}">
+                            <tree string="Attachment" create="false" delete="false">
+                                <field name="type" />
+                                <field name="file_id" widget="dms_file" string="Attachment" directory="model_muk_dms_directory.2" />
+                                <field name="approver_id" options="{'no_create': True, 'no_edit': True}" context="{'filter_user_by_type_and_plant': True, 'attachment_type_id': type}" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                                <field name="expiration_date"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Vendor Basic Data" groups="oscg_vendor.IAC_buyer_groups">
+                        <group>
+                            <group>
+                                <field name="rma_terms" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="it_level" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="plant" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}" options="{'no_create': True, 'no_edit': True}"/>
+                            </group>
+                            <group>
+                                <field name="payment_term" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="incoterm" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="destination" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="reason" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                            </group>
+                            <group>
+                                <field name="vmi_supplier" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="vmi_due" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="si_supplier" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="import_required" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="local_foreign" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                            </group>
+                            <!--<group>
+                                <field name="purchase_contract" widget="dms_file" string="Purchase Contract" directory="model_muk_dms_directory.2" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                                <field name="probity_agreement" widget="dms_file" string="Probity Agreement" directory="model_muk_dms_directory.2" attrs="{'readonly': [('state', 'not in', ('draft', 'submit', 'unapproved'))]}"/>
+                            </group> -->
+                        </group>
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window"  id="action_view_vendor_form">
+            <field name="name">Bank Info.</field>
+            <field name="res_model">iac.vendor.vendor</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('state','not in',['block','deleted'])]</field>
+            <field name="view_id" ref="view_vendor_list"/>
+        </record>
+
+        <record id="view_vendor_filter" model="ir.ui.view">
+            <field name="name">Vendor Select</field>
+            <field name="model">iac.vendor</field>
+            <field name="arch" type="xml">
+                <search string="Search Vendor">
+                    <field name="name" string="Name"/>
+                    <field name="vendor_code" string="Vendor Code"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Vendor Type" name="Vendor Type" context="{'group_by':'vendor_type'}"/>
+                        <filter string="State" name="State" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+      <record id="view_supplier_company_list" model="ir.ui.view">
+        <field name="name">Supplier Company</field>
+        <field name="type">tree</field>
+        <field name="model">iac.supplier.company</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_no"/>
+                <field name="name"/>
+                <field name="vat_no"/>
+                <field name="supplier_type"/>
+                <field name="current_class"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_supplier_company_form" model="ir.ui.view">
+        <field name="name">Supplier Company</field>
+        <field name="type">form</field>
+        <field name="model">iac.supplier.company</field>
+        <field name="arch" type="xml">
+            <form string="Supplier Company">
+                <sheet string="Supplier Company">
+                    <group>
+                        <group>
+                            <field name="company_no"/>
+                            <field name="name"/>
+                            <field name="company_name2"/>
+                            <field name="vat_no"/>
+                        </group>
+                        <group>
+                            <field name="supplier_type"/>
+                            <field name="current_class"/>
+                            <field name="comment"/>
+                        </group>
+                        <notebook>
+                            <page string="Vendors">
+                                <field name="line_ids">
+                                    <tree string="Vendors" editable="bottom">
+                                        <field name="vendor_id" options="{'no_create': True, 'no_edit': True}"/>
+                                        <field name="vendor_code"/>
+                                        <field name="vendor_name"/>
+                                        <field name="supplier_type"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_supplier_company_form">
+        <field name="name">Supplier Company</field>
+        <field name="res_model">iac.supplier.company</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_supplier_company_list"/>
+    </record>
+
+      <record id="view_global_vendor_list" model="ir.ui.view">
+        <field name="name">Global Vendor</field>
+        <field name="type">tree</field>
+        <field name="model">iac.global.vendor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="global_vendor_code"/>
+                <field name="name"/>
+                <field name="global_address"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_global_vendor_form" model="ir.ui.view">
+        <field name="name">Global Vendor</field>
+        <field name="type">form</field>
+        <field name="model">iac.global.vendor</field>
+        <field name="arch" type="xml">
+            <form string="Global Vendor">
+                <sheet string="global Vendor">
+                    <group>
+                        <group>
+                            <field name="global_vendor_code"/>
+                            <field name="name"/>
+                            <field name="global_name2"/>
+                            <field name="global_address"/>
+                        </group>
+                        <group>
+                            <field name="global_address2"/>
+                            <field name="comment"/>
+                        </group>
+                        <notebook>
+                            <page string="Suppliers">
+                                <field name="line_ids">
+                                    <tree string="Suppliers" editable="bottom">
+                                        <field name="supplier_company_id" options="{'no_create': True, 'no_edit': True}"/>
+                                        <field name="company_no"/>
+                                        <field name="company_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_global_vendor_form">
+        <field name="name">Global Vendor</field>
+        <field name="res_model">iac.global.vendor</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_global_vendor_list"/>
+    </record>
+
+      <record id="view_vendor_plm_list" model="ir.ui.view">
+        <field name="name">Vendor PLM</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.plm</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="global_vendor_id" options="{'no_create': True, 'no_edit': True}"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_vendor_plm_form" model="ir.ui.view">
+        <field name="name">Vendor PLM</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.plm</field>
+        <field name="arch" type="xml">
+            <form string="Vendor PLM">
+                <sheet string="Vendor PLM">
+                    <label string="PLM name一旦创建则不能删除"/>
+                    <group>
+                        <field name="name"/>
+                        <field name="global_vendor_id"  options="{'no_create': True, 'no_edit': True,'no_create': True}" attrs="{'readonly': [('state', '=', 'done')]}"
+                               domain="[('is_manufacturer', '=', True)]"/>
+                        <field name="state" invisible="0"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_vendor_plm_form">
+        <field name="name">Vendor PLM</field>
+        <field name="res_model">iac.vendor.plm</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_vendor_plm_list"/>
+    </record>
+
+    <!-- Vendor Copy -->
+    <record id="view_vendor_copy_list" model="ir.ui.view">
+        <field name="name">Vendor Copy</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.copy</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+                <field name="ori_vendor_id" />
+                <field name="plant"/>
+                <field name="currency"/>
+                <field name="buyer_email"/>
+                <field name="payment_term"/>
+                <field name="incoterm"/>
+                <field name="destination"/>
+                <field name="local_foreign"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_vendor_copy_form" model="ir.ui.view">
+        <field name="name">Vendor Copy</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.copy</field>
+        <field name="arch" type="xml">
+            <form string="Vendor Copy">
+                <header>
+                    <button String="送签" states="draft,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="Call SAP" states="sap error,callback_error" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="取消" states="draft" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to approve,to sap,done" readonly="1"/>
+                </header>
+                <sheet string="Vendor Copy">
+                    <group>
+                        <group>
+                            <field name="ori_vendor_id" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True}" context="{'do_not_filter_vendor_by_buyer_email': True}"/>
+                            <field name="plant" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="currency" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="buyer_email"/>
+                            <!-- pw add 2018 10 08-->
+                            <field name="ori_address_country"/>
+
+                            <field name="payment_term" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True, 'no_edit': True}"/>
+                        </group>
+                        <group>
+                            <!-- pw add 2018 10 08-->
+                            <field name="vat_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+
+                            <field name="incoterm" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="destination" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="local_foreign" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="copy_reason" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="new_vendor_id" options="{'no_create': True}" readonly="1"/>
+                            <field name="state_msg"/>
+                            <field name="webflow_number"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_vendor_copy_form">
+        <field name="name">Vendor Copy</field>
+        <field name="res_model">iac.vendor.copy</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_vendor_copy_list"/>
+    </record>
+
+      <!-- Vendor Block -->
+    <record id="view_vendor_block_list" model="ir.ui.view">
+        <field name="name">Vendor Block</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.block</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+                <field name="plant_id" />
+                <field name="vendor_id"/>
+                <field name="is_block"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_vendor_block_form" model="ir.ui.view">
+        <field name="name">Vendor Block</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.block</field>
+        <field name="arch" type="xml">
+            <form string="Vendor Block or Unblock">
+                <header>
+                    <button String="送签" states="draft,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="取消" states="draft" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="Call SAP" states="sap error" type="object" class="oe_highlight" name="button_to_sap" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to approve,to sap,done" readonly="1"/>
+                </header>
+                <sheet string="Vendor Block or Unblock">
+                    <group string="Vendor Block or Unblock">
+                        <group>
+                            <field name="plant_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="vendor_id" options="{'no_create': True}" attrs="{'readonly': ['|', ('plant_id', '=', False), ('state', 'not in', ('draft', 'unapproved'))]}" required="1"/>
+                            <field name="is_block" widget="radio" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                        </group>
+                        <group>
+                            <field name="comment" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="state_msg" readonly="1"/>
+                            <field name="webflow_number"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_vendor_block_form">
+        <field name="name">Vendor Block or Unblock</field>
+        <field name="res_model">iac.vendor.block</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_vendor_block_list"/>
+    </record>
+
+    <!-- Vendor Change Basic Data -->
+    <record id="view_vendor_change_basic_list" model="ir.ui.view">
+        <field name="name">Bank Info.</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.change.basic</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+                <field name="vendor_reg_id"/>
+                <field name="name1_cn"/>
+                <field name="name1_en"/>
+                <field name="short_name"/>
+                <field name="contact_person"/>
+                <field name="buyer_email"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+    <record id="view_vendor_change_basic_form" model="ir.ui.view">
+        <field name="name">Bank Info.</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.change.basic</field>
+        <field name="arch" type="xml">
+            <form string="Bank Info.">
+                <header>
+                    <button String="提交" states="draft" type="object" class="oe_highlight" name="button_confirm" groups="oscg_vendor.IAC_vendor_groups"/>
+                    <button String="取消" states="draft" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_vendor_groups"/>
+                    <button String="拒绝" states="submit" type="object" class="oe_highlight" name="button_reject" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="送签" states="submit,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="Call SAP" states="sap error" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submit,to approve,done" readonly="1"/>
+                </header>
+                <sheet string="Bank Info.">
+                    <group>
+                        <group string="Basic Data">
+                            <field name="plant_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="vendor_reg_id" domain="[('plant_id','=',plant_id)]" options="{'no_create': True}" required="1" attrs="{'readonly': ['|', ('plant_id', '=', False), ('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="name1_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="name2_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="name1_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="name2_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="short_name" readonly="1"/>
+                            <field name="contact_person" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="company_telephone1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="company_fax" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="buyer_email" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="sales_email" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="vat_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="address_street" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="address_city" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="address_district" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="address_pobox" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="address_postalcode" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="address_country" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="currency" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                        </group>
+                        <group string="Bank Data">
+                            <field name="bank_name" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="branch_name" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="account_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="swift_code" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="transfer_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="bank_street" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="bank_city" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="bank_country" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                        </group>
+                        <group>
+                            <field name="effective_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="state_msg" readonly="1"/>
+                            <field name="webflow_number"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Bank Attachment">
+                            <field name="attachment_ids" widget="one2many_list" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved','submit',''))]}">
+                                <tree string="Attachment" create="false" delete="false">
+                                    <field name="type" />
+                                    <field name="file_id" widget="dms_file" string="Attachment" directory="model_muk_dms_directory.2" />
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_vendor_change_basic_form">
+        <field name="name">Bank Info.</field>
+        <field name="res_model">iac.vendor.change.basic</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_vendor_change_basic_list"/>
+    </record>
+
+      <!-- Buyer Change Master Data -->
+    <record id="view_buyer_change_master_list" model="ir.ui.view">
+        <field name="name">Buyer Change Master Data</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.change.master</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+                <field name="vendor_id"/>
+                <field name="rma_terms"/>
+                <field name="it_level"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_buyer_change_master_form" model="ir.ui.view">
+        <field name="name">Buyer Change Master Data</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.change.master</field>
+        <field name="arch" type="xml">
+            <form string="Buyer Change Master Data">
+                <header>
+                    <button String="提交" states="draft" type="object" class="oe_highlight" name="button_confirm" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="取消" states="draft" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                </header>
+                <sheet string="Buyer Change Master Data">
+                    <group string="Master Data">
+                        <group>
+                            <field name="plant_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="vendor_id" options="{'no_create': True}" required="1" attrs="{'readonly': ['|', ('plant_id', '=', False), ('state', '!=', 'draft')]}"/>
+                            <field name="rma_terms" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="it_level" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="vmi_supplier" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="vmi_due" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="si_supplier" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="import_required" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="state_msg" readonly="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_buyer_change_master_form">
+        <field name="name">Buyer Change Master Data</field>
+        <field name="res_model">iac.vendor.change.master</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_buyer_change_master_list"/>
+    </record>
+
+      <!-- Buyer Change Terms Data -->
+    <record id="view_buyer_change_terms_list" model="ir.ui.view">
+        <field name="name">Buyer Change Terms Data</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.change.terms</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+                <field name="vendor_id"/>
+                <field name="payment_term"/>
+                <field name="incoterm"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_buyer_change_terms_form" model="ir.ui.view">
+        <field name="name">Buyer Change Terms Data</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.change.terms</field>
+        <field name="arch" type="xml">
+            <form string="Buyer Change Terms Data">
+                <header>
+                    <button String="送签" states="draft,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="取消" states="draft" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="Call SAP" states="sap error" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submit,to approve,done" readonly="1"/>
+                </header>
+                <sheet string="Buyer Change Terms Data">
+                    <group string="Terms Data">
+                        <group>
+                            <field name="plant_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="vendor_id" options="{'no_create': True}" required="1" attrs="{'readonly': ['|', ('plant_id', '=', False), ('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="payment_term" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="incoterm" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="destination" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="change_reason" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                        </group>
+                        <group>
+                            <field name="contract_file" widget="dms_file" string="Attachment*" directory="model_muk_dms_directory.1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="file_description" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="effective_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                            <field name="state_msg" readonly="1"/>
+                            <field name="webflow_number"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_buyer_change_terms_form">
+        <field name="name">Buyer Change Terms Data</field>
+        <field name="res_model">iac.vendor.change.terms</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_buyer_change_terms_list"/>
+    </record>
+
+      <!-- Buyer Change Manufacturer Data -->
+    <record id="view_buyer_change_manufacture_list" model="ir.ui.view">
+        <field name="name">Buyer Change Manufacturer Data</field>
+        <field name="type">tree</field>
+        <field name="model">iac.vendor.change.manufacture</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="state"/>
+                <field name="vendor_reg_id"/>
+                <field name="name1_en"/>
+                <field name="name1_cn"/>
+                <field name="short_name"/>
+                <field name="contact_person"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_buyer_change_manufacture_form" model="ir.ui.view">
+        <field name="name">Buyer Change Manufacturer Data</field>
+        <field name="type">form</field>
+        <field name="model">iac.vendor.change.manufacture</field>
+        <field name="arch" type="xml">
+            <form string="Buyer Change Manufacturer Data">
+                <header>
+                    <button String="提交" states="draft" type="object" class="oe_highlight" name="button_confirm" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="取消" states="draft" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                </header>
+                <sheet string="Buyer Change Manufacturer Data">
+                    <group string="Manufacturer Data">
+                        <group>
+                            <field name="vendor_reg_id" options="{'no_create': True}" required="1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="name1_en" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="name1_cn" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="short_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="contact_person" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="company_telephone1" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="company_fax" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="sales_email" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="address_street" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="address_city" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="address_district" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="address_postalcode" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="address_country" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="state_msg"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+
+      <!--定义视图动作-->
+    <record model="ir.actions.act_window" id="action_view_buyer_change_manufacturer_form">
+        <field name="name">Buyer Change Manufacturer Data</field>
+        <field name="res_model">iac.vendor.change.manufacture</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="target">main</field>
+        <field name="view_id" ref="view_buyer_change_manufacture_list"/>
+    </record>
+
+    <!-- 继承mail.message form视图 -->
+    <record model="ir.ui.view" id="view_inherit_mail_message_form">
+        <field name="name">mail.message.inherit.form</field>
+        <field name="model">mail.message</field>
+        <field name="inherit_id" ref="mail.view_message_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_ids" position="before">
+                <field name="is_all"/>
+                <field name="white_id" attrs="{'invisible': [('is_all', '=', True)]}"/>
+            </field>
+            <field name="partner_ids" position="replace">
+                <field name="partner_ids" invisible="1"/>
+            </field>
+            <field name="parent_id" position="replace">
+                <field name="parent_id" invisible="1"/>
+            </field>
+            <field name="model" position="replace">
+                <field name="model" invisible="1"/>
+            </field>
+            <field name="res_id" position="replace">
+                <field name="res_id" invisible="1"/>
+            </field>
+            <field name="subtype_id" position="replace">
+                <field name="subtype_id" invisible="1"/>
+            </field>
+            <field name="record_name" position="replace">
+                <field name="record_name" invisible="1"/>
+            </field>
+            <field name="notification_ids" position="replace">
+                <field name="notification_ids" invisible="1"/>
+            </field>
+            <field name="starred_partner_ids" position="replace">
+                <field name="starred_partner_ids" invisible="1"/>
+            </field>
+            <field name="needaction_partner_ids" position="replace">
+                <field name="needaction_partner_ids" invisible="1"/>
+            </field>
+            <field name="tracking_value_ids" position="replace">
+                <field name="tracking_value_ids" invisible="1"/>
+            </field>
+            <field name="message_type" position="after">
+                <field name="file_id" widget="dms_file" string="Attachment" directory="model_muk_dms_directory.10" />
+            </field>
+        </field>
+    </record>
+
+    <!-- White List -->
+    <record id="view_mail_message_white_list" model="ir.ui.view">
+        <field name="name">Recipient</field>
+        <field name="type">tree</field>
+        <field name="model">mail.message.white</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="description"/>
+                <field name="active"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+      </record>
+
+      <record id="view_mail_message_white_form" model="ir.ui.view">
+        <field name="name">Recipient</field>
+        <field name="type">form</field>
+        <field name="model">mail.message.white</field>
+        <field name="arch" type="xml">
+            <form string="White List">
+                <sheet string="White List">
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="active"/>
+                        <field name="line_ids">
+                            <tree string="Lines" editable="bottom">
+                                <field name="vendor_id" options="{'no_create': True, 'no_edit': True}"/>
+                                <field name="vendor_code" readonly="1"/>
+                                <field name="vendor_name" readonly="1"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+      </record>
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window" id="action_view_mail_message_white_form">
+            <field name="name">Recipient</field>
+            <field name="res_model">mail.message.white</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_mail_message_white_list"/>
+        </record>
+
+      <!-- 白名单上传向导 -->
+      <record id="view_message_white_upload_wizard" model="ir.ui.view">
+            <field name="name">Recipient Upload</field>
+            <field name="model">mail.message.white.upload</field>
+            <field name="arch" type="xml">
+                <form string="Wizard tools">
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="file_name" invisible="0"/>
+                        <field name="res_model" invisible="1"/>
+                        <field name="file" filename="file_name"/>
+                    </group>
+                    <footer>
+                        <button name="action_confirm" string="确定" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="取消" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window"  id="action_message_white_import">
+            <field name="name">Recipient Import</field>
+            <field name="res_model">mail.message.white.upload</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context" eval="{'default_res_model': 'mail.message.white.line'}"/>
+        </record>
+  </data>
+</odoo>

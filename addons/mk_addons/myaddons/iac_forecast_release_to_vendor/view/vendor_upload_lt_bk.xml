@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+        <!--##顯示 iac_tvendor_upload ______________s #####-->
+        <!--創建 iac.tvendor.upload  的 tree_____s-->
+        <record id="view_tvendor_upload" model="ir.ui.view">
+            <field name="name">VendorUpload</field>
+            <field name="type">tree</field>
+            <field name="model">iac.tvendor.upload</field>
+            <field name="arch" type="xml">
+                <tree string="tvendor upload" create="false" delete="false">
+                    <field name='status'/>
+                    <field name='plant_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='buyer_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='material_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='qty'/>
+                    <field name='shipping_date'/>
+                    <field name='buyer_remark'/>
+                    <field name='uploader'/>
+                    <field name='cdt'/>
+                    <field name='key_part'/>
+                    <field name='iac_pn_vendor'/>
+                    <field name='vendor_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='create_uid'/>
+                    <field name='create_date'/>
+                    <field name='write_date'/>
+                    <field name='write_uid'/>
+                </tree>
+            </field>
+        </record>
+        <!--創建 iac.tvendor.upload  的 tree_____e-->
+
+        <!--定义视图动作 iac.tvendor.upload  的 action ____s-->
+        <record model="ir.actions.act_window" id="action_tvendor_upload">
+            <field name="name">VendorUpload</field>
+            <field name="res_model">iac.tvendor.upload</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        </record>
+        <!--定义视图动作 iac.tvendor.upload  的 action ____e-->
+        <!--##顯示 iac_tvendor_upload ______________e #####-->
+
+        <!--#####################################-->
+
+        <!--##顯示 iac_tvendor_remark ______________S #####-->
+        <!--創建 iac.tvendor.remark  的 tree_____s-->
+        <record id="view_tvendor_remark" model="ir.ui.view">
+            <field name="name">VendorRemark</field>
+            <field name="type">tree</field>
+            <field name="model">iac.tvendor.remark</field>
+            <field name="arch" type="xml">
+                <tree string="tvendor remark" create="false" delete="false">
+                    <field name='status'/>
+                    <field name='plant_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='buyer_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='material_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='vendor_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='vendor_remark'/>
+                    <field name='iac_pn_vendor'/>
+                    <field name='basicdate'/>
+                    <field name='cdt'/>
+                    <field name='create_date'/>
+                    <field name='write_uid'/>
+                    <field name='write_date'/>
+                </tree>
+            </field>
+        </record>
+        <!--創建 iac.tvendor.remark  的 tree_____e-->
+
+        <!--定义视图动作 iac.tvendor.remark  的 action ____s-->
+        <record model="ir.actions.act_window" id="action_tvendor_remark">
+            <field name="name">VendorRemark</field>
+            <field name="res_model">iac.tvendor.remark</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        </record>
+        <!--定义视图动作 iac.tvendor.remark  的 action ____e-->
+        <!--##顯示 iac_tvendor_remark ______________E #####-->
+
+        <!--##-->
+
+        <!--#####################################-->
+
+        <record model="ir.actions.act_window"  id="vendor_upload_lt_action_bk">
+            <field name="name">Vendor Upload LT</field>
+            <field name="res_model">iac.vendor.upload.lt.wizard.bk</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <!--upload form-->
+        <record id="view_vendor_upload_lt_wizard_bk" model="ir.ui.view">
+            <field name="name">Vendor Upload LT</field>
+            <field name="model">iac.vendor.upload.lt.wizard.bk</field>
+            <field name="arch" type="xml">
+                <form string="Vendor Upload LT">
+                    <group>
+                        <field name="file_name"></field>
+                        <field name="file" required="1" filename="file_name"></field>
+                    </group>
+
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+  </data>
+</odoo>

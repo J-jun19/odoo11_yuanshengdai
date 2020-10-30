@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- menu -->
+        <!--一級菜單-->
+        <menuitem id="main_test" name="Test"/>
+
+        <!--菜單轉移到ASN下-->
+        <!--二級菜單-->
+        <menuitem id="secord_test" name="Test"
+                  parent="main_test" sequence="40"/>
+
+        <!--三級菜單-->
+        <menuitem id="third_test" name="test" parent="secord_test"
+                  action="test_action" sequence="1"/>
+
+
+
+    </data>
+</odoo>

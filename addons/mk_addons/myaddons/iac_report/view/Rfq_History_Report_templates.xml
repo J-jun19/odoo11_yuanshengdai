@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="qweb_iac_vendor_attachment">
+        <t t-call="report.html_container">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <h2>Rfq History</h2>
+                    <div style="width:100%;margin:30px 0 0 0;border:1px solid #171616;">
+                        <table style="border-collapse:collapse;">
+                            <thead style="font-weight:bold;">
+                                <tr style="border:1px solid #171616;">
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Vendor Code</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Vendor Name</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Part No</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Description</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Purchase Org</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Creation Date</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Valid From</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Valid To</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Currency</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Price</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Price Unit</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Price Control</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Pur Grp</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Buyer Name</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Division</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Final Status</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Ep Status</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Rfq No</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Reason</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Cw</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Rw</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Ltime</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Moq</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Mpq</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Taxcode</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Create Mode</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Material Group</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="o" style="border:1px solid #171616;">
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.vendor_name"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.vendor_code"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.file_type"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.filename"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="vendor_attachment_cust_report">
+        <t t-call="report.html_container">
+            <t t-call="report.internal_layout">
+                <div class="page">
+                    <h2>Vendor's attachment and contry</h2>
+                    <div style="width:100%;margin:30px 0 0 0;border:1px solid #171616;">
+                        <table style="border-collapse:collapse;">
+                            <thead style="font-weight:bold;">
+                                <tr style="border:1px solid #171616;">
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Vendor Name</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Vendor Code</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="600px">
+                                        <strong>Doc Type</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Doc Name</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="docs" t-as="o" style="border:1px solid #171616;">
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.vendor_name"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.vendor_code"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.file_type"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.filename"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style="margin:30px 0 0 0;border:1px solid #171616;">
+                        <table style="border-collapse:collapse;">
+                            <thead style="font-weight:bold;">
+                                <tr style="border:1px solid #171616;">
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Country Name</strong>
+                                    </th>
+                                    <th style="border:1px solid #171616;" width="300px">
+                                        <strong>Country Code</strong>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="country_ids" t-as="o" style="border:1px solid #171616;">
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.name"/>
+                                    </td>
+                                    <td style="border:1px solid #171616;">
+                                        <span t-field="o.code"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

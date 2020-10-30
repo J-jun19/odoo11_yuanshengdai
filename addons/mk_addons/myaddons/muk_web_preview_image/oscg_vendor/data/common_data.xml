@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- muk目录 -->
+        <record model="muk_dms.directory" id="directory_vendor">
+            <field name="id">1</field>
+            <field name="name">vendor</field>
+        </record>
+        <record model="muk_dms.directory" id="directory_vendor_bank">
+            <field name="id">2</field>
+            <field name="name">vendor_bank</field>
+        </record>
+        <record model="muk_dms.directory" id="directory_vendor_bulletin">
+            <field name="id">10</field>
+            <field name="name">vendor_bulletin</field>
+        </record>
+        <!-- muk root -->
+        <record model="muk_dms.root" id="root_vendor">
+            <field name="name">vendor</field>
+            <field name="root_directory" ref="directory_vendor"/>
+        </record>
+        <record model="muk_dms.root" id="root_vendor_bank">
+            <field name="name">vendor_bank</field>
+            <field name="root_directory" ref="directory_vendor_bank"/>
+        </record>
+
+        <!--&lt;!&ndash; Vendor注册时选择的附件类型 &ndash;&gt;-->
+        <!--<record model="iac.attachment.type" id="vendor_attachment_iso_9001">-->
+            <!--<field name="name">ISO9001</field>-->
+            <!--<field name="description">ISO9001</field>-->
+        <!--</record>-->
+        <!--<record model="iac.attachment.type" id="vendor_attachment_iso_9002">-->
+            <!--<field name="name">ISO9002</field>-->
+            <!--<field name="description">ISO9002</field>-->
+        <!--</record>-->
+        <!--<record model="iac.attachment.type" id="vendor_attachment_iso_9003">-->
+            <!--<field name="name">ISO9003</field>-->
+            <!--<field name="description">ISO9003</field>-->
+        <!--</record>-->
+        <!--<record model="iac.attachment.type" id="vendor_attachment_iso_9004">-->
+            <!--<field name="name">ISO9004</field>-->
+            <!--<field name="description">ISO9004</field>-->
+        <!--</record>-->
+        <!--<record model="iac.attachment.type" id="vendor_attachment_iso_14k">-->
+            <!--<field name="name">ISO14001</field>-->
+            <!--<field name="description">ISO14001</field>-->
+        <!--</record>-->
+
+        <!-- Vendor类型 -->
+        <record model="ir.config_parameter" id="supplier_type_agent">
+            <field name="key">supplier_type_Agent</field>
+            <field name="value">Agent</field>
+        </record>
+        <record model="ir.config_parameter" id="supplier_type_manufacturer">
+            <field name="key">supplier_type_Manufacturer</field>
+            <field name="value">Manufacturer</field>
+        </record>
+
+        <!-- Vendor分类 -->
+        <record model="ir.config_parameter" id="supplier_category_electronic">
+            <field name="key">supplier_category_Electronic</field>
+            <field name="value">Electronic</field>
+        </record>
+        <record model="ir.config_parameter" id="supplier_category_mechanic">
+            <field name="key">supplier_category_Mechanic</field>
+            <field name="value">Mechanic</field>
+        </record>
+        <record model="ir.config_parameter" id="supplier_category_package_parts">
+            <field name="key">supplier_category_Package Parts</field>
+            <field name="value">Package Parts</field>
+        </record>
+
+        <!-- Supplier Company Type -->
+        <record model="ir.config_parameter" id="supplier_company_type_electricity">
+            <field name="key">supplier_company_type_電子類</field>
+            <field name="value">電子類</field>
+        </record>
+        <record model="ir.config_parameter" id="supplier_company_type_package">
+            <field name="key">supplier_company_type_包材類</field>
+            <field name="value">包材類</field>
+        </record>
+        <record model="ir.config_parameter" id="supplier_company_type_machine">
+            <field name="key">supplier_company_type_機構類</field>
+            <field name="value">機構類</field>
+        </record>
+
+        <!-- 供应商文档过期提醒提前天数 -->
+        <record model="ir.config_parameter" id="attachment_before_days">
+            <field name="key">attachment_before_days</field>
+            <field name="value">30</field>
+        </record>
+
+        <!-- 文档子类型 -->
+        <record model="ir.config_parameter" id="document_subgroup">
+            <field name="key">document_subgroup_iso</field>
+            <field name="value">ISO</field>
+        </record>
+
+        <!-- 密码过期天数 -->
+        <record model="ir.config_parameter" id="password_expiration_days">
+            <field name="key">password_expiration_days</field>
+            <field name="value">90</field>
+        </record>
+
+        <!-- 密码过期提前提醒天数 -->
+        <record model="ir.config_parameter" id="password_before_days">
+            <field name="key">password_before_days</field>
+            <field name="value">15</field>
+        </record>
+
+        <!-- buyer补充vendor register时的申请原因 -->
+        <record model="iac.vendor.reason" id="iac_vendor_reason_newproject">
+            <field name="name">新项目规格需求</field>
+        </record>
+        <record model="iac.vendor.reason" id="iac_vendor_reason_customer">
+            <field name="name">客户指定</field>
+        </record>
+        <record model="iac.vendor.reason" id="iac_vendor_reason_quality">
+            <field name="name">原供应商品质问题</field>
+        </record>
+        <record model="iac.vendor.reason" id="iac_vendor_reason_delivery">
+            <field name="name">原供应商交货问题</field>
+        </record>
+        <record model="iac.vendor.reason" id="iac_vendor_reason_cost">
+            <field name="name">原供应商成本问题</field>
+        </record>
+        <record model="iac.vendor.reason" id="iac_vendor_reason_customerforcm">
+            <field name="name">客户指定 FOR CM</field>
+        </record>
+
+        <!-- RMA Terms -->
+        <record model="ir.config_parameter" id="rmaterms_accept_withhold">
+            <field name="key">rmaterms_接受扣款</field>
+            <field name="value">接受扣款</field>
+        </record>
+        <record model="ir.config_parameter" id="rmaterms_create_rma_condition">
+            <field name="key">rmaterms_RMA成立條件</field>
+            <field name="value">RMA成立條件</field>
+        </record>
+        <record model="ir.config_parameter" id="rmaterms_swap_barter">
+            <field name="key">rmaterms_SWAP換貨</field>
+            <field name="value">SWAP換貨</field>
+        </record>
+        <record model="ir.config_parameter" id="rmaterms_return">
+            <field name="key">rmaterms_還款</field>
+            <field name="value">還款</field>
+        </record>
+
+        <!-- doc config setting -->
+        <record model="ir.config_parameter" id="doc_config_model_obj_vendor">
+            <field name="key">doc_config_model_obj_vendor</field>
+            <field name="value">vendor</field>
+        </record>
+
+        <record model="ir.config_parameter" id="doc_config_model_obj_vendor_bank">
+            <field name="key">doc_config_model_obj_vendor_bank</field>
+            <field name="value">vendor_bank</field>
+        </record>
+
+        <record model="ir.config_parameter" id="doc_config_model_obj_sop">
+            <field name="key">doc_config_model_obj_sop</field>
+            <field name="value">sop</field>
+        </record>
+
+        <!-- doc group setting -->
+        <record model="ir.config_parameter" id="doc_config_group_basic">
+            <field name="key">doc_config_group_basic</field>
+            <field name="value">basic</field>
+        </record>
+
+        <record model="ir.config_parameter" id="doc_config_group_bank">
+            <field name="key">doc_config_group_bank</field>
+            <field name="value">bank</field>
+        </record>
+
+        <record model="ir.config_parameter" id="doc_config_group_sop">
+            <field name="key">doc_config_group_sop</field>
+            <field name="value">sop</field>
+        </record>
+
+        <!-- Vendor IT Support Level -->
+        <record model="ir.config_parameter" id="itlevel_can_procurement">
+            <field name="key">itlevel_可上E-Procurement</field>
+            <field name="value">可上E-Procurement</field>
+        </record>
+        <record model="ir.config_parameter" id="itlevel_edi_api">
+            <field name="key">itlevel_EDI連線</field>
+            <field name="value">EDI連線</field>
+        </record>
+        <record model="ir.config_parameter" id="itlevel_po_return">
+            <field name="key">itlevel_會有退貨PO的狀況</field>
+            <field name="value">會有退貨PO的狀況</field>
+        </record>
+        <record model="ir.config_parameter" id="itlevel_others">
+            <field name="key">itlevel_Others</field>
+            <field name="value">Others</field>
+        </record>
+
+        <!--
+        <record model="ir.config_parameter" id="web_server_url">
+            <field name="key">web.server.url</field>
+            <field name="value">http://10.158.6.102:8069</field>
+        </record>
+        -->
+	</data>
+</odoo>

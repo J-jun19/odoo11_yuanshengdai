@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!--  iac.tconfirm.data  搜索視圖___S -->
+    <record model="ir.ui.view" id="confirm_data_search_view">
+        <field name="name">tconfirm.data.search</field>
+        <field name="model">iac.tconfirm.data</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="vendor_code"/>
+                <field name="vendor_name_cn"/>
+                <field name="material_code"/>
+                <field name="division_code"/>
+            </search>
+        </field>
+    </record>
+	<!--  iac.tconfirm.data  搜索視圖___E -->
+
+    <!--  iac.tconfirm.data.temp  (FCST Release History) 搜索視圖___S -->
+    <record model="ir.ui.view" id="confirm_data_temp_search_view">
+        <field name="name">tconfirm.data.temp.search</field>
+        <field name="model">iac.tconfirm.data.temp</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="vendor_code"/>
+                <field name="vendor_name_cn"/>
+                <field name="material_code"/>
+                <field name="division_code"/>
+            </search>
+        </field>
+    </record>
+	<!--  iac.tconfirm.data.temp  (FCST Release History) 搜索視圖___E -->
+
+
+    <!--###############################-->
+    <!--創建 tconfirm.data table Current的 tree 1_____s-->
+     <!--FCST Release Current-->
+    <record id="view_confirm_data_current" model="ir.ui.view">
+        <field name="name">ConfirmData current</field>
+        <field name="type">tree</field>
+        <field name="model">iac.tconfirm.data</field>
+        <field name="arch" type="xml">
+            <tree string="Confirm Data current" create="false">
+                <field name='status'/>
+                <field name='plant_code'/>
+                <field name="storage_location_id"/>
+                <field name='buyer_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='vendor_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='division_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='material_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='description'/>
+                <field name='version'/>
+                <field name='fpversion'/>
+                <field name="edi_version"/>
+                <field name='alt_flag'/>
+                <field name='alt_grp'/>
+                <field name='stock'/>
+                <field name='open_po'/>
+                <field name='intransit_qty'/>
+                <field name='quota'/>
+                <field name='round_value'/>
+                <field name='leadtime'/>
+                <field name="qty_w1" string="qty_w1"/>
+                <field name="qty_w1_r" string="qty_w1_r" />
+                <field name="qty_w2" string="qty_w2" />
+                <field name="qty_w3" string="qty_w3" />
+                <field name="qty_w4" string="qty_w4" />
+                <field name="qty_w5" string="qty_w5" />
+                <field name="qty_w6" string="qty_w6" />
+                <field name="qty_w7" string="qty_w7" />
+                <field name="qty_w8" string="qty_w8" />
+                <field name="qty_w9" string="qty_w9" />
+                <field name="qty_w10" string="qty_w10" />
+                <field name="qty_w11" string="qty_w11" />
+                <field name="qty_w12" string="qty_w12" />
+                <field name="qty_w13" string="qty_w13" />
+                <field name="qty_m1" string="qty_m1" />
+                <field name="qty_m2" string="qty_m2" />
+                <field name="qty_m3" string="qty_m3" />
+                <field name="qty_m4" string="qty_m4" />
+                <field name="qty_m5" string="qty_m5" />
+                <field name="qty_m6" string="qty_m6" />
+                <field name="qty_m7" string="qty_m7" />
+                <field name="qty_m8" string="qty_m8" />
+                <field name="qty_m9" string="qty_m9" />
+                <field name='b001'/>
+                <field name='b002'/>
+                <field name='b004'/>
+                <field name='b005'/>
+                <field name='b012'/>
+                <field name='b017b'/>
+                <field name='b902q'/>
+                <field name='b902s'/>
+                <field name='flag'/>
+                <field name='max_surplus_qty'/>
+                <field name='mquota_flag'/>
+                <field name='custpn_info'/>
+                <field name='mfgpn_info'/>
+                <field name='remark'/>
+                <field name='release_flag'/>
+                <field name='po'/>
+                <field name='pr'/>
+                <field name='vendor_reg_id'/>
+                <field name='id'/>
+                <field name='raw_id'/>
+                <field name='creation_date'/>
+                <field name='create_by'/>
+                <field name='create_date'/>
+                <field name='create_uid'/>
+                <field name='write_date'/>
+                <field name='write_uid'/>
+            </tree>
+        </field>
+    </record>
+    <!--創建 tconfirm.data table Current的 tree 1_____e-->
+    <!--定义视图动作 tconfirm.data table Current的  action 1 ___s -->
+    <record model="ir.actions.act_window" id="action_confirm_data_current">
+        <field name="name">FCST Release Current</field>
+        <field name="res_model">iac.tconfirm.data</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        <field name="context">{ 'tree_view_ref':'view_confirm_data_current'}</field>
+        <field name="view_id" ref="view_confirm_data_current"/>
+    </record>
+    <!--定义视图动作 tconfirm.data table Current的  action 1 ___e -->
+    <!--###############################-->
+
+        <!--創建 tconfirm.data table 的 tree 2 _vendor&buyer upload LT Web  _____s-->
+        <record id="view_upload_lt_web" model="ir.ui.view">
+            <field name="name">Reply</field> <!--Upload LT Web-->
+            <field name="type">tree</field>
+            <field name="model">iac.tconfirm.data</field>
+            <field name="arch" type="xml">
+                <tree string="Upload LT Web" create="false">
+                    <button name="method_lt" string="Reply" type="object"/>  <!--回覆LT-->
+                    <!--<field name='iac_pn_vendor'/>-->
+                    <field name='status'/>
+                    <field name='plant_code'/>
+                    <field name='storage_location_id'/>
+                    <field name='vendor_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='buyer_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='material_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='division_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                    <field name='description'/>
+                    <field name='stock'/>
+                    <field name='open_po'/>
+                    <field name='intransit_qty'/>
+                    <field name='quota'/>
+                    <field name='round_value'/>
+                    <field name='leadtime'/>
+                    <field name='flag'/>
+                    <field name='max_surplus_qty'/>
+                    <field name='mquota_flag'/>
+                    <field name='custpn_info'/>
+                    <field name='mfgpn_info'/>
+                    <field name='remark'/>
+                    <field name="qty_w1" string="qty_w1"/>
+                    <field name="qty_w1_r" string="qty_w1_r" />
+                    <field name="qty_w2" string="qty_w2" />
+                    <field name="qty_w3" string="qty_w3" />
+                    <field name="qty_w4" string="qty_w4" />
+                    <field name="qty_w5" string="qty_w5" />
+                    <field name="qty_w6" string="qty_w6" />
+                    <field name="qty_w7" string="qty_w7" />
+                    <field name="qty_w8" string="qty_w8" />
+                    <field name="qty_w9" string="qty_w9" />
+                    <field name="qty_w10" string="qty_w10" />
+                    <field name="qty_w11" string="qty_w11" />
+                    <field name="qty_w12" string="qty_w12" />
+                    <field name="qty_w13" string="qty_w13" />
+                    <field name="qty_m1" string="qty_m1" />
+                    <field name="qty_m2" string="qty_m2" />
+                    <field name="qty_m3" string="qty_m3" />
+                    <field name="qty_m4" string="qty_m4" />
+                    <field name="qty_m5" string="qty_m5" />
+                    <field name="qty_m6" string="qty_m6" />
+                    <field name="qty_m7" string="qty_m7" />
+                    <field name="qty_m8" string="qty_m8" />
+                    <field name="qty_m9" string="qty_m9" />
+                    <field name='id'/>
+                </tree>
+            </field>
+        </record>
+        <!--創建 tconfirm.data table 的 tree 2 _vendor&buyer upload LT Web  _____e-->
+
+        <!--定义视图动作 tconfirm.data table 的  action 2_ vendor&buyer upload LT Web___s -->
+        <record model="ir.actions.act_window" id="action_upload_lt_web">
+            <field name="name">Reply</field>
+            <!--Upload LT Web-->
+            <field name="res_model">iac.tconfirm.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+            <field name="view_id" ref="view_upload_lt_web"/> <!--tree 2 -->
+            <field name="context">{ 'tree_view_ref':'view_upload_lt_web'}</field>
+            <field name="domain">[('release_flag','in',['Y']),('status','in',['T'])]</field>  <!--已發出 & status= T: true有效-->
+        </record>
+        <!--定义视图动作 tconfirm.data table 的  action 2_ vendor&buyer upload LT Web___e -->
+
+        <!--#############################-->
+
+        <!-- open confirm_vendor_data_ form 的 form ( method_lt )  _____s -->
+        <record id='tconfirm_data_vendor_open_form' model='ir.ui.view'>
+          <field name='name'>Vendor confirm data open form</field>
+          <field name='model'>iac.tconfirm.data</field>
+          <field name='arch' type='xml'>
+              <form string="tconfirm_data_vendor_open_form" create="false" >
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="status" invisible="1"/>
+                            <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}"  readonly='1'/>
+                            <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                            <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                        </group>
+                        <group>
+                            <field name="description" readonly='1'/>
+                            <field name="plant_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                            <field name="vendor_code" readonly='1'/>
+                            <field name="material_code" readonly='1'/>
+                            <field name="key_part" required="1"/>
+					        <field name="buyer_remark"/>
+                            <field name="fpversion" readonly='1'/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Vendors">
+                            <field name="reply_ids" context="{'default_status': 'T','default_plant_id': plant_id,
+                            'default_vendor_id': vendor_id,'default_material_id': material_id,'default_buyer_id': buyer_id,
+                            'default_iac_pn_vendor': material_code+vendor_code}" domain="[('status', '=', 'T')]">
+                                <tree string="reply_ids" editable="bottom">
+                                    <field name="id" invisible="1"/> <!---->
+                                    <field name="status"/>
+                                    <!--<field name="key_part" />-->
+                                    <!--<field name="buyer_remark" />-->
+                                    <field name="shipping_date" required="1"/>
+                                    <field name="qty" required="1"/>
+                                    <field name="plant_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="vendor_action_confirm" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+          </field>
+        </record>
+        <!-- open confirm_data_vendor_ form 的 form ( method_lt )  _____e -->
+
+        <!-- open confirm_data_vendor_  form 的 action ( method_lt)  _____s -->
+        <record model="ir.actions.act_window" id="action_tconfirm_data_vendor_open_form">
+            <field name="name">Vendor confirm data open form</field>
+            <field name="res_model">iac.tconfirm.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="tconfirm_data_vendor_open_form"/>
+            <field name="target">new</field>
+        </record>
+        <!-- open confirm_data_ vendor_ form 的 action ( method_lt)  _____e -->
+
+        <!--#############################-->
+
+        <!-- open confirm_buyer_data_ form 的 form ( method_lt )  _____s -->
+        <record id='tconfirm_data_buyer_open_form' model='ir.ui.view'>
+          <field name='name'>Buyer confirm data open form</field>
+          <field name='model'>iac.tconfirm.data</field>
+          <field name='arch' type='xml'>
+              <form string="tconfirm_data_buyer_open_form" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <!--invisible="1"-->
+                            <field name="status" invisible="1"/>
+                            <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                            <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                            <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                        </group>
+                        <group>
+                            <field name="description" readonly='1'/>
+                            <field name="plant_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                            <field name="vendor_code" readonly='1' invisible="1"/>
+                            <field name="material_code" readonly='1'/>
+                            <field name="key_part" required="1"/>
+                            <field name="buyer_remark"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Buyers">
+                            <field name="reply2_ids" context="{'default_status': 'T','default_plant_id': plant_id,
+                            'default_vendor_id': vendor_id,'default_material_id': material_id,'default_buyer_id': buyer_id,
+                            'default_iac_pn_vendor': material_code+vendor_code}" domain="[('status', '=', 'T')]">
+                                <tree string="reply2_ids" editable="bottom">
+                                    <field name="id" invisible="1"/>  <!--invisible="1"-->
+                                    <field name="status"/>
+                                    <!--<field name="key_part" />-->
+                                    <!--<field name="buyer_remark" />-->
+                                    <field name="shipping_date" required="1"/>
+                                    <field name="qty" required="1"/>
+                                    <field name="plant_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="buyer_action_confirm" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+          </field>
+        </record>
+        <!-- open confirm_data_buyer_ form 的 form ( method_lt )  _____e -->
+
+        <!-- open confirm_data_buyer_  form 的 action ( method_lt)  _____s -->
+        <record model="ir.actions.act_window" id="action_tconfirm_data_buyer_open_form">
+            <field name="name">Buyer confirm data open form</field>
+            <field name="res_model">iac.tconfirm.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="tconfirm_data_buyer_open_form" />
+            <field name="target">new</field>
+        </record>
+        <!-- open confirm_data_ buyer_ form 的 action ( method_lt)  _____e -->
+
+        <!--#############################-->
+
+        <!-- tconfirm_data_max_cdt_form 的 form ( method_lt ) 20180709 laura add: 帶出 iac_max_cdt_upload 的結果__s -->
+        <record id='tconfirm_data_max_cdt_form' model='ir.ui.view'>
+          <field name='name'>Max cdt confirm data form</field>
+          <field name='model'>iac.tconfirm.data</field>
+          <field name='arch' type='xml'>
+              <form string="tconfirm_data_max_cdt_form" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="id" invisible="1"/>
+                            <field name="status" invisible="1"/>
+                            <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                            <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                            <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1'/>
+                        </group>
+                        <group>
+                            <field name="description" readonly='1'/>
+                            <field name="plant_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                            <field name="vendor_code" readonly='1' invisible="1"/>
+                            <field name="material_code" readonly='1'/>
+                            <field name="key_part" required="1"/>
+                            <field name="buyer_remark"/>
+                            <field name="storage_location_id" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="shipping data">
+                            <field name="reply3_ids" context="{'default_status': 'T','default_plant_id': plant_id,
+                            'default_vendor_id': vendor_id,'default_material_id': material_id,'default_buyer_id': buyer_id,
+                            'default_iac_pn_vendor': material_code+vendor_code}" domain="[('status', '=', 'T')]">
+                                <tree string="reply3_ids" editable="bottom">
+                                    <!--<field name="id" invisible="1"/>  &lt;!&ndash;invisible="1"&ndash;&gt;-->
+                                    <field name="id" invisible="1"/>
+                                    <!--<field name="reply_id" />-->
+                                    <!--<field name="group_id" />-->
+                                    <field name="status"/>
+                                    <field name="shipping_date" required="1"/>
+                                    <field name="qty" required="1"/>
+                                    <field name="plant_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="material_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="buyer_id" options="{'no_create': True, 'no_edit': True,'no_open': True}" readonly='1' invisible="1"/>
+                                    <field name="create_date" readonly='1' />
+                                    <field name="write_uid" readonly='1' invisible="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+
+                    <footer>
+                        <button name="max_cdt_action_confirm" string="Confirm" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+          </field>
+        </record>
+        <!-- tconfirm_data_max_cdt_form 的 form ( method_lt ) 20180709 laura add: 帶出 iac_max_cdt_upload 的結果__e -->
+
+        <!-- tconfirm_data_max_cdt_form 的 action ( method_lt ) 20180709 laura add: 帶出 iac_max_cdt_upload 的結果__s -->
+        <record model="ir.actions.act_window" id="action_tconfirm_data_max_cdt_form">
+            <field name="name">Buyer confirm data open form</field>
+            <field name="res_model">iac.tconfirm.data</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="tconfirm_data_max_cdt_form" />
+            <field name="target">new</field>
+        </record>
+        <!-- tconfirm_data_max_cdt_form 的 action ( method_lt ) 20180709 laura add: 帶出 iac_max_cdt_upload 的結果__e -->
+
+        <!--#############################-->
+
+    <!--創建 tconfirm.data.temp_history table 的 tree_____s-->
+    <record id="view_confirm_data_temp_history" model="ir.ui.view">
+        <field name="name">FCST Release History</field>
+        <field name="type">tree</field>
+        <field name="model">iac.tconfirm.data.temp</field>
+        <field name="arch" type="xml">
+            <tree string="FCST Release History" create="false">
+                <field name='status'/>
+                <field name='plant_code'/>
+                <field name="storage_location_id"/>
+                <field name='buyer_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='vendor_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='division_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='material_id' options="{'no_create': True, 'no_edit': True,'no_open': True}" />
+                <field name='description'/>
+                <field name='version'/>
+                <field name='fpversion'/>
+                <field name='alt_flag'/>
+                <field name='alt_grp'/>
+                <field name='stock'/>
+                <field name='open_po'/>
+                <field name='intransit_qty'/>
+                <field name='quota'/>
+                <field name='round_value'/>
+                <field name='leadtime'/>
+                <field name="qty_w1" string="qty_w1"/>
+                <field name="qty_w1_r" string="qty_w1_r" />
+                <field name="qty_w2" string="qty_w2" />
+                <field name="qty_w3" string="qty_w3" />
+                <field name="qty_w4" string="qty_w4" />
+                <field name="qty_w5" string="qty_w5" />
+                <field name="qty_w6" string="qty_w6" />
+                <field name="qty_w7" string="qty_w7" />
+                <field name="qty_w8" string="qty_w8" />
+                <field name="qty_w9" string="qty_w9" />
+                <field name="qty_w10" string="qty_w10" />
+                <field name="qty_w11" string="qty_w11" />
+                <field name="qty_w12" string="qty_w12" />
+                <field name="qty_w13" string="qty_w13" />
+                <field name="qty_m1" string="qty_m1" />
+                <field name="qty_m2" string="qty_m2" />
+                <field name="qty_m3" string="qty_m3" />
+                <field name="qty_m4" string="qty_m4" />
+                <field name="qty_m5" string="qty_m5" />
+                <field name="qty_m6" string="qty_m6" />
+                <field name="qty_m7" string="qty_m7" />
+                <field name="qty_m8" string="qty_m8" />
+                <field name="qty_m9" string="qty_m9" />
+                <field name='b001'/>
+                <field name='b002'/>
+                <field name='b004'/>
+                <field name='b005'/>
+                <field name='b012'/>
+                <field name='b017b'/>
+                <field name='b902q'/>
+                <field name='b902s'/>
+                <field name='flag'/>
+                <field name='max_surplus_qty'/>
+                <field name='mquota_flag'/>
+                <field name='custpn_info'/>
+                <field name='mfgpn_info'/>
+                <field name='remark'/>
+                <field name='release_flag'/>
+                <field name='po'/>
+                <field name='pr'/>
+                <field name='vendor_reg_id'/>
+                <field name='id'/>
+                <field name='raw_id'/>
+                <field name='creation_date'/>
+                <field name='create_by'/>
+                <field name='create_date'/>
+                <field name='create_uid'/>
+                <field name='write_date'/>
+                <field name='write_uid'/>
+            </tree>
+        </field>
+    </record>
+    <!--創建 tconfirm.data.temp_history table 的 tree_____e-->
+    <!--定义视图动作 tconfirm.data.temp_history table 的  action ___s -->
+    <record model="ir.actions.act_window" id="action_confirm_data_temp_history">
+        <field name="name">FCST Release History</field>
+        <field name="res_model">iac.tconfirm.data.temp</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        <field name="context">{ 'tree_view_ref':'view_confirm_data_temp_history'}</field>
+        <field name="view_id" ref="view_confirm_data_temp_history"/>
+    </record>
+    <!--定义视图动作 tconfirm.data.temp_history table 的  action ___e -->
+
+  </data>
+</odoo>

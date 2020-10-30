@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+      <record id="view_mm_create_list" model="ir.ui.view">
+          <field name="name">MM Create List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.purchase.order.mm.special.approval.create</field>
+          <field name="arch" type="xml">
+              <tree string="MM Create List" editable="top" edit="true" create="false">
+              <!--<tree string="MM Create List">-->
+                  <button name="download_file" string="下载佐证文件" type="object" class="oe_highlight"/>
+                  <field name="state" readonly="1"/>
+                  <field name="batch_id" readonly="1"/>
+                  <!--<field name="file" readonly="1"/>-->
+                  <!--<field name="file_id"/>-->
+                  <!--<field name="file_id" widget="dms_file" directory="model_muk_dms_directory.4"/>-->
+                  <field name="batch_item_no" readonly="1"/>
+                  <field name="plant_id" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                  <field name="buyer_id" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                  <field name="document_type" readonly="1"/>
+                  <field name="storage_location" readonly="1"/>
+                  <field name="part_id" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                  <!--<field name="material_description"/>-->
+                  <field name="quantity" readonly="1"/>
+                  <field name="delivery_date"/>
+                  <field name="division_id" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                  <!--<field name="division_code"/>-->
+                  <field name="comment" readonly="1"/>
+                  <field name="vendor_id" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+
+                  <!--<field name="vendor_name"/>-->
+                  <field name="document_erp_id" readonly="1"/>
+                  <field name="document_erp_line_no" readonly="1"/>
+                  <field name="message" readonly="1"/>
+              </tree>
+          </field>
+      </record>
+
+
+      <!--<record id="view_mm_create" model="ir.ui.view">-->
+          <!--<field name="name">MM Create</field>-->
+          <!--<field name="type">form</field>-->
+          <!--<field name="model">iac.purchase.order.mm.special.approval.create</field>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<form string="MM Create">-->
+                  <!--<sheet>-->
+                      <!--<group>-->
+                          <!--<field name="file_id" widget="dms_file" directory="model_muk_dms_directory.4"/>-->
+
+                      <!--</group>-->
+                  <!--</sheet>-->
+              <!--</form>-->
+          <!--</field>-->
+      <!--</record>-->
+
+
+              <!-- 单笔和批量送签 -->
+      <record id="iac_purchase_order_mm_submit_action_server" model="ir.actions.server">
+            <field name="name">send to SAP</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_iac_purchase_order_mm_special_approval_create"/>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records.button_to_sap()
+            </field>
+        </record>
+
+        <record id="action_iac_purchase_order_mm_submit" model="ir.values">
+            <field name="name">send to SAP</field>
+            <field name="model_id" ref="model_iac_purchase_order_mm_special_approval_create"/>
+            <field name="model">iac.purchase.order.mm.special.approval.create</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%iac_purchase_order_mm_submit_action_server" name="value"/>
+        </record>
+
+      <record id="view_mm_create_form" model="ir.ui.view">
+          <field name="name">MM Create Form</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.mm.special.approval.create.wizard</field>
+          <field name="arch" type="xml">
+              <form string="MM Create">
+                  <sheet>
+                      <group>
+                          <field name="plant_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                          <field name="buyer_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                          <field name="document_type"/>
+                          <field name="vendor_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}" attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                          <field name="part_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}" attrs="{'readonly': [('buyer_id', '=', False)]}"/>
+                          <field name="storage_location" options="{'no_create': True, 'no_edit': True, 'no_open': True}" attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                          <field name="batch_id"/>
+                          <field name="state"/>
+                      </group>
+                  </sheet>
+                  <footer>
+                <button name='search_purchase_order_mm'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+              </form>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window"  id="action_view_mm_create">
+          <field name="name">MM Create</field>
+          <field name="res_model">iac.purchase.order.mm.special.approval.create.wizard</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="target">new</field>
+          <!--<field name="view_id" ref="view_purchase_approve_regular_view_list"/>-->
+      </record>
+
+
+  </data>
+</odoo>

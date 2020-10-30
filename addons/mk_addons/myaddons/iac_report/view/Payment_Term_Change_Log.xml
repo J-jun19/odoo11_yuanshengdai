@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_terms_change_history" model="ir.ui.view">
+            <field name="name">Vendor terms code change history</field>
+            <field name="type">tree</field>
+            <field name="model">v.terms.change_history</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor terms code change history" create="false">
+                    <field name="v_plant_code"/>
+                    <field name="v_vendor_code"/>
+                    <field name="v_vendor_name"/>
+                    <field name="v_ori_payment_term"/>
+                    <field name="v_ori_payment_description"/>
+                    <field name="v_ori_incoterm"/>
+                    <field name="v_ori_incoterm_description"/>
+                    <field name="v_ori_destination"/>
+                    <field name="v_new_payment"/>
+                    <field name="v_new_description"/>
+                    <field name="v_new_incoterm"/>
+                    <field name="v_new_incoterm_description"/>
+                    <field name="v_new_destination"/>
+                    <field name="v_change_reason"/>
+                    <field name="v_effective_date"/>
+                    <field name="v_create_date"/>
+                    <field name="v_state"/>
+                    <field name="v_state_msg"/>
+                    <field name="v_login"/>
+                    <field name="v_user_name"/>
+                    <field name="v_webflow_number"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='view_terms_change_history_wizard_form' model='ir.ui.view'>
+          <field name='name'>Vendor terms code change history</field>
+          <field name='model'>v.terms.change_history.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Vendor terms code change history">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name='start_date' widget='date'/>
+                            <field name='vendor_id' options="{'no_create': True,'no_open': True}" />
+                            <field name='not_closed' widget = 'checkbox'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_terms_change_history'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_payment_term_change_report"
+                    name="Payment/Inco Term changes log"
+                    res_model="v.terms.change_history.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

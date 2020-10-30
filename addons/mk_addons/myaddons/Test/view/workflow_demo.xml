@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record model="workflow" id="workflow_demo">
+            <field name="name">workflow_demo</field>
+            <!-- 关联的model -->
+            <field name="osv">iac.test</field>
+            <!-- 是否主动被实例化 -->
+            <field name="on_create">True</field>
+        </record>
+
+        <record model="workflow.activity" id="activity_one">
+            <!-- wkf_id 这个activity对应于哪个workflow,这里对应于上面声明的workflow-->
+            <field name="wkf_id" ref="workflow_demo"/>
+            <field name="name">workflow.demo.activity.one</field>
+            <!-- dummy 类型用来指定这个activity 是workflow的开始还是结束-->
+            <field name="kind">dummy</field>
+            <!-- 开始是flow_start  结束是flow_end-->
+            <field name="flow_start">True</field>
+        </record>
+
+        <record model="workflow.activity" id="activity_two">
+            <!-- wkf_id 这个activity对应于哪个workflow,这里对应于上面声明的workflow-->
+            <field name="wkf_id" ref="workflow_demo"/>
+            <field name="name">workflow.demo.activity.two</field>
+            <!-- dummy 类型用来指定这个activity 是workflow的开始还是结束-->
+            <field name="kind">function</field>
+            <!-- 开始是flow_start  结束是flow_end-->
+            <field name="action">action_approved()</field>
+        </record>
+
+        <record model="workflow.activity" id="activity_three">
+            <!-- wkf_id 这个activity对应于哪个workflow,这里对应于上面声明的workflow-->
+            <field name="wkf_id" ref="workflow_demo"/>
+            <field name="name">workflow.demo.activity.three</field>
+            <!-- dummy 类型用来指定这个activity 是workflow的开始还是结束-->
+            <field name="kind">function</field>
+            <!-- 开始是flow_start  结束是flow_end-->
+            <field name="action">action_finished()</field>
+        </record>
+
+        <record model="workflow.activity" id="activity_four">
+            <!-- wkf_id 这个activity对应于哪个workflow,这里对应于上面声明的workflow-->
+            <field name="wkf_id" ref="workflow_demo"/>
+            <field name="name">workflow.demo.activity.four</field>
+            <!-- dummy 类型用来指定这个activity 是workflow的开始还是结束-->
+            <field name="kind">dummy</field>
+            <!-- 开始是flow_start  结束是flow_end-->
+            <field name="flow_end">True</field>
+        </record>
+
+        <record model="workflow.transition" id="transition_one">
+            <!-- 表示上一个执行的activity，与上面声明的activity对应-->
+            <field name="act_from" ref="activity_one"/>
+            <!-- 表示上一个将要执行的activity-->
+            <field name="act_to" ref="activity_two"/>
+            <!-- 用来做一个严重，当满足条件是才能执行，可省略-->
+            <field name="condition">state == 'draft'</field>
+            <!-- 接收的信号 -->
+            <field name="signal">btn_to_approve</field>
+        </record>
+
+        <record model="workflow.transition" id="transition_two">
+            <!-- 表示上一个执行的activity，与上面声明的activity对应-->
+            <field name="act_from" ref="activity_two"/>
+            <!-- 表示上一个将要执行的activity-->
+            <field name="act_to" ref="activity_three"/>
+            <!-- 用来做一个严重，当满足条件是才能执行，可省略-->
+            <field name="condition">state == 'approved'</field>
+            <!-- 接收的信号 -->
+            <field name="signal">btn_to_finish</field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_form_iac_bulletin_publish_report" model="ir.ui.view">
+            <field name="name">iac.bulletin.publish.form</field>
+            <field name="model">iac.bulletin.publish.report</field>
+            <field name="arch" type="xml">
+                <form string="Bulletin Published" create="false" edit="false" delete="false">
+                    <sheet>
+                        <group colspan="4">
+                            <group>
+                                <field name="vendor_id" options="{'no_open':True}" required="1"/>
+                                <field name="start_date" required="1"/>
+                                <field name="send_mail"/>
+                            </group>
+                            <group>
+                                <field name="bulletin_id" options="{'no_open':True}"/>
+                                <field name="end_date" required="1"/>
+                                <field name="send_mail_freq"/>
+                            </group>
+                        </group>
+                        <group colspan="4">
+                            <field name="subject" required="1"/>
+                            <field name="body" required="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Line">
+                                <field name="attachment_line_ids">
+                                    <tree string="Line">
+                                        <field name="file_id"/>
+                                        <field name="file_desc"/>
+                                        <field name="memo"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_list_iac_bulletin_publish_report" model="ir.ui.view">
+            <field name="name">iac.bulletin.publish.report.tree</field>
+            <field name="model">iac.bulletin.publish.report</field>
+            <field name="arch" type="xml">
+                <tree string="Bulletin Info" create="false" edit="false" delete="false">
+                    <field name="vendor_id"/>
+                    <field name="bulletin_id"/>
+                    <field name="subject"/>
+                    <field name="start_date"/>
+                    <field name="start_date"/>
+                    <field name="send_mail"/>
+                    <field name="send_mail_freq"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='v_bulletin_information_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>IAC bulletin history report</field>
+          <field name='model'>v.bulletin.information.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="IAC bulletin">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vendor_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                            <field name="subject" options="{'no_create_edit': True}"/>
+                            <field name="start_date" required="1"/>
+                            <field name="end_date" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_bulletin_history'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_bulletin_information_report"
+                    name="Bulletin Information Report"
+                    res_model="v.bulletin.information.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <record id="view_spot_vendor_list" model="ir.ui.view">
+        <field name="name">Spot Vendor</field>
+        <field name="type">tree</field>
+        <field name="model">iac.spot.vendor</field>
+        <field name="arch" type="xml">
+            <tree string="Spot Vendor" import="false">
+                <field name="name1_cn"/>
+                <field name="vendor_code"/>
+                <field name="short_name"/>
+                <field name="buyer_email"/>
+                <field name="sales_person" />
+                <field name="sales_email" />
+                <field name="local_foreign" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_spot_vendor_form" model="ir.ui.view">
+        <field name="name">Spot Vendor</field>
+        <field name="type">form</field>
+        <field name="model">iac.spot.vendor</field>
+        <field name="arch" type="xml">
+            <form string="Spot Vendor">
+                <header>
+                    <button String="送签" states="draft,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <button String="Call SAP" states="sap error" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to approve,to sap,done" readonly="1"/>
+                </header>
+                <sheet string="Spot Vendor">
+                    <group>
+                        <group>
+                            <field name="plant" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="buyer_email" readonly="1"/>
+                            <field name="user_id" readonly="1" />
+                            <field name="name1_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="name2_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="name1_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="name2_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="company_telephone1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="company_telephone2" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="vendor_url" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                        </group>
+                        <group>
+                            <field name="vendor_code"/>
+                            <field name="company_fax" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="short_name" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="sales_person" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="sales_email" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="sales_telephone" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="address_street" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="address_city" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="address_district" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="address_pobox" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                        </group>
+                        <group>
+                            <field name="address_country" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="address_postalcode" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="currency" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vat_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="payment_term" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="incoterm" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="destination" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                            <field name="local_foreign" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                        </group>
+                        <group string="Bank Info">
+                           <field name="bank_name" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="branch_name" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="account_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="swift_code" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="bank_street" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="bank_city" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="bank_country" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                           <field name="transfer_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                           <field name="state_msg" readonly="1"/>
+                           <field name="webflow_number"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window"  id="action_view_spot_vendor_form">
+            <field name="name">Spot Vendor</field>
+            <field name="res_model">iac.spot.vendor</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_spot_vendor_list"/>
+        </record>
+
+      <record id="view_mold_vendor_list" model="ir.ui.view">
+        <field name="name">Mold Vendor</field>
+        <field name="type">tree</field>
+        <field name="model">iac.mold.vendor</field>
+        <field name="arch" type="xml">
+            <tree string="Mold Vendor" import="false">
+                <field name="name1_cn"/>
+                <field name="vendor_code"/>
+                <field name="short_name"/>
+                <field name="buyer_email"/>
+                <field name="sales_person" />
+                <field name="sales_email" />
+                <field name="local_foreign" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_mold_vendor_form" model="ir.ui.view">
+        <field name="name">Mold Vendor</field>
+        <field name="type">form</field>
+        <field name="model">iac.mold.vendor</field>
+        <field name="arch" type="xml">
+            <form string="Mold Vendor">
+                <header>
+                    <button String="Call SAP" states="draft,sap error" type="object" class="oe_highlight" name="button_to_sap" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to sap,done" readonly="1"/>
+                </header>
+                <sheet string="Mold Vendor">
+                    <group>
+                        <group>
+                            <field name="plant" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="buyer_email" readonly="1"/>
+                            <field name="name1_cn" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="name2_cn" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="name1_en" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="name2_en" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="company_telephone1" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="company_telephone2" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="company_fax" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="vendor_url" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="vendor_code"/>
+                            <field name="short_name" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="sales_person" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="sales_email" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="sales_telephone" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_street" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_city" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_district" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_pobox" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="address_country" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="address_postalcode" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="currency" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vat_number" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="payment_term" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="incoterm" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="destination" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="local_foreign" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group string="Bank Info">
+                           <field name="bank_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="branch_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="account_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="swift_code" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="bank_street" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="bank_city" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="bank_country" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                           <field name="transfer_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="state_msg" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window"  id="action_view_mold_vendor_form">
+            <field name="name">Mold Vendor</field>
+            <field name="res_model">iac.mold.vendor</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_mold_vendor_list"/>
+        </record>
+
+      <record id="view_bvi_vendor_list" model="ir.ui.view">
+        <field name="name">BVI Vendor</field>
+        <field name="type">tree</field>
+        <field name="model">iac.bvi.vendor</field>
+        <field name="arch" type="xml">
+            <tree string="BVI Vendor" import="false">
+                <field name="name1_cn"/>
+                <field name="vendor_code"/>
+                <field name="short_name"/>
+                <field name="buyer_email"/>
+                <field name="sales_person" />
+                <field name="sales_email" />
+                <field name="state" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_bvi_vendor_form" model="ir.ui.view">
+        <field name="name">BVI Vendor</field>
+        <field name="type">form</field>
+        <field name="model">iac.bvi.vendor</field>
+        <field name="arch" type="xml">
+            <form string="BVI Vendor">
+                <header>
+                    <button String="Call SAP" states="draft,sap error" type="object" class="oe_highlight" name="button_to_sap" groups="oscg_vendor.IAC_buyer_groups"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to sap,done" readonly="1"/>
+                </header>
+                <sheet string="BVI Vendor">
+                    <group>
+                        <group>
+                            <field name="plant" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vendor_code" required="1" attrs="{'readonly': [('id', '>',0)]}"/>
+                            <field name="buyer_email" readonly="1"/>
+                            <field name="name1_cn" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="name2_cn" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="name1_en" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="name2_en" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="company_telephone1" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="company_telephone2" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="vendor_url" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="company_fax" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="short_name" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="sales_person" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="sales_email" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="sales_telephone" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_street" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_city" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_district" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="address_pobox" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="address_country" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="address_postalcode" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="currency" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vat_number" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                            <field name="payment_term" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="incoterm" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                            <field name="destination" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group string="Bank Info">
+                           <field name="bank_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="branch_name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="account_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="swift_code" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="bank_street" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="bank_city" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="bank_country" attrs="{'readonly': [('state', '!=', 'draft')]}" options="{'no_create': True,'no_open': True}"/>
+                           <field name="transfer_number" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                           <field name="state_msg" readonly="1"/>
+                           <field name="id" invisible="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window"  id="action_view_bvi_vendor_form">
+            <field name="name">BVI Vendor</field>
+            <field name="res_model">iac.bvi.vendor</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_bvi_vendor_list"/>
+        </record>
+
+  </data>
+</odoo>

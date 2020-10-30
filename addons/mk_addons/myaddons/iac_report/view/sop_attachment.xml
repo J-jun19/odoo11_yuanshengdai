@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+        <!--  報表  列表 tree- iac.sop.attachment.report - tree ___s-->
+        <record id="view_iac_sop_report_tree" model="ir.ui.view">
+            <field name="name">iac.sop.attachment.report.tree</field>
+            <field name="model">iac.sop.attachment.report</field>
+            <field name="arch" type="xml">
+                <tree string="SOP Attachment Report" create="false" edit="false" delete="false">
+                    <field name="type"/>
+                    <field name="file_id"/>
+                    <field name="description"/>
+                    <field name="module"/>
+                    <field name="user"/>
+                </tree>
+            </field>
+        </record>
+        <!--  報表  列表 tree- iac.sop.attachment.report - tree ___e-->
+
+        <!--  報表  列表 tree- iac.sop.attachment.report - form ___s-->
+        <record id="view_iac_sop_report_form" model="ir.ui.view">
+            <field name="name">iac.sop.attachment.report.form</field>
+            <field name="type">form</field>
+            <field name="model">iac.sop.attachment.report</field>
+            <field name="arch" type="xml">
+                <form string="SOP Attachment Report" create="false" edit="false" delete="false">
+                    <group colspan="4">
+                        <field name="file_id" widget="dms_file" directory="model_muk_dms_directory.8"/>
+                        <field name="type" domain="['|',('name','like','S0'),('name','like','S1')]" required="1"/> <!--name like 'S0%' or name like 'S1%'-->
+                        <field name="description"/>
+                        <field name="group"/>
+                        <field name="module"/>
+                        <field name="user"/>
+                        <field name="approver_id" options="{'no_create_edit': True}" context="{'filter_user_by_attachment_type': True, 'filter_user_by_user_plant': True, 'attachment_type_id': type}" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                        <field name="expiration_date" attrs="{'required':[('time_sensitive','=',True)]}" groups="oscg_vendor.IAC_qs_groups"/>
+                        <field name="state" groups="oscg_vendor.IAC_qs_groups"/>
+                        <field name="memo" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                        <field name="time_sensitive" invisible="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!--  報表  列表 tree- iac.sop.attachment.report - form ___e-->
+
+        <!--  報表-vendor  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_vendor">
+            <field name="name">SOP Attachment Report Vendor</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['vendor'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-vendor  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!--  報表-po  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_po">
+            <field name="name">SOP Attachment Report PO</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['purchase_order'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-po  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!--  報表-vendor evaluation  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_vendor_evaluation">
+            <field name="name">SOP Attachment Report Vendor Evaluation</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['vendor_evaluation'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-vendor evaluation  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!--  報表-FCST  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_fcst">
+            <field name="name">SOP Attachment Report FCST</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['forecast_release'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-FCST  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!--  報表-ANS  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_ans">
+            <field name="name">SOP Attachment Report ANS</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['asn'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-ANS  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!--  報表-RFQ  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_rfq">
+            <field name="name">SOP Attachment Report RFQ</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['rfq'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-RFQ  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!--  報表-Workspace  列表 tree- iac.sop.attachment.report -  定义视图动作 ___s-->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_report_workspace">
+            <field name="name">SOP Attachment Report Workspace</field>
+            <field name="res_model">iac.sop.attachment.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('module','in',['workspace'])]</field>
+            <field name="view_id" ref="view_iac_sop_report_tree" />
+        </record>
+        <!--  報表-Workspace  列表 tree- iac.sop.attachment.report -  定义视图动作 ___e-->
+
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+        <!--維護畫面- iac.sop.attachment - SOP Attachment Edit 的 tree ___s-->
+        <record id="view_iac_sop_edit_tree" model="ir.ui.view">
+            <field name="name">iac.sop.attachment.edit.tree</field>
+            <field name="model">iac.sop.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="SOP Attachment Edit">
+                    <field name="type"/>
+                    <field name="file_id"/>
+                    <field name="description"/>
+                    <field name="module"/>
+                    <field name="user"/>
+                </tree>
+            </field>
+        </record>
+        <!--維護畫面- iac.sop.attachment - SOP Attachment Edit 的 tree ___e-->
+
+        <!--維護畫面- iac.sop.attachment - SOP Attachment Edit 的 form ___s-->
+        <record id="view_iac_sop_edit_form" model="ir.ui.view">
+            <field name="name">iac.sop.attachment.edit.form</field>
+            <field name="type">form</field>
+            <field name="model">iac.sop.attachment</field>
+            <field name="arch" type="xml">
+                <form string="SOP Attachment Edit">
+                    <group colspan="4">
+                        <field name="type" domain="['|',('name','like','S0'),('name','like','S1')]" required="1"/>
+                        <field name="file_id" widget="dms_file" directory="model_muk_dms_directory.8"/>
+                        <field name="description"/>
+                        <field name="group"/>
+                        <field name="module"/>
+                        <field name="user"/>
+                        <field name="approver_id" options="{'no_create_edit': True}" context="{'filter_user_by_attachment_type': True, 'filter_user_by_user_plant': True, 'attachment_type_id': type}" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                        <field name="expiration_date" attrs="{'required':[('time_sensitive','=',True)]}" groups="oscg_vendor.IAC_qs_groups"/>
+                        <field name="state" groups="oscg_vendor.IAC_qs_groups"/>
+                        <field name="memo" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                        <field name="time_sensitive" invisible="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <!--維護畫面- iac.sop.attachment - SOP Attachment Edit 的 form ___e-->
+
+        <!--維護畫面  tree- iac.sop.attachment - SOP Attachment Edit 的 定义视图动作 ___s -->
+        <record model="ir.actions.act_window" id="action_view_list_iac_sop_edit">
+            <field name="name">SOP Attachment Edit</field>
+            <field name="res_model">iac.sop.attachment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="view_id" ref="view_iac_sop_edit_tree" />
+        </record>
+        <!--維護畫面  tree- iac.sop.attachment - SOP Attachment Edit 的 定义视图动作 ___e -->
+
+  </data>
+</odoo>

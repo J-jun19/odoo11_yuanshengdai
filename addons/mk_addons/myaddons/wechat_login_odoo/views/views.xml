@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!--企业微信配置actions（直接打开表单）-->
+    <record id="wechat_login_odoo_config_form_action" model="ir.actions.act_window">
+        <field name="name">企业微信配置</field>
+        <field name="res_model">wechat.corp.config</field>
+<!--        <field name="type">form</field>-->
+        <field name="view_mode">form</field>
+        <field name="target">main</field>
+        <field name="res_id">1</field> <!--打开id为1的form视图-->
+    </record>
+
+    <!--企业微信配置表单-->
+    <record model="ir.ui.view" id="wechat_corp_config_form_view">
+        <field name="name">wechat.corp.config.form</field>
+        <field name="model">wechat.corp.config</field>
+        <field name="arch" type="xml">
+            <form string="企业微信配置">
+                <sheet>
+                    <group>
+                        <group string="开发者配置">
+                            <field name="corp_id"/>
+                            <field name="corp_agent"/>
+                            <field name="corp_agent_secret"/>
+                            <field name="corp_secret"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- server action to 一键同步用户 -->
+<!--      <record id="action_server_module_immediate_install" model="ir.actions.server">-->
+<!--            <field name="name">Install Modules</field>-->
+<!--            <field name="type">ir.actions.server</field>-->
+<!--            <field name="model_id" ref="model_ir_module_module" />-->
+<!--            <field name="binding_model_id" ref="model_ir_module_module" />-->
+<!--            <field name="state">code</field>-->
+<!--            <field name="code">records.button_immediate_install()</field>-->
+<!--        </record>-->
+
+
+<!--    <record id="wechat_login_odoo_sync_users" model="ir.actions.server">-->
+<!--      <field name="name">一键同步用户</field>-->
+<!--        <field name="type">ir.actions.server</field>-->
+<!--      <field name="model_id" ref="model_wechat_corp_users" />-->
+<!--      <field name="binding_model_id" ref="model_wechat_corp_users" />-->
+<!--      <field name="state">code</field>-->
+<!--&lt;!&ndash;      <field name="code">env['wechat.corp.users'].sync_users()</field>&ndash;&gt;-->
+<!--      <field name="code">raise Warning("1111111111111111111111111111111")</field>-->
+<!--    </record>-->
+
+    <!-- Top menu item -->
+    <menuitem sequence="2" name="企业微信" id="wechat_login_odoo_menu_root"/>
+<!--       groups="base.group_system"-->
+
+    <!-- menu categories -->
+    <menuitem sequence="1" name="设置" id="wechat_login_odoo_config_menu" parent="wechat_login_odoo_menu_root"/>
+    <!-- <menuitem name="Menu 2" id="wechat_login_odoo.menu_2" parent="wechat_login_odoo.menu_root"/>-->
+
+    <!-- actions -->
+
+    <menuitem name="企业微信设置" id="wechat_login_odoo_corp_config" parent="wechat_login_odoo_config_menu"
+              action="wechat_login_odoo_config_form_action"/>
+<!--    <menuitem name="一键同步用户" id="wechat_login_odoo_sync_users" parent="wechat_login_odoo_config_menu"-->
+<!--              action="wechat_login_odoo_sync_users"/>-->
+
+  </data>
+</odoo>

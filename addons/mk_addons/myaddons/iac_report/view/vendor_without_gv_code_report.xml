@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <record id="view_vendor_without_gv_code_report_list" model="ir.ui.view">
+            <field name="name">Vendor Without Gv_code Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.without.gv.code</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Without Gv_code Report" create="false">
+                    <field name="vendor_code"/>
+                    <field name="name1_cn"/>
+                    <field name="short_name"/>
+                    <field name="vendor_type"/>
+                    <field name="supplier_type"/>
+                    <field name="buyer_email"/>
+                    <field name="create_date"/>
+                    <field name="supplier_category"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='iac_global_vendor_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>Vendor Without Gv_code Report</field>
+          <field name='model'>v.vendor.without.gv.code.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Vendor Without Gv_code Report" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='vendor_code'/>
+                            <field name='name1_cn'/>
+                            <field name='short_name'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_vendor_without_gv_code_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_vendor_without_gv_code_report"
+                    name="Vendor Without Gv_code Report"
+                    res_model="v.vendor.without.gv.code.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

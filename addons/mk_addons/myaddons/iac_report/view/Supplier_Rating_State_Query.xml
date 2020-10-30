@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window id="action_wizard_supplier_rating_report"
+                    name="評鑒:供應商評分定期評鑑流程狀態查詢"
+                    res_model="v.supplier.rating.state.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+
+</odoo>

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 厂商注册，新厂商账号分配时发送邮件给厂商 -->
+        <record id="vendor_register_supplier_email" model="mail.template">
+            <field name="name">Vendor Register - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.other_emails}</field>
+            <field name="subject">(系統通知) IAC Portal Login Info</field>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Following is your Login user and password for IAC Supplier Portal: </p>
+
+                <p>User Name : ${object.user_id.login}</p>
+                <p>Password : ******</p>
+                <p>Please change your password upon first time login for security purpose. </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- New vendor注册通知buyer，厂商填完F01资料时发送邮件给buyer -->
+        <record id="vendor_register_buyer_email" model="mail.template">
+            <field name="name">Vendor Register Call Buyer - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email|safe};${object.other_emails|safe}</field>
+            <field name="subject">(系統通知)  New Vendor Registration ${object.name1_en}</field>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>This supplier just applied the new supplier registration on e-Procurement system, 
+                   Please go to e-Procurement system then choose Vendor menu to approve. 
+                   Thank You. 
+
+                   Vendor English Name: ${object.name1_en}
+                   Vendor Chinese Name: ${object.name1_cn}
+                <p>Best regards,</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 厂商注册,Buyer 拒绝厂商注册时发送邮件给厂商 -->
+        <record id="vendor_register_buyer_reject_email" model="mail.template">
+            <field name="name">Vendor Register Call Supplier - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email|safe};${object.other_emails|safe}</field>
+            <field name="subject">(系統通知) Buyer Rejected Your Registration Notification</field>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Buyer disapproved your new supplier registration, 
+                   please contact buyer to know the reject reason.
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 厂商注册,QS 拒绝厂商注册时发送邮件给厂商 -->
+        <record id="vendor_register_qs_reject_email" model="mail.template">
+            <field name="name">Vendor Register Call Supplier - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email|safe};${object.other_emails|safe}</field>
+            <field name="subject">(系統通知) IAC Reviewer rejected the File you Uploaded. -- ${object.name} (${object.vendor_code})</field>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>IAC Reviewer rejected the File.
+                The Reason is ${object.reject_reason}.
+
+                Please Upload The correct File Again! Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 厂商注册,vendor 创建或更新文件时，需要QS review，发送邮件给QS -->
+        <record id="vendor_register_qs_attachment_email" model="mail.template">
+            <field name="name">Vendor Register Call QS - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register_attachment"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.approver_id.email|safe}</field>
+            <field name="subject">(系統通知) E-P: Vendor need you review attachment</field>
+            <field name="lang">${object.create_uid.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>E-Procurement System Alert
+                   有新的上傳文件需要重新簽核,請簽核人員進入E-Procurement簽核
+                   Vendor Code: ${object.vendor_reg_id.vendor_code}
+                   Vendor Name: ${object.vendor_reg_id.name}
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 厂商注册,vendor 创建或更新文件时，需要QS review，发送邮件给QS -->
+        <record id="vendor_qs_attachment_email" model="mail.template">
+            <field name="name">Vendor Register Call QS - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_attachment"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.approver_id.email|safe}</field>
+            <field name="subject">(系統通知) E-P: Vendor need you review attachment</field>
+            <field name="lang">${object.create_uid.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>E-Procurement System Alert
+                   有新的上傳文件需要重新簽核,請簽核人員進入E-Procurement簽核
+                   Vendor Code: ${object.vendor_id.vendor_code}
+                   Vendor Name: ${object.vendor_id.name}
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 厂商注册成功通知，新厂商 注册SAP成功返回vendor code后发送邮件给厂商 -->
+        <record id="vendor_register_sap_supplier_email" model="mail.template">
+            <field name="name">Vendor Register Call Supplier - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_vendor"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_reg_id.sales_email|safe};${object.vendor_reg_id.other_emails|safe}</field>
+            <field name="subject">(系統通知)  IAC ERP has created the vendor code. -- ${object.name} (${object.vendor_code})</field>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>IAC ERP system has created the new vendor code,
+                   New vendor code is ${object.vendor_code}.
+                   Applicant Buyer Name: ${object.buyer_id.name}
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+        <!-- 厂商注册成功通知，新厂商 注册SAP成功返回vendor code后发送邮件给buyer -->
+        <record id="vendor_register_sap_buyer_email" model="mail.template">
+            <field name="name">Vendor Register Call Buyer - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_vendor"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_reg_id.sales_email|safe};${object.vendor_reg_id.other_emails|safe}</field>
+            <field name="subject">(系統通知)  IAC ERP has created the vendor code. -- ${object.name} (${object.vendor_code})</field>
+            <field name="lang">${object.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>IAC ERP system has created the new vendor code,
+                   New vendor code is ${object.vendor_code}.
+                   Applicant Buyer Name: ${object.buyer_id.name}
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 通知相关人员厂商修改成功，Block or Unblock成功之后发送给Buyer， IT， 特别厂商负责专员 -->
+        <record id="vendor_block_sap_buyer_email" model="mail.template">
+            <field name="name">Vendor Block or Unblock - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_block"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_id.buyer_email|safe}</field>
+            <field name="email_cc">IACOdooAdmin@iac.com.tw</field>
+            <field name="subject"> (系統通知) Sleep/Unsleep vendor has completed!</field>
+            <field name="lang">${object.vendor_id.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>
+                   Vendor Code: ${object.vendor_id.vendor_code}
+                   Buyer Name: ${object.vendor_id.buyer_id.name}
+                   SAP Status: ${object.is_block}
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 密码过期提醒邮件 -->
+        <record id="password_expired_email" model="mail.template">
+            <field name="name">Password expired - Send by Email</field>
+            <field name="model_id" ref="base.model_res_users"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.email|safe}</field>
+            <field name="subject">Password expired</field>
+            <field name="lang">${object.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Dear,${object.name}</p>
+                <p>您的登录密码将于${object.expired_date}失效，请及时修改密码！</p>
+                <p>Best regards,</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- Vendor文档过期提醒邮件模板 -->
+        <record id="vendor_register_attachment_email" model="mail.template">
+            <field name="name">Vendor Attachment - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register_attachment"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_reg_id.sales_email|safe};${object.vendor_reg_id.other_emails|safe}</field>
+            <field name="email_cc">${object.vendor_reg_id.buyer_email|safe}</field>
+            <field name="subject">Attachment expired</field>
+            <field name="lang">${object.vendor_reg_id.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Dear,${object.vendor_reg_id.name1_cn}</p>
+                <p>您公司的${object.type.name}文件即将过期，请及时更新！</p>
+                <p>Best regards,</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+        <record id="vendor_attachment_email" model="mail.template">
+            <field name="name">Vendor Attachment - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_attachment"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_id.vendor_reg_id.sales_email|safe};${object.vendor_id.vendor_reg_id.other_emails|safe}</field>
+            <field name="email_cc">${object.vendor_id.buyer_email|safe}</field>
+            <field name="subject">${object.company_id.name} Vendor Attachment (Ref ${object.name or 'n/a' })</field>
+            <field name="lang">${object.vendor_id.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Dear,${object.vendor_id.name}</p>
+                <p>您公司的${object.type.name}文件即将过期，请及时更新！</p>
+                <p>Best regards,</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 厂商修改基本资料通知，厂商修改基本资料时发送邮件给厂商 -->
+        <record id="vendor_change_basic_email_supplier" model="mail.template">
+            <field name="name">Vendor Change Basic - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_basic"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_reg_id.sales_email|safe};${object.vendor_reg_id.other_emails|safe}</field>
+            <field name="subject">(系統通知) Vendor Change:Supplier edit it's own data is finished. -- ${object.vendor_reg_id.name1_en} (${object.vendor_reg_id.vendor_code})</field>
+            <field name="lang">${object.vendor_reg_id.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Please wait the buyer review.</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+        <!-- 厂商修改基本资料通知，厂商修改基本资料时发送邮件给buyer -->
+        <record id="vendor_change_basic_email_buyer" model="mail.template">
+            <field name="name">Vendor Change Basic - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_basic"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_reg_id.buyer_email|safe}</field>
+            <field name="subject">(系統通知) Vendor Change:Supplier edit it's own data is finished. -- ${object.vendor_reg_id.name1_en}</field>
+            <field name="lang">${object.vendor_reg_id.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Please review the supplier data changes.</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+        <!-- 通知相关人员厂商修改成功，Vendor/Buyer change基本资料修改SAP成功之后发送邮件给buyer -->
+        <record id="vendor_change_basic_sap_email_buyer" model="mail.template">
+            <field name="name">Vendor Change Basic - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_change_basic"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.vendor_reg_id.buyer_email}</field>
+            <field name="subject">(系統通知) Supplier's new company data is synchronized to IAC ERP system. -- ${object.vendor_reg_id.name1_en}</field>
+            <field name="lang">${object.vendor_reg_id.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>SAP has finished the vendor change, 
+                   Vendor code is ${object.vendor_reg_id.vendor_code}. 
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- spot厂商通知相关人员新厂商注册成功，F02成功之后 -->
+        <record id="vendor_spot_sap_buyer_email" model="mail.template">
+            <field name="name">Spot Vendor Call Buyer - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_spot_vendor"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email}</field>
+            <field name="subject">(系統通知) IAC ERP has created the vendor code. -- ${object.name1_en} (${object.vendor_code})</field>
+            <field name="lang">${object.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>IAC ERP system has created the new vendor code,
+                   New vendor code is ${object.vendor_code}.
+                   Applicant Buyer Name: ${object.buyer_id.name}
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- mold厂商通知相关人员新厂商注册成功，F02成功之后 -->
+        <record id="vendor_mold_sap_buyer_email" model="mail.template">
+            <field name="name">Mold Vendor Call Buyer - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_mold_vendor"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email}</field>
+            <field name="subject">(系統通知) IAC ERP has created the vendor code. -- ${object.name1_en} (${object.vendor_code})</field>
+            <field name="lang">${object.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>IAC ERP system has created the new vendor code,
+                   New vendor code is ${object.vendor_code}.
+                   Applicant Buyer Name: ${object.buyer_id.name}
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- bvi厂商通知相关人员新厂商注册成功，F02成功之后 -->
+        <record id="vendor_bvi_sap_buyer_email" model="mail.template">
+            <field name="name">BVI Vendor Call Buyer - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_bvi_vendor"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email}</field>
+            <field name="subject">(系統通知) IAC ERP has created the vendor code. -- ${object.name1_en} (${object.vendor_code})</field>
+            <field name="lang">${object.buyer_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>IAC ERP system has created the new vendor code,
+                   New vendor code is ${object.vendor_code}.
+                   Applicant Buyer Name: ${object.buyer_id.name}
+                   Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <!-- 通知相关负责人建立GV,SC,PLM -->
+        <record id="vendor_register_gsp_buyer_email" model="mail.template">
+            <field name="name">Vendor Register Call Buyer - Send by Email</field>
+            <field name="model_id" ref="oscg_vendor.model_iac_vendor_register"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email};${object.other_emails};</field>
+            <field name="subject">(系統通知) New Vendor Need Setup</field>
+            <field name="lang">${object.user_id.partner_id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>New Vendor register to IAC.
+                   New vendor code is ${object.vendor_code}.
+                   Buyer Name: ${object.buyer_id.name}
+                   Please setup the Global Vendor Code Thank You.
+                </p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+    </data>
+</odoo>

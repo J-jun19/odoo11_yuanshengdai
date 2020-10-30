@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_copy_history_report_list" model="ir.ui.view">
+            <field name="name">Vendor Copy History Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.copy.history.report</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Copy History Report" create="false">
+                    <field name="ori_plant"/>
+                    <field name="ori_vendor"/>
+                    <field name="ori_name"/>
+                    <field name="ori_payment"/>
+                    <field name="ori_incoterm"/>
+                    <field name="ori_destination"/>
+                    <field name="ori_country"/>
+                    <field name="new_plant"/>
+                    <field name="new_vendor"/>
+                    <field name="new_name"/>
+                    <field name="new_payment"/>
+                    <field name="new_incoterm"/>
+                    <field name="new_destination"/>
+                    <field name="new_country"/>
+                    <field name="copy_reason"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="iac_vendor_copy_history_report_form" model="ir.ui.view">
+            <field name="name">Vendor Copy History Report</field>
+            <field name="model">vendor.copy.history.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Vendor Copy History Report">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="plant_id" options="{'no_create': True,'no_open': True}"/>
+                                <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                                <!--<field name="vendor_name" options="{'no_create': True,'no_open': True}"/>-->
+                                <field name="starttime"/>
+                                <field name="endtime"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="search_vendor_copy_history_report"
+                                string="Search"
+                                class="btn-primary"
+                                type="object"/>
+                        or
+                        <button string="Cancel"
+                                class="btn-default"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_vendor_copy_history_report"
+                    name="Vendor Copy History Report"
+                    res_model="vendor.copy.history.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

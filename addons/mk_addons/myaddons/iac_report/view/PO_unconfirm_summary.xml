@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_iac_po_unconfirm_summary_list" model="ir.ui.view">
+            <field name="name">PO Unconfirmed Summary Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.unconfirm.summary</field>
+            <field name="arch" type="xml">
+                <tree string="PO Unconfirmed Summary Report" create="false">
+                    <field name="id"/>
+                    <field name="document_no"/>
+                    <field name="document_line_no"/>
+                    <field name="create_date"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="vendor_erp_id"/>
+                    <field name="vendor_name"/>
+                    <field name="division_code"/>
+                    <field name="part_no"/>
+                    <field name="description"/>
+                    <field name="plant"/>
+                    <field name="increase_qty"/>
+                    <field name="decrease_qty"/>
+                    <field name="price"/>
+                    <field name="price_unit"/>
+                    <field name="currency"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_po_unconfirm_summary_wizard_form' model='ir.ui.view'>
+          <field name='name'>PO Unconfirmed Summary Report</field>
+          <field name='model'>iac.po.unconfirm.summary.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="PO Unconfirmed Summary Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="material_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="buyer_ids" widget="many2many_tags" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_po_unconfirm_summary_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_po_unconfirm_summary"
+                    name="PO Unconfirmed Summary Report"
+                    res_model="iac.po.unconfirm.summary.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

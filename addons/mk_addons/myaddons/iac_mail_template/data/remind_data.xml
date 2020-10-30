@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Email template for vendor remind -->
+        <record id="evaluation_email" model="mail.template">
+            <field name="name">Vendor Evaluation - Send by Email</field>
+            <field name="model_id" ref="iac_mail_template.model_iac_email_pool"/>
+            <field name="email_from">${object.mail_from|safe}</field>
+            <field name="email_to">${object.mail_to|safe}</field>
+            <field name="email_cc">${object.mail_cc|safe}</field>
+            <field name="subject">${object.mail_subject|safe}</field>
+            <!--<field name="subject">Reminder:   Supply Plan  for IAC</field>-->
+            <field name="lang">${object.id.lang}</field>
+            <field name="body_html"><![CDATA[
+                ${object.mail_body|safe}
+                ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

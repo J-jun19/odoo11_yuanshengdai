@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <!--<record model="ir.actions.act_window" id="query_update_action">-->
+            <!--<field name="name">Query/Update</field>-->
+            <!--<field name="res_model">iac.country.origin</field>-->
+            <!--<field name="view_type">form</field>-->
+            <!--<field name="view_mode">tree,form</field>-->
+            <!--<field name="help" type="html">-->
+                <!--<p class="oe_view_nocontent_create">Click here to add country of origin-->
+                <!--</p>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <!-- course tree/list view -->
+        <record model="ir.ui.view" id="query_update_tree">
+            <field name="name">query.update.tree</field>
+            <field name="model">iac.country.origin</field>
+            <field name="arch" type="xml">
+                <tree string="Query Update Tree" editable="top" edit="true" create="false">
+                    <field name="plant" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                    <field name="buyer_code" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                    <field name="vendor" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                    <field name="material" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                    <field name="country_id"/>
+                    <field name="city"/>
+                    <field name="remark"/>
+                    <field name="update_by" readonly="1" options="{'no_create': True, 'no_edit': True,'no_open':True}"/>
+                    <field name="update_on" readonly="1"/>
+                    <field name="division" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- course form view -->
+        <!--<record model="ir.ui.view" id="query_update_form">-->
+            <!--<field name="name">query.update.form</field>-->
+            <!--<field name="model">iac.country.origin</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form>-->
+
+                    <!--<sheet>-->
+                        <!--<group>-->
+                            <!--<group>-->
+                                <!--<field name="plant" options="{'no_create': True, 'no_edit': True}"/>-->
+                                <!--<field name="buyer" options="{'no_create': True, 'no_edit': True}"/>-->
+                                <!--<field name="vendor" options="{'no_create': True, 'no_edit': True}"/>-->
+                                <!--<field name="material" options="{'no_create': True, 'no_edit': True}"/>-->
+                                <!--<field name="country_id" options="{'no_create': True, 'no_edit': True}"/>-->
+                                <!--<field name="city" />-->
+                                <!--<field name="remark" />-->
+                                <!--<field name="update_by"/>-->
+                                <!--<field name="update_on"/>-->
+                                <!--<field name="division"/>-->
+                            <!--</group>-->
+
+                        <!--</group>-->
+
+
+                    <!--</sheet>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+
+        <record id='iac_country_origin_form' model='ir.ui.view'>
+          <field name='name'>Country Origin Report Wizard</field>
+          <field name='model'>country.origin.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Country Origin Report Wizard">
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="plant" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="buyer" options="{'no_create': True, 'no_edit': True}" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_buyer_manager_groups"/>
+                            <field name="vendor" options="{'no_create': True, 'no_edit': True}" />
+                            <field name="material" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="country_id" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="city" />
+                            <field name="open_po" />
+                            <field name="stock" />
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_country_origin_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="query_update_action"
+                    name="Country Origin Report Wizard"
+                    res_model="country.origin.report.wizard"
+                    view_mode="form"
+
+                    target="new"/>
+
+
+    </data>
+</odoo>

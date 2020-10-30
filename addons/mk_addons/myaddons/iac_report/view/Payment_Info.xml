@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+        <record id="view_payment_info_report_list" model="ir.ui.view">
+            <field name="name">Payment Info Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.payment.info.report</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Info Report" create="false" class="my_custom_class">
+                    <field name="vendor_code"/>
+                    <field name="clear_date"/>
+                    <field name="assignment"/>
+                    <field name="document"/>
+                    <field name="referenece"/>
+                    <field name="text"/>
+                    <field name="currency"/>
+                    <field name="amount"/>
+
+                    <field name="total"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record id='iac_payment_info_form' model='ir.ui.view'>
+          <field name='name'>Payment Info Report Wizard</field>
+          <field name='model'>payment.info.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Payment Info Report Wizard">
+                <sheet>
+                    <group>
+                        <group>
+
+                            <field name="vendor_code" options="{'no_create': True,'no_open': True}"/>
+                            <field name="posting_date_from"/>
+                            <field name="posting_date_to"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_payment_info_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_payment_info"
+                    name="Payment Info Report Wizard"
+                    res_model="payment.info.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

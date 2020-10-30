@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <record id="view_supplier_exception_monitor_report_list" model="ir.ui.view">
+            <field name="name">Supplier Exception Monitor</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.state.exception</field>
+            <field name="arch" type="xml">
+                <tree string="Supplier Exception Monitor" create="false">
+                    <field name="po_no"/>
+                    <field name="po_line_no"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="buyer_name"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="part_no"/>
+                    <field name="iac_price"/>
+                    <field name="iac_price_unit"/>
+                    <field name="iac_qty"/>
+                    <field name="iac_dn_date"/>
+                    <field name="supplier_dn_date"/>
+                    <field name="exception_reason"/>
+                    <field name="po_date"/>
+                    <field name="reply_date"/>
+                    <field name="open_flag"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='supplier_exception_monitor_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>Supplier Exception Monitor</field>
+          <field name='model'>v.po.state.exception.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Attachment Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <!--<field name='user_info_id'/>-->
+                            <!--<field name="plant_id" options="{'no_create': True}" />-->
+                            <field name='plant_id' widget="many2one_tags" options="{'no_create_edit': True}" required="1"/>
+                            <field name='part_no'/>
+                            <field name='buyer_ids' options="{'no_create': True}" widget="many2many_tags"/>
+                            <field name='po_date_from'/>
+                            <field name='po_date_to'/>
+                            <field name='vendor_code'/>
+                            <field name='open_flag' widget="checkbox"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_supplier_exception_monitor_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_supplier_exception_monitor_report"
+                    name="Supplier Exception Monitor Report"
+                    res_model="v.po.state.exception.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

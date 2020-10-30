@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_rfq_price_difference_report" model="ir.ui.view">
+            <field name="name">Info Record price difference report</field>
+            <field name="type">tree</field>
+            <field name="model">v.report.rfq.compare.with.other.vendor</field>
+            <field name="arch" type="xml">
+                <tree string="Info Record price difference report" create="false">
+                    <field name="part_no"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="global_vendor_code"/>
+                    <field name="gv_name"/>
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="currency"/>
+                    <field name="input_price"/>
+                    <field name="rfq_price"/>
+                    <field name="price_unit"/>
+                    <field name="rfq_no"/>
+                    <field name="creation_date"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="buyer_name"/>
+                    <field name="vendor_code_other"/>
+                    <field name="vendor_name_other"/>
+                    <field name="global_vendor_code_other"/>
+                    <field name="input_price_other"/>
+                    <field name="currency_other"/>
+                    <field name="price_other"/>
+                    <field name="price_unit_other"/>
+                    <field name="create_date_other"/>
+                    <field name="valid_from_other"/>
+                    <field name="valid_to_other"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='rfq_price_difference_wizard_form' model='ir.ui.view'>
+          <field name='name'>Info Record price difference wizard</field>
+          <field name='model'>v.report.rfq.compare.with.other.vendor.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Info Record price difference wizard">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="division_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="material_group" options="{'no_create': True,'no_open': True}"/>
+                            <field name="material_start" />
+                            <field name="create_from" />
+                            <field name="create_to" />
+                            <field name="vendor_comparison" required="1"/>
+                            <field name="rfq_comparison" required="1"/>
+                            <field name="display_result" required="1"/>
+                            <field name="rfq_status" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_rfq_price_difference_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_price_difference"
+                    name="前一天建Info Record價格差異表"
+                    res_model="v.report.rfq.compare.with.other.vendor.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+
+</odoo>

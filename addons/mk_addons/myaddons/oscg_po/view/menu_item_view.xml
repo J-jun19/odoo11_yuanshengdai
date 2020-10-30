@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- Top Level Menu -->
+      <menuitem id="menu_po" name="Purchase Order" sequence="1"/>
+
+      <!-- Level 1 Menu -->
+      <menuitem id="menu_po_view" name="Purchase Order" parent="menu_po" sequence="1"/>
+      <menuitem id="menu_po_logs_view" name="Logs" parent="menu_po" sequence="2"/>
+      <menuitem id="menu_po_setting_view" name="Setting" parent="menu_po" sequence="3"/>
+      <menuitem id="menu_po_special_view" name="Special Approval PO" parent="menu_po" sequence="4"/>
+
+      <!--Level 3 Menu PO-->
+      <menuitem id="menu_po_view_form" name="Confirmation" parent="menu_po_view" action="action_view_po_view_form" sequence="10"/>
+      <menuitem id="iac_purchase_order_change_view_form" name="PO Change List" parent="menu_po_view" action="action_view_purchase_order_change_view_form" sequence="20"/>
+      <menuitem id="menu_wizard_iac_purchase_order" name="PO Change" parent="menu_po_view" action="action_wizard_iac_purchase_order" sequence="30"/>
+      <menuitem id="menu_mass_wizard_iac_purchase_order" name="Cost Down/Cost Up" parent="menu_po_view" action="action_mass_wizard_iac_purchase_order" sequence="40"/>
+      <menuitem name="Vendor Confirm" action="action_view_po_vendor_confirm_list" id="menu_po_vendor_confirm" parent="menu_po_view" sequence="50"/>
+      <!--
+      <menuitem name="Buyer Confirm" action="action_view_po_buyer_confirm_list" id="menu_po_buyer_confirm" parent="menu_po_view" sequence="60"/>
+      -->
+      <menuitem name="Vendor Confirm History" action="action_view_po_vendor_confirm_his_list" id="menu_po_vendor_confirm" parent="menu_po_view" sequence="60"/>
+
+      <menuitem name="PO Cancel Unconfirmed" action="action_view_po_line_vendor_unconfirm_stat_list" id="menu_po_vendor_unconfirmed_stat" parent="menu_po_view" sequence="70"/>
+      <menuitem name="SMART PO Cancel" action="action_view_smart_po_cancel" id="menu_smart_po_cancel" sequence="80" parent="menu_po_view"/>
+      <menuitem name="SMART PO Recover" action="action_view_smart_po_recover" id="menu_smart_po_recover" sequence="90" parent="menu_po_view"/>
+
+
+
+      <!--Level 3 Menu Log-->
+      <menuitem id="menu_po_approve_regular_view" name="Approve Rule" sequence="10" parent="menu_po_setting_view" action="action_view_purchase_approve_regular_view_form"/>
+
+      <!--Level 3 Setting-->
+      <menuitem id="menu_po_approve_record_view" name="Approve Logs" parent="menu_po_logs_view" action="action_view_purchase_approve_record_view_form" sequence="10"/>
+      <menuitem id="menu_iac_currency_exchange_list" name="Currency Exchange" parent="menu_po_setting_view"  sequence="20" action="action_iac_currency_exchange_list"/>
+
+      <menuitem name="PO Buyer Code Change" action="action_view_po_buyer_code_change" id="menu_po_buyer_code_change" parent="menu_po_view" sequence="100"/>
+
+      <menuitem id="menu_po_im_upload" name="IM upload" action="action_view_po_im_upload" parent="menu_po_special_view" sequence="10"/>
+      <menuitem id="menu_po_im_upload_list" name="IM upload list" action="action_view_text_im_upload_list_wizard" parent="menu_po_special_view" sequence="20"/>
+      <menuitem id="menu_mm_create" name="MM Create" action="action_view_mm_create" parent="menu_po_special_view" sequence="30"/>
+  </data>
+</odoo>

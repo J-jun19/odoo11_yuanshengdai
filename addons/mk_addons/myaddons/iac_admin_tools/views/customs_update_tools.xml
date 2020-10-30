@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="view_iac_admin_update_customs_qty_tree" model="ir.ui.view">
+            <field name="name">Update Customs Qty</field>
+            <field name="type">tree</field>
+            <field name="model">iac.admin.update.customs.header</field>
+            <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <field name="arch" type="xml">
+                <tree string="Update Customs Qty" create="false">
+                    <field name="sas_stock_no" readonly="True"/>
+                    <field name="state" readonly="True"/>
+                    <field name="vendor_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="plant_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="sas_dcl_no" readonly="True"/>
+                    <field name="stock_typecd" readonly="True"/>
+                    <field name="opt_status" readonly="True"/>
+                </tree>
+            </field>
+        </record>
+
+      <record id="view_iacp_admin_update_customs_form" model="ir.ui.view">
+              <field name="name">Update Customs Line Qty</field>
+              <field name="type">form</field>
+              <field name="model">iac.admin.update.customs.header</field>
+              <field name="arch" type="xml">
+                  <form string="Update Customs Line Qty" create="false" edit="false">
+                      <header>
+                          <!--<button String="送签" states="pending,to_approve" type="object" class="oe_highlight" name="button_to_approve_one" />-->
+                          <!--<button String="编辑订单行" states="pending,to_approve,unapproved" type="object" class="oe_highlight" name="button_to_edit_po_line" />-->
+                          <!--<button String="Call SAP" states="to sap" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" />-->
+                          <!--<field name="state" widget="statusbar" statusbar_visible="pending,to approve,done" readonly="1"/>-->
+                          <!--<field name="stateate" widget="statusbar" statusbar_visible="wait_mm_approve,wait_lg_approve,mm_reject,lg_reject,interface_submit_success,interface_submit_fail,cancel,done"/>-->
+                      </header>
+                      <sheet>
+                          <group string="出库单表头">
+                              <group>
+                                  <field name="plant_id" readonly="1"/>
+                                  <field name="vendor_id" readonly="1" options="{'no_create': True,'no_open': True}"/>
+                                  <field name="sas_stock_no" string="出库单编号" readonly="1"/>
+                                  <field name="sas_dcl_no" readonly="1"/>
+                                  <field name="sas_stock_preent_no" readonly="1"/>
+                                  <!--<field name="stock_typecd" readonly="1"/>-->
+                                  <!--<field name="business_typecd" readonly="1"/>-->
+
+                                  <!--<field name="centralized_dcl_typecd" readonly="1"/>-->
+                                  <!--<field name="usetocod" style="color:Red;" readonly="1"/>-->
+                                  <!--<field name="manually_po_reason_type" readonly="1"/>-->
+                                  <!--<field name="slocation_id" options="{'no_create': True,'no_open': True}" readonly="1"/>-->
+                              </group>
+                              <group>
+                                  <field name="orig_sas_no" string="对应的入库单编号"/>
+                                  <field name="package_qty" readonly="1"/>
+                                  <field name="gross_wt" readonly="1"/>
+                                  <!--&lt;!&ndash;<field name="net_wt"/>&ndash;&gt;-->
+                                  <!--&lt;!&ndash;<field name="new_incoterm"/>&ndash;&gt;-->
+                                  <!--&lt;!&ndash;<field name="new_incoterm1"/>&ndash;&gt;-->
+
+                                  <!--<field name="net_wt" readonly="1"/>-->
+                                  <!--<field name="owner_system" readonly="1"/>-->
+                                  <field name="pack_type" readonly="1"/>
+                                  <field name="create_date" readonly="1"/>
+                                  <!--&lt;!&ndash;<field name="order_reason" readonly="1"/>&ndash;&gt;-->
+                              </group>
+                          </group >
+                          <notebook>
+                              <page string="出库单lines" options="{'no_create': True,'no_open': True}" readonly="1">
+                                  <field name="sas_stock_line_ids">
+                                      <tree string="customs entry" edit="true" editable="top" create="false" delete="false">
+                                          <button name="restore_sas_valid_export_qty" type='object' string="还原可退数量" class="oe_highlight"/>
+                                          <field name="sas_stock_no" string="出库单编号"/>
+                                          <field name="sas_stock_seqno"/>
+                                          <field name="sas_dcl_seqno"/>
+                                          <field name="gds_mtno" />
+                                          <field name="gdecd" />
+                                          <field name="gds_nm" />
+                                          <!--<field name="gds_spcf_model_desc" />-->
+                                          <!--<field name="dcl_unitcd"/>-->
+                                          <!--<field name="dcl_unit_id" string="申报单位名称"/>-->
+                                          <field name="lawf_unitcd"/>
+                                          <!--<field name="lawf_unit_id" string="法1单位名称"/>-->
+                                          <field name="secd_lawf_unitcd"/>
+                                          <!--<field name="secd_lawf_unit_id" string="法2单位名称"/>-->
+                                          <!--<field name="natcd"/>-->
+                                          <!--<field name="destination_natcd"/>-->
+                                          <!--<field name="dcl_uprc_amt"/>-->
+                                          <!--<field name="dcl_total_amt"/>-->
+                                          <!--<field name="dcl_currcd"/>-->
+                                          <!--<field name="lawf_qty"/>-->
+                                          <!--<field name="secd_lawf_qty"/>-->
+                                          <!--<field name="dcl_qty"/>-->
+                                          <!--<field name="lvyrlf_modecd"/>-->
+                                          <field name="orig_sas_no" string="对应的入库单编号"/>
+                                          <!--<field name="usetocod"/>-->
+                                      </tree>
+                                  </field>
+                              </page>
+                          </notebook>
+                      </sheet>
+                  </form>
+              </field>
+          </record>
+
+
+      <record id="view_customs_qty" model="ir.ui.view">
+          <field name="name">Customs Qty</field>
+          <field name="type">form</field>
+          <field name="model">iac.admin.search.customs.line.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Customs Qty" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="sas_stock_id"/>
+                            <field name="sas_stock_no"/>
+                            <field name="sas_dcl_no"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name='search_customs_qty'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                    <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+              </form>
+
+          </field>
+
+        </record>
+
+         <record model="ir.actions.act_window" id="action_admin_update_customs_qty">
+            <field name="name">Update Customs Qty</field>
+            <field name="res_model">iac.admin.search.customs.line.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+      <record id="view_iac_admin_update_customs_state_tree" model="ir.ui.view">
+            <field name="name">Update Customs State</field>
+            <field name="type">tree</field>
+            <field name="model">iac.admin.update.customs.state</field>
+            <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <field name="arch" type="xml">
+                <tree string="Update Customs State" create="false">
+                    <button name="button_to_change_state" type='object' string="Toggle State" class="oe_highlight"/>
+                    <field name="sas_stock_no" readonly="True"/>
+                    <field name="state" readonly="True"/>
+                    <field name="vendor_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="plant_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="sas_dcl_no" readonly="True"/>
+                    <field name="stock_typecd" readonly="True"/>
+                    <field name="opt_status" readonly="True"/>
+                    <!--<field name="pass_port_no" readonly="True"/>-->
+                </tree>
+            </field>
+        </record>
+
+      <record id="view_customs_state" model="ir.ui.view">
+          <field name="name">Customs State</field>
+          <field name="type">form</field>
+          <field name="model">iac.admin.search.customs.state.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Customs State" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="list_type"/>
+                            <!--<field name="sas_stock_no"/>-->
+                            <field name="sas_stock_id" attrs="{'readonly':[('list_type','!=','出入库单')],'invisible': [('list_type','!=','出入库单')]}"/>
+                            <field name="sas_stock_no" attrs="{'readonly':[('list_type','!=','出入库单')],'invisible': [('list_type','!=','出入库单')]}"/>
+                            <field name="pass_port_id" attrs="{'readonly':[('list_type','!=','核放单')],'invisible': [('list_type','!=','核放单')]}"/>
+                            <field name="pass_port_no" attrs="{'readonly':[('list_type','!=','核放单')],'invisible': [('list_type','!=','核放单')]}"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name='search_customs_state'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                    <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+              </form>
+
+          </field>
+
+        </record>
+
+      <record model="ir.actions.act_window" id="action_admin_update_customs_state">
+            <field name="name">Update Customs State</field>
+            <field name="res_model">iac.admin.search.customs.state.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+  </data>
+</odoo>

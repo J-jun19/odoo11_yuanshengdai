@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+
+        <record id="view_asn_report_list" model="ir.ui.view">
+            <field name="name">test_one</field>
+            <field name="type">tree</field>
+            <field name="model">iac.test.one1</field>
+            <field name="arch" type="xml">
+                <tree string="ASN Report" edit="true" editable="top">
+                    <field name="check" widget="radio"/>
+                    <field name="vendor"/>
+                    <field name="state"/>
+                    <field name="active"/>
+                    <!--<field name="check" readonly="1"/>-->
+                    <!--<field name="total_amount"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="test_search" model="ir.ui.view">
+            <field name="name">Test Search</field>
+            <field name="model">iac.test.one1</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="vendor"/>
+                    <filter string="Done" domain="[('active','=',True)]"/>
+                    <filter string="Not Done" domain="[('active','!=',True)]"/>
+                </search>
+            </field>
+        </record>
+
+
+          <!-- 单笔和批量送签 -->
+      <record id="iac_control_table_submit_action_server" model="ir.actions.server">
+            <field name="name">送签</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_iac_test_one1"/>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records.test_by_ning()
+            </field>
+        </record>
+
+        <record id="action_iac_control_table_submit" model="ir.values">
+            <field name="name">送签</field>
+            <field name="model_id" ref="model_iac_test_one1"/>
+            <field name="model">iac.test.one1</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%iac_control_table_submit_action_server" name="value"/>
+        </record>
+
+        <record id='iac_country_origin_form' model='ir.ui.view'>
+          <field name='name'>Country Origin Report Wizard</field>
+          <field name="type">form</field>
+          <field name='model'>iac.test.one1</field>
+          <field name='arch' type='xml'>
+              <form string="Country Origin Report Wizard" test_one="12345">
+                  <header>
+                      <button name="change_active" string="change active" class="oe_highlight" type="object"/>
+                      <button name="clear_all_active" string="clear all active" type="object"/>
+                  </header>
+                    <!--<header>-->
+                        <!--<button string='Save And Return' name="test_one" type="object" class="btn-primary" confirm="are you que ding?"/>-->
+                        <!--&lt;!&ndash;<button test_one="Save And Return"  type="object" class="btn-primary" confirm="are you que ding?"/>&ndash;&gt;-->
+                    <!--</header>-->
+                    <sheet string="Mold Vendor">
+                        <group>
+                            <field name="vendor" readonly="1"/>
+                            <field name="total_amount"/>
+                            <field name="active"/>
+                        </group>
+                    <notebook>
+                        <page string="111">
+                            <field name="one1_line_ids">
+                                <tree editable="bottom">
+                                    <field name="qty"/>
+                                </tree>
+                            </field>
+
+                        </page>
+                    </notebook>
+                        <!--<h1><b>title</b>                                                 sdfsdfsd</h1>-->
+                    <!--<footer>-->
+
+                      <!--<button string="Cancel" class="btn-default" special="cancel"/>-->
+                    <!--</footer>-->
+                </sheet>
+
+
+            </form>
+          </field>
+        </record>
+
+        <act_window id="test_action"
+                    name="Country Origin Report Wizard"
+                    res_model="iac.test.one1"
+                    view_mode="tree,form"
+                    context ="{'active_test':False}"
+                    target="main"/>
+
+
+    </data>
+</odoo>
+

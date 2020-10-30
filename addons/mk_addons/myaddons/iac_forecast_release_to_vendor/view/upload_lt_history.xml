@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <!--##顯示 Search  iac_tupload_lt_history  ______________s #####-->
+
+       <!--  彈跳windows Search  iac_tupload_lt_history的  form ___s-->
+       <record id='upload_lt_history_wizard_form' model='ir.ui.view'>
+          <field name='name'>upload LT history wizard form view</field>
+          <field name='model'>iac.tupload.lt.history.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Search upload LT history">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='plant_id' options="{'no_create': True, 'no_edit': True}" required="1"/>
+                            <field name="buyer_id" options="{'no_create': True, 'no_edit': True}" required="1"/>
+                            <field name="vendor_id" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="material_id" options="{'no_create': True, 'no_edit': True}"/>
+                            <field name="w_date"  required="1"/>
+                            <field name='storage_location_id' options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                            <!--<field name="date_to" />-->
+                        </group>
+                    </group>
+                </sheet>
+
+                  <footer>
+                <button name='search_upload_lt_history'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+       </record>
+       <!--  彈跳windows Search  iac_tupload_lt_history的  form ___e-->
+
+       <!--  彈跳windows Search  iac_tupload_lt_history的  action ___s-->
+       <act_window id="action_wizard_upload_lt_history" name="Search upload LT history"
+                   res_model="iac.tupload.lt.history.wizard" view_mode="form" target="new"/>
+       <!--  彈跳windows Search  iac_tupload_lt_history的  action ___e-->
+
+       <!-- 第1個-標題的 第1個- action 的 彈跳windows-Buyer confirm forecast-___e  -->
+
+       <!--##顯示 Search  iac_tupload_lt_history  ______________e #####-->
+
+        <!--##顯示 iac_tupload_lt_history ______________s #####-->
+        <!--創建 iac.tupload.lt.history  的 tree_____s-->
+        <record id="view_tupload_lt_history" model="ir.ui.view">
+            <field name="name">History</field>
+            <!--Upload LT history-->
+            <field name="type">tree</field>
+            <field name="model">iac.tupload.lt.history</field>
+            <field name="arch" type="xml">
+                <tree string="Upload LT history" create="false" delete="false">
+                    <field name='type'/>
+                    <field name='status'/>
+                    <field name='plant_id'/>
+                    <field name="storage_location_id"/>
+                    <field name='buyer_id'/>
+                    <field name='material_id'/>
+                    <field name='qty'/>
+                    <field name='shipping_date'/>
+                    <field name='buyer_remark'/>
+                    <field name='key_part'/>
+                    <field name='iac_pn_vendor'/>
+                    <field name='vendor_id'/>
+                    <field name='create_uid'/>
+                    <field name='create_date'/>
+                    <field name='write_date'/>
+                    <field name='write_uid'/>
+                </tree>
+            </field>
+        </record>
+        <!--創建 iac.tupload.lt.history  的 tree_____e-->
+
+        <!--定义视图动作 iac.tupload.lt.history  的 action ____s-->
+        <record model="ir.actions.act_window" id="action_tupload_lt_history">
+            <field name="name">History</field>
+            <!--Upload LT history-->
+            <field name="res_model">iac.tupload.lt.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>  <!--只能查tree,不能看form-->
+        </record>
+        <!--定义视图动作 iac.tupload.lt.history  的 action ____e-->
+        <!--##顯示 iac_tupload_lt_history ______________s #####-->
+
+        <!--#####################################-->
+
+
+  </data>
+</odoo>

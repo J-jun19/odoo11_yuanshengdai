@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <odoo>
+        <data>
+
+
+            <record id="view_im_upload_list_tree" model="ir.ui.view">
+                <field name="name">im upload list</field>
+                <field name="type">tree</field>
+                <field name="model">iac.purchase.order.im.special.approval.import</field>
+                <field name="arch" type="xml">
+                  <tree create="false" delete="false" edit="false">
+                      <button name="download_file" string="佐证文件" type="object" class="oe_highlight"/>
+
+                      <field name="state"/>
+                      <field name="plant_id"/>
+                      <field name="batch_id"/>
+                      <field name="batch_item_no"/>
+                      <field name="part_no"/>
+                      <field name="part_description"/>
+                      <field name="buyer_code"/>
+                      <field name="buyer_name"/>
+                      <field name="quantity"/>
+                      <field name="division"/>
+                      <field name="division_description" />
+                      <field name="comment" />
+                      <field name="upload_time"/>
+                      <field name="upload_name"/>
+                      <!--<field name="cw"/>-->
+                      <!--<field name="tax"/>-->
+                      <!--<field name="approve_role_list"/>-->
+                      <!--<field name="reason_code"/>-->
+                  </tree>
+              </field>
+
+            </record>
+
+
+            <record id="view_im_upload_list" model="ir.ui.view">
+              <field name="name">im upload list form</field>
+              <field name="type">form</field>
+              <field name="model">im.upload.list.search.wizard</field>
+              <field name="arch" type="xml">
+                  <form string="im upload list form" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="plant_code" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                                <field name="material" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                                <field name="upload_date_from"/>
+                                <!--<field name="buyer_code"/>-->
+                                <field name="upload_date_to"/>
+                                <field name="state"/>
+                            </group>
+                        </group>
+                    </sheet>
+
+                    <footer>
+                        <button name='im_upload_list'
+                            string='Search'
+                            class='btn-primary'
+                            type='object'/>
+                    or
+                        <button string='Cancel'
+                            class='btn-default'
+                            special='cancel'/>
+                    </footer>
+                  </form>
+
+              </field>
+
+            </record>
+
+            <record id="action_server_iac_upload_list" model="ir.actions.server">
+                <field name="name">no action required</field>
+                <field name="type">ir.actions.server</field>
+                <field name="model_id" ref="model_iac_purchase_order_im_special_approval_import"/>
+                <field name="state">code</field>
+                <field name="code">
+                    if records:
+                        action = records.Update_data()
+                </field>
+            </record>
+
+            <record id="action_value_iac_upload_list" model="ir.values">
+                <field name="name">no action required</field>
+                <field name="model_id" ref="model_iac_purchase_order_im_special_approval_import"/>
+                <field name="model">iac.purchase.order.im.special.approval.import</field>
+                <field name="key2">client_action_multi</field> <!--菜单出现的位置-->
+                <field eval="'ir.actions.server,%d'%action_server_iac_upload_list" name="value"/>
+            </record>
+
+
+
+            <record model="ir.actions.act_window"  id="action_view_text_im_upload_list_wizard">
+              <field name="name">IM upload list </field>
+              <field name="res_model">im.upload.list.search.wizard</field>
+              <field name="view_type">tree</field>
+              <field name="view_mode">form</field>
+              <field name="target">new</field>
+              <!--<field name="view_id" ref="view_im_upload_list" />-->
+
+            </record>
+
+        </data>
+    </odoo>

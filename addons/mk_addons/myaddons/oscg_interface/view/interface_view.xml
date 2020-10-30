@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <!--接口配置相关 -->
+    <record id="view_interface_cfg_list" model="ir.ui.view">
+        <field name="name">Interface Config List</field>
+        <field name="type">tree</field>
+        <field name="model">iac.interface.cfg</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="code"/>
+                <field name="name"/>
+                <field name="outer_sys_name"/>
+                <field name="interface_type"/>
+                <field name="state"/>
+                <field name="descripton"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_interface_cfg_form" model="ir.ui.view">
+        <field name="name">Interface Config Form</field>
+        <field name="type">form</field>
+        <field name="model">iac.interface.cfg</field>
+        <field name="arch" type="xml">
+            <form string="vendor">
+             <group colspan="4">
+                 <group>
+                     <field name="code"/>
+                     <field name="model_name"/>
+                     <field name="interface_type"/>
+                     <field name="interval_seconds"/>
+                     <field name="seq_id"/>
+                     <field name="sql_proc_code"/>
+                 </group>
+                 <group>
+                     <field name="name"/>
+                     <field name="outer_sys_name"/>
+                     <field name="first_start_time"/>
+                     <field name="fail_retry_times"/>
+                     <field name="outer_sys_call_url"/>
+                     <field name="state"/>
+                 </group>
+                 <group colspan="4">
+                     <field name="descripton"/>
+                 </group>
+
+             </group>
+            </form>
+        </field>
+    </record>
+
+    <!--定义视图动作-->
+    <record model="ir.actions.act_window"  id="action_interface_cfg">
+        <field name="name">Action Interface Config</field>
+        <field name="res_model">iac.interface.cfg</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_interface_cfg_list"/>
+    </record>
+
+    <!--定义菜单-->
+    <menuitem id="menu_interface_cfg_root" name="Interface Root"/>
+    <menuitem id="menu_interface_cfg_base" name="Interface Base" parent="menu_interface_cfg_root" />
+    <menuitem id="menu_interface_cfg_item" name="Interface Config" parent="menu_interface_cfg_base" action="action_interface_cfg"/>
+
+      <!--接口人工干预相关 -->
+      <record id="view_interface_manual_proc_list" model="ir.ui.view">
+          <field name="name">Interface Manual Proc List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.interface.manual.proc</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="manual_user_id"/>
+                  <field name="start_time"/>
+                  <field name="end_time"/>
+                  <field name="proc_line_count"/>
+                  <field name="fail_line_count"/>
+                  <field name="success_line_count"/>
+                  <field name="state"/>
+                  <field name="memo_str"/>
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_interface_manual_proc_form" model="ir.ui.view">
+          <field name="name">Interface Manual Proc Form</field>
+          <field name="type">form</field>
+          <field name="model">iac.interface.manual.proc</field>
+          <field name="arch" type="xml">
+              <form string="vendor">
+                  <group colspan="4">
+                      <group>
+                          <field name="start_time" readonly="1"/>
+                          <field name="proc_line_count" readonly="1"/>
+                          <field name="success_line_count" readonly="1"/>
+                      </group>
+                      <group>
+                          <field name="end_time" readonly="1"/>
+                          <field name="fail_line_count" readonly="1"/>
+                          <field name="state"/>
+
+                      </group>
+                      <group colspan="4">
+                          <field name="memo_str"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="log_line_ids">
+                              <tree string="Log Lines" editable="bottom">
+                                  <field name="interface_id"/>
+                                  <field name="start_time"/>
+                                  <field name="end_time" />
+                                  <field name="state"/>
+                                  <field name="biz_object_id"/>
+                                  <field name="fail_msg"/>
+                                  <field name="call_json_msg"/>
+                                  <field name="memo_str"/>
+
+                              </tree>
+                              <form string="Worked Day">
+                                  <group col="4">
+                                      <field name="interface_id"/>
+                                      <field name="start_time"/>
+                                      <field name="end_time" />
+                                      <field name="state"/>
+                                      <field name="biz_object_id"/>
+                                      <field name="fail_msg"/>
+                                      <field name="call_json_msg"/>
+                                      <field name="memo_str"/>
+                                  </group>
+                              </form>
+                          </field>
+
+                      </group>
+                  </group>
+              </form>
+          </field>
+      </record>
+
+      <!--定义视图动作-->
+      <record model="ir.actions.act_window"  id="action_interface_manual_proc">
+          <field name="name">Action Interface Manual Proc</field>
+          <field name="res_model">iac.interface.manual.proc</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="view_id" ref="view_interface_manual_proc_list"/>
+      </record>
+
+      <!--定义菜单-->
+      <!--
+      <menuitem id="menu_interface_manual_proc_item" name="Interface Manual Proc" parent="menu_interface_cfg_base" action="action_interface_manual_proc"/>
+        -->
+
+      <!--接口人工调用相关 -->
+      <record id="view_interface_manual_call_list" model="ir.ui.view">
+          <field name="name">Interface Manual Call List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.interface.manual.call</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="manual_user_id"/>
+                  <field name="interface_id" />
+                  <field name="model_name"/>
+                  <field name="biz_object_id"/>
+                  <field name="start_time"/>
+                  <field name="end_time"/>
+                  <field name="state"/>
+                  <field name="memo_str"/>
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_interface_manual_call_form" model="ir.ui.view">
+          <field name="name">Interface Manual Call Form</field>
+          <field name="type">form</field>
+          <field name="model">iac.interface.manual.call</field>
+          <field name="arch" type="xml">
+              <form string="Manual Invoke Interface">
+
+                      <group colspan="4">
+                          <button String="Generate WebCall JSON"  type="object" class="oe_highlight" name="button_generate_web_call_json" />
+                          <button String="Invoke WebCall From JSON"  type="object" class="oe_highlight" name="button_invoke_web_call_from_json" />
+
+                          <button String="Invoke WebCall"  type="object" class="oe_highlight" name="button_invoke_web_call" />
+                          <button String="Invoke WebCall With Log"  type="object" class="oe_highlight" name="button_invoke_web_call_with_log" />
+
+                          <button String="Cust Invoke WebCall With Log"  type="object" class="oe_highlight" name="invoke_web_call_with_log_test" />
+
+                      </group>
+                      <group colspan="4">
+                          <group>
+                              <field name="interface_id" required="1"/>
+                              <field name="start_time"/>
+
+
+                          </group>
+                          <group>
+                              <field name="biz_object_id" required="1"/>
+                              <field name="end_time"/>
+
+                          </group>
+                          <group colspan="4">
+                              <field name="biz_object_str"/>
+                          </group>
+                          <group colspan="4">
+                              <field name="json_request_str"/>
+                          </group>
+                          <group colspan="4">
+                              <field name="json_response_str"/>
+                          </group>
+                          <group colspan="4">
+                              <field name="json_builder_exception_str"/>
+                          </group>
+
+                          <group colspan="4">
+                              <field name="memo_str"/>
+                          </group>
+
+                          <group colspan="4">
+                              <field name="log_line_ids">
+                                  <tree string="Log Lines" editable="bottom">
+                                      <field name="interface_id"/>
+                                      <field name="start_time"/>
+                                      <field name="end_time" />
+
+                                      <field name="biz_object_id"/>
+                                      <field name="fail_msg"/>
+                                      <field name="call_json_msg"/>
+                                      <field name="memo_str"/>
+
+                                  </tree>
+                                  <form string="Worked Day">
+                                      <group col="4">
+                                          <field name="interface_id"/>
+                                          <field name="start_time"/>
+                                          <field name="end_time" />
+
+                                          <field name="biz_object_id"/>
+                                          <field name="fail_msg"/>
+                                          <field name="call_json_msg"/>
+                                          <field name="memo_str"/>
+                                      </group>
+                                  </form>
+                              </field>
+
+                          </group>
+                      </group>
+
+
+              </form>
+          </field>
+      </record>
+
+      <!--定义视图动作-->
+      <record model="ir.actions.act_window"  id="action_interface_manual_call">
+          <field name="name">Action Interface Manual Call</field>
+          <field name="res_model">iac.interface.manual.call</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="view_id" ref="view_interface_manual_call_list"/>
+      </record>
+
+      <!--定义菜单-->
+      <menuitem id="menu_interface_manual_call_item" name="Interface Manual Call" parent="menu_interface_cfg_base" action="action_interface_manual_call"/>
+
+
+      <!--业务对象任务定时调用相关 -->
+      <record id="view_interface_biz_job_list" model="ir.ui.view">
+          <field name="name">Interface Business Job</field>
+          <field name="type">tree</field>
+          <field name="model">iac.interface.biz.job</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="manual_user_id"/>
+                  <field name="interface_id"/>
+                  <field name="biz_object_id"/>
+                  <field name="due_start_time"/>
+                  <field name="state"/>
+                  <field name="memo_str"/>
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_interface_biz_job_form" model="ir.ui.view">
+          <field name="name">Interface Business Job Form</field>
+          <field name="type">form</field>
+          <field name="model">iac.interface.biz.job</field>
+          <field name="arch" type="xml">
+              <form string="vendor">
+                  <group colspan="4">
+
+                      <group>
+                          <field name="interface_id"/>
+                          <field name="biz_object_id"/>
+                      </group>
+                      <group>
+                          <field name="due_start_time"/>
+
+                          <field name="state"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="memo_str"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="log_line_ids">
+                              <tree string="Log Lines" editable="bottom">
+                                  <field name="interface_id"/>
+                                  <field name="start_time"/>
+                                  <field name="end_time" />
+                                  <field name="state"/>
+                                  <field name="biz_object_id"/>
+                                  <field name="fail_msg"/>
+                                  <field name="call_json_msg"/>
+                                  <field name="memo_str"/>
+
+                              </tree>
+                              <form string="Log Line Form">
+                                  <group col="4">
+                                      <field name="interface_id"/>
+                                      <field name="start_time"/>
+                                      <field name="end_time" />
+                                      <field name="state"/>
+                                      <field name="biz_object_id"/>
+                                      <field name="fail_msg"/>
+                                      <field name="call_json_msg"/>
+                                      <field name="memo_str"/>
+                                  </group>
+                              </form>
+                          </field>
+
+                      </group>
+                  </group>
+              </form>
+          </field>
+      </record>
+
+      <!--定义视图动作-->
+      <record model="ir.actions.act_window"  id="action_interface_biz_job">
+          <field name="name">Action Interface Business Job</field>
+          <field name="res_model">iac.interface.biz.job</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="view_id" ref="view_interface_biz_job_list"/>
+      </record>
+
+      <!--定义菜单-->
+      <!--
+      <menuitem id="menu_interface_biz_job_item" name="Interface Business Job" parent="menu_interface_cfg_base" action="action_interface_biz_job"/>
+      -->
+
+
+
+      <!-- 接口日志条目-->
+      <record id="view_iac_interface_log_line_list" model="ir.ui.view">
+          <field name="name">Interface Log Line List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.interface.log.line</field>
+          <field name="arch" type="xml">
+              <tree>
+                  <field name="interface_code"/>
+                  <field name="interface_name"/>
+                  <field name="eform_no"/>
+                  <field name="start_time"/>
+                  <field name="end_time"/>
+                  <field name="state"/>
+                  <field name="call_type"/>
+                  <field name="biz_object_id"/>
+
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_iac_interface_log_line_form" model="ir.ui.view">
+          <field name="name">Interface Log Line Form</field>
+          <field name="type">form</field>
+          <field name="model">iac.interface.log.line</field>
+          <field name="arch" type="xml">
+              <form string="vendor">
+                  <group colspan="4">
+
+                      <group>
+                          <field name="interface_code"/>
+                          <field name="eform_no"/>
+                          <field name="start_time"/>
+                          <field name="state"/>
+
+                      </group>
+                      <group>
+                          <field name="interface_name"/>
+                          <field name="call_type"/>
+                          <field name="end_time"/>
+                          <field name="biz_object_id"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="call_param_str"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="call_json_msg"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="callback_json_msg"/>
+                      </group>
+
+                      <group colspan="4">
+                          <field name="fail_msg"/>
+                      </group>
+
+                      <group colspan="4">
+                          <field name="json_builder_exception_str"/>
+                      </group>
+
+
+
+                  </group>
+              </form>
+          </field>
+      </record>
+
+      <!--定义视图动作-->
+      <record model="ir.actions.act_window"  id="action_iac_interface_log_line">
+          <field name="name">Action Interface Log Line List</field>
+          <field name="res_model">iac.interface.log.line</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="view_id" ref="view_iac_interface_log_line_list"/>
+      </record>
+
+      <!--定义菜单-->
+      <menuitem id="menu_iac_interface_log_line_item" name="Interface Log Line List" parent="menu_interface_cfg_base" action="action_iac_interface_log_line"/>
+
+  </data>
+</odoo>

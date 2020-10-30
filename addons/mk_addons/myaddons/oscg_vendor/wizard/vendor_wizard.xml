@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="wizard_form_view">
+          <field name="name">vendor.buyer_email.wizard.form</field>
+          <field name="model">iac.vendor.buyer_email.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Change Buyer Email">
+                  <group>
+                      <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                      <field name="buyer_email"/>
+                      <field name="sales_email" required="1"/>
+                      <field name="other_emails"/>
+                  </group>
+                  <footer>
+                      <button name="change_buyer_email" type="object"
+                              string="Change" class="oe_highlight"/>
+                      or
+                      <button special="cancel" string="Cancel"/>
+                  </footer>
+              </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_vendor_buyer_email"
+            name="Change vendor's buyer email"
+            res_model="iac.vendor.buyer_email.wizard"
+            view_mode="form"
+            target="new"/>
+    </data>
+</odoo>

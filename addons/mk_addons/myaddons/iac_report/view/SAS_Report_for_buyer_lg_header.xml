@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report id="report_iac_asn_customs_sas_report_for_buyer_lg"
+        name="iac_report.qweb_iac_customs_sas_report"
+        model="iac.asn.customs.sas.search.data"
+        string="出入库单PDF"
+        report_type="qweb-html"
+    />
+</odoo>

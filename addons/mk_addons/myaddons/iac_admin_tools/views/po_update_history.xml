@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record id="view_iac_admin_po_disflag_tree" model="ir.ui.view">
+            <field name="name">Update Po Flag</field>
+            <field name="type">tree</field>
+            <field name="model">iac.admin.update.po.flag</field>
+            <field name="context">{ "flags": {"selectable": False} }</field>
+            <field name="arch" type="xml">
+                <tree string="Update Po Flag" create="false" editable="bottom" export="false">
+                    <field name="document_erp_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="vendor_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="buyer_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="display_flag" attrs="{'readonly': [('display_flag','=', True)]}"/>
+                    <field name="version_no"/>
+                    <field name="storage_location_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                </tree>
+            </field>
+        </record>
+
+      <record id="view_po_display_flag" model="ir.ui.view">
+          <field name="name">Po Display Flag</field>
+          <field name="type">form</field>
+          <field name="model">iac.admin.search.po.form.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Po Display Flag" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="po_nub" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                            <field name="display_flag"/>
+                            <!--<field name="valid_to"/>-->
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name='search_po_display_flag'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                    <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+              </form>
+
+          </field>
+
+        </record>
+
+         <record model="ir.actions.act_window" id="action_admin_update_po_display_flag">
+            <field name="name">Update Po Display Flag</field>
+            <field name="res_model">iac.admin.search.po.form.wizard</field>
+             <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <!--<field name="view_type">tree</field>-->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+      <record id="view_iac_admin_po_approve_state" model="ir.ui.view">
+            <field name="name">Update Po Approve State</field>
+            <field name="type">tree</field>
+            <field name="model">iac.admin.update.po.states</field>
+            <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <field name="arch" type="xml">
+                <tree string="Update Po state" create="false" edit="false" export="false">
+                    <field name="document_erp_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="vendor_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="buyer_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="display_flag" attrs="{'readonly': [('display_flag','=', True)]}"/>
+                    <field name="version_no"/>
+                    <field name="storage_location_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                </tree>
+            </field>
+        </record>
+
+      <record id="view_iacp_admin_update_approve_state" model="ir.ui.view">
+              <field name="name">Update Customs Line Qty</field>
+              <field name="type">form</field>
+              <field name="model">iac.admin.update.po.states</field>
+              <field name="arch" type="xml">
+                  <form string="Update Po state" create="false" edit="false">
+                      <header>
+                          <button String="Update state" type="object" class="oe_highlight" name="button_to_change_state" />
+                          <!--<button String="编辑订单行" states="pending,to_approve,unapproved" type="object" class="oe_highlight" name="button_to_edit_po_line" />-->
+                          <!--<button String="Call SAP" states="to sap" type="object" class="oe_highlight" name="button_to_sap" context="{'vendor_id':True}" />-->
+                          <!--<field name="state" widget="statusbar" statusbar_visible="pending,to approve,done" readonly="1"/>-->
+                          <!--<field name="stateate" widget="statusbar" statusbar_visible="wait_mm_approve,wait_lg_approve,mm_reject,lg_reject,interface_submit_success,interface_submit_fail,cancel,done"/>-->
+                      </header>
+                      <sheet>
+                          <group string="Po Header">
+                              <group>
+                                  <field name="name" readonly="1"/>
+                                  <field name="plant_id" readonly="1"/>
+                                  <field name="vendor_id" readonly="1" options="{'no_create': True,'no_open': True}"/>
+                                  <field name="state" readonly="1"/>
+                                  <field name="storage_location_id" readonly="1"/>
+                              </group>
+                              <group>
+                                  <field name="changed" readonly="1"/>
+                                  <field name="webflow_number" readonly="1"/>
+                                  <field name="version_no" readonly="1"/>
+                                  <field name="order_date" readonly="1"/>
+                                  <field name="buyer_id" readonly="1"/>
+                              </group>
+                          </group >
+                          <notebook>
+                              <page string="Po Lines" options="{'no_create': True,'no_open': True}" readonly="1">
+                                  <field name="order_line">
+                                      <tree string="customs entry" edit="false" create="false" delete="false">
+                                          <!--<button name="restore_sas_valid_export_qty" type='object' string="还原可退数量" class="oe_highlight"/>-->
+                                          <field name="name"/>
+                                          <field name="state"/>
+                                          <field name="delivery_date"/>
+                                          <field name="quantity" />
+                                          <field name="part_id" />
+                                          <field name="currency_id" />
+                                          <!--<field name="gds_spcf_model_desc" />-->
+                                          <!--<field name="dcl_unitcd"/>-->
+                                          <!--<field name="dcl_unit_id" string="申报单位名称"/>-->
+                                          <!--<field name="lawf_unitcd"/>-->
+                                          <!--&lt;!&ndash;<field name="lawf_unit_id" string="法1单位名称"/>&ndash;&gt;-->
+                                          <!--<field name="secd_lawf_unitcd"/>-->
+                                          <!--<field name="secd_lawf_unit_id" string="法2单位名称"/>-->
+                                          <!--<field name="natcd"/>-->
+                                          <!--<field name="destination_natcd"/>-->
+                                          <!--<field name="dcl_uprc_amt"/>-->
+                                          <!--<field name="dcl_total_amt"/>-->
+                                          <!--<field name="dcl_currcd"/>-->
+                                          <!--<field name="lawf_qty"/>-->
+                                          <!--<field name="secd_lawf_qty"/>-->
+                                          <!--<field name="dcl_qty"/>-->
+                                          <!--<field name="lvyrlf_modecd"/>-->
+                                          <!--<field name="orig_sas_no" string="对应的入库单编号"/>-->
+                                          <!--<field name="usetocod"/>-->
+                                      </tree>
+                                  </field>
+                              </page>
+                          </notebook>
+                      </sheet>
+                  </form>
+              </field>
+          </record>
+
+
+      <record id="view_po_approve_state" model="ir.ui.view">
+          <field name="name">Po Approve State</field>
+          <field name="type">form</field>
+          <field name="model">iac.admin.search.po.approve.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Po Display Flag" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="po_nub" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                            <!--<field name="display_flag"/>-->
+                            <!--<field name="valid_to"/>-->
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name='search_po_approve_state'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                    <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+              </form>
+
+          </field>
+
+        </record>
+
+        <record model="ir.actions.act_window" id="action_admin_update_po_approve_state">
+            <field name="name">Update Po Approve State</field>
+            <field name="res_model">iac.admin.search.po.approve.wizard</field>
+             <!--<field name="context">{ "flags": {"selectable": False} }</field>-->
+            <!--<field name="view_type">tree</field>-->
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+  </data>
+</odoo>

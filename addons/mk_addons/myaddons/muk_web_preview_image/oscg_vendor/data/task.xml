@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data noupdate="1">
+        <!-- 计算登录密码失效的定时任务 -->
+        <record model="ir.cron" id="ir_cron_scheduler_password_action">
+            <field name="name">自动计算登录密码过期日期</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'task.vendor.password'"/>
+            <field name="function" eval="'cron_vendor_password_expiration_date'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+        <!-- 计算附件失效的定时任务 -->
+        <record model="ir.cron" id="ir_cron_scheduler_attachment_action">
+            <field name="name">自动计算失效附件</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'task.document'"/>
+            <field name="function" eval="'cron_document_expiration_date'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+        <!-- 计算代理过期的定时任务 -->
+        <record model="ir.cron" id="ir_cron_scheduler_agent_action">
+            <field name="name">自动计算代理过期日期</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'task.agent.users'"/>
+            <field name="function" eval="'cron_agent_expiration_date'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+        <!-- 计算Vendor Change Basic生效日期的定时任务 -->
+        <record model="ir.cron" id="ir_cron_scheduler_change_basic_action">
+            <field name="name">自动计算Vendor Change Basic生效日期</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'iac.vendor.change.basic'"/>
+            <field name="function" eval="'cron_vendor_change_basic'"/>
+            <field name="args" eval="'()'" />
+        </record>
+
+        <!-- 计算Vendor Change Terms生效日期的定时任务 -->
+        <record model="ir.cron" id="ir_cron_scheduler_change_terms_action">
+            <field name="name">自动计算Vendor Change Terms生效日期</field>
+            <field name="active" eval="True"/>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="interval_number">5</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'iac.vendor.change.terms'"/>
+            <field name="function" eval="'cron_vendor_change_terms'"/>
+            <field name="args" eval="'()'" />
+        </record>
+    </data>
+</odoo>

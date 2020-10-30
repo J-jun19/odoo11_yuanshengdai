@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- menu -->
+        <!--一級菜單-->
+        <menuitem id="main_mail" name="Mail"/>
+
+        <!--菜單轉移到ASN下-->
+        <!--二級菜單-->
+        <menuitem id="secord_mail" name="Mail"
+                  parent="main_mail" sequence="40"/>
+
+        <!--三級菜單-->
+        <menuitem id="third_mail" name="mail" parent="secord_mail"
+                  action="mail_action" sequence="1"/>
+
+
+
+    </data>
+</odoo>

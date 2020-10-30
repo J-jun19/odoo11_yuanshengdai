@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--報表名稱：In-Transit ASN Price Changeable Report (改變寫法: call SP,將資料寫到 table裡 ) -->
+<!--#  Category :  Report: G/R-->
+<!--#  數據源   select * from "public"."v_changeble_intransit_asn"-->
+<!--author : IAC.Laura  20180524-->
+
+        <record id="view_iac_changeble_intransit_asn_report" model="ir.ui.view">
+            <field name="name">Changeble Intransit ASN Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.changeble.intransit.asn.report</field>
+            <field name="arch" type="xml">
+                <tree string="Changeble Intransit ASN Report" create="false">
+                    <field name="id"/>
+                    <field name="plant"/>
+                    <field name="asn"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="asn_date"/>
+                    <field name="asn_line"/>
+                    <field name="asn_qty"/>
+                    <field name="part"/>
+                    <field name="po_no"/>
+                    <field name="po_line"/>
+                    <field name="received"/>
+                    <field name="po_qty"/>
+                    <field name="open_qty"/>
+                    <field name="rfq_price"/>
+                    <field name="po_price"/>
+                    <field name="intransit_qty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='changeble_intransit_asn_wizard_form' model='ir.ui.view'>
+          <field name='name'>Changeble Intransit ASN Report</field>
+          <field name='model'>v.changeble.intransit.asn.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Changeble Intransit ASN Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}"  required="1"/>
+                            <field name="part_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_changeble_intransit_asn_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_transit_asn"
+                    name="Changeble Intransit ASN Report"
+                    res_model="v.changeble.intransit.asn.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

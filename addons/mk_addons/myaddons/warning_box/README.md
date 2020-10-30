@@ -1,0 +1,1 @@
+# Add Warning box. usage return self.env['warning_box'].info(title="title", message="the message")

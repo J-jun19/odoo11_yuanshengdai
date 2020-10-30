@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window id="action_wizard_portal_sop_report"
+                    name="Portal SOP"
+                    res_model="v.portal.sop.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+
+</odoo>

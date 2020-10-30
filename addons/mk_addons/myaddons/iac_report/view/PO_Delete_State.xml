@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <record id="view_deleted_po_report_list" model="ir.ui.view">
+            <field name="name">Deleted PO line Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.line.info</field>
+            <field name="arch" type="xml">
+                <tree string="Deleted PO line Report" create="false">
+                    <field name="plant_code"/>
+                    <field name="division"/>
+                    <field name="part_no"/>
+                    <field name="part_description"/>
+                    <field name="po_date"/>
+                    <field name="quantity"/>
+                    <field name="open_qty"/>
+                    <field name="price"/>
+                    <field name="price_unit"/>
+                    <field name="document_erp_id"/>
+                    <field name="document_line_erp_id"/>
+                    <field name="delivery_date"/>
+                    <field name="vendor_code"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="buyer_name"/>
+                    <field name="deletion_flag"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='iac_global_vendor_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>Deleted PO line Report</field>
+          <field name='model'>v.po.delete.state.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Attachment Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True,'on_change': '_on_change_plant_id'}" required="1" />
+                            <field name='part_id' options="{'no_create': True,'no_open': True}"/>
+                            <field name='buyer_code_id' options="{'no_create': True,'no_open': True}" />
+                            <field name='division_id' options="{'no_create': True,'no_open': True}" />
+                            <field name='vendor_id' options="{'no_create': True,'no_open': True}" />
+                            <field name='po_date_begin' required="1"/>
+                            <field name='po_date_end' required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                    <button name='search_po_line_report'
+                            string='Search'
+                            class='btn-primary'
+                            type='object'/>
+                    or
+                    <button string='Cancel'
+                            class='btn-default'
+                            special='cancel'/>
+                </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_po_delete_state"
+                    name="呈現刪除狀態的 PO"
+                    res_model="v.po.delete.state.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

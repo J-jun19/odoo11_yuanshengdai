@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_iac_po_cancel_history_list" model="ir.ui.view">
+            <field name="name">Po Cancel History Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.cancel.history.report</field>
+            <field name="arch" type="xml">
+                <tree string="Po Cancel History Report" create="false">
+                    <field name="id"/>
+                    <field name="order_code"/>
+                    <field name="order_line_code"/>
+                    <field name="buyer_code"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="division"/>
+                    <field name="part_no"/>
+                    <field name="part_description"/>
+                    <field name="original_qty"/>
+                    <field name="last_qty"/>
+                    <field name="current_qty"/>
+                    <field name="current_amt"/>
+                    <field name="currency"/>
+                    <field name="increase_qty"/>
+                    <field name="decrease_qty"/>
+                    <field name="deletion_flag"/>
+                    <field name="ori_deletion_flag"/>
+                    <field name="sap_deletion_flag"/>
+                    <field name="tax_code"/>
+                    <field name="change_state"/>
+                    <field name="change_date"/>
+                    <field name="plant"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_po_cancel_history_wizard_form' model='ir.ui.view'>
+          <field name='name'>Po Cancel History Report</field>
+          <field name='model'>iac.po.cancel.history.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Po Cancel HistoryReport">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="starttime" required='1'/>
+                            <field name="material_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_po_cancel_history_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_po_cancel_history"
+                    name="Po Cancel History Report"
+                    res_model="iac.po.cancel.history.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

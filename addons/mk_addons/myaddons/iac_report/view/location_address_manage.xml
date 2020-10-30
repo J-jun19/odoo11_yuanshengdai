@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_report_location_address_manage" model="ir.ui.view">
+          <field name="name">Storage Location Address Manage</field>
+          <field name="type">tree</field>
+          <field name="model">iac.storage.location.address</field>
+          <field name="arch" type="xml">
+              <tree string="Location Address" create="true">
+                  <field name="plant"/>
+                  <field name="storage_location"/>
+                  <field name="sloc_name"/>
+                  <field name="company_name"/>
+                  <field name="sloc_address"/>
+                  <field name="sloc_zip"/>
+                  <field name="sloc_chi_name"/>
+                  <field name="sloc_state"/>
+                  <field name="sloc_eng_name"/>
+                  <field name="sloc_country"/>
+                  <field name="sloc_city"/>
+              </tree>
+          </field>
+      </record>
+
+
+        <record model="ir.actions.act_window"  id="action_wizard_location_address_manage">
+          <field name="name">Storage Location Address Manage</field>
+          <field name="res_model">iac.storage.location.address</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="target">main</field>
+        </record>
+
+    </data>
+
+</odoo>

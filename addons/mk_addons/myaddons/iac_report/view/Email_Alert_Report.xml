@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_mail_alert_report" model="ir.ui.view">
+            <field name="name">Mail Alert Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.email.alert.report</field>
+            <field name="arch" type="xml">
+                <tree string="Mail Alert Report" create="false">
+                    <field name="create_date"/>
+                    <field name="subject"/>
+                    <field name="email_to"/>
+                    <field name="email_cc"/>
+                    <field name="body"/>
+                    <field name="state"/>
+                    <field name="failure_reason"/>
+                    <field name="record_name"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='iac_mail_alert_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>Mail Alert Report</field>
+          <field name='model'>v.email.alert.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Mail Alert Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='subject'/>
+                            <field name='mail_to'/>
+                            <field name='from_date'/>
+                            <field name='to_date'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_mail_alert_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_wizard_email_alert_report"
+                    name="Email Alert Report"
+                    res_model="v.email.alert.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

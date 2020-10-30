@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="view_payment_term_view_list" model="ir.ui.view">
+        <field name="name">Payment Term</field>
+        <field name="type">tree</field>
+        <field name="model">payment.term</field>
+        <field name="arch" type="xml">
+            <tree string="Payment Term" create="false">
+                <field name="payment_term"/>
+                <field name="payment_description"/>
+            </tree>
+        </field>
+    </record>
+
+      <record id="view_incoterm_view_list" model="ir.ui.view">
+          <field name="name">Incoterm</field>
+          <field name="type">tree</field>
+          <field name="model">incoterm</field>
+          <field name="arch" type="xml">
+              <tree string="Incoterm" create="false">
+                  <field name="incoterm"/>
+                  <field name="incoterm_description"/>
+              </tree>
+          </field>
+      </record>
+
+
+  </data>
+</odoo>

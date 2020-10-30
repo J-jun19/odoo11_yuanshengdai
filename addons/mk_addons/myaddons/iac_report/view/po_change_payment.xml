@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_iac_po_payment" model="ir.ui.view">
+            <field name="name">PoChangePayment</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.change.payment</field>
+            <field name="arch" type="xml">
+                <tree string="PoChangePayment" create="false">
+                    <field name="id"/>
+                    <field name="plant_code"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="document_erp_id"/>
+                    <field name="document_line_erp_id"/>
+                    <field name="old_payment"/>
+                    <field name="old_incoterm"/>
+                    <field name="old_incoterm"/>
+                    <field name="old_destination"/>
+                    <field name="new_payment"/>
+                    <field name="new_incoterm"/>
+                    <field name="new_destination"/>
+                    <field name="part_no"/>
+                    <field name="description"/>
+                    <field name="price"/>
+                    <field name="price_unit"/>
+                    <field name="amount"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="create_by"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_po_change_payment_wizard_form' model='ir.ui.view'>
+          <field name='name'>PO Payment and FOB Change History</field>
+          <field name='model'>iac.po.change.payment.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="PoChangePayment">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="order_no"/>
+                            <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="part_no" options="{'no_create': True,'no_open': True}"/>
+                            <field name="buyer_ids" widget="many2many_tags" options="{'no_create': True,'no_open': True}"/>
+                            <field name="starttime" required="1"/>
+                            <field name="endtime"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_po_change_payment'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_po_change_payment"
+                    name="PO Payment and FOB Change History"
+                    res_model="iac.po.change.payment.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

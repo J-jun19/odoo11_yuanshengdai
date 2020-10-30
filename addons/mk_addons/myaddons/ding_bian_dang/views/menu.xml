@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--一级菜单-->
+        <menuitem id="main_diancai_menu_id"
+                  name="ding_bian_dang"
+                  sequence="1" />
+
+        <!--二级菜单-->
+        <menuitem id="food_menu_id"
+                  name="food"
+                  parent="main_diancai_menu_id"
+                  sequence="2" />
+        <!--二级菜单-->
+        <!--<menuitem id="order"-->
+                  <!--name="order"-->
+                  <!--parengt="main_diancan_menu"-->
+                  <!--sequence="1" />-->
+    </data>
+</odoo>

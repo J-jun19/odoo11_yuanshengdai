@@ -1,0 +1,843 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* iac_vendor
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0-20170803\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-19 06:41+0000\n"
+"PO-Revision-Date: 2017-08-19 06:41+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_account_number
+msgid "Account number"
+msgstr "Account number"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_address_city
+msgid "Address - City *"
+msgstr "Address - City *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_address_country
+msgid "Address - Country Code *"
+msgstr "Address - Country Code *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_address_district
+msgid "Address - District *"
+msgstr "Address - District *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_address_pobox
+msgid "Address - P.O. Box"
+msgstr "Address - P.O. Box"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_address_postalcode
+msgid "Address - Postal Code *"
+msgstr "Address - Postal Code *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_address_street
+msgid "Address - Street *"
+msgstr "Address - Street *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_attach_lines
+msgid "Attach lines"
+msgstr "Attach lines"
+
+#. module: iac_vendor
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_form
+msgid "Bank"
+msgstr "Bank"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_bank_city
+msgid "Bank city"
+msgstr "Bank city"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_bank_country
+msgid "Bank country"
+msgstr "Bank country"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_bank_id
+msgid "Bank id"
+msgstr "Bank id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_bank_name
+msgid "Bank name"
+msgstr "Bank name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_bank_street
+msgid "Bank street"
+msgstr "Bank street"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_branch_name
+msgid "Branch name"
+msgstr "Branch name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_brand_name
+msgid "Brand name"
+msgstr "Brand name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_buyer_email
+msgid "Buyer email *"
+msgstr "Buyer email *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_capacity_month
+msgid "Capacity month"
+msgstr "Capacity month"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_capital
+msgid "Capital(USD)"
+msgstr "Capital(USD)"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_company_fax
+msgid "Company Fax *"
+msgstr "Company Fax *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_license_number
+msgid "Company License No. *"
+msgstr "Company License No. *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_name1_cn
+msgid "Company Name 1(Chinese)*"
+msgstr "Company Name 1(Chinese)*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_name1_en
+msgid "Company Name 1(English)*"
+msgstr "Company Name 1(English)*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_name2_cn
+msgid "Company Name 2(Chinese)"
+msgstr "Company Name 2(Chinese)"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_name2_en
+msgid "Company Name 2(English)"
+msgstr "Company Name 2(English)"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_company_telephone1
+msgid "Company Tel. 1 *"
+msgstr "Company Tel. 1 *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_company_telephone2
+msgid "Company Tel. 2"
+msgstr "Company Tel. 2"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_web_site
+msgid "Company Web Site"
+msgstr "Company Web Site"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_create_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_create_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_create_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_create_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_create_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_created_by
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_create_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_create_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_create_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_create_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_create_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_creation_date
+msgid "Creation date"
+msgstr "Creation date"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_currency
+msgid "Currency *"
+msgstr "Currency *"
+
+#. module: iac_vendor
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_form
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_regist_form
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_supplier_form
+msgid "Currency Transform"
+msgstr "Currency Transform"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_current_class
+msgid "Current class"
+msgstr "Current class"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_duns_number
+msgid "DUNS Number"
+msgstr "DUNS Number"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_display_name
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_display_name
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_display_name
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_display_name
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_display_name
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_erp_system_id
+msgid "Erp system id"
+msgstr "Erp system id"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,factory_type:0
+msgid "FOUNDRY"
+msgstr "FOUNDRY"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_factory_count
+msgid "Factory Number"
+msgstr "Factory Number"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_factory_address
+msgid "Factory address"
+msgstr "Factory address"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_factory_location
+msgid "Factory location"
+msgstr "Factory location"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_factory_type
+msgid "Factory type"
+msgstr "Factory type"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_global_vendor_code
+msgid "Global vendor code"
+msgstr "Global vendor code"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_id
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_id
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_id
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_id
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_id
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_reg_id
+msgid "ID"
+msgstr "ID"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_iso_certificate
+msgid "ISO Certificate *"
+msgstr "ISO Certificate *"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,relation:0
+msgid "Joint-Venture"
+msgstr "Joint-Venture"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_language_key
+msgid "Language key"
+msgstr "Language key"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory___last_update
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product___last_update
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor___last_update
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category___last_update
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line___last_update
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist___last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_write_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_write_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_write_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_write_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_write_uid
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_write_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_write_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_write_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_write_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_write_date
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_write_date
+msgid "Last Updated on"
+msgstr "Last Updated on"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_last_asn_no
+msgid "Last asn no"
+msgstr "Last asn no"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_last_asn_no_sec
+msgid "Last asn no sec"
+msgstr "Last asn no sec"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_last_si_no
+msgid "Last si no"
+msgstr "Last si no"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_last_update_date
+msgid "Last update date"
+msgstr "Last update date"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_last_updated_by
+msgid "Last updated by"
+msgstr "Last updated by"
+
+#. module: iac_vendor
+#: selection:iac.vendor.regist,state:0
+msgid "Locked"
+msgstr "Locked"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_main_flag
+msgid "Main flag"
+msgstr "Main flag"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_conglomerate
+msgid "Major Conglomerate"
+msgstr "Major Conglomerate"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_shareholders
+msgid "Major Shareholders & Shares"
+msgstr "Major Shareholders & Shares"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_major_customer
+msgid "Major customer"
+msgstr "Major customer"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_mother_address_cn
+msgid "Mother Company Address(Chinese)*"
+msgstr "Mother Company Address(Chinese)*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_mother_address_en
+msgid "Mother Company Address(English)*"
+msgstr "Mother Company Address(English)*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_mother_name_cn
+msgid "Mother Company Name(Chinese)*"
+msgstr "Mother Company Name(Chinese)*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_mother_name_en
+msgid "Mother Company Name(English)*"
+msgstr "Mother Company Name(English)*"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,factory_type:0
+msgid "NORMAL"
+msgstr "NORMAL"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_factory_name
+msgid "Name"
+msgstr "Name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_employee_number
+msgid "Number of Employee*"
+msgstr "Number of Employee*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_order_currency
+msgid "Order currency"
+msgstr "Order currency"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,relation:0
+msgid "Outsourcing"
+msgstr "Outsourcing"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,factory_type:0
+msgid "PACKAGING"
+msgstr "PACKAGING"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_parent_id
+msgid "Parent id"
+msgstr "Parent id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_payment_block
+msgid "Payment block"
+msgstr "Payment block"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_product_class
+msgid "Product class"
+msgstr "Product class"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_product_type
+msgid "Product type"
+msgstr "Product type"
+
+#. module: iac_vendor
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_form
+msgid "Products"
+msgstr "Products"
+
+#. module: iac_vendor
+#: selection:iac.vendor.regist,state:0
+msgid "Purchase Order"
+msgstr "Purchase Order"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_purchasing_block
+msgid "Purchasing block"
+msgstr "Purchasing block"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_qa_contact
+msgid "Qa contact"
+msgstr "Qa contact"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_qa_email
+msgid "Qa email"
+msgstr "Qa email"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_qa_tel
+msgid "Qa tel"
+msgstr "Qa tel"
+
+#. module: iac_vendor
+#: selection:iac.vendor.regist,state:0
+msgid "RFQ"
+msgstr "RFQ"
+
+#. module: iac_vendor
+#: selection:iac.vendor.regist,state:0
+msgid "RFQ Sent"
+msgstr "RFQ Sent"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_real_online
+msgid "Real online"
+msgstr "Real online"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_relation
+msgid "Relation"
+msgstr "Relation"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_sales_mobile
+msgid "Sales Mobile Phone"
+msgstr "Sales Mobile Phone"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_sales_telephone
+msgid "Sales Office Tel. *"
+msgstr "Sales Office Tel. *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_sales_person
+msgid "Sales Person *"
+msgstr "Sales Person *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_sales_email
+msgid "Contact email *"
+msgstr "Contact email *"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,relation:0
+msgid "Self-Owned"
+msgstr "Self-Owned"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_sh_import_flag
+msgid "Sh import flag"
+msgstr "Sh import flag"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_ship_code
+msgid "Ship code"
+msgstr "Ship code"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_show_in
+msgid "Show in"
+msgstr "Show in"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_si_flag
+msgid "Si flag"
+msgstr "Si flag"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_sort_field
+msgid "Sort field"
+msgstr "Sort field"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_spotflag
+msgid "Spotflag"
+msgstr "Spotflag"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_state
+msgid "Status"
+msgstr "Status"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_supplier_category
+msgid "Supplier Category *"
+msgstr "Supplier Category *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_short_name
+msgid "Supplier Short Name(Only English)*"
+msgstr "Supplier Short Name(Only English)*"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_supplier_type
+msgid "Supplier Type *"
+msgstr "Supplier Type *"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_supplier_company_id
+msgid "Supplier company id"
+msgstr "Supplier company id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_swift_code
+msgid "Swift code"
+msgstr "Swift code"
+
+#. module: iac_vendor
+#: selection:iac.vendor.factory,factory_type:0
+msgid "TESTING"
+msgstr "TESTING"
+
+#. module: iac_vendor
+#: selection:iac.vendor.regist,state:0
+msgid "To Approve"
+msgstr "To Approve"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_transfer_number
+msgid "Transfer number"
+msgstr "Transfer number"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_ur_flag
+msgid "Ur flag"
+msgstr "Ur flag"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_vat_number
+msgid "VAT Number(Taiwanareasupplieronly)"
+msgstr "VAT Number(Taiwanareasupplieronly)"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vat_reg_no
+msgid "Vat reg no"
+msgstr "Vat reg no"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_vendor_temp_id
+msgid "Vendor Temp ID"
+msgstr "Vendor Temp ID"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_default_id
+msgid "Vendor default id"
+msgstr "Vendor default id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_delivery_rating
+msgid "Vendor delivery rating"
+msgstr "Vendor delivery rating"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_erp_id
+msgid "Vendor erp id"
+msgstr ""
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_group
+msgid "Vendor group"
+msgstr "Vendor group"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_name
+msgid "Vendor name"
+msgstr "Vendor name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_quality_rating
+msgid "Vendor quality rating"
+msgstr "Vendor quality rating"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_sap_status
+msgid "Vendor sap status"
+msgstr "Vendor sap status"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_site_id
+msgid "Vendor site id"
+msgstr "Vendor site id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_site_id_1
+msgid "Vendor site id 1"
+msgstr "Vendor site id 1"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_status
+msgid "Vendor status"
+msgstr "Vendor status"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_title
+msgid "Vendor title"
+msgstr "Vendor title"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_type
+msgid "Vendor type"
+msgstr "Vendor type"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vendor_url
+msgid "Vendor url"
+msgstr "Vendor url"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vmi_due_in_weeks
+msgid "Vmi due in weeks"
+msgstr "Vmi due in weeks"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_vmi_enabled
+msgid "Vmi enabled"
+msgstr "Vmi enabled"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_z_buyer_erp_id
+msgid "Z buyer erp id"
+msgstr "Z buyer erp id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_z_confirmation_control
+msgid "Z confirmation control"
+msgstr "Z confirmation control"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_z_eval_receipt_stlmt
+msgid "Z eval receipt stlmt"
+msgstr "Z eval receipt stlmt"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_z_fob
+msgid "Z fob"
+msgstr "Z fob"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_z_fob2
+msgid "Z fob2"
+msgstr "Z fob2"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_z_terms_code
+msgid "Z terms code"
+msgstr "Z terms code"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_company_name
+msgid "company_name"
+msgstr "company_name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_company_name2
+msgid "company_name2"
+msgstr "company_name2"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_company_no
+msgid "company_no"
+msgstr "company_no"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_regist_datas
+msgid "excel文件"
+msgstr "excel文件"
+
+#. module: iac_vendor
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_form
+msgid "factory"
+msgstr "factory"
+
+#. module: iac_vendor
+#: model:ir.model,name:iac_vendor.model_iac_factory
+msgid "factory_line"
+msgstr "factory_line"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_factory_lines
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_form
+msgid "factory_lines"
+msgstr "factory_lines"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_global_address
+msgid "global_address"
+msgstr "global_address"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_global_address2
+msgid "global_address2"
+msgstr "global_address2"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_global_id
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_supplier_form
+msgid "global_id"
+msgstr "global_id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_global_name
+msgid "global_name"
+msgstr "global_name"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_global_name2
+msgid "global_name2"
+msgstr "global_name2"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_global_vendor_id
+msgid "global_vendor_id"
+msgstr "global_vendor_id"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_factory_Vendor_id
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_product_Vendor_id
+msgid "id"
+msgstr "id"
+
+#. module: iac_vendor
+#: model:ir.actions.act_window,name:iac_vendor.action_view_vendor_form
+msgid "iac.vendor"
+msgstr "iac.vendor"
+
+#. module: iac_vendor
+#: model:ir.actions.act_window,name:iac_vendor.action_view_vendor_regist_form
+msgid "iac.vendor.regist"
+msgstr "iac.vendor.regist"
+
+#. module: iac_vendor
+#: model:ir.actions.act_window,name:iac_vendor.action_view_vendor_supplier_form
+msgid "iac.vendor.supplier"
+msgstr "iac.vendor.supplier"
+
+#. module: iac_vendor
+#: model:ir.model,name:iac_vendor.model_iac_product
+msgid "product_line"
+msgstr "product_line"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_product_lines
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_form
+msgid "product_lines"
+msgstr "product_lines"
+
+#. module: iac_vendor
+#: model:ir.ui.menu,name:iac_vendor.iac_vendor_regist
+msgid "regist"
+msgstr "regist"
+
+#. module: iac_vendor
+#: model:ir.ui.menu,name:iac_vendor.iac_vendor_supplier
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_supplier_form
+msgid "supplier"
+msgstr "supplier"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_supplier_lines
+#: model:ir.ui.view,arch_db:iac_vendor.view_vendor_supplier_form
+msgid "supplier_lines"
+msgstr "supplier_lines"
+
+#. module: iac_vendor
+#: model:ir.model.fields,field_description:iac_vendor.field_iac_vendor_category_line_vat_no
+msgid "vat_no"
+msgstr "vat_no"
+
+#. module: iac_vendor
+#: model:ir.ui.menu,name:iac_vendor.menu_vendor
+#: model:ir.ui.menu,name:iac_vendor.menu_vendor_regist
+#: model:ir.ui.menu,name:iac_vendor.iac_vendor
+msgid "vendor"
+msgstr "vendor"
+
+#. module: iac_vendor
+#: model:ir.model,name:iac_vendor.model_iac_vendor_regist
+msgid "vendorRegist"
+msgstr "vendorRegist"
+
+#. module: iac_vendor
+#: model:ir.model,name:iac_vendor.model_iac_vendor_category
+msgid "vendor_category"
+msgstr "vendor_category"
+
+#. module: iac_vendor
+#: model:ir.model,name:iac_vendor.model_iac_vendor_category_line
+msgid "vendor_category_line"
+msgstr "vendor_category_line"
+

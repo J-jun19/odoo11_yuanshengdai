@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+        <record id="view_asn_without_declare_tree" model="ir.ui.view">
+            <field name="name">Asn Without Declare Data</field>
+            <field name="type">tree</field>
+            <field name="model">iac.custom.data.unfinished.pub</field>
+            <field name="arch" type="xml">
+              <tree create="false" delete="false" edit="false">
+                  <field name="vendor_code"/>
+                  <field name="manu_no"/>
+                  <field name="manu_name"/>
+                  <field name="delivery"/>
+                  <field name="item_no"/>
+                  <field name="transit_time"/>
+                  <field name="last_entry_time"/>
+                  <field name="g_name" />
+                  <field name="part_no" />
+                  <field name="quantity_in" />
+                  <field name="amount"/>
+                  <field name="g_no"/>
+                  <field name="quantity_back"/>
+                  <field name="sku"/>
+                  <field name="additional_code"/>
+                  <field name="entry_apply_no"/>
+                  <!--<field name="approve_role_list"/>-->
+                  <field name="pre_entry_no"/>
+              </tree>
+          </field>
+
+        </record>
+
+        <record id="view_asn_without_declare_form" model="ir.ui.view">
+          <field name="name">without declare data form</field>
+          <field name="type">form</field>
+          <field name="model">asn.without.declare.data.wizard</field>
+          <field name="arch" type="xml">
+              <form string="without declare Form" create="false" edit="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="vendor_code" required="1" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>
+                            <field name="manu_no"/>
+                            <field name="transit_time"/>
+                            <!--<field name="buyer_code"/>-->
+                            <field name="last_entry_time"/>
+                            <field name="only_days"/>
+                        </group>
+                    </group>
+                </sheet>
+
+                <footer>
+                    <button name='asn_without_declare_data'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                    <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+              </form>
+
+          </field>
+
+        </record>
+
+        <record model="ir.actions.act_window"  id="action_wizard_without_declare_data">
+          <field name="name">ASN Without declare data</field>
+          <field name="res_model">asn.without.declare.data.wizard</field>
+          <field name="view_type">tree</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+        </record>
+
+  </data>
+</odoo>

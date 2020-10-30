@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_dclass_approval_log_list" model="ir.ui.view">
+            <field name="name">Vendor D Class Approval Log</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.dclass.approval.log</field>
+            <field name="arch" type="xml">
+                    <tree string="Vendor D Class Approval Log" create="false">
+                        <field name="company_no"/>
+                        <field name="sc_name"/>
+                        <field name="name"/>
+                        <field name="user_score"/>
+                        <field name="user_class"/>
+                        <field name="memo"/>
+                        <field name="create_date"/>
+                    </tree>
+            </field>
+        </record>
+
+        <record id="iac_vendor_dclass_approval_log_wizard_form" model="ir.ui.view">
+            <field name="name">Vendor D Class Approval Log</field>
+            <field name="model">vendor.dclass.approval.log.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Vendor D Class Approval Log">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="supplier_company_id" options="{'no_create':True,'no_open':True}"/>
+                                <field name="starttime"/>
+                                <field name="endtime"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="search_vendor_dclass_approval_log"
+                                string="Search"
+                                class="btn-primary"
+                                type="object"/>
+                        or
+                        <button string="Cancel"
+                                class="btn-default"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_wizard_vendor_dclass_approval_log"
+                    name="Vendor D Class Approval Log"
+                    res_model="vendor.dclass.approval.log.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+
+        <record id="supplier_utilization_statement_wizard_form" model="ir.ui.view">
+            <field name="name">supplier_utilization_statement_wizard</field>
+            <field name="model">iac.supplier.utilization.statement.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="plant_id" required="1" options="{'no_create':True,'no_edit':True,'no_open':True}"/>
+                            <field name="vendor_id" options="{'no_create':True,'no_edit':True,'no_open':True}"/>
+                            <!--<field name="flag"/>-->
+                        </group>
+
+                    </sheet>
+                    <footer>
+                    <button name='search_supplier_utilization'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+                </footer>
+                </form>
+
+            </field>
+        </record>
+
+        <record id="supplier_utilization_statement_tree" model="ir.ui.view">
+            <field name="name">supplier_utilization_statement</field>
+            <field name="model">iac.supplier.utilization.statement</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="vendor_account"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="plant_code"/>
+                    <field name="last_ff_date"/>
+                    <field name="last_vu_date"/>
+                    <field name="last_reply_date"/>
+                    <field name="last_ca_date"/>
+                    <field name="last_cala_date"/>
+                    <field name="last_confirm_date"/>
+                    <field name="buyer_email"/>
+                    <field name="has_action"/>
+                </tree>
+            </field>
+        </record>
+
+        <act_window id="action_wizard_supplier_utilization_statement"
+                    name="Supplier Utilization Statement Report"
+                    res_model="iac.supplier.utilization.statement.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

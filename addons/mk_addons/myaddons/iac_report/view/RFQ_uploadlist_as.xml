@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+       <record id="view_rfq_import_as_report_list" model="ir.ui.view">
+            <field name="name">Info Record Upload List AS</field>
+            <field name="type">tree</field>
+            <field name="model">v.iac.rfq.import.as.report</field>
+            <field name="arch" type="xml">
+                <tree string="Info Record Upload List AS" create="false">
+                    <field name="state_as"/>
+                    <field name="part_no"/>
+                    <field name="vendor_code"/>
+                    <field name="upload_date"/>
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="input_price"/>
+                    <field name="currency"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="buyer_name"/>
+                    <field name="price_control"/>
+                    <field name="memo"/>
+                    <field name="vendor_part_no"/>
+                    <field name="login_as"/>
+                    <field name="name_as"/>
+                    <field name="state_mm"/>
+                    <field name="lt"/>
+                    <field name="moq"/>
+                    <field name="mpq"/>
+                    <field name="rw"/>
+                    <field name="cw"/>
+                    <field name="tax"/>
+                    <field name="login_mm"/>
+                    <field name="name_mm"/>
+                    <field name="mm_update_date"/>
+                    <field name="rfq_no"/>
+                    <field name="state_rfq"/>
+                    <field name="webflow_number"/>
+                    <field name="rfq_update_time"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='rfq_import_as_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>Info Record Upload List AS</field>
+          <field name='model'>v.iac.rfq.import.as.report.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Info Record Upload List AS Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name='plant_id' widget="many2one_tags" options="{'no_create': True}"/>
+                            <field name='vendor_code'/>
+                            <field name='part_no'/>
+                            <field name='buyer_ids' options="{'no_create': True}" widget="many2many_tags"/>
+                            <field name='valid_from'/>
+                            <field name='valid_to'/>
+                            <field name='upload_date'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_rfq_import_as_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_rfq_import_as_report"
+                    name="Info Record Upload List AS Report"
+                    res_model="v.iac.rfq.import.as.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+      <record id="view_search_iac_purchase_order_line_mass_change" model="ir.ui.view">
+          <field name="name">iac.purchase.order.line.mass.change.search</field>
+          <field name="model">iac.purchase.order.line.mass.change</field>
+          <field name="arch" type="xml">
+              <search string="pm_events">
+                  <field name="order_id" filter_domain="[('order_id','ilike',self)]" string="PO No"/>
+                  <field name="part_id" filter_domain="[('part_id','ilike',self)]" string="Part No"/>
+                  <group expand="0" string="Group By">
+                      <filter string="Vendor" domain="" context="{'group_by':'vendor_id'}"/>
+                      <filter string="Plant" domain="" context="{'group_by':'plant_id'}"/>
+                  </group>
+              </search>
+          </field>
+      </record>
+
+      <record id="view_iac_purchase_order_line_mass_change_list" model="ir.ui.view">
+          <field name="name">Purchase Order Line</field>
+          <field name="type">tree</field>
+          <field name="model">iac.purchase.order.line.mass.change</field>
+          <field name="arch" type="xml">
+              <tree string="Purchase Order Line" create="false" editable="True">
+                  <field name="plant_id" readonly="1" options="{'no_open': True}"/>
+                  <field name="vendor_id" readonly="1" options="{'no_open': True}"/>
+                  <field name="order_id" readonly="1" options="{'no_open': True}"/>
+                  <field name="order_line_code" readonly="1"/>
+                  <field name="part_id" readonly="1" options="{'no_open': True}"/>
+                  <field name="division" readonly="1"/>
+                  <field name="quantity" readonly="1"/>
+                  <field name="gr_qty" readonly="1"/>
+                  <field name="on_road_qty" readonly="1"/>
+                  <field name="open_qty" readonly="1"/>
+                  <field name="order_date" readonly="1"/>
+                  <field name="currency_id" readonly="1" options="{'no_open': True}"/>
+                  <field name="price" readonly="1"/>
+                  <field name="last_price" />
+                  <field name="last_price_type" readonly="1"/>
+                  <field name="date_base" readonly="1"/>
+              </tree>
+          </field>
+      </record>
+
+
+
+      <record id="view_iac_purchase_order_line_mass_change_form" model="ir.ui.view">
+          <field name="name">Purchase Order Vendor Confirm</field>
+          <field name="type">form</field>
+          <field name="model">iac.purchase.order.line.mass.change</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Order Vendor Confirm" create="false" edit="false">
+                  <header>
+                      <button String="确认" states="pending" type="object" class="oe_highlight" name="button_to_change" />
+                      <field name="state" widget="statusbar" statusbar_visible="unconfirmed,to confirm,confirmed,rejected" readonly="1"/>
+                  </header>
+                  <sheet>
+                      <group>
+                          <group>
+                              <field name="order_id" readonly="1"/>
+                              <field name="part_id" readonly="1"/>
+                              <field name="vendor_part_no" readonly="1"/>
+
+                              <field name="vendor_part_no" readonly="1"/>
+                              <field name="storage_location" readonly="1" />
+
+
+                              <field name="odoo_deletion_flag" readonly="1"/>
+                          </group>
+                          <group>
+                              <field name="price" readonly="1"/>
+                              <field name="price_unit" readonly="1"/>
+                              <field name="quantity" readonly="1"/>
+                              <field name="delivery_date" readonly="1"/>
+                              <field name="vendor_delivery_date"/>
+                              <field name="order_date" readonly="1"/>
+                              <field name="state_msg" readonly="1"/>
+                              <field name="purchase_req_no" readonly="1"/>
+                              <field name="purchase_req_item_no" readonly="1"/>
+                          </group>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window"  id="action_view_iac_purchase_order_line_mass_change_list">
+          <field name="name">Cost Down/Cost Up List</field>
+          <field name="res_model">iac.purchase.order.line.mass.change</field>
+          <field name="view_type">tree</field>
+          <field name="view_mode">tree</field>
+          <field name="target">main</field>
+          <field name="view_id" ref="view_iac_purchase_order_line_mass_change_list"/>
+      </record>
+
+
+      <!-- 单笔和批量送生成po change -->
+      <record id="action_server_iac_purchase_order_line_mass_change" model="ir.actions.server">
+          <field name="name">Update Price</field>
+          <field name="type">ir.actions.server</field>
+          <field name="model_id" ref="model_iac_purchase_order_line_mass_change"/>
+          <field name="state">code</field>
+          <field name="code">
+              if records:
+              action = records.button_to_update_price()
+          </field>
+      </record>
+
+      <record id="action_server_value_iac_purchase_order_line_mass_change" model="ir.values">
+          <field name="name">Update Price</field>
+          <field name="model_id" ref="model_iac_purchase_order"/>
+          <field name="model">iac.purchase.order.line.mass.change</field>
+          <field name="key2">client_action_multi</field>
+          <field eval="'ir.actions.server,%d'%action_server_iac_purchase_order_line_mass_change" name="value"/>
+      </record>
+
+
+      <record id='iac_purchase_order_mass_wizard_form' model='ir.ui.view'>
+          <field name='name'>iac purchase order mass wizard form view</field>
+          <field name='model'>iac.purchase.order.mass.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Borrow Purchase Order">
+                  <sheet>
+                      <group>
+                          <group>
+                              <field name='plant_id' options="{'no_create': True, 'no_edit': True,'on_change': '_onchange_plant_id'}"/>
+                              <field name='vendor_id' options="{'no_create': True, 'no_edit': True}" domain="[('plant', '=', plant_id)]"	attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                              <field name="part_id" options="{'no_create': True, 'no_edit': True}"  domain="[('plant_id', '=', plant_id)]"	attrs="{'readonly': [('plant_id', '=', False)]}"/>
+                              <field name="order_code"/>
+                          </group>
+                          <group>
+                              <field name="date_from"/>
+                              <field name="date_to"/>
+                              <field name="date_base"/>
+                          </group>
+                      </group>
+                  </sheet>
+                  <footer>
+                      <button name='search_purchase_orders'
+                              string='Search'
+                              class='btn-primary'
+                              type='object'/>
+                      or
+                      <button string='Cancel'
+                              class='btn-default'
+                              special='cancel'/>
+                  </footer>
+              </form>
+          </field>
+      </record>
+
+
+      <act_window id="action_mass_wizard_iac_purchase_order" name="PO Change Mass" res_model="iac.purchase.order.mass.wizard" view_mode="form" target="new"/>
+
+
+  </data>
+</odoo>

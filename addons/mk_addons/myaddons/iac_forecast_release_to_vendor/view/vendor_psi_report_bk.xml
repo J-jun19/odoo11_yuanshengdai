@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!--MM 下载rfq的向导-->
+      <record id="view_iac_vendor_psi_report_form_bk" model="ir.ui.view">
+          <field name="name">iac.vendor.psi.report.wizard</field>
+          <field name="model">iac.vendor.psi.report.wizard.bk</field>
+          <field name="arch" type="xml">
+              <form string="Wizard tools">
+                  <group>
+                      <field name="buyer_id" options="{'no_create': True, 'no_edit': True}"/>
+                      <field name="buyer_name_cn" options="{'no_create': True, 'no_edit': True}"/>
+                      <field name="buyer_name_en" options="{'no_create': True, 'no_edit': True}"/>
+                      <field name="department" options="{'no_create': True, 'no_edit': True}"/>
+                      <field name="vendor_id" options="{'no_create': True, 'no_edit': True}" required="1"/>
+                      <field name="vendor_name_cn" options="{'no_create': True, 'no_edit': True}"/>
+                      <field name="vendor_name_en" options="{'no_create': True, 'no_edit': True}"/>
+                  </group>
+
+                  <footer>
+                      <button name="action_confirm" string="Confirm" type="object"  class="oe_highlight"  />
+                      or
+                      <button string="Cancel" class="oe_link" special="cancel" />
+                  </footer>
+              </form>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window"  id="action_iac_vendor_psi_report_form_bk">
+          <field name="name">iac.vendor.psi.report.wizard</field>
+          <field name="res_model">iac.vendor.psi.report.wizard.bk</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+      </record>
+  </data>
+</odoo>

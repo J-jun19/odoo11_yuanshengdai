@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_iac_po_price_change_history" model="ir.ui.view">
+            <field name="name">PoPriceChangeHistoryReport</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.price.change.history</field>
+            <field name="arch" type="xml">
+                <tree string="Po Price Change History Report" create="false">
+                    <field name="plant"/>
+                    <field name="division"/>
+                    <field name="order_code"/>
+                    <field name="order_line_code"/>
+                    <field name="buyer_code"/>
+                    <field name="buyer_name"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="part_no"/>
+                    <field name="part_description"/>
+                    <field name="old_price" string= "Last Price"/>
+                    <field name="new_price"/>
+                    <field name="delta"/>
+                    <field name="price_unit"/>
+                    <field name="currency"/>
+                    <field name="rfq_price"/>
+                    <field name="rfq_price_unit"/>
+                    <field name="valid_from"/>
+                    <field name="valid_to"/>
+                    <field name="change_state"/>
+                    <field name="original_quantity"/>
+                    <field name="last_quantity"/>
+                    <field name="new_quantity"/>
+                    <field name="gr_qty"/>
+                    <field name="open_qty"/>
+                    <field name="current_amt"/>
+                    <field name="tax_code"/>
+                    <field name="change_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='iac_po_price_change_history_wizard_form' model='ir.ui.view'>
+          <field name='name'>Po Price Change History Report</field>
+          <field name='model'>iac.po.price.change.history.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Po Price Change History Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="order_code"/>
+                            <field name="part_no" options="{'no_create': True,'no_open': True}"/>
+                            <field name="division_ids" widget="many2many_tags" options="{'no_create': True,'no_open': True}"/>
+                            <field name="buyer_ids" widget="many2many_tags" options="{'no_create': True,'no_open': True}"/>
+                            <field name="starttime" required="1"/>
+                            <field name="endtime"/>
+                            <field name="change_ids"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_po_price_change_history_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_po_price_change_history"
+                    name="Po Price Change History Report"
+                    res_model="iac.po.price.change.history.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+</odoo>

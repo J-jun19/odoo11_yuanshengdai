@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_vs_buyer_email_list" model="ir.ui.view">
+            <field name="name">Vendor vs Buyer Email</field>
+            <field name="type">tree</field>
+            <field name="model">v.vendor.vs.buyer.email</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor vs Buyer Email" create="false">
+                    <field name="id"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="buyer_email"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='vendor_vs_buyer_email_wizard_form' model='ir.ui.view'>
+          <field name='name'>Vendor vs Buyer Email</field>
+          <field name='model'>vendor.vs.buyer.email.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Vendor vs Buyer Email">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="vendor_id" options="{'no_create': True,'no_open': True}"/>
+                            <field name="buyer_email"/>
+                        </group>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_vendor_vs_buyer_email'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_vendor_vs_buyer_email"
+                     name="Vendor vs Buyer Email"
+                     res_model="vendor.vs.buyer.email.wizard"
+                     view_mode="form"
+                     target="new"/>
+    </data>
+</odoo>

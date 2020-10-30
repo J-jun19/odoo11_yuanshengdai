@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="qweb_iac_po_report_for_lg">
+        <t t-call="report.html_container">
+            <t t-call="report.internal_layout">
+                <!--<div STYLE="page-break-after:always"></div>-->
+                <div class="page" style="position:relative;min-height:29cm;width:100%">
+                    <div t-foreach="docs" t-as="o">
+
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<td><span t-field="o.document_erp_id"/></td>-->
+                        <!--<td><span t-field="o.vendor_id.bank_street"/></td>-->
+                        <!--<td><span t-field="o.vendor_id.bank_name"/></td>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                        <!--<table><tr t-foreach="o.order_line" t-as="oo">-->
+                        <!--<td><span t-field="oo.buyer_erp_id"/></td>-->
+                        <!--<td><span t-field="oo.document_line_erp_id"/></td>-->
+                        <!--</tr></table>-->
+                        <head>
+                            <title>IAC Purchase Order</title>
+                            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+                        </head>
+                        <body style="margin: 0px">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="30%" valign="top">
+                                        <img src="http://www.iac.com.tw/images/zh-TW/logo.gif"></img>
+                                    </td>
+                                    <td width="30%" valign="top">
+                                        <font size="5">
+                                            <strong>Purchase Order</strong>
+                                        </font>
+                                    </td>
+                                    <td width="40%" valign="top">
+                                        <table width="100%" border="0" cellspacing="1" cellpadding="3"
+                                               bgcolor='#C5DBED'>
+                                            <tr style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 12px;'>
+                                                <td align="center" width="40%">
+                                                    ORDER / REV DATE
+                                                </td>
+                                                <td align="center">
+                                                    ORDER NUMBER
+                                                </td>
+                                            </tr>
+                                            <tr style='background-color: #ffffff; font-family: verdana,sans-serif; font-size: 13px;'>
+                                                <td>
+                                                    <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                        <tr>
+                                                            <td width='5%'>
+                                                            </td>
+                                                            <td valign='middle'>
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.order_date"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <!--script src='calendar_general_en_US.js'></script-->
+                                                </td>
+                                                <td>
+                                                    <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                        <tr>
+                                                            <td valign="top" width='5%' align="center"
+                                                                colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.document_erp_id"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <!--script src='calendar_general_en_US.js'></script-->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;white-space:nowrap'>
+                                                        <span t-field="o.plant_id.site_chi_name"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <span t-field="o.plant_id.site_eng_name"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--script src='calendar_general_en_US.js'></script-->
+                                    </td>
+                                    <td style='font-family: verdana,sans-serif; font-size: 8px;'>
+                                        ORDER NUMBER, BUSINESS UNIT NAME, AND OUR PART NUMBER MUST APPEAR ON ALL INVOICE
+                                        SHIPPING DOCUMENTS, PACKAGES AND CORRESPONDENCE.
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%" border="0" cellspacing="1" cellpadding="2" bgcolor='#C5DBED'>
+                                <tr style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td width="20%">
+                                        CONFIRMING TO:
+                                    </td>
+                                    <td width="20%">
+                                        Incoterms:
+                                    </td>
+                                    <td width="19%">
+                                        INQUIRIES TO:
+                                    </td>
+                                    <!--td WIDTH="18%">TELEPHONE:</td-->
+                                    <td width="23%">
+                                        CURRENCY:
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #ffffff; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td width="20%">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' id="TDE_F670F_FF66044892_1BF12EEA1E3"
+                                                    colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <span t-field="o.vendor_reg_id.contact_person"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--script src='calendar_general_en_US.js'></script-->
+                                    </td>
+                                    <td width="20%">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <span t-field="o.incoterm"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--<script src='calendar_general_en_US.js'></script>-->
+                                    </td>
+                                    <td width="19%">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <span t-field="o.buyer_erp_id"/>
+                                                        <span t-field="o.buyer_id.buyer_name"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--<script src='calendar_general_en_US.js'></script>-->
+                                    </td>
+                                    <td width="23%">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <span t-field="o.currency"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--<script src='calendar_general_en_US.js'></script>-->
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #ffffff; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td colspan="2" rowspan="4" valign="top">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                            <tr>
+                                                <td align="center"
+                                                    style='background-color: #F7F7F7; font-family: verdana,sans-serif;font-size: 12px; font-weight: bold;'>
+                                                    SUPPLIER
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_code"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.name1_cn"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.name2_cn"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.name1_en"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.name2_en"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.address_street"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.address_district"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.vendor_reg_id.address_city"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%'>
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    Tel :
+                                                                </span>
+                                                            </td>
+                                                            <td valign='top'>
+                                                                <span style="font-family: verdana,sans-serif; font-size: 13px;">
+                                                                    <span t-field="o.vendor_reg_id.company_telephone1"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%'>
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;white-space:nowrap'>
+                                                                    Fax :
+                                                                </span>
+                                                            </td>
+                                                            <td valign='top'>
+                                                                <span style="font-family: verdana,sans-serif; font-size: 13px;">
+                                                                    <span t-field="o.vendor_reg_id.company_fax"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <!--<script src='calendar_general_en_US.js'></script>-->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td colspan="3">
+                                        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="3">
+                                            <tr>
+                                                <td width="20%"
+                                                    style='background-color: #F7F7F7; font-family: verdana,sans-serif;font-size: 12px; font-weight: bold;'>
+                                                    SHIP
+                                                    <br></br>
+                                                    TO:
+                                                </td>
+                                                <td>
+                                                    <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    <span t-field="o.storage_location_id.sloc_chi_name"/>
+                                                                    <br></br>
+                                                                    <span t-field="o.storage_location_id.sloc_eng_name"/>
+                                                                    <br></br>
+                                                                    <span t-field="o.storage_location_id.sloc_address"/>
+                                                                    <br></br>
+                                                                    <span t-field="o.storage_location_id.sloc_city"/>
+                                                                    <span t-field="o.storage_location_id.sloc_zip"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' colspan="2">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    Storage Location:
+                                                                    <span t-field="o.storage_location_id.storage_location"/>
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <!--<script src='calendar_general_en_US.js'></script>-->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="20%"
+                                                    style='background-color: #F7F7F7; font-family: verdana,sans-serif;font-size: 12px; font-weight: bold;'>
+                                                    FORWARDER:
+                                                </td>
+                                                <td>
+                                                    <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                        <tr>
+                                                            <td valign="top" width='5%' align="left">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    ForWarder Name:
+                                                                </span>
+                                                            </td>
+                                                            <td valign='top'>
+                                                                <span style="font-family: verdana,sans-serif; font-size: 13px;">
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' align="left">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                    Contact Person:
+                                                                </span>
+                                                            </td>
+                                                            <td valign='top'>
+                                                                <span style="font-family: verdana,sans-serif; font-size: 13px;">
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td valign="top" width='5%' align="left">
+                                                                <span style='font-family: verdana,sans-serif; font-size: 13px;white-space:nowrap'>
+                                                                    Contact Phone:
+                                                                </span>
+                                                            </td>
+                                                            <td valign='top'>
+                                                                <span style="font-family: verdana,sans-serif; font-size: 13px;">
+                                                                </span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                    <!--<script src='calendar_general_en_US.js'></script>-->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #ffffff; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td colspan="3">
+                                        <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="2">
+                                            <tr>
+                                                <td width="20%"
+                                                    style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 12px; font-weight: bold;'>
+
+                                                </td>
+                                                <td style='font-family: verdana,sans-serif; font-size: 13px;'>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td colspan="3">
+                                        <div align="center">
+                                            TERMS
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #ffffff; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td colspan="3">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <span t-field="o.payment_term_id.payment_description"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--<script src='calendar_general_en_US.js'></script>-->
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 12px;'>
+                                    <td colspan="5">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="3">
+                                            <tr style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 12px;'>
+                                                <td width="40" align="left">
+                                                    ITEM
+                                                </td>
+                                                <td width="100" align="left">
+                                                    IAC PART NO
+                                                    <br></br>
+                                                    VEN. PART NO
+                                                </td>
+                                                <td width="50" align="left">
+                                                    DEL
+                                                </td>
+                                                <td width="350" align="left">
+                                                    DESCRIPTION
+                                                </td>
+                                                <td width="65" align="right">
+                                                    QUANTITY
+                                                </td>
+                                                <td width="35" align="right">
+                                                    PER
+                                                </td>
+                                                <td width="80" align="right">
+                                                    UNIT PRICE
+                                                </td>
+                                                <td width="100" align="right">
+                                                    EXTENDED VALUE
+                                                </td>
+                                                <td width="35" align="right">
+                                                    CURRENCY
+                                                </td>
+                                                <td width="120" align="right">Delivery Date
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr style='background-color: #ffffff; font-family: verdana,sans-serif; font-size: 13px;'>
+                                    <td colspan="5">
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 12px;'>
+                                                        <table border='0' width='100%' cellspacing='0' cellpadding='1'>
+                                                            <tr style='background-color: #ffffff; font-family: ARIAL,verdana,sans-serif; font-size: 4px;'>
+                                                                <td width='3%' valign='top'>
+
+                                                                </td>
+                                                                <td width='97%'>
+                                                                    THE SELLER SHALL INDEMNIFY THE BUYER FROM ANY
+                                                                    SUIT(S) OR
+                                                                    CLAIM(S) THAT MAY BE AGAINST
+                                                                    THE BUYER FOR ALLEGED INFRINGEMENT OF PATENTS,
+                                                                    COPYRIGHTS, TRADEMARKS OR SIMILAR
+                                                                    RIGHTS WHATSOEVER RELATING TO THIS PURCHASE ORDER.
+                                                                </td>
+                                                            </tr>
+                                                            <tr style='background-color: #ffffff; font-family: ARIAL,verdana,sans-serif; font-size: 4px;'>
+                                                                <td width='3%' valign='top'>
+
+                                                                </td>
+                                                                <td width='97%'>
+                                                                    IF ANY DISCREPANCY FOUND AGAINST QA'S and RD'S
+                                                                    SPECIFICATION OR ANY NON-COMPLIANCE
+                                                                    WITH EU RoHS OR REACH DIRECTIVES, YOU WILL BE
+                                                                    CHARGED OR
+                                                                    RESPONSIBLE FOR REWORKING
+                                                                    AND ANY OTHER COST AND EXPENSES INCURRED BY BUYER
+                                                                    INCLUDING BUT NOT LIMITED TO REASONABLE
+                                                                    ATTORNEY FEES AND COURT COST.
+                                                                </td>
+                                                            </tr>
+                                                            <tr style='background-color: #ffffff; font-family: ARIAL,verdana,sans-serif; font-size: 4px;'>
+                                                                <td width='3%' valign='top'>
+
+                                                                </td>
+                                                                <td width='97%'>
+                                                                    FOR CUSTOMS REQUEST, INVENTEC's MATERIAL NUMBER AND
+                                                                    MATERIAL DESCRIPTION MUST BE
+                                                                    SHOWN ON YOUR SHIPPING INVOICE.
+                                                                </td>
+                                                            </tr>
+                                                            <tr style='background-color: #ffffff; font-family: ARIAL,verdana,sans-serif; font-size: 4px;'>
+                                                                <td width='3%' valign='top'>
+
+                                                                </td>
+                                                                <td width='97%'>
+                                                                    IF THE PRODUCTS OF THIS PURCHASE ORDER SHALL COMPLY
+                                                                    WITH
+                                                                    WORLDWIDE EMC/SAFETY OR
+                                                                    OTHER PRODUCT CERTIFICATION STANDARDS, SELLER SHALL
+                                                                    ENCLOSE CERTIFICATE OF THE RELEVANT
+                                                                    STANDARDS AND INSPECTION REPORT WITH EACH SHIPMENT.
+                                                                </td>
+                                                            </tr>
+                                                            <tr style='background-color: #ffffff; font-family: ARIAL,verdana,sans-serif; font-size: 4px;'>
+                                                                <td width='3%' valign='top'>
+                                                                </td>
+                                                                <td width='97%'>
+                                                                    NOTE:
+                                                                    <br/>
+                                                                    (1) YOU SHALL GIVE REASONABLE PRIOR WRITTEN NOTICE
+                                                                    TO
+                                                                    BUYER IN CASE OF THE FOLLOWING
+                                                                    EVENT (IN ACCORDANCE WITH THE NOTICE PERIOD AS
+                                                                    SPECIFIED
+                                                                    BELOW): i. CHANGE OF MATERIAL
+                                                                    AND/OR MAKE TO THE ORIGINAL MATERIALS OF THE
+                                                                    PRODUCT: 14
+                                                                    DAYS. ii. CHANGE IN SUPPLIER'S
+                                                                    MANUFACTURING PROCESS: 14 DAYS. iii. CHANGE IN THE
+                                                                    OUTSOURCING OF SUPPLIER'S MANUFACTURING
+                                                                    PROCESS: 14 DAYS.
+                                                                    <br/>
+                                                                    (2) IN CASE SUPPLIER FAILED TO COMPLIANCE WITH THE
+                                                                    ABOVE
+                                                                    REQUIREMENT, SUPPLIER AGREE
+                                                                    TO PAY BUYER 200% OF THE LOSSES AND DAMAGES INCURRED
+                                                                    BY
+                                                                    BUYER RESULTING FROM THE
+                                                                    ABOVE BREACHING.
+                                                                    <br/>
+                                                                    (3) THE PENALTY AMOUNTS PAYABLE UNDER THIS PURCHASE
+                                                                    ORDER ARE DUE 30 DAYS AFTER
+                                                                    INVOICE.
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr t-foreach="o.order_line" t-as="pol">
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                        <br></br>
+                                                        <table border="0" cellspacing="0" cellpadding="3" width='100%'>
+                                                            <tr style='background-color: #FAF0DF; font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                <td width="40" align="left">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px; align="left"'>
+                                                                            <span t-field="pol.document_line_erp_id"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="100" align="left">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px; align="left"'>
+                                                                            <span t-field="pol.part_no"/>
+                                                                            <br></br>
+                                                                            <span t-field="pol.vendor_part_no"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="50" align="left">
+                                                                    <font color="red">
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'></span>
+                                                                        <t t-if="pol.odoo_deletion_flag == true">
+                                                                            *DEL*
+                                                                        </t>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="350" align="left">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="pol.part_id.part_description"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="65" align="right">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="pol.quantity"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="35" align="right">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="pol.unit"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="80" align="right">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="pol.unit_price"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="100" align="right">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="pol.line_amount"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="35" align="right">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="o.currency"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                                <td width="120" align="right">
+                                                                    <font>
+                                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                            <span t-field="pol.delivery_date"/>
+                                                                        </span>
+                                                                    </font>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <br></br>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <table border="0" cellspacing="0" cellpadding="3" width='100%'>
+                                                <tr>
+                                                    <td align="right" width='60%'>
+                                                        <font>
+                                                            <span style='font-family: verdana,sans-serif; font-size: 13px; font-weight: bold;'>
+                                                                TOTAL FIRM FIXED PRICE
+                                                            </span>
+                                                        </font>
+                                                    </td>
+                                                    <td align="right" width='40%'>
+                                                        <font>
+                                                            <span style='font-family: verdana,sans-serif; font-size: 13px; font-weight: bold;'>
+                                                                <span t-field="o.order_amt"/>
+                                                                <span t-field="o.currency"/>
+                                                            </span>
+                                                        </font>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="right" colspan="2">
+                                                        <font>
+                                                            <span style='font-family: verdana,sans-serif; font-size: 13px; font-weight: bold;'>
+                                                                ================================================
+                                                            </span>
+                                                        </font>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </table>
+                                        <!--<script src='calendar_general_en_US.js'></script>-->
+                                        <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                            <tr>
+                                                <td valign="top" width='5%'>
+                                                    <span style='font-family: verdana,sans-serif; font-size: 11px;white-space:nowrap'>
+                                                        Shipping Instr :
+                                                    </span>
+                                                </td>
+                                                <td valign='top'>
+                                                    <span style="font-family: verdana,sans-serif; font-size: 11px;">
+                                                        <span t-field="o.incoterm_id.incoterm_description"/>
+                                                        <span t-field="o.incoterm1"/>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td valign="top" width='5%' colspan="2">
+                                                    <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <!--<script src='calendar_general_en_US.js'></script>-->
+                                    </td>
+                                </tr>
+                            </table>
+                            <table style='border = "0"'>
+                                <tr style='background-color: #F7F7F7; font-family: verdana,sans-serif; font-size: 12px;font-weight: bold; border = "0"'>
+                                    <td colspan="2" align="center">
+                                        PURCHASING DEPARTMENT APPROVAL
+                                    </td>
+                                    <td colspan="3" align="center">
+                                        SUPPLIER INFORMATION - PLEASE READ CAREFULLY
+                                    </td>
+                                </tr>
+                                <tr style='background-color: #ffffff; font-family: ARIAL,verdana,sans-serif; font-size: 12px;border="0"'>
+                                    <t t-if="o.plant == 'TP02'">
+                                        <td colspan="2">
+                                            <div align="center">
+                                                <br></br>
+                                                THE BUYER
+                                                <br></br>
+                                                <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                    <tr>
+                                                        <td valign="top" width='5%' align="center" colspan="2">
+                                                            <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                <span t-field="o.plant_id.site_chi_name"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td valign="top" width='5%' align="center" colspan="2">
+                                                            <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                                <span t-field="o.plant_id.site_eng_name"/>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!--<script src='calendar_general_en_US.js'></script>-->
+                                                <br></br>
+                                                <br></br>
+                                                <br></br>
+                                                <br></br>
+                                                <br></br>
+                                                <b>______________________________________________________________</b>
+                                                <br></br>
+                                                <br></br>
+                                                AUTHORIZED SIGNATURE
+                                                <p>
+                                                </p>
+                                                <p>
+                                                    <br></br>
+                                                </p>
+                                            </div>
+                                        </td>
+                                        <td colspan="3" align="CENTER">
+                                            <img src="http://odoo2.iac.inventec/web/static/src/img/PO_LG_SELL.gif"></img>
+                                        </td>
+                                    </t>
+                                    <t t-if="o.plant != 'TP02'">
+                                        <td colspan="2">
+                                            <div align="center">
+                                                <img src="http://odoo2.iac.inventec/web/static/src/img/PO_LG.gif"></img>
+                                            </div>
+                                        </td>
+                                        <td colspan="3" align="CENTER">
+                                            NOTE : WE REQUIRE AN ORDER ACKNOWLEDGEMENT
+                                            <br></br>
+                                            WITHIN 2 DAYS TO THIS PURCHASE ORDER.
+                                            <br></br>
+                                            THE SELLER
+                                            <br></br>
+                                            <table border="0" width='100%' cellspacing="0" cellpadding="1">
+                                                <tr>
+                                                    <td valign="top" width='5%' align="center" colspan="2">
+                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                            <span t-field="o.vendor_reg_id.name1_cn"/>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td valign="top" width='5%' align="center" colspan="2">
+                                                        <span style='font-family: verdana,sans-serif; font-size: 13px;'>
+                                                            <span t-field="o.vendor_reg_id.name1_en"/>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <!--<script src='calendar_general_en_US.js'></script>-->
+                                            <br></br>
+                                            <br></br>
+                                            <br></br>
+                                            <br></br>
+                                            <b>______________________________________________________________</b>
+                                            <br></br>
+                                            <br></br>
+                                            AUTHORIZED SIGNATURE
+                                            <p>
+                                            </p>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </table>
+                            <div STYLE="page-break-after: always;"></div>
+                        </body>
+                    </div>
+                </div>
+                <!--<div style="position:absolute;bottom:5px;"/>-->
+                <!--<div STYLE="page-break-after: always;"/>-->
+            </t>
+        </t>
+    </template>
+</odoo>

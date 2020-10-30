@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--<record id="view_asn_report_for_subcontractor_list" model="ir.ui.view">-->
+            <!--<field name="name">ASN Report For Subcontractor</field>-->
+            <!--<field name="type">tree</field>-->
+            <!--<field name="model">v.asn.list.report.for.subcontractor</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="ASN Report For Subcontractor" create="false">-->
+                    <!--<field name="asn_no"/>-->
+                    <!--<field name="now_date"/>-->
+                    <!--<field name="storage_location"/>-->
+                    <!--<field name="asn_line_no"/>-->
+                    <!--<field name="po_code"/>-->
+                    <!--<field name="po_line_code"/>-->
+
+                    <!--<field name="plant_code"/>-->
+                    <!--<field name="buyer_erp_id"/>-->
+                    <!--<field name="asn_qty"/>-->
+                    <!--<field name="part_no"/>-->
+                    <!--<field name="gr_qty"/>-->
+                    <!--&lt;!&ndash;<field name="in_transit_flag"/>&ndash;&gt;-->
+                    <!--<field name="in_transit_qty"/>-->
+                    <!--<field name="vendor_code"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+        <record id='asn_report_for_subcontractor_form' model='ir.ui.view'>
+          <field name='name'>ASN Report For Subcontractor Wizard</field>
+          <field name='model'>v.asn.report.for.subcontractor.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="ASN Report For Subcontractor Wizard" create="false">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" required="1"/>
+                            <field name="storage_location" options="{'no_create': True,'no_open': True}" attrs="{'readonly':[('plant_id','=',False)]}"/>
+                            <field name="part"/>
+                            <field name="asn"/>
+                            <field name="asn_date_from" required="1"/>
+                            <field name="asn_date_to" required="1"/>
+                            <field name="open_asn_only"/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_asn_report_for_subcontractor'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_asn_report_for_subcontractor"
+                    name="ASN Report For Subcontractor"
+                    res_model="v.asn.report.for.subcontractor.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <act_window id="action_view_smart_po_cancel"
+                name = "SMART PO Cancel（红色字体的po无法做po change,请不要选择！）"
+                res_model = "iac.smart.po.cancel"
+                view_mode = "tree"
+                domain = "[('state','=','current'),('order_id','!=',None)]"
+                target = "main"/>
+
+    <record id="smart_po_cancel_tree" model="ir.ui.view">
+        <field name="name">smart po cancel</field>
+        <field name="model">iac.smart.po.cancel</field>
+        <field name="arch" type="xml">
+            <tree create="false" edit="true" colors="red:exception_flag==True;red:is_used==True;red:po_state in ('to_approve','to_change','webflow_error','to_sap','sap_error','cancel')" editable="top">
+                <field name="cancel_quantity"/>
+                <field name="suggested_cancel_quantity" readonly="1"/>
+                <field name="order_code" readonly="1"/>
+                <field name="order_line_code" readonly="1"/>
+                <field name="po_state" readonly="1"/>
+                <field name="odoo_storage_location" readonly="1" string="Storage location"/>
+                <field name="po_date" readonly="1"/>
+                <field name="vendor_code" readonly="1"/>
+                <field name="vendor_name" readonly="1" string="Vendor name"/>
+                <field name="division_code" readonly="1"/>
+                <field name="part_no" readonly="1"/>
+                <field name="odoo_buyer_code" readonly="1" string='Purchasing group'/>
+                <field name="description" readonly="1" string="Part description"/>
+                <field name="plant_code" readonly="1"/>
+                <field name="odoo_open_po" readonly="1"/>
+                <field name="round_value" readonly="1"/>
+                <field name="delivery_date" readonly="1"/>
+                <field name="odoo_price" readonly="1"/>
+                <field name="odoo_price_unit" readonly="1"/>
+                <field name="odoo_intransit_asn_quantity" readonly="1"/>
+                <field name="odoo_original_quantity" readonly="1" string="Original quantity"/>
+
+                <field name="is_used" readonly="1"/>
+                <field name="exception_flag" readonly="1"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="smart_po_cancel_button" model="ir.actions.server">
+        <field name="name">Cancel</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_iac_smart_po_cancel"/>
+        <field name="state">code</field>
+        <field name="code">
+            if records:
+                action = records.cancel_po()
+        </field>
+    </record>
+
+    <record id="action_smart_po_cancel" model="ir.values">
+        <field name="name">Cancel</field>
+        <field name="model_id" ref="model_iac_smart_po_cancel"/>
+        <field name="model">iac.smart.po.cancel</field>
+        <field name="key2">client_action_multi</field>
+        <field eval="'ir.actions.server,%d'%smart_po_cancel_button" name="value"/>
+    </record>
+
+
+
+
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+      <!--<record id="view_iac_admin_maintain._asn_vat" model="ir.ui.view">-->
+            <!--<field name="name">Maintain Asn Vat Nub</field>-->
+            <!--<field name="type">tree</field>-->
+            <!--<field name="model">iac.admin.maintain.asn.vat</field>-->
+            <!--&lt;!&ndash;<field name="context">{ "flags": {"selectable": False} }</field>&ndash;&gt;-->
+            <!--<field name="arch" type="xml">-->
+                <!--<tree string="Maintain Asn Vat Nub" create="false" editable="bottom" export="false">-->
+                    <!--<field name="vendor_id" readonly="True" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>-->
+                    <!--<field name="vat_number"/>-->
+                    <!--<field name="name1_cn" readonly="True"/>-->
+                    <!--<field name="webflow_number" readonly="True"/>-->
+                    <!--<field name="state_msg" readonly="True"/>-->
+                <!--</tree>-->
+            <!--</field>-->
+        <!--</record>-->
+
+
+      <!--<record id="view_asn_vat_nub" model="ir.ui.view">-->
+          <!--<field name="name">Maintain Asn Vat Nub</field>-->
+          <!--<field name="type">form</field>-->
+          <!--<field name="model">iac.admin.search.asn.vat.wizard</field>-->
+          <!--<field name="arch" type="xml">-->
+              <!--<form string="Maintain Asn Vat Nub" create="false" edit="false">-->
+                <!--<sheet>-->
+                    <!--<group>-->
+                        <!--<group>-->
+                            <!--<field name="vendor_id" options="{'no_create': True, 'no_edit': True, 'no_open': True}"/>-->
+                            <!--&lt;!&ndash;<field name="display_flag"/>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<field name="valid_to"/>&ndash;&gt;-->
+                        <!--</group>-->
+                    <!--</group>-->
+                <!--</sheet>-->
+
+                <!--<footer>-->
+                    <!--<button name='search_asn_vat_nub'-->
+                        <!--string='Search'-->
+                        <!--class='btn-primary'-->
+                        <!--type='object'/>-->
+                <!--or-->
+                    <!--<button string='Cancel'-->
+                        <!--class='btn-default'-->
+                        <!--special='cancel'/>-->
+                <!--</footer>-->
+              <!--</form>-->
+
+          <!--</field>-->
+
+        <!--</record>-->
+
+        <!--<record model="ir.actions.act_window" id="action_admin_asn_maintain_vat_number">-->
+            <!--<field name="name">Maintain Asn Vat Nub</field>-->
+            <!--<field name="res_model">iac.admin.search.asn.vat.wizard</field>-->
+             <!--&lt;!&ndash;<field name="context">{ "flags": {"selectable": False} }</field>&ndash;&gt;-->
+            <!--&lt;!&ndash;<field name="view_type">tree</field>&ndash;&gt;-->
+            <!--<field name="view_mode">form</field>-->
+            <!--<field name="target">new</field>-->
+        <!--</record>-->
+  </data>
+</odoo>

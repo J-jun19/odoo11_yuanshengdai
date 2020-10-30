@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Email template for vendor remind -->
+        <record id="remind_email" model="mail.template">
+            <field name="name">Vendor Remind - Send by Email</field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_vendor_register_fcst"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email|safe};${object.other_emails|safe}</field>
+            <field name="subject">IAC ${object.plant_id.plant_name_en|safe} Reminder:   Supply Plan  for IAC</field>
+            <!--<field name="subject">Reminder:   Supply Plan  for IAC</field>-->
+            <field name="lang">${object.id.lang}</field>
+            <field name="body_html"><![CDATA[
+            <div style="padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777">
+                <p>Dear Valued Partner:</p>
+                <p>We haven't received your supply plan for the current forecast report.  Please log on IAC Supplier Portal and reply it at your earliest convenience.</p>
+                <p>Thank you for your attention and cooperation.</p>
+            </div>
+            ]]>
+            </field>
+            <field name="user_signature" eval="False"/>
+        </record>
+
+        <record id = "change_email" model = "mail.template" >
+            <field name = "name" > Change Notice - Sendby Email </field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_vendor_register_fcst"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+	        <field name="email_to">${object.sales_email|safe};${object.other_emails|safe}</field>
+            <field name = "subject" > IAC ${object.plant_id.plant_name_en|safe} FCST Change Notice </field>
+            <field name = "lang" >${object.id.lang} </field>
+            <field name = "body_html" ><![CDATA[
+            <div style = "padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777" >
+                <p> Dear Valued Partner: </p>
+                <p> We  have revised  the forecast report for this week. Please wait for the new release notice.  Thank you.</p>
+            </div>
+            ]]>
+            </field>
+            <field name = "user_signature" eval = "False"/>
+        </record>
+
+        <record id = "release_fcst_to_vendor" model = "mail.template" >
+            <field name = "name" > IAC FCST Release Notice - Sendby Email </field>
+            <field name="model_id" ref="iac_forecast_release_to_vendor.model_iac_vendor_register_fcst"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+            <field name="email_to">${object.sales_email|safe};${object.other_emails|safe}</field>
+            <field name = "subject" > IAC FCST Release Notice </field>
+            <field name = "lang" >${object.id.lang} </field>
+            <field name = "body_html" ><![CDATA[
+            <div style = "padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777" >
+                <p> Dear Valued Partner: </p>
+                <p>The latest forecast report has been released, please log on IAC Supplier Portal and reply your supply plan accordingly.  Thank you.</p>
+            </div>
+            ]]>
+            </field>
+            <field name = "user_signature" eval = "False"/>
+        </record>
+
+        <record id = "vendor_delivery_upload_notice" model = "mail.template" >
+            <field name = "name" > Vendor_Delivery_Upload_Notice </field>
+            <field name = "model_id" ref = "iac_forecast_release_to_vendor.model_iac_vendor_register_fcst"/>
+            <field name="email_from">iac-ep_support@iac.com.tw</field>
+	        <field name="email_to">${object.buyer_email|safe};${object.other_emails|safe}</field>
+            <field name = "subject" >(${object.vendor_id.vendor_code | safe}/${object.vendor_id.name | safe})Vendor Delivery Upload Notice</field>
+            <field name = "lang" >${object.id.lang} </field>
+            <field name = "body_html" ><![CDATA[
+            <div style = "padding:0px;width:600px;margin:auto;background: #FFFFFF repeat top /100%;color:#777777" >
+                <p> Dear Buyers: </p>
+                <p>Our suppliers have updated their  shipping schedule on IAC Supplier Portal. Please kindly check it.  Thank  you.</p>
+            </div>
+            ]]>
+            </field>
+            <field name = "user_signature" eval = "False"/>
+        </record>
+    </data>
+</odoo>

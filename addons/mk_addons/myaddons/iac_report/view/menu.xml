@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--一級菜單-->
+        <menuitem id="main_report_menu"
+                  name="Report"
+                  sequence="1" />
+
+        <!--二級菜單-->
+        <menuitem id="G_R_menu"
+                  name="G/R"
+                  parent="main_report_menu"
+                  sequence="1"/>
+
+        <menuitem id="RFQ_menu"
+                  name="Info Record"
+                  parent="main_report_menu"
+                  sequence="2"/>
+
+        <menuitem id="Vendor_menu"
+                  name="Vendor"
+                  parent="main_report_menu"
+                  sequence="3"/>
+
+        <menuitem id="PO_menu"
+                  name="PO "
+                  parent="main_report_menu"
+                  sequence="4"/>
+
+        <menuitem id="Other_menu"
+                  name="Other "
+                  parent="main_report_menu"
+                  sequence="5"/>
+
+        <!--三級菜單-->
+        <menuitem id="menu_max_qty"
+                  name="Max QTY allowed for ASN"
+                  parent="G_R_menu"
+                  action="action_max_qty"
+                  sequence="10"/>
+
+        <menuitem id="menu_wizard_asn_without_declare_data"
+                  name="未報關資料查詢"
+                  parent="G_R_menu"
+                  action="action_wizard_without_declare_data"
+                  sequence="50"/>
+
+        <menuitem id="menu_rfq_history"
+                  name="Report Info Record List Info Record History"
+                  parent="RFQ_menu"
+                  action="action_rfq_history"
+                  sequence="10"/>
+
+
+
+        <menuitem id="menu_wizard_po_cancel_history"
+                  name="PO Cancel History"
+                  parent="PO_menu"
+                  action="action_wizard_po_cancel_history"
+                  sequence="10"/>
+
+        <menuitem id="menu_wizard_po_unconfirm_detail"
+                  name="PO Unconfirm Detail"
+                  parent="PO_menu"
+                  action="action_wizard_po_unconfirm_detail"
+                  sequence="20"/>
+
+        <menuitem id="menu_wizard_vendor_vs_buyer_email"
+                  name="Vendor vs Buyer Email"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_vs_buyer_email"
+                  sequence="10"/>
+
+		<menuitem id="menu_wizard_vendor_change_history"
+                  name="Vendor Change History"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_change_history"
+                  sequence="20"/>
+
+		<menuitem id="menu_purchase_group"
+                  name="Purchase Group List"
+                  parent="PO_menu"
+                  action="action_wizard_iac_report_vendor_purchasegrouplist"
+                  sequence="70"/>
+
+        <menuitem id="menu_wizard_po_change_payment_wizard"
+                  name="PO Payment/FOB Change History"
+                  parent="PO_menu"
+                  action="action_wizard_po_change_payment"
+                  sequence="30"/>
+
+        <menuitem id="vendor_copy_history_report"
+                  name="Vendor Copy歷史資料查詢"
+                  parent="Vendor_menu"
+                  action="action_vendor_copy_history_report"
+                  sequence="30"/>
+
+	    <menuitem id="menu_global_vendor_report"
+                  name="根據Class查詢供應商"
+                  parent="Vendor_menu"
+                  action="action_wizard_iac_global_vendor_report"
+                  sequence="40"/>
+        <!-- add by PW 20180511 -BEGIN -->
+       <menuitem id="menu_global_vendor_qm_report"
+                  name="查詢客戶指定廠商名單"
+                  parent="Vendor_menu"
+                  action="action_wizard_iac_global_vendor_qm_report"
+                  sequence="50"/>
+        <!-- add by PW 20180511 -END -->
+
+        <menuitem id="supplier_exception_monitor_report"
+                  name="Supplier Exception Monitor"
+                  parent="PO_menu"
+                  action="action_wizard_supplier_exception_monitor_report"
+                  sequence="40"/>
+
+		<menuitem id="menu_wizard_po_unconfirm_summary"
+                  name="PO Unconfirmed Summary"
+                  parent="PO_menu"
+                  action="action_wizard_po_unconfirm_summary"
+                  sequence="50"/>
+
+        <menuitem id="menu_wizard_po_price_change_history"
+                  name="PO Price Change History"
+                  parent="PO_menu"
+                  action="action_wizard_po_price_change_history"
+                  sequence="60"/>
+
+        <menuitem id="menu_vendor_report"
+                  name="Vendor Report"
+                  parent="Vendor_menu"
+                  action="action_wizard_iac_vendor_report"
+                  sequence="60"/>
+
+        <menuitem id="menu_payment_term_change_report"
+                  name="Payment/Inco Term changes log"
+                  parent="Vendor_menu"
+                  action="action_wizard_payment_term_change_report"
+                  sequence="70"/>
+
+        <menuitem id="menu_bulletin_information_report"
+                  name="Bulletin Information Report"
+                  parent="Vendor_menu"
+                  action="action_wizard_bulletin_information_report"
+                  sequence="80"/>
+
+        <!--<menuitem id="menu_vendor_history_record_report"-->
+                  <!--name="評鑒:供應商評分評鑑歷史記錄查詢"-->
+                  <!--parent="Vendor_menu"-->
+                  <!--action="action_wizard_vendor_history_record_report"-->
+                  <!--sequence="80"/>-->
+
+        <!--<menuitem id="menu_review_list_record_report"-->
+                  <!--name="評鑒:手動產生評核名單紀錄查詢"-->
+                  <!--parent="Vendor_menu"-->
+                  <!--action="action_wizard_review_list_record_report"-->
+                  <!--sequence="90"/>-->
+
+        <!--<menuitem id="menu_supplier_rating_state_report"-->
+                  <!--name="評鑒:供應商評分定期評鑑流程狀態查詢"-->
+                  <!--parent="Vendor_menu"-->
+                  <!--action="action_wizard_supplier_rating_report"-->
+                  <!--sequence="100"/>-->
+
+        <!--<menuitem id="menu_download_fractional_report"-->
+                  <!--name="評鑒:下載分數明細報表"-->
+                  <!--parent="Vendor_menu"-->
+                  <!--action="action_wizard_download_fractional_report"-->
+                  <!--sequence="110"/>-->
+
+        <menuitem id="menu_supplier_attachment_list"
+                  name="Supplier Attachment List"
+                  parent="Vendor_menu"
+                  action="action_wizard_supplier_attachment"
+                  sequence="130"/>
+
+        <menuitem id="menu_vendor_evaluation_detail"
+                  name="Vendor Evaluation Detail"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_evaluation"
+                  sequence="140"/>
+
+        <menuitem id="menu_vendor_evaluation_summary"
+                  name="Vendor Evaluation Summary"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_evaluation_summary"
+                  sequence="150"/>
+
+        <menuitem id="menu_vendor_evaluation_approval_log"
+                  name="Vendor Evaluation Approval Log"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_evaluation_approval_log"
+                  sequence="160"/>
+
+        <menuitem id="menu_vendor_dclass_approval_log"
+                  name="Vendor D Class Approval Log"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_dclass_approval_log"
+                  sequence="170"/>
+
+        <menuitem id="menu_vendor_without_gv_code"
+                  name="Vendor Without Gv_code Report"
+                  parent="Vendor_menu"
+                  action="action_wizard_vendor_without_gv_code_report"
+                  sequence="180"/>
+
+        <menuitem id="menu_email_alert_report"
+                  name="Email Alert Report"
+                  parent="Other_menu"
+                  action="action_wizard_email_alert_report"
+                  sequence="10"/>
+	
+	<menuitem id="menu_location_address_manage"
+                  name="Storage Location Address Manage"
+                  parent="Other_menu"
+                  action="action_wizard_location_address_manage"
+                  sequence="40"/>
+        <menuitem id="menu_supplier_utilization_statement"
+                  name="Supplier Utilization Statement Report"
+                  parent="Other_menu"
+                  action="action_wizard_supplier_utilization_statement"
+                  sequence="50"/>
+
+        <!--<menuitem id="menu_uncompleted_form_report"-->
+                  <!--name="未完成表單查詢"-->
+                  <!--parent="Other_menu"-->
+                  <!--action="action_wizard_uncompleted_form_report"-->
+                  <!--sequence="20"/>-->
+
+        <!--<menuitem id="menu_portal_sop_report"-->
+                  <!--name="Portal SOP"-->
+                  <!--parent="Other_menu"-->
+                  <!--action="action_wizard_portal_sop_report"-->
+                  <!--sequence="30"/>-->
+
+        <menuitem id="menu_price_difference"
+                  name="前一天建Info Record價格差異表"
+                  parent="RFQ_menu"
+                  action="action_price_difference"
+                  sequence="20"/>
+
+        <menuitem id="menu_wizard_rfq_import_as_report"
+          name="Upload List: AS"
+          parent="RFQ_menu"
+          action="action_wizard_rfq_import_as_report"
+          sequence="30"/>
+
+        <menuitem id="menu_wizard_rfq_import_mm_report"
+          name="Upload List: MM"
+          parent="RFQ_menu"
+          action="action_wizard_rfq_import_mm_report"
+          sequence="40"  />
+
+        <menuitem id="menu_rfq_list_search"
+                  name="Info Record list"
+                  parent="RFQ_menu"
+                  action="action_rfq_list_search"
+                  sequence="50"/>
+
+        <menuitem id="menu_rfq_quota_audit"
+                  name="Info Record Quote Audit Report"
+                  parent="RFQ_menu"
+                  action="action_rfq_quota_audit"
+                  sequence="60"/>
+
+        <!--<menuitem id="menu_inforecord_cross_plant_exception"-->
+                  <!--name="跨廠區價格異動報表"-->
+                  <!--parent="RFQ_menu"-->
+                  <!--action="action_inforecord_cross_plant_exception"-->
+                  <!--sequence="70"/>-->
+
+        <menuitem id="menu_info_record_cross_up_report"
+                  name="Cost Up 報表"
+                  parent="RFQ_menu"
+                  action="action_info_record_cross_up_report"
+                  sequence="80"/>
+
+
+        <menuitem id="menu_asn_report"
+                  name="ASN Report"
+                  parent="G_R_menu"
+                  action="action_asn_report"
+                  sequence="20"/>
+
+        <menuitem id="menu_asn_report_for_subcontractor"
+                  name="ASN Report For Subcontractor"
+                  parent="G_R_menu"
+                  action="action_asn_report_for_subcontractor"
+                  sequence="80"/>
+
+        <menuitem id="menu_transit_asn"
+                  name="In-Transit ASN Price Changeable Report"
+                  parent="G_R_menu"
+                  action="action_transit_asn"
+                  sequence="30"/>
+
+        <menuitem id="menu_wizard_transverse_po"
+                  name="橫式 PO 資料"
+                  parent="PO_menu"
+                  action="action_wizard_transverse_po"
+                  sequence="80"/>
+
+        <menuitem id="menu_wizard_po_without_vendor_confirm"
+                  name="New PO without Vendor Confirm"
+                  parent="PO_menu"
+                  action="action_wizard_po_without_vendor_confirm"
+                  sequence="90"/>
+
+        <menuitem id="menu_wizard_po_report"
+                  name="PO Report"
+                  parent="PO_menu"
+                  action="action_wizard_po_report"
+                  sequence="100"/>
+
+        <menuitem id="menu_wizard_po_report_for_lg"
+                  name="PO Report for LG"
+                  parent="PO_menu"
+                  action="action_wizard_po_report_for_lg"
+                  sequence="101"/>
+
+        <menuitem id="menu_wizard_po_delete_state"
+                  name="呈現刪除狀態的 PO"
+                  parent="PO_menu"
+                  action="action_wizard_po_delete_state"
+                  sequence="110"/>
+
+        <menuitem id="menu_wizard_price_disagreement_report"
+                  name="OpenPO價格和Info reocrd價格不一致報表"
+                  parent="PO_menu"
+                  action="action_wizard_price_disageement_report"
+                  sequence="120"/>
+
+        <menuitem id="menu_wizard_comparison_report"
+                  name="跨 site PO和 最低 RFQ Price 比較表"
+                  parent="PO_menu"
+                  action="action_wizard_comparison_report"
+                  sequence="130"/>
+        <menuitem id="menu_wizard_payment_info"
+                  name="Payment"
+                  parent="PO_menu"
+                  action="action_wizard_payment_info"
+                  sequence="140"/>
+
+        <menuitem id="menu_po_buyer_code_change_log"
+                  name="Po Buyer_code Change Log"
+                  parent="PO_menu"
+                  action="action_wizard_po_buyer_code_change_log"
+                  sequence="150"/>
+
+        <menuitem id="menu_wizard_asn_customs_sas_report_pdf"
+              name="出入库单清单-PDF"
+              parent="G_R_menu"
+              action="action_wizard_customs_sas_report_pdf"
+              sequence="60"/>
+
+        <menuitem id="menu_pass_port_list"
+                  name="核放单清单-PDF"
+                  parent="G_R_menu"
+                  action="action_pass_port_list"
+                  sequence="70"/>
+
+
+
+        <!--Vendor 模塊-增加菜單3 : 維護 Vendor SOP  __20180604 laura add___s-->
+        <menuitem id="menu_wizard_iac_sop_attachment" name="Doc SOP"
+                  parent="oscg_vendor.menu_vendor_attachment"
+                  action="action_view_list_iac_sop_edit" sequence="3"/>    <!--20180529 laura add-->
+        <!--Vendor 模塊-增加菜單3 : 維護 Vendor SOP  __20180604 laura add___e-->
+
+        <!--Vendor 模塊-增加菜單 Level 2、3 : 報表 Vendor SOP  __20180604 laura add___s-->
+        <menuitem id="menu_sop_vendor" name="SOP - Vendor"
+                  parent="oscg_vendor.menu_vendor" sequence="10"/>
+        <menuitem id="menu_vendor_sop_doc" name="SOP Vendor" parent="menu_sop_vendor"
+                  action="action_view_list_iac_sop_report_vendor" sequence="1"/>
+        <!--Vendor 模塊-增加菜單 Level 2、3 : 報表 Vendor SOP  __20180604 laura add___e-->
+
+        <!--PO 模塊-增加菜單 Level 2、3 : 報表 PO SOP  __20180604 laura add___s-->
+        <menuitem id="menu_sop_po" name="SOP - PO"
+                  parent="oscg_po.menu_po" sequence="4"/>
+        <menuitem id="menu_po_sop_doc" name="SOP PO" parent="menu_sop_po"
+                  action="action_view_list_iac_sop_report_po" sequence="1"/>
+        <!--PO 模塊-增加菜單 Level 2、3 : 報表 PO SOP  __20180604 laura add___e-->
+
+        <!-- vendor evaluation 模塊-增加菜單 Level 2、3 : 報表 vendor evaluation SOP  __20180604 laura add___s-->
+        <menuitem id="menu_sop_vendor_evaluation" name="SOP - Vendor Evaluation"
+                  parent="iac_vendor_evaluation.menu_vendor_evaluation" sequence="4"/>
+        <menuitem id="menu_vendor_evaluation_sop_doc" name="SOP Vendor Evaluation"
+                  parent="menu_sop_vendor_evaluation"
+                  action="action_view_list_iac_sop_report_vendor_evaluation" sequence="1"/>
+        <!-- vendor evaluation 模塊-增加菜單 Level 2、3 : 報表 vendor evaluation SOP  __20180604 laura add___e-->
+
+        <!--FCST 模塊-增加菜單 Level 2、3 : 報表 FCST SOP  __20180604 laura add___s-->
+        <menuitem id="menu_sop_fcst" name="SOP - FCST"
+                  parent="iac_forecast_release_to_vendor.main_forecastrelease_menu"
+                  sequence="60"/>
+        <menuitem id="menu_fcst_sop_doc" name="SOP FCST" parent="menu_sop_fcst"
+                  action="action_view_list_iac_sop_report_fcst" sequence="1"/>
+        <!--FCST 模塊-增加菜單 Level 2、3 : 報表 FCST SOP  __20180604 laura add___e-->
+
+        <!--ASN 模塊-增加菜單 Level 2、3 : 報表 ASN SOP  __20180604 laura add___s-->
+        <menuitem id="menu_sop_asn" name="SOP - ASN"
+                  sequence="40" parent="oscg_rfq.menu_asn_root"/>
+        <menuitem id="menu_asn_sop_doc" name="SOP ASN" parent="menu_sop_asn"
+                  action="action_view_list_iac_sop_report_ans" sequence="1"/>
+        <!--ASN 模塊-增加菜單 Level 2、3 : 報表 ASN SOP  __20180604 laura add___e-->
+
+        <!--RFQ 模塊-增加菜單 Level 2、3 : 報表 RFQ SOP  __20180604 laura add___s-->
+        <menuitem id="menu_sop_rfq" name="SOP - Info Record"
+                  parent="oscg_rfq.menu_rfq" sequence="50"/>
+        <menuitem id="menu_rfq_sop_doc" name="SOP Info Record" parent="menu_sop_rfq"
+                  action="action_view_list_iac_sop_report_rfq" sequence="1"/>
+        <!--RFQ 模塊-增加菜單 Level 2、3 : 報表 RFQ SOP  __20180604 laura add___e-->
+
+        <!--Workspace 模塊-增加菜單 Level 2、3 : 報表 Workspace  __20180604 laura add___s-->
+        <menuitem id="menu_sop_workspace" name="SOP - Workspace"
+                  parent="oscg_vendor.menu_workspace" sequence="4"/>
+        <menuitem id="menu_workspace_sop_doc" name="SOP Workspace"
+                  parent="menu_sop_workspace"
+                  action="action_view_list_iac_sop_report_workspace" sequence="1"/>
+        <!--Workspace 模塊-增加菜單 Level 2、3 : 報表 Workspace  __20180604 laura add___e-->
+    </data>
+</odoo>

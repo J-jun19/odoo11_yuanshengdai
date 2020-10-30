@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_info_record_cross_up_report_list" model="ir.ui.view">
+            <field name="name">Info Record Cross Up Report</field>
+            <field name="type">tree</field>
+            <field name="model">v.info.record.cross.up.report</field>
+            <field name="arch" type="xml">
+                <tree string="Info Record Cross Up Report" create="false">
+                    <field name="approve_date"/>
+                    <field name="division_code"/>
+                    <field name="division_desc"/>
+                    <field name="vendor_code"/>
+                    <field name="vendor_name"/>
+                    <field name="material_group"/>
+                    <field name="material"/>
+                    <field name="currency"/>
+                    <field name="last_price"/>
+                    <field name="new_price"/>
+                    <field name="quantity"/>
+                    <field name="request_by"/>
+                    <field name="reason_id"/>
+                    <field name="comment"/>
+                    <field name="customer_duty"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="info_record_cross_up_report_wizard_form" model="ir.ui.view">
+            <field name="name">Info Record Cross Up Report</field>
+            <field name="model">info.record.cross.up.report.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Info Record Cross Up Report">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="approve_date_from" required="1"/>
+                                <field name="approve_date_to" required="1"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="search_info_record_cross_up_report"
+                                string="Search"
+                                class="btn-primary"
+                                type="object"/>
+                        or
+                        <button string="Cancel"
+                                class="btn-default"
+                                special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_info_record_cross_up_report"
+                    name="Info Record Cross Up Report"
+                    res_model="info.record.cross.up.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+    </data>
+</odoo>

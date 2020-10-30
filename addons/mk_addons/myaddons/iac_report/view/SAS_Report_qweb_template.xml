@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <template id="qweb_iac_customs_sas_report">
+        <t t-call="report.html_container">
+            <t t-call="report.internal_layout">
+                <div class="page" style="position:relative;min-height:29cm;width:100%">
+                    <div t-foreach="docs" t-as="o">
+                        <head>
+                            <title>Iac Customs Sas List</title>
+                            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+                        </head>
+                        <body style="margin: 0px">
+                            <div style="text-align:center;font-size:30px;">
+                                特殊区域出入库单
+                            </div>
+                            <br/>
+
+                            <div>
+                                <div style="text-align:center" border="1">
+                                    <t t-if="o.sas_stock_no">
+                                    <div height="60px" width="400px"><img t-att-src="'/report/barcode/Code128/%s' %o.sas_stock_no" height="50" width="400"/></div>
+                                    <div><span t-field="o.sas_stock_no"/></div>
+                                    </t>
+                                </div>
+                                <br/>
+                                <div>
+                                    <div style="float:left;font-size:20px;width:300px">
+                                        <span>仅供核对使用</span>
+                                    </div>
+                                    <div style="float:right;font-size:20px;width:300px;text-align:right">
+                                        <span>打印日期:</span><span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <table border="1px solid" width="100%">
+                                <tdead>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            预录入编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.sas_stock_preent_no"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            出入库单编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.sas_stock_no"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申报表编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.sas_dcl_no"/>
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            出入库单类型
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.stock_typecd"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            业务类型
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            分送集报
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申报类型
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.dcl_type_cd"/>
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            主管关区
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            漕河泾综
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            关联核注清单编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.pass_port_no"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            关联出入库单编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.orig_sas_no"/>
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            件数
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.package_qty"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            毛重
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.gross_wt"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            净重
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.net_wt"/>
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            包装类型
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <t t-if="o.pack_type=='1'">
+                                                木箱
+                                            </t>
+                                            <t t-if="o.pack_type=='2'">
+                                                纸箱
+                                            </t>
+                                            <t t-if="o.pack_type=='3'">
+                                                桶装
+                                            </t>
+                                            <t t-if="o.pack_type=='4'">
+                                                散装
+                                            </t>
+                                            <t t-if="o.pack_type=='5'">
+                                                托盘
+                                            </t>
+                                            <t t-if="o.pack_type=='6'">
+                                                包
+                                            </t>
+                                            <t t-if="o.pack_type=='7'">
+                                                其它
+                                            </t>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            集报标志
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <t t-if="o.precentralized_dcl_typecd=='1'">
+                                                未集报
+                                            </t>
+                                            <t t-if="o.precentralized_dcl_typecd=='2'">
+                                                已集报
+                                            </t>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申报日期
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.lg_approve_time"/>
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申请人
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            <span t-field="o.dcl_er"/>
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            企业内部编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+                                            3111640009
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            关联企业编码
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            代理组织编号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="2">
+
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            备注
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle" colspan="6">
+                                            <span t-field="o.usetocod"/>
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid;font-weight:bold;font-size:14pt" height="40px" colspan="9">表体</td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%">
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            明细序号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申报表序号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            关联商品序号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            料号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            商品编码
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            商品名称
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            商品规格型号
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申报数量
+                                        </td>
+                                        <td style="border:1px solid" height="30px" align="center" valign="middle">
+                                            申报单价
+                                        </td>
+                                    </tr>
+                                    <tr border="1px solid" width="100%" t-foreach="o.sas_stock_line_ids" t-as="sls">
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.sas_stock_seqno"/>
+                                        </td>
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.sas_dcl_seqno"/>
+                                        </td>
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.rlt_stock_seqno"/>
+                                        </td>
+                                        <td width="15%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.gds_mtno"/>
+                                        </td>
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.gdecd"/>
+                                        </td>
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.gds_nm"/>
+                                        </td>
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.gds_spcf_model_desc"/>
+                                        </td>
+                                        <td width="15%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.dcl_qty"/>
+                                        </td>
+                                        <td width="10%" style="border:1px solid" height="30px" align="center" valign="middle">
+                                            <span t-field="sls.dcl_uprc_amt"/>
+                                        </td>
+                                    </tr>
+                                    <!--<tr border="1px solid" width="100%">-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">2</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">1</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">11</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">6051A1563915</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">8517703000</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">塑制手写笔(手机用)</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">电子产品部件</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">1000.00000</td>-->
+                                        <!--<td style="border:1px solid" height="30px" align="center" valign="middle">2.31025</td>-->
+                                    <!--</tr>-->
+                                </tdead>
+                            </table>
+
+                        </body>
+                    </div>
+                </div>
+                <div style="position:absolute;bottom:5px;"/>
+                <div STYLE="page-break-after: always;"/>
+            </t>
+        </t>
+    </template>
+</odoo>

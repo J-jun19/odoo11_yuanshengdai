@@ -1,0 +1,57 @@
+--- vendor_regist
+INSERT INTO "public"."iac_vendor_regist" ("id", "comment", "vendor_id", "create_date", "write_date", "address_pobox", "is_outerbuy", "write_uid", "currency", "vat_number", "mother_name_en", "address_country", "mother_name_cn", "create_uid", "shareholders", "user_id", "address_postalcode", "web_site", "address_street", "factory_count", "address_district", "project_status", "apply_memo", "sales_mobile", "sales_telephone", "capital", "use_project", "supplier_category", "company_telephone2", "name2_en", "short_name", "company_telephone1", "buyer_email", "vendor_code", "delivery_hourse", "conglomerate", "sales_person", "applyfile_id", "name2_cn", "supplier_type", "state", "address_city", "sales_email", "name1_en", "employee_number", "company_fax", "name1_cn", "license_number", "mother_address_en", "is_scene", "mother_address_cn", "duns_number") VALUES ('1', NULL, NULL, '2017-09-11 05:40:35.117', '2017-09-11 06:50:15.177', '38400384', 'f', '1', '3', '38484403', '母公司英文名', '49', '母公司中文名', '1', 'MJK sHARES', NULL, '388409', 'wmh@126.com', 'sheng li road', NULL, 'shang hai', NULL, NULL, '18939485848', '384034883', 'USD', NULL, 'electronic', '334-398-987', '测试公司英文名2', 'xhd', '998-887-332', 'test_buyer@iac.com', NULL, 'f', 'MJK', '王华', NULL, '测试公司中文名2', 'manufacturer', 'draft', 'shang hai', 'jxy@gs.com', '测试公司英文名1', '20', '388-443-887', '测试公司中文名1', '334889589', '母公司地址英文名', 'f', '母公司地址中文名', '1388984893');
+
+---attachment_type
+INSERT INTO "public"."iac_attachment_type" ("id", "create_uid", "description", "write_uid", "write_date", "create_date", "name") VALUES ('7', '1', 'iso9001', '1', '2017-09-11 05:29:23.273', '2017-09-11 05:29:23.273', 'iso9001');
+INSERT INTO "public"."iac_attachment_type" ("id", "create_uid", "description", "write_uid", "write_date", "create_date", "name") VALUES ('8', '1', 'iso9002', '1', '2017-09-11 05:29:23.273', '2017-09-11 05:29:23.273', 'iso9002');
+INSERT INTO "public"."iac_attachment_type" ("id", "create_uid", "description", "write_uid", "write_date", "create_date", "name") VALUES ('10', '1', '银行认证2', '1', '2017-09-11 05:32:55.183', '2017-09-11 05:32:55.183', 'bank_cert_2');
+INSERT INTO "public"."iac_attachment_type" ("id", "create_uid", "description", "write_uid", "write_date", "create_date", "name") VALUES ('9', '1', '银行认证1', '1', '2017-09-11 05:33:04.791', '2017-09-11 05:32:39.337', 'bank_cert_1');
+INSERT INTO "public"."iac_attachment_type" ("id", "create_uid", "description", "write_uid", "write_date", "create_date", "name") VALUES ('11', '1', 'iso9003', '1', '2017-09-11 05:36:16.329', '2017-09-11 05:35:59.447', 'iso9003');
+INSERT INTO "public"."iac_attachment_type" ("id", "create_uid", "description", "write_uid", "write_date", "create_date", "name") VALUES ('12', '1', '银行认证3', '1', '2017-09-11 05:36:34.034', '2017-09-11 05:36:34.034', 'bank_cert_3');
+
+
+---attach_config
+INSERT INTO "public"."iac_attachment_config" ("id", "create_uid", "model_obj", "write_uid", "write_date", "create_date", "is_required", "type") VALUES ('1', '1', 'vendor', '1', '2017-09-11 05:32:03.017', '2017-09-11 05:32:03.017', 't', '7');
+INSERT INTO "public"."iac_attachment_config" ("id", "create_uid", "model_obj", "write_uid", "write_date", "create_date", "is_required", "type") VALUES ('2', '1', 'vendor', '1', '2017-09-11 05:33:17.979', '2017-09-11 05:32:18.406', 't', '8');
+INSERT INTO "public"."iac_attachment_config" ("id", "create_uid", "model_obj", "write_uid", "write_date", "create_date", "is_required", "type") VALUES ('3', '1', 'vendor_bank', '1', '2017-09-11 05:33:26.441', '2017-09-11 05:33:26.441', 't', '9');
+INSERT INTO "public"."iac_attachment_config" ("id", "create_uid", "model_obj", "write_uid", "write_date", "create_date", "is_required", "type") VALUES ('4', '1', 'vendor_bank', '1', '2017-09-11 05:33:35.627', '2017-09-11 05:33:35.627', 't', '10');
+INSERT INTO "public"."iac_attachment_config" ("id", "create_uid", "model_obj", "write_uid", "write_date", "create_date", "is_required", "type") VALUES ('5', '1', 'vendor', '1', '2017-09-11 05:36:48.86', '2017-09-11 05:36:48.86', 'f', '11');
+INSERT INTO "public"."iac_attachment_config" ("id", "create_uid", "model_obj", "write_uid", "write_date", "create_date", "is_required", "type") VALUES ('6', '1', 'vendor_bank', '1', '2017-09-11 05:37:03.42', '2017-09-11 05:37:03.42', 'f', '12');
+
+---  material_group
+INSERT INTO "public"."material_group" ("id", "create_uid", "create_date", "description", "material_group", "write_uid", "write_date") VALUES ('1', NULL, NULL, '电子产品', 'R-elec_type', NULL, NULL);
+INSERT INTO "public"."material_group" ("id", "create_uid", "create_date", "description", "material_group", "write_uid", "write_date") VALUES ('2', NULL, NULL, '消耗品', 'R-cons_type', NULL, NULL);
+
+
+--plm_subclass
+INSERT INTO "public"."plm_subclass" ("id", "create_uid", "class_code", "cht_name", "material_code", "material_group", "created_by", "subclass", "full_name", "created_date", "write_date", "create_date", "write_uid", "plm_id") VALUES ('1', '1', '1000', '电子耗材', '1000', 'R-elec_type', NULL, 'R-elec_type', NULL, NULL, '2017-09-11 05:49:52.735', '2017-09-11 05:49:52.735', '1', NULL);
+
+
+-- vendor_factory
+INSERT INTO "public"."iac_vendor_factory" ("id", "main_flag", "vendor_id", "qa_contact", "create_uid", "vendor_reg_id", "qa_email", "write_uid", "qa_tel", "factory_name", "write_date", "ur_flag", "factory_address", "create_date", "factory_location", "relation", "factory_type") VALUES ('1', 't', NULL, '38483', '1', '1', NULL, '1', '3848', 'factory_001', '2017-09-11 06:15:02.074', 't', 'jing an', '2017-09-11 06:15:02.074', 'shanghai', 'Self-Owned', 'NORMAL');
+INSERT INTO "public"."iac_vendor_factory" ("id", "main_flag", "vendor_id", "qa_contact", "create_uid", "vendor_reg_id", "qa_email", "write_uid", "qa_tel", "factory_name", "write_date", "ur_flag", "factory_address", "create_date", "factory_location", "relation", "factory_type") VALUES ('2', 't', NULL, '38483', '1', '1', NULL, '1', '30485', 'factory_002', '2017-09-11 06:15:02.074', 't', 'hua dong', '2017-09-11 06:15:02.074', 'nanjing', 'Joint-Venture', 'PACKAGING');
+
+
+
+
+
+---vendor_product
+INSERT INTO "public"."iac_vendor_product" ("id", "create_uid", "product_type", "product_class", "vendor_reg_id", "vendor_id", "major_customer", "brand_name", "create_date", "write_date", "write_uid", "capacity_month") VALUES ('2', '1', '1', '1', '1', NULL, 'Peach', 'peach', '2017-09-11 06:13:42.378', '2017-09-11 06:13:42.378', '1', '10');
+INSERT INTO "public"."iac_vendor_product" ("id", "create_uid", "product_type", "product_class", "vendor_reg_id", "vendor_id", "major_customer", "brand_name", "create_date", "write_date", "write_uid", "capacity_month") VALUES ('3', '1', '1', '1', '1', NULL, 'Apple', 'apple', '2017-09-11 06:13:42.378', '2017-09-11 06:13:42.378', '1', '20');
+
+-- iac vendor attach
+INSERT INTO "public"."iac_vendor_attachment" ("id", "create_uid", "description", "vendor_reg_id", "write_uid", "file_id", "write_date", "create_date", "type") VALUES ('1', '1', NULL, '1', '1', '1', '2017-09-11 06:50:15.177', '2017-09-11 05:40:35.117', '7');
+INSERT INTO "public"."iac_vendor_attachment" ("id", "create_uid", "description", "vendor_reg_id", "write_uid", "file_id", "write_date", "create_date", "type") VALUES ('2', '1', NULL, '1', '1', '2', '2017-09-11 06:58:33.88', '2017-09-11 05:40:35.117', '8');
+
+
+--file attach
+INSERT INTO "public"."muk_dms_file" ("id", "file_extension", "write_uid", "file_size", "create_uid", "message_last_post", "filename", "version", "mime_type", "file_ref", "write_date", "active", "create_date", "directory") VALUES ('1', '.docx', '1', '17622', '1', NULL, 'F01_新供应商申请.docx', '1', 'application/octet-stream', 'muk_dms.database_data,1', '2017-09-11 06:49:49.816', 't', '2017-09-11 06:49:49.816', '1');
+INSERT INTO "public"."muk_dms_file" ("id", "file_extension", "write_uid", "file_size", "create_uid", "message_last_post", "filename", "version", "mime_type", "file_ref", "write_date", "active", "create_date", "directory") VALUES ('3', '.docx', '1', '14094', '1', NULL, 'F08_Control Table.docx', '1', 'application/octet-stream', 'muk_dms.database_data,3', '2017-09-11 06:50:08.997', 't', '2017-09-11 06:50:08.997', '1');
+INSERT INTO "public"."muk_dms_file" ("id", "file_extension", "write_uid", "file_size", "create_uid", "message_last_post", "filename", "version", "mime_type", "file_ref", "write_date", "active", "create_date", "directory") VALUES ('4', '.docx', '1', '15087', '1', NULL, 'F02_新供應商申請單-銀行.docx', '1', 'application/octet-stream', 'muk_dms.database_data,4', '2017-09-11 06:58:24.767', 't', '2017-09-11 06:58:24.767', '1');
+INSERT INTO "public"."muk_dms_file" ("id", "file_extension", "write_uid", "file_size", "create_uid", "message_last_post", "filename", "version", "mime_type", "file_ref", "write_date", "active", "create_date", "directory") VALUES ('5', '', '1', '15087', '1', NULL, 'F02_新供應商申請單-銀行', '2', 'application/x-youkuagent', 'muk_dms.database_data,5', '2017-09-11 06:58:25.86', 't', '2017-09-11 06:58:25.86', '1');
+INSERT INTO "public"."muk_dms_file" ("id", "file_extension", "write_uid", "file_size", "create_uid", "message_last_post", "filename", "version", "mime_type", "file_ref", "write_date", "active", "create_date", "directory") VALUES ('2', '', '1', '15087', '1', NULL, 'F02_新供應商申請單-銀行', '3', 'application/x-youkuagent', 'muk_dms.database_data,2', '2017-09-11 06:58:25.86', 't', '2017-09-11 06:50:00.053', '1');
+
+
+---interface cfg
+INSERT INTO "public"."iac_interface_cfg" ("id", "outer_sys_name", "outer_sys_call_url", "code", "name", "create_uid", "first_start_time", "interface_type", "fail_retry_times", "descripton", "interval_seconds", "state", "sql_proc_code", "write_date", "seq_id", "create_date", "write_uid", "model_name") VALUES ('1', 'WebFlow', 'http://tsd9813-v.iec2.iac/EP_NewVendorFormService/CreateFormData', 'F01_B', '新供应商申请', '1', '2017-09-12 02:04:53', 'restful api', '3', 'odoo调用webflow新供应商注册申请', '0', 'active', NULL, '2017-09-12 02:10:23.363', '1', '2017-09-12 02:07:49.212', '1', 'web.call.out.vendor.new');
+

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+        <!-- muk目录 -->
+        <record model="muk_dms.directory" id="directory_po">
+            <field name="id">3</field>
+            <field name="name">PO Attachment</field>
+        </record>
+	</data>
+</odoo>

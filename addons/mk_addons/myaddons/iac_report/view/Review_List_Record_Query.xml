@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <act_window id="action_wizard_review_list_record_report"
+                    name="評鑒:手動產生評核名單紀錄查詢"
+                    res_model="v.review.list.record.wizard"
+                    view_mode="form"
+                    target="new"/>
+
+
+    </data>
+
+</odoo>

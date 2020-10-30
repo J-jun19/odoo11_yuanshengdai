@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <!--接口配置相关 -->
+      <record id="mine_test_report_view" model="ir.ui.view">
+          <field name="model">mine.test.report</field>
+          <field name="arch" type="xml">
+              <form string="Scheduled Actions">
+                  <group colspan="4">
+                      <div id="accordion">
+                          <h3 style="padding-left:20px">点击这个折叠或展开</h3>
+                          <div>
+                              <group colspan="4">
+                                  <field name="interface_cfg_id" />
+
+                                  <field name="interface_timer_cfg_id"  />
+                                  <field name="start_time"  />
+                                  <field name="end_time"  />
+                              </group>
+                              <field name="report_params_url" colspan="4"  />
+                          </div>
+                      </div>
+                  </group>
+                  <group colspan="4">
+                      <field name="report_text" widget="jreport" nolabel="1" colspan="4" />
+                  </group>
+
+              </form>
+          </field>
+      </record>
+
+
+
+      <record id="action_mine_test_report" model="ir.actions.act_window">
+          <field name="name">Scheduled Actions</field>
+          <field name="res_model">mine.test.report</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+
+          <field name="view_id" ref="mine_test_report_view"/>
+      </record>
+
+      <menuitem id="menu_mine_test_report" name="Mine Test Report" action="action_mine_test_report" parent="menu_interface_cfg_base"/>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_vendor_register_list" model="ir.ui.view">
+            <field name="name">vendor.register.list</field>
+            <field name="model">iac.vendor.register</field>
+            <field name="arch" type="xml">
+                <tree string="Registration" create="false">
+                    <field name="state"/>
+                    <field name="vendor_code"/>
+                    <field name="name1_cn"/>
+                    <field name="name1_en" />
+                    <field name="short_name" />
+                    <field name="mother_name_en" />
+                    <field name="buyer_email" />
+                    <field name="user_id"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_vendor_register_form" model="ir.ui.view">
+            <field name="name">vendor.register.form</field>
+            <field name="model">iac.vendor.register</field>
+            <field name="arch" type="xml">
+                <form string="Registration" create="false">
+                    <header>
+                        <button String="Submit" states="draft" type="object" class="oe_highlight" name="button_registe" groups="oscg_vendor.IAC_vendor_groups"/>
+                        <button String="作废" states="submit" type="object" class="oe_highlight" name="button_cancel" groups="oscg_vendor.IAC_buyer_groups"/>
+                        <button String="拒绝" states="submit" type="object" class="oe_highlight" name="button_reject" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                        <button String="送签" states="submit,unapproved" type="object" class="oe_highlight" name="button_to_approve" groups="oscg_vendor.IAC_buyer_groups"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submit,to approve,done" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="user_id" readonly="True" />
+                                <field name="vendor_code" readonly="True" />
+                                <field name="name1_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="name2_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="name1_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="name2_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="mother_name_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="mother_name_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="mother_address_en" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="mother_address_cn" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="capital" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="employee_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="conglomerate" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="shareholders" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="company_telephone1" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="company_telephone2" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="company_fax" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="duns_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="iso_certificate" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" widget="many2many_tags" options="{'no_create': True,'no_open': True}" />
+                                <field name="state_msg" readonly="1"/>
+                                <field name="webflow_number"/>
+                            </group>
+                            <group>
+                                <field name="buyer_email" readonly="True" />
+                                <field name="web_site" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="license_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="vat_number" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}"/>
+                                <field name="short_name" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="contact_person" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="sales_telephone" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="sales_mobile" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="sales_email" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="address_street" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="address_city" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="address_district" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="address_pobox" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="address_country" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                                <field name="address_postalcode" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="currency" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" options="{'no_create': True,'no_open': True}"/>
+                                <field name="factory_count" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="supplier_type" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="supplier_category" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}" />
+                                <field name="other_emails"/>
+                                <field name="reject_reason" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}" />
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Products">
+                                <field name="product_ids" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}">
+                                    <tree string="product_ids" editable="bottom">
+                                        <field name="product_type" domain="[('material_group','like','R-')]" options="{'no_create': True, 'no_edit': True,'no_create':True}" required="1"/>
+                                        <field name="product_class" options="{'no_create': True, 'no_edit': True,'no_create':True}"
+                                               domain="[('material_group_id','=',product_type)]"/>
+                                        <field name="brand_name"/>
+                                        <field name="capacity_month"/>
+                                        <field name="major_customer"/>
+                                        <field name="material_group_name" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Factory">
+                                <field name="factory_ids" attrs="{'readonly': [('state', 'not in', ('draft', 'unapproved'))]}">
+                                    <tree string="factory_ids" editable="bottom">
+                                        <field name="factory_type"/>
+                                        <field name="factory_name" />
+                                        <field name="factory_location" />
+                                        <field name="factory_address" />
+                                        <field name="main_flag" />
+                                        <field name="ur_flag" />
+                                        <field name="relation" />
+                                        <field name="qa_contact" />
+                                        <field name="qa_tel" />
+                                        <field name="qa_email" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Attachment">
+                                <field name="attachment_ids" attrs="{'readonly': [('state', 'not in', ['draft', 'submit','unapproved'])]}">
+                                    <tree string="Attachment" create="false" delete="false">
+                                        <field name="type" />
+                                        <field name="file_id" widget="dms_file" string="Attachment" directory="model_muk_dms_directory.1" />
+                                        <field name="approver_id" options="{'no_create': True,'no_open': True}" attrs="{'invisible': [('file_id', '=', False)]}" context="{'filter_user_by_attachment_type': True, 'filter_user_by_user_plant': True, 'attachment_type_id': type}"/>
+                                        <field name="expiration_date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Buyer Approve New Registration" groups="oscg_vendor.IAC_buyer_groups">
+                                <group>
+                                <group>
+                                    <field name="reason_one" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}" options="{'no_create': True,'no_open': True}"/>
+                                    <field name="material_use_range" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="corporation_description" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="supplier_description" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="use_project" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="project_status" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="apply_reason" widget="many2many_tags" options="{'no_create': True,'no_open': True}" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+
+                                    <field name="applyfile_id" widget="dms_file" string="Apply File" directory="model_muk_dms_directory.1" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+
+                                    <field name="apply_memo" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="is_scene" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="is_outerbuy" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="delivery_hours" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                    <field name="comment" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}"/>
+                                </group>
+                                <group>
+                                    <field name="material_ids" attrs="{'readonly': [('state', 'not in', ['submit','unapproved'])]}" required="1">
+                                        <tree string="material_ids" editable="bottom">
+                                            <field name="division_code" options="{'no_create': True,'no_open': True}" required="1"/>
+                                            <field name="project" required="1"/>
+                                            <field name="material_group" options="{'no_create': True,'no_open': True}" required="1"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="iac_vendor_register_search_view">
+            <field name="name">Vendor Register Search</field>
+            <field name="model">iac.vendor.register</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="vendor_code"/>
+                    <field name="name1_cn"/>
+                    <group string="Group By">
+                        <filter name="by_state" string="State" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--定义视图动作-->
+        <record model="ir.actions.act_window" id="action_view_vendor_register_form">
+            <field name="name">Registration</field>
+            <field name="res_model">iac.vendor.register</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,tree</field>
+            <field name="target">main</field>
+            <field name="domain">[('state','not in',['block','deleted'])]</field>
+            <field name="view_id" ref="view_vendor_register_list" />
+        </record>
+
+        <!-- vendor 附件form视图 -->
+        <record id="view_vendor_register_attachment_form" model="ir.ui.view">
+            <field name="name">iac.vendor.register.attachment.form</field>
+            <field name="type">form</field>
+            <field name="model">iac.vendor.register.attachment</field>
+            <field name="arch" type="xml">
+                <form string="Attachment" create="false" delete="false">
+                   <group colspan="4">
+                       <field name="vendor_reg_id" options="{'no_open':True}"/>
+                       <field name="name1_cn"/>
+                       <field name="name1_en"/>
+                       <field name="type" required="1"/>
+
+                       <field name="file_id"  widget="dms_file" directory="model_muk_dms_directory.1" attrs="{'readonly':[('is_file_reviewer','=',True)]}"/>
+
+
+                       <field name="description"/>
+                       <field name="buyer_email"/>
+                       <field name="approver_id" options="{'no_create': True,'no_open': True}" context="{'filter_user_by_attachment_type': True, 'filter_user_by_user_plant': True, 'attachment_type_id': type}" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                       <field name="expiration_date" attrs="{'required':[('time_sensitive','=',True)]}" groups="oscg_vendor.IAC_qs_groups"/>
+                       <field name="supplier_type"/>
+                       <field name="state" groups="oscg_vendor.IAC_qs_groups"/>
+                       <field name="memo" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                       <field name="time_sensitive" invisible="1"/>
+                       <field name="is_file_reviewer" invisible="1"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_vendor_attachment_form" model="ir.ui.view">
+            <field name="name">iac.vendor.attachment.form</field>
+            <field name="type">form</field>
+            <field name="model">iac.vendor.attachment</field>
+            <field name="arch" type="xml">
+                <form string="Attachment" create="false">
+                   <group colspan="4">
+                       <field name="vendor_id" options="{'no_open':True}"/>
+                       <field name="name1_cn"/>
+                       <field name="name1_en"/>
+                       <field name="type" required="1"/>
+
+                       <field name="file_id" widget="dms_file" directory="model_muk_dms_directory.2"/>
+
+
+                       <field name="description"/>
+                       <field name="buyer_email"/>
+                       <field name="approver_id" options="{'no_create': True,'no_open': True}" context="{'filter_user_by_attachment_type': True, 'filter_user_by_user_plant': True, 'attachment_type_id': type}" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                       <field name="expiration_date" attrs="{'required':[('time_sensitive','=',True)]}" groups="oscg_vendor.IAC_qs_groups"/>
+                       <field name="supplier_type"/>
+                       <field name="state" groups="oscg_vendor.IAC_qs_groups"/>
+                       <field name="memo" groups="oscg_vendor.IAC_buyer_groups,oscg_vendor.IAC_qs_groups"/>
+                       <field name="time_sensitive" invisible="1"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+        <record id="view_vendor_register_attachment_tree" model="ir.ui.view">
+            <field name="name">iac.vendor.register.attachment.tree</field>
+            <field name="model">iac.vendor.register.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment" create="false" delete="false">
+                   <field name="vendor_reg_id"/>
+                   <field name="type"/>
+                   <field name="file_id"/>
+                   <field name="description"/>
+                   <field name="expiration_date"/>
+                   <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_vendor_attachment_tree" model="ir.ui.view">
+            <field name="name">iac.vendor.attachment.tree</field>
+            <field name="model">iac.vendor.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="Attachment" create="false">
+                    <field name="vendor_id"/>
+                   <field name="type"/>
+                   <field name="file_id"/>
+                   <field name="description"/>
+                   <field name="expiration_date"/>
+                   <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="view_vendor_change_attachment_form" model="ir.ui.view">
+            <field name="name">iac.vendor.change.attachment.form</field>
+            <field name="type">form</field>
+            <field name="model">iac.vendor.change.attachment</field>
+            <field name="arch" type="xml">
+                <form string="Attachment">
+                   <group colspan="4">
+                       <field name="type"/>
+                       <field name="file_id" widget="dms_file" directory="model_muk_dms_directory.2"/>
+                       <field name="approver_id" options="{'no_create': True,'no_open': True}" attrs="{'invisible': [('file_id', '=', False)]}" context="{'filter_user_by_attachment_type': True, 'filter_user_by_user_plant': True, 'attachment_type_id': type}"/>
+                       <field name="description"/>
+                   </group>
+                </form>
+            </field>
+        </record>
+
+        <record id='iac_vendor_register_attachment_wizard_form' model='ir.ui.view'>
+          <field name='name'>iac vendor Register attachment wizard form view</field>
+          <field name='model'>iac.vendor.register.attachment.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Borrow Vendor Register Attachment">
+                <sheet>
+                    <group>
+                        <field name="vendor_reg_id" options="{'no_create': True, 'no_edit': True,'no_create': True}" domain="[('state','in',['submit','to approve','unapproved','done'])]"/>
+                        <field name="state"/>
+                    </group>
+                </sheet>
+              <footer>
+                <button name='search_vendor_attachments'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <record id='iac_vendor_attachment_wizard_form' model='ir.ui.view'>
+          <field name='name'>iac vendor attachment wizard form view</field>
+          <field name='model'>iac.vendor.attachment.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Borrow Vendor Attachment">
+                <sheet>
+                    <group>
+                        <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_create': True}" />
+                        <field name="state"/>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_vendor_attachments'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+
+        <act_window id="action_wizard_iac_vendor_register_attachment" name="Vendor Register Attachment" res_model="iac.vendor.register.attachment.wizard" view_mode="form" target="new"/>
+        <act_window id="action_wizard_iac_vendor_attachment" name="Vendor Attachment" res_model="iac.vendor.attachment.wizard" view_mode="form" target="new"/>
+
+        <record id='iac_select_vendor_code_wizard_form' model='ir.ui.view'>
+          <field name='name'>iac select vendor wizard form view</field>
+          <field name='model'>iac.select.vendor.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Select Vendor Code（如需切换Vendor，请退出系统重新登录！）">
+                <sheet>
+                    <group>
+                        <field name="plant_code" readonly="1"/>
+                        <field name="vendor_code" readonly="1"/>
+                        <field name="plant_id" options="{'no_create': True,'no_open': True}"/>
+                        <field name="vendor_id" options="{'no_create': True, 'no_edit': True,'no_create': True}" domain="[('plant', '=', plant_id), ('user_id', '!=', False)]"
+                                       attrs="{'readonly': [('plant_id', '=', False)]}" context="{'do_not_filter_vendor_by_vendor_id': True}"/>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='select_vendor_code'
+                        string='Set'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_wizard_iac_select_vendor_code" name="Select Vendor Code" res_model="iac.select.vendor.wizard" view_mode="form" target="new"/>
+    </data>
+</odoo>

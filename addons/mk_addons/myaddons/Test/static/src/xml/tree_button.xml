@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <templates id="template_02" xml:space="preserve">
+        <t t-extend="ListView.buttons">
+
+          <t t-jquery="div.o_list_buttons" t-operation="append">
+
+                  <t t-if="widget.displayName == 'test_one'">
+                  <button class="btn btn-primary create_by_xf" type="button" >按钮哦</button>
+              </t>
+
+         </t>
+     </t>
+    </templates>

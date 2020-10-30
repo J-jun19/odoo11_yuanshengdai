@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <odoo>
+        <data>
+            <record model="ir.actions.act_window"  id="action_view_po_im_upload">
+                <field name="name">Special Approval PO</field>
+                <field name="res_model">iac.im.upload</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">form</field>
+                <field name="target">new</field>
+            </record>
+
+
+            <record id="view_po_im_upload" model="ir.ui.view">
+                <field name="name">Special Approval PO</field>
+                <field name="model">iac.im.upload</field>
+                <field name="arch" type="xml">
+                    <form string="Special Approval PO">
+                        <group string="PO明细资料档案">
+                            <field name="file_name1" required="1"></field>
+                            <field name="file1" required="1" filename="file_name1"></field>
+                        </group>
+
+                        <group string="佐证文件档案">
+                            <field name="filename" required="1"></field>
+                            <field name="file" required="1" filename="filename" widget="preview_file"></field>
+                            <field name="directory" invisible="1"/>
+                        </group>
+
+                        <group>
+                            <p>
+                                <a href="dms/file/download/137032">EXCEL上传模板文件 IAC IM download template file for Special Approval PO</a>
+                            </p>
+                        </group>
+
+                        <footer>
+                            <button name="validate_data" string="Confirm" type="object"  class="oe_highlight"  />
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel" />
+                            <!--or-->
+                            <!--<button name="Download_template" string="Download Template" type="object"  class="oe_highlight"  />-->
+                        </footer>
+                    </form>
+                </field>
+            </record>
+
+
+
+
+
+
+        </data>
+    </odoo>

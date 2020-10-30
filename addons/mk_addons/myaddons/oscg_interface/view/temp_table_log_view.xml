@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <data>
+    <!--中间表转入数据日志 -->
+    <record id="view_iac_interface_temp_table_group_exe_list" model="ir.ui.view">
+        <field name="name">Temp Table Group Log LIst</field>
+        <field name="type">tree</field>
+        <field name="model">iac.interface.temp.table.group.exe</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="group_name"/>
+                <field name="start_time"/>
+                <field name="end_time"/>
+                <field name="state"/>
+                <field name="success_group_line_count"/>
+                <field name="fail_group_line_count"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_iac_interface_temp_table_group_exe_form" model="ir.ui.view">
+        <field name="name">Temp Table Group Log Form</field>
+        <field name="type">form</field>
+        <field name="model">iac.interface.temp.table.group.exe</field>
+        <field name="arch" type="xml">
+            <form string="vendor">
+             <group colspan="4">
+
+                 <group>
+                     <field name="group_name"/>
+                     <field name="start_time"/>
+                 </group>
+                 <group>
+                     <field name="state"/>
+                     <field name="end_time"/>
+                 </group>
+                 <group colspan="4">
+                     <field name="exe_line_ids">
+                         <tree string="Log Lines" editable="bottom">
+                             <field name="group_line_name"/>
+                             <field name="start_time"/>
+                             <field name="end_time" />
+                             <field name="start_id"/>
+                             <field name="last_id"/>
+                             <field name="log_memo"/>
+                             <field name="sap_log_id"/>
+                             <field name="update_record_counts"/>
+                             <field name="fail_record_counts"/>
+                             <field name="miss_record_counts"/>
+                             <field name="sp_name"/>
+                             <field name="sap_log_id"/>
+
+                         </tree>
+                         <form string="Log Line Form">
+                             <group col="4">
+                                 <field name="group_line_name"/>
+                                 <field name="start_time"/>
+                                 <field name="end_time" />
+                                 <field name="start_id"/>
+                                 <field name="last_id"/>
+                                 <field name="log_memo"/>
+                                 <field name="update_record_counts"/>
+                                 <field name="fail_record_counts"/>
+                                 <field name="miss_record_counts"/>
+                                 <field name="sp_name"/>
+                                 <field name="sap_log_id"/>
+                                 <field name="sp_func_text"/>
+                             </group>
+                         </form>
+                     </field>
+
+                 </group>
+
+             </group>
+            </form>
+        </field>
+    </record>
+
+    <!--定义视图动作-->
+    <record model="ir.actions.act_window"  id="action_iac_interface_temp_table_group_exe">
+        <field name="name">Action Interface Config</field>
+        <field name="res_model">iac.interface.temp.table.group.exe</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form,tree</field>
+        <field name="view_id" ref="view_iac_interface_temp_table_group_exe_list"/>
+    </record>
+
+    <!--定义菜单-->
+    <menuitem id="menu_iac_interface_temp_table_group_exe_item" name="Temp Table Group Log List" parent="menu_interface_cfg_base" action="action_iac_interface_temp_table_group_exe"/>
+
+
+
+      <!--中间表转入数据异常日志 -->
+      <record id="view_iac_interface_temp_table_group_exe_log_list" model="ir.ui.view">
+          <field name="name">Temp Table Group Excecption Log List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.interface.temp.table.group.exe.log</field>
+          <field name="arch" type="xml">
+              <tree>
+
+                  <field name="group_name"/>
+                  <field name="group_line_name"/>
+                  <field name="sap_log_id"/>
+                  <field name="src_id"/>
+                  <field name="exception_detail"/>
+                  <field name="start_time"/>
+                  <field name="message_text"/>
+                  <field name="table_name"/>
+
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_iac_interface_temp_table_group_exe_log_form" model="ir.ui.view">
+          <field name="name">Temp Table Group Log Exception Form</field>
+          <field name="type">form</field>
+          <field name="model">iac.interface.temp.table.group.exe.log</field>
+          <field name="arch" type="xml">
+              <form string="vendor">
+                  <group colspan="4">
+
+                      <group>
+                          <field name="group_name"/>
+                          <field name="sap_log_id"/>
+                          <field name="start_time"/>
+                      </group>
+                      <group>
+                          <field name="group_line_name"/>
+                          <field name="src_id"/>
+                          <field name="table_name"/>
+
+                      </group>
+
+                      <group colspan="4">
+                          <field name="message_text"/>
+                      </group>
+                      <group colspan="4">
+                          <field name="exception_detail"/>
+                      </group>
+
+
+
+                  </group>
+              </form>
+          </field>
+      </record>
+
+      <!--定义视图动作-->
+      <record model="ir.actions.act_window"  id="action_iac_interface_temp_table_group_exe_log">
+          <field name="name">Action Interface Config</field>
+          <field name="res_model">iac.interface.temp.table.group.exe.log</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form,tree</field>
+          <field name="view_id" ref="view_iac_interface_temp_table_group_exe_log_list"/>
+      </record>
+
+      <!--定义菜单-->
+      <menuitem id="menu_iac_interface_temp_table_group_exe_log_item" name="Temp Table Execption Log List" parent="menu_interface_cfg_base" action="action_iac_interface_temp_table_group_exe_log"/>
+
+  </data>
+</odoo>

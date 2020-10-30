@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <record model="ir.actions.act_window" id="table_list_action">
+            <field name="name">Create Control Table</field>
+            <field name="res_model">iac.control.table</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Click here to add new control table
+                </p>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window"  id="table_import_action">
+            <field name="name">Batch Create Control Table</field>
+            <field name="res_model">iac.control.table.upload</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context" eval="{'default_res_model': 'iac.control.table'}"/>
+
+        </record>
+
+        <record model="ir.actions.act_window" id="real_table_action">
+            <field name="name">Current Control Table Data</field>
+            <field name="res_model">iac.control.table.real</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+
+        </record>
+
+        <record model="ir.actions.act_window" id="control_table_history_action">
+            <field name="name">Control Table History</field>
+            <field name="res_model">iac.control.table.history</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+
+        </record>
+
+        <!-- 单笔和批量送签 -->
+      <record id="iac_control_table_submit_action_server" model="ir.actions.server">
+            <field name="name">送签</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_iac_control_table"/>
+            <field name="state">code</field>
+            <field name="code">
+if records:
+    action = records.button_to_approve()
+            </field>
+        </record>
+
+        <record id="action_iac_control_table_submit" model="ir.values">
+            <field name="name">送签</field>
+            <field name="model_id" ref="model_iac_control_table"/>
+            <field name="model">iac.control.table</field>
+            <field name="key2">client_action_multi</field>
+            <field eval="'ir.actions.server,%d'%iac_control_table_submit_action_server" name="value"/>
+        </record>
+
+
+        <!--upload form-->
+        <record id="view_waimai_order_uplaod_wizard" model="ir.ui.view">
+            <field name="name">iac.control.table.upload</field>
+            <field name="model">iac.control.table.upload</field>
+            <field name="arch" type="xml">
+                <form string="Wizard tools">
+                    <group>
+
+                        <field name="buyer" options="{'no_create': True, 'no_edit': True}"></field>
+                        <field name="excel"></field>
+
+
+                    </group>
+
+                    <footer>
+                        <button name="action_confirm" string="Confirm" type="object"  class="oe_highlight"  />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                        or
+                        <button name="action_confirm_download" string="Download Template" type="object"  class="oe_highlight"  />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--MM 下载rfq的向导-->
+      <record id="view_iac_control_table_report_form" model="ir.ui.view">
+          <field name="name">Download Control Table Template</field>
+          <field name="model">iac.control.table.report.wizard</field>
+          <field name="arch" type="xml">
+              <form string="Wizard tools">
+                  <group>
+                      <field name="message" />  <!--<field name="plant_ids" widget="many2many_tags"/>-->
+
+                  </group>
+
+                  <footer>
+                      <button name="action_confirm" string="Confirm" type="object"  class="oe_highlight"  />
+                      or
+                      <button string="Cancel" class="oe_link" special="cancel" />
+                  </footer>
+              </form>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window"  id="action_iac_control_table_report_form">
+          <field name="name">Download Control Table Template</field>
+          <field name="res_model">iac.control.table.report.wizard</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+      </record>
+
+
+
+
+        <record model="ir.ui.view" id="real_table_tree_view">
+            <field name="name">real.table.tree</field>
+            <field name="model">iac.control.table.real</field>
+            <field name="arch" type="xml">
+                <tree string="Real Table Tree" create="false" import="false">
+                    <field name="x1"/>
+                    <field name="x2"/>
+                    <field name="x3"/>
+                    <field name="x4"/>
+                    <field name="x5"/>
+                    <field name="plant_code"/>
+                    <field name="type"/>
+                    <field name="buyer" />
+                    <field name="vendor" />
+                    <field name="b2b_control"/>
+                    <field name="pulling_type"/>
+                    <field name="trans_lt" />
+                    <field name="safety_lt"/>
+                    <field name="frequency"/>
+                    <field name="operator"/>
+                    <field name="optime"/>
+                    <field name="ctrl_class"/>
+                    <field name="bu"/>
+                    <field name="frequency_pr"/>
+                    <field name="eta_trans"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="control_table_history_view">
+            <field name="name">control.table.history</field>
+            <field name="model">iac.control.table.history</field>
+            <field name="arch" type="xml">
+                <tree string="Control Table History" create="false" import="false">
+                    <field name="x1"/>
+                    <field name="x2"/>
+                    <field name="x3"/>
+                    <field name="x4"/>
+                    <field name="x5"/>
+                    <field name="plant_id"/>
+                    <field name="type"/>
+                    <field name="buyer_id" />
+                    <field name="vendor" />
+                    <field name="b2b_control"/>
+                    <field name="pulling_type"/>
+                    <field name="trans_lt" />
+                    <field name="safety_lt"/>
+                    <field name="frequency"/>
+                    <field name="operator"/>
+                    <field name="optime"/>
+                    <field name="ctrl_class"/>
+                    <field name="bu"/>
+                    <field name="frequency_pr"/>
+                    <field name="eta_trans"/>
+
+                </tree>
+            </field>
+        </record>
+        <!-- course tree/list view -->
+        <record model="ir.ui.view" id="table_tree_view">
+            <field name="name">table.tree</field>
+            <field name="model">iac.control.table</field>
+            <field name="arch" type="xml">
+                <tree string="Table Tree">
+                    <field name="state"/>
+                    <field name="x1"/>
+                    <field name="x2"/>
+                    <field name="x3"/>
+                    <field name="x4"/>
+                    <field name="x5"/>
+                    <field name="plant_code"/>
+                    <field name="vendor" required="1"/>
+                    <field name="b2b_control"/>
+                    <field name="pulling_type"/>
+                    <field name="trans_lt" required="1"/>
+                    <field name="safety_lt"/>
+                    <field name="frequency"/>
+                    <field name="frequency_pr"/>
+                    <field name="eta_trans"/>
+                    <field name="type"/>
+                    <field name="buyer" required="1"/>
+                    <field name="state_msg"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- course form view -->
+        <record model="ir.ui.view" id="table_form_view">
+            <field name="name">table.form</field>
+            <field name="model">iac.control.table</field>
+            <field name="arch" type="xml">
+                <form string="Table Form">
+                    <header>
+                        <button String="送签" type="object" class="oe_highlight" name="button_to_approve" states="draft"/>
+                        <button String="Call FP" states="fp error,approved" type="object" class="oe_highlight" name="button_to_fp" />
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="plant_code" required="1" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}"/>
+                                <field name="type"/>
+                                <field name="buyer" required="1" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}" />
+                                <field name="vendor" required="1" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}"/>
+                                <field name="b2b_control" />
+                                <field name="pulling_type" required="1" options="{'no_create': True, 'no_edit': True}" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}"/>
+                                <field name="trans_lt" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}" />
+                                <field name="safety_lt" />
+                                <field name="frequency" />
+                                <field name="x1"/>
+                                <field name="x2"/>
+                                <field name="x3"/>
+                                <field name="x4"/>
+                                <field name="x5"/>
+                            </group>
+                            <group>
+                                <field name="operator" />
+                                <field name="optime" />
+                                <field name="table_class"/>
+                                <field name="bu"/>
+                                <field name="frequency_pr"/>
+                                <field name="eta_trans" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}"/>
+                                <field name="reason" attrs="{'readonly': [('state', 'in', ('in review','approved','fp error'))]}"/>
+                                <field name="state" />
+                                <field name="state_msg"/>
+                                <field name="webflow_number"/>
+                            </group>
+                        </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

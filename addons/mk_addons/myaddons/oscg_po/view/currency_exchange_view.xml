@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!-- Currency Exchange-->
+      <record id="view_iac_currency_exchange_list" model="ir.ui.view">
+          <field name="name">Currency Exchange List</field>
+          <field name="type">tree</field>
+          <field name="model">iac.currency.exchange</field>
+          <field name="arch" type="xml">
+              <tree string="Currency Exchange List" create="false">
+                  <field name="state"/>
+                  <field name="from_currency_id"/>
+                  <field name="to_currency_id"/>
+                  <field name="op_date"/>
+                  <field name="from_currency_amount"/>
+                  <field name="to_currency_amount"/>
+                  <field name="sap_status"/>
+                  <field name="sap_message"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="view_iac_currency_exchange_form" model="ir.ui.view">
+          <field name="name">Currency Exchange</field>
+          <field name="type">form</field>
+          <field name="model">iac.currency.exchange</field>
+          <field name="arch" type="xml">
+              <form string="Purchase Approve Regular">
+                  <sheet>
+                      <group>
+                          <field name="state"/>
+                          <field name="from_currency_id"/>
+                          <field name="to_currency_id"/>
+                          <field name="op_date"/>
+                          <field name="from_currency_amount"/>
+                          <field name="to_currency_amount"/>
+                          <field name="sap_status"/>
+                          <field name="sap_message"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+
+      <record model="ir.actions.act_window"  id="action_iac_currency_exchange_list">
+          <field name="name">Currency Exchange</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">iac.currency.exchange</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="view_iac_currency_exchange_list"/>
+      </record>
+
+
+
+  </data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <!--一级菜单-->
+     <menuitem id="main_iac_admin_tools"
+                  name="Admin Tools" sequence="55" />
+
+      <!--二级菜单 po-->
+      <menuitem id="po_iac_admin_tool" name="Po Tools"
+                  parent="main_iac_admin_tools" sequence="11"/>
+
+      <menuitem id="customs_iac_admin_tool" name="Customs Tools"
+                  parent="main_iac_admin_tools" sequence="12"/>
+
+      <menuitem id="asn_iac_admin_tool" name="Vendor Tools"
+                  parent="main_iac_admin_tools" sequence="13"/>
+
+      <!--三级菜单 po update display_flag -->
+      <menuitem id="po_update_display_flag" name="Update Po Display Flag"
+                  parent="po_iac_admin_tool" action="action_admin_update_po_display_flag"
+                  sequence="10"/>
+      <!--update po state &#45;&#45;PO一直卡在state='to approve'-->
+      <menuitem id="po_update_state_flag" name="Update Po approve state"
+                  parent="po_iac_admin_tool" action="action_admin_update_po_approve_state"
+                  sequence="13"/>
+
+      <menuitem id="customs_update_export_qty" name="Update Customs Qty"
+                  parent="customs_iac_admin_tool" action="action_admin_update_customs_qty"
+                  sequence="20"/>
+
+      <menuitem id="customs_update_header_state" name="Update Customs State"
+                  parent="customs_iac_admin_tool" action="action_admin_update_customs_state"
+                  sequence="30"/>
+
+      <menuitem id="asn_maintain_vat_number" name="Maintain Vat Number"
+                  parent="asn_iac_admin_tool" action="action_admin_asn_maintain_vat_number"
+                  sequence="40"/>
+  </data>
+</odoo>

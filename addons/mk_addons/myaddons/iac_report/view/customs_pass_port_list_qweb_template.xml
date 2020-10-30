@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="qweb_iac_customs_pass_port_list">
+        <t t-call="report.html_container">
+            <t t-call="report.internal_layout">
+                <div class="page" style="position:relative;min-height:29cm;width:100%">
+                    <div t-foreach="docs" t-as="o">
+                        <head>
+                            <title>IAC Customs Pass Port List</title>
+                            <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+                        </head>
+                        <body style="margin: 0px">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <t t-if="o.pass_port_no">
+                                    <tr align="left">
+                                        <td width="20%">
+                                            <img t-att-src="'/report/barcode/Code128/%s' %o.pass_port_no" width="380" height="50"/>
+                                        </td>
+                                    </tr>
+                                    <tr align="center">
+                                        <td width="20%">
+                                            <span t-field="o.pass_port_no"/>
+                                        </td>
+                                        <td width="80%"></td>
+                                    </tr>
+                                </t>
+
+                            </table>
+                            <div>
+                              <div style="display: inline-block;width: 15%;font-size: 20px">仅供核对使用</div>
+                              <div style="display: inline-block;text-align: center;width: 60%">
+                                  <div style="text-align:center;font-size:30px;">
+                                    特殊区域核放单
+                                  </div>
+                                  <t t-if="o.vehicle_ic_no">
+                                      <div><img t-att-src="'/report/barcode/Code128/%s' %o.vehicle_ic_no" height="50" width="400"/></div>
+                                      <div><span t-field="o.vehicle_ic_no"/></div>
+                                  </t>
+
+                              </div>
+                              <div style="display: inline-block;width:24%;text-align: right;font-size: 20px">
+                                  <h>打印日期 </h> <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                              </div>
+                            </div>
+                            <table cellspacing="0" cellpadding="0" border="1">
+                                <tr>
+                                    <td style="width:13%;border:1px solid black" height="30px">统一录入编号</td>
+                                    <td style="width:20%;border:1px solid black" height="30px"><span t-field="o.sas_pass_port_preent_no"/></td>
+                                    <td style="width:13%;border:1px solid black" height="30px">核放单编号</td>
+                                    <td style="width:20%;border:1px solid black" height="30px"><span t-field="o.pass_port_no"/></td>
+                                    <td style="width:13%;border:1px solid black" height="30px">核放单类型</td>
+                                    <td style="width:20%;border:1px solid black" height="30px"><span t-field="o.pass_port_typecd"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">进出标志</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.io_typecd"/></td>
+                                    <td style="border:1px solid black" height="30px">绑定类型</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.bind_typecd"/></td>
+                                    <td style="border:1px solid black" height="30px">关联单证类型</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.rlt_tb_typecd"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">关联单证编号</td>
+                                    <td style="border:1px solid black" height="30px">
+                                        <table>
+                                            <tr t-foreach="o.sas_header_list_ids" t-as="p">
+                                                <td><span t-field="p.sas_stock_no"/></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td style="border:1px solid black" height="30px">主管关区</td>
+                                    <td style="border:1px solid black" height="30px">漕河泾综</td>
+                                    <td style="border:1px solid black" height="30px">区内企业编号</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.areain_etpsno"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">区内企业信息用代码</td>
+                                    <td style="border:1px solid black" height="30px">91310000758420965R</td>
+                                    <td style="border:1px solid black" height="30px">区内企业名称</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.areain_etps_nm"/></td>
+                                    <td style="border:1px solid black" height="30px">承运车牌号</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.vehicle_no"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">IC卡(电子车牌)</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.vehicle_ic_no"/></td>
+                                    <td style="border:1px solid black" height="30px">集装箱号</td>
+                                    <td style="border:1px solid black" height="30px"></td>
+                                    <td style="border:1px solid black" height="30px">车自重</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.vehicle_wt"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">车架号</td>
+                                    <td style="border:1px solid black" height="30px"></td>
+                                    <td style="border:1px solid black" height="30px">车架重</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.vehicle_frame_wt"/></td>
+                                    <td style="border:1px solid black" height="30px">集装箱型</td>
+                                    <td style="border:1px solid black" height="30px"></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">集装箱重</td>
+                                    <td style="border:1px solid black" height="30px">0.00000</td>
+                                    <td style="border:1px solid black" height="30px">货物总毛重</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.total_gross_wt"/></td>
+                                    <td style="border:1px solid black" height="30px">货物总净重</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.total_net_wt"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">总重量</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.total_wt"/></td>
+                                    <td style="border:1px solid black" height="30px">申请人</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.dcl_er_conc"/></td>
+                                    <td style="border:1px solid black" height="30px">申报日期</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.opt_time"/></td>
+                                </tr>
+                                <tr>
+                                    <td style="border:1px solid black" height="30px">申报类型</td>
+                                    <td style="border:1px solid black" height="30px"><span t-field="o.dcl_typecd"/></td>
+                                    <td style="border:1px solid black" height="30px">备注</td>
+                                    <td colspan="3" style="border:1px solid black" height="30px"><span t-field="o.rmk"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="6" style="font-size:20px;border:1px solid black" height="30px">关联单证</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" style="border:1px solid black" height="30px">单证类型</td>
+                                    <td colspan="3" style="border:1px solid black" height="30px">关联单证编号</td>
+                                </tr>
+                                <tr t-foreach="o.sas_header_list_ids" t-as="p">
+                                    <td colspan="3" style="border:1px solid black" height="30px">出入库单</td>
+                                    <td colspan="3" style="border:1px solid black" height="30px"><span t-field="p.sas_stock_no"/></td>
+                                </tr>
+                            </table>
+                        </body>
+                    </div>
+                </div>
+                <div style="position:absolute;bottom:5px;"/>
+                <div STYLE="page-break-after: always;"/>
+            </t>
+        </t>
+    </template>
+</odoo>

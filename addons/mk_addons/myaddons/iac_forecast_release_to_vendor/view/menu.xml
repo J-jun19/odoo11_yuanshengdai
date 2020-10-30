@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- menu bar -->
+        <menuitem id="main_forecastrelease_menu"
+                  name="Forecast Release" sequence="2" />
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+        <!--第1個-標題：原始資料列表-->
+        <menuitem id="datalist_menu" name="Administration section"
+                  parent="main_forecastrelease_menu" sequence="10"/>
+
+        <!--第2個-標題：user執行程式-->
+        <menuitem id="forecastrelease_menu" name="Forecast Release"
+                  parent="main_forecastrelease_menu" sequence="20"/>
+
+        <!--第3個-標題：上傳 LT report-->
+        <menuitem id="delivery_report_menu" name="Delivery Report"
+                  parent="main_forecastrelease_menu" sequence="30"/>
+
+        <!--第4個-標題：上傳 LT-->
+        <menuitem id="delivery_upload_menu" name="Supply Plan"
+                  parent="main_forecastrelease_menu" sequence="40"/>
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+		<!--第5個-標題：psi_report-->
+        <menuitem id="psi_report_menu" name="PSI Report"
+                  parent="main_forecastrelease_menu" sequence="50"/>
+        
+		<!-- 第1個-標題的 第1個- action - Raw Data  -->
+        <!--<menuitem id="menu_raw_data" name="raw data"-->
+                  <!--parent="datalist_menu" action="action_raw_data_form_1"-->
+                  <!--sequence="1"/>-->
+
+        <!-- 第1個-標題的 第1個- action - Vendor code list  -->
+        <menuitem id="menu_raw_data" name="Vendor code list"
+                  parent="datalist_menu" action="action_vendor_code_list_form"
+                  sequence="10"/>
+
+         <!--第1個-標題的 第2個- action - confirm version-->
+        <menuitem id="menu_confirm_version" name="confirm version"
+                  parent="datalist_menu" action="action_confirm_version"
+                  sequence="20"/>
+
+        <!--第1個-標題的 第3個- action - Raw Data all -->
+        <menuitem id="menu_raw_data_all" name="raw data all"
+                  parent="datalist_menu" action="action_raw_data_form_2"
+                  sequence="30"/>
+
+        <!--第1個-標題的 第4個- action - column title-->
+        <menuitem id="menu_column_title" name="column title"
+                  parent="datalist_menu" action="action_column_title"
+                  sequence="40"/>
+
+        <!--第1個-標題的 第5個- action -  tvendor.remark -->
+        <menuitem id="menu_tvendor_remark" name="vendor remark"
+                  parent="datalist_menu" action="action_tvendor_remark"
+                  sequence="50"/>
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+        <!-- 第2個-標題的 第1個- action - Buyer confirm forecast  -->
+        <!--Buyer confirm forecast-->
+        <menuitem id="menu_wizard_buyerconfirm" name="Adjust"
+                  parent="forecastrelease_menu" action="action_wizard_buyerconfirm"
+                  sequence="10"/>
+
+        <!-- 第2個-標題的 第2個- action - Buyer FCST report 改名 : Buyer Download FCST  -->
+        <menuitem id="menu_buyer_fcst_report" name="Buyer Download FCST"
+                  parent="forecastrelease_menu" action="action_iac_buyer_fsct_report_form"
+                  sequence="20" />
+
+        <!-- 第2個-標題的 第3個- action - FCST Upload  -->
+        <!--&lt;!&ndash;FCST upload &ndash;&gt;-->
+        <menuitem id="menu_fcst_upload" name="FCST Upload"
+                  parent="forecastrelease_menu" action="fcst_upload_action"
+                  sequence="30"/>
+				  
+        <!-- 第2個-標題的 第4個- action -  action - Raw Data temp &ndash;&gt;-->
+        <!--FCST release to vendor-->
+        <menuitem id="menu_raw_data_temp" name="Release"
+                  parent="forecastrelease_menu" action="action_raw_data_temp"
+                  sequence="40"/>
+
+        <!--&lt;!&ndash; 第2個-標題的 第5個- action - confirm data  &ndash;&gt;-->
+        <!--<menuitem id="menu_confirm_data" name="FCST Release Current"-->
+                  <!--parent="forecastrelease_menu" action="action_confirm_data"-->
+                  <!--sequence="50"/>-->
+
+        <!-- 第2個-標題的 第5個- action - confirm data  -->
+        <menuitem id="menu_confirm_data" name="FCST Release Current"
+                  parent="forecastrelease_menu" action="action_confirm_data_current"
+                  sequence="51"/>
+
+        <!--&lt;!&ndash; 第2個-標題的 第6個- action - confirm data temp  &ndash;&gt;-->
+        <!--<menuitem id="menu_confirm_data_temp" name="FCST Release History"-->
+                  <!--parent="forecastrelease_menu" action="action_confirm_data_temp"-->
+                  <!--sequence="60"/>-->
+
+         <!-- 第2個-標題的 第6個- action - confirm data temp  -->
+        <menuitem id="menu_confirm_data_temp" name="FCST Release History"
+                  parent="forecastrelease_menu" action="action_confirm_data_temp_history"
+                  sequence="61"/>
+
+
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+        <!--第4個-標題的 第1個- action - Vendor&Buyer Upload LT Web, 排序2-->
+        <menuitem id="menu_vendor_upload_lt_web" name="Reply"
+                  parent="delivery_upload_menu" action="action_upload_lt_web"
+                  sequence="50"/>
+
+        <!-- 第4個-標題的 第2個- action - Buyer FCST delivery report  改名 : Buyer Fill Form, 排序1-->
+        <menuitem id="menu_buyer_fcst_delivery_report" name="Buyer Fill Form"
+                  parent="delivery_upload_menu" action="action_iac_buyer_fcst_delivery_report_form"
+                  sequence="10"/>
+
+        <menuitem id="menu_buyer_fcst_delivery_report_bk" name="Buyer Fill Form BK"
+                  parent="delivery_upload_menu" action="action_iac_buyer_fcst_delivery_report_form_bk"
+                  sequence="70"/>
+
+        <!-- 第4個-標題的 第3個- action - Buyer Upload LT  改名 :Buyer Upload,排序3-->
+        <menuitem id="menu_buyer_upload_lt" name="Buyer Upload"
+                  parent="delivery_upload_menu" action="buyer_upload_lt_action"
+                  sequence="30"/>
+
+        <menuitem id="menu_buyer_upload_lt_bk" name="Buyer Upload BK"
+                  parent="delivery_upload_menu" action="buyer_upload_lt_action_bk"
+                  sequence="80"/>
+
+		<!-- 第4個-標題的 第4個- action - Vendor FCST delivery report  改名 : Vendor Fill Form, 排序4-->
+        <menuitem id="menu_vendor_forecast_delivery_report" name="Vendor Fill Form"
+                  parent="delivery_upload_menu" action="action_iac_vendor_forecast_delivery_report"
+                  sequence="40" />
+
+        <menuitem id="menu_vendor_forecast_delivery_report_bk" name="Vendor Fill Form BK"
+                  parent="delivery_upload_menu" action="action_iac_vendor_forecast_delivery_report_bk"
+                  sequence="90" />
+
+        <!-- 第4個-標題的 第5個- action - Vendor Upload LT  改名 :Vendor Upload, 排序5-->
+        <menuitem id="menu_vendor_upload_lt" name="Vendor Upload"
+                  parent="delivery_upload_menu" action="vendor_upload_lt_action"
+                  sequence="50"/>
+
+        <menuitem id="menu_vendor_upload_lt_bk" name="Vendor Upload BK"
+                  parent="delivery_upload_menu" action="vendor_upload_lt_action_bk"
+                  sequence="100"/>
+
+        <!--第4個-標題的 第6個- action - Upload LT history, 排序6 -->
+        <menuitem id="menu_tvendor_upload" name="History"
+                  parent="delivery_upload_menu" action="action_wizard_upload_lt_history"
+                  sequence="60"/>
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+        <!--第5個-標題的 第1個- action - Vendor PSI Report -->
+        <!--action_tupload_lt_history-->
+        <menuitem id="menu_vendor_psi_report" name="Vendor PSI Report"
+                  parent="psi_report_menu" action="action_iac_vendor_psi_report_form"
+                  sequence="10"/>
+
+        <!--第5個-標題的 第2個- action - Internal PSI Report -->
+        <!--action_tupload_lt_history-->
+        <menuitem id="menu_internal_psi_report" name="Internal PSI Report"
+                  parent="psi_report_menu" action="action_internal_psi_report_form"
+                  sequence="20"/>
+
+        <menuitem id="menu_vendor_psi_report_bk" name="Vendor PSI Report BK"
+                  parent="psi_report_menu" action="action_iac_vendor_psi_report_form_bk"
+                  sequence="30"/>
+        <menuitem id="menu_internal_psi_report_bk" name="Internal PSI Report BK"
+                  parent="psi_report_menu" action="action_internal_psi_report_form_bk"
+                  sequence="40"/>
+
+    </data>
+</odoo>

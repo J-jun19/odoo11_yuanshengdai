@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+
+        <record id='view_po_report_list_form' model='ir.ui.view'>
+            <field name='name'>IAC PO Report record</field>
+            <field name='model'>iac.po.report</field>
+            <field name='arch' type='xml'>
+                <form string="IAC PO Report" create="false" edit="false">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" readonly="1"/>
+                                <field name="plant_id" readonly="1"/>
+                                <field name="purchase_org" readonly="1"/>
+                                <field name="vendor_id" readonly="1"/>
+                                <field name="order_amt" readonly="1"/>
+                                <field name="changed" readonly="1"/>
+                                <field name="odoo_deletion_flag" readonly="1"/>
+                                <field name="state" readonly="1"/>
+                                <field name="manually_po_reason_type" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="payment_term_id" readonly="1"/>
+                                <field name="incoterm_id" readonly="1"/>
+                                <field name="incoterm1" readonly="1"/>
+                                <field name="order_type" readonly="1"/>
+
+                                <field name="contact_person" readonly="1"/>
+                                <field name="contact_phone" readonly="1"/>
+                                <field name="currency" readonly="1"/>
+                                <field name="order_date" readonly="1" string="PO Date"/>
+                                <field name="approve_role_list" readonly="1"/>
+                                <field name="manually_po_comment" readonly="1"/>
+                                <field name="order_reason"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Purchase Order Lines">
+                                <field name="order_line" readonly="1">
+                                    <tree string="Purchase Order Lines">
+                                        <field name="order_line_code"/>
+                                        <field name="state"/>
+                                        <field name="vendor_exception_reason"/>
+                                        <field name="part_id"/>
+                                        <field name="division"/>
+                                        <field name="vendor_part_no"/>
+                                        <field name="price"/>
+                                        <field name="price_unit"/>
+                                        <field name="quantity"/>
+
+                                        <field name="storage_location"/>
+                                        <field name="delivery_date"/>
+                                        <field name="vendor_delivery_date"/>
+                                        <field name="purchase_req_no"/>
+                                        <field name="purchase_req_item_no"/>
+                                        <field name="odoo_deletion_flag"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            </notebook>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record id="view_po_report_list" model="ir.ui.view">
+            <field name="name">IAC PO Report record</field>
+            <field name="type">tree</field>
+            <field name="model">iac.po.report</field>
+            <field name="arch" type="xml">
+                <tree string="IAC PO Report tree" create="false">
+                    <field name="plant" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="vendor_code" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="document_erp_id" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="order_date" options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="buyer_erp_id" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="incoterm" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="incoterm1" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="payment_term" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="state" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                    <field name="order_type" readonly="True"
+                           options="{'no_create_edit': True,'no_create':True, 'no_open': True}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id='view_po_report_wizard' model='ir.ui.view'>
+            <field name='name'>IAC PO report record</field>
+            <field name='model'>v.po.report.wizard</field>
+            <field name='arch' type='xml'>
+                <form string="IAC PO Report">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="plant_id" options="{'no_create':True,'no_eidt':True,'no_open':True}" required="1"/>
+                                <!--<field name="vendor_id" options="{'no_create':True,'no_eidt':True,'no_open':True}" required="1" groups = 'oscg_vendor.IAC_buyer_groups'/>-->
+                                <field name="vendor_id" options="{'no_create':True,'no_eidt':True,'no_open':True}" required="1"/>
+                                <field name="document_erp_id" options="{'no_create':True,'no_eidt':True,'no_open':True}" />
+                                <field name="document_date_from" required='1'/>
+                                <field name="document_date_to" required='1'/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name='search_iac_po_report'
+                                string='Search'
+                                class='btn-primary'
+                                type='object'/>
+                        or
+                        <button string='Cancel'
+                                class='btn-default'
+                                special='cancel'/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <act_window id="action_wizard_po_report"
+                    name="PO Report"
+                    res_model="v.po.report.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

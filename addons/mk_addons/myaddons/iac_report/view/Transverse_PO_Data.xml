@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_transverse_po_report_list" model="ir.ui.view">
+            <field name="name">transverse PO report</field>
+            <field name="type">tree</field>
+            <field name="model">v.po.report.list</field>
+            <field name="arch" type="xml">
+                <tree string="Transverse PO report" create="false">
+                    <field name="plant_code"/>
+                    <field name="division"/>
+                    <field name="part_no"/>
+                    <field name="part_description"/>
+                    <field name="po_date"/>
+                    <field name="po_quantity"/>
+                    <field name="gr_quantity"/>
+                    <field name="asn_quantity"/>
+                    <field name="open_quantity"/>
+                    <field name="open_amount"/>
+                    <field name="price"/>
+                    <field name="price_unit"/>
+                    <field name="document_erp_id"/>
+                    <field name="document_line_erp_id"/>
+                    <field name="delivery_date"/>
+                    <field name="vendor_code"/>
+                    <field name="buyer_erp_id"/>
+                    <field name="buyer_name"/>
+                    <field name="deletion_flag"/>
+                    <field name="currency_id"/>
+                </tree>
+            </field>
+        </record>
+
+       <record id='iac_transverse_po_report_wizard_form' model='ir.ui.view'>
+          <field name='name'>transverse PO report</field>
+          <field name='model'>v.po.report.list.wizard</field>
+          <field name='arch' type='xml'>
+              <form string="Attachment Report">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="plant_id" options="{'no_create': True,'no_open': True}" />
+                            <field name='po_number'/>
+                            <field name='part_no'/>
+                            <field name='buyer_code'/>
+                            <field name='division'/>
+                            <field name='vendor_id' options="{'no_create': True,'no_open': True}" />
+                            <field name='po_start_date' />
+                            <field name='po_end_date' />
+                            <field name='only_open_po' widget = 'checkbox'/>
+                        </group>
+                    </group>
+                </sheet>
+                  <footer>
+                <button name='search_transverse_po_report'
+                        string='Search'
+                        class='btn-primary'
+                        type='object'/>
+                or
+                <button string='Cancel'
+                        class='btn-default'
+                        special='cancel'/>
+              </footer>
+            </form>
+          </field>
+        </record>
+        <act_window id="action_wizard_transverse_po"
+                    name="Transverse PO Report"
+                    res_model="v.po.report.list.wizard"
+                    view_mode="form"
+                    target="new"/>
+    </data>
+
+</odoo>

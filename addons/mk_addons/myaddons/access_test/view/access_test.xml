@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+
+        <act_window id="access_action"
+                    name="Access"
+                    res_model="iac.access"
+                    view_mode="form"
+                    target="new"/>
+
+        <record id="view_access" model="ir.ui.view">
+            <field name="name">iac.access</field>
+            <field name="model">iac.access</field>
+            <field name="arch" type="xml">
+                <form string="Wizard tools" create="false" edit="false">
+
+
+                    <footer>
+
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                        or
+                        <button name="action_confirm_download_access" string="Download Template" type="object"  class="oe_highlight"  />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Temp Table Group Info -->
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_ASN">
+            <field name="name">ASN</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_ASNJIT">
+            <field name="name">ASNJIT</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_GR">
+            <field name="name">GR</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_INFO">
+            <field name="name">INFO</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_IQCDATA">
+            <field name="name">IQCDATA</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_MASTER">
+            <field name="name">MASTER</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_MASTER_PLM">
+            <field name="name">MASTER_PLM</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_PART">
+            <field name="name">PART</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_PO">
+            <field name="name">PO</field>
+        </record>
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_VENDOR">
+            <field name="name">VENDOR</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_FORECAST">
+            <field name="name">FORECAST</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_TRANS_PO">
+            <field name="name">TRANS_PO</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_TRANS_PO_UNCONFIRM">
+            <field name="name">TRANS_PO_UNCONFIRM</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_TRANS_ASN">
+            <field name="name">TRANS_ASN</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group" id="iac_interface_temp_table_group_TRANS_RFQ">
+            <field name="name">TRANS_RFQ</field>
+        </record>
+        <!-- Temp Table Group Line Info -->
+
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_ASNMaxQTY">
+            <field name="group_line_name">MAXASN</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_ASN"/>
+            <field name="src_table_name">ep_temp_master.asn_maxqty</field>
+            <field name="dst_table_name">public.asn_maxqty</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_asn_asn_maxqty_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_asn_asn_maxqty_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_asn_asn_maxqty_del</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_ASNJITRule">
+            <field name="group_line_name">ASNJITRule</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_ASNJIT"/>
+            <field name="src_table_name">ep_temp_master.asn_jitrule</field>
+            <field name="dst_table_name">public.asn_jitrule</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_asnjit_asnjit_rule_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_asnjit_asnjit_rule_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_asnjit_asnjit_rule_ref_2</field>
+
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_GoodsReceipts">
+            <field name="group_line_name">GoodsReceipts</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_GR"/>
+            <field name="src_table_name">ep_temp_master.goods_receipts</field>
+            <field name="dst_table_name">public.goods_receipts</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_gr_goods_receipts_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_gr_goods_receipts_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_gr_goods_receipts_ref_2</field>
+            <field name="update_miss_flag">Y</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_SourceList">
+            <field name="group_line_name">SourceList</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_INFO"/>
+            <field name="src_table_name">ep_temp_master.source_list</field>
+            <field name="dst_table_name">public.source_list</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_info_source_list_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_info_source_list_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_info_source_list_del</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_InforecordHistory">
+            <field name="group_line_name">InforecordHistory</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_INFO"/>
+            <field name="src_table_name">ep_temp_master.inforecord_history</field>
+            <field name="dst_table_name">public.inforecord_history</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_info_inforecord_history_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_info_inforecord_history_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_info_inforecord_history_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_PLMActualVendor">
+            <field name="group_line_name">PLMActualVendor</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER_PLM"/>
+            <field name="src_table_name">ep_temp_master.plm_actual_vendor</field>
+            <field name="dst_table_name">public.plm_actual_vendor</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_plm_plm_actual_vendor_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_plm_plm_actual_vendor_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_plm_plm_actual_vendor_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_PLMSubClass">
+            <field name="group_line_name">PLMSubClass</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER_PLM"/>
+            <field name="src_table_name">ep_temp_master.plm_subclass</field>
+            <field name="dst_table_name">public.plm_subclass</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_plm_plm_subclass_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_plm_plm_subclass_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_plm_plm_subclass_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_Company">
+            <field name="group_line_name">Company</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.company</field>
+            <field name="dst_table_name">public.company</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_company_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_company_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_company_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_PurOrgData">
+            <field name="group_line_name">PurOrgData</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.pur_org_data</field>
+            <field name="dst_table_name">public.pur_org_data</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_pur_org_data_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_pur_org_data_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_pur_org_data_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_MaterialGroup">
+            <field name="group_line_name">MaterialGroup</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.material_group</field>
+            <field name="dst_table_name">public.material_group</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_material_group_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_material_group_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_material_group_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_BuyerCode">
+            <field name="group_line_name">BuyerCode</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.buyer_code</field>
+            <field name="dst_table_name">public.buyer_code</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_buyer_code_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_buyer_code_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_buyer_code_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_ShipInstruct">
+            <field name="group_line_name">ShipInstruct</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.ship_instruct</field>
+            <field name="dst_table_name">public.ship_instruct</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_ship_instruct_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_ship_instruct_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_ship_instruct_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_PaymentTerm">
+            <field name="group_line_name">PaymentTerm</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.payment_term</field>
+            <field name="dst_table_name">public.payment_term</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_payment_term_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_payment_term_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_payment_term_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_VendorGroup">
+            <field name="group_line_name">VendorGroup</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.vendor_group</field>
+            <field name="dst_table_name">public.vendor_group</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_vendor_group_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_vendor_group_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_vendor_group_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_IncoTerm">
+            <field name="group_line_name">IncoTerm</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.incoterm</field>
+            <field name="dst_table_name">public.incoterm</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_incoterm_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_incoterm_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_incoterm_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_DivisionCode">
+            <field name="group_line_name">DivisionCode</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.division_code</field>
+            <field name="dst_table_name">public.division_code</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_division_code_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_division_code_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_division_code_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_PaymentInfo">
+            <field name="group_line_name">PaymentInfo</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.payment_info</field>
+            <field name="dst_table_name">public.payment_info</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_payment_info_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_payment_info_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_payment_info_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_MaterialDescription">
+            <field name="group_line_name">MaterialDescription</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PART"/>
+            <field name="src_table_name">ep_temp_master.material_description</field>
+            <field name="dst_table_name">public.material_description</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_part_material_description_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_part_material_description_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_part_material_description_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_MaterialMaster">
+            <field name="group_line_name">MaterialMaster</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PART"/>
+            <field name="src_table_name">ep_temp_master.material_master</field>
+            <field name="dst_table_name">public.material_master</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_part_material_master_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_part_material_master_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_part_material_master_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_MaterialPlant">
+            <field name="group_line_name">MaterialPlant</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PART"/>
+            <field name="src_table_name">ep_temp_master.material_plant</field>
+            <field name="dst_table_name">public.material_plant</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_part_material_plant_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_part_material_plant_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_part_material_plant_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_MaterialMAP">
+            <field name="group_line_name">MaterialMAP</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PART"/>
+            <field name="src_table_name">ep_temp_master.material_map</field>
+            <field name="dst_table_name">public.material_map</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_part_material_map_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_part_material_map_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_part_material_map_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_MaterialCustMaster">
+            <field name="group_line_name">MaterialCustMaster</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PART"/>
+            <field name="src_table_name">ep_temp_master.material_custmaster</field>
+            <field name="dst_table_name">public.material_custmaster</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_part_material_custmaster_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_part_material_custmaster_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_part_material_custmaster_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_MaterialDivision">
+            <field name="group_line_name">MaterialDivision</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PART"/>
+            <field name="src_table_name">ep_temp_master.material_division</field>
+            <field name="dst_table_name">public.material_division</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_part_material_division_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_part_material_division_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_part_material_division_del</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_POHeader">
+            <field name="group_line_name">POHeader</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PO"/>
+            <field name="src_table_name">ep_temp_master.po_header</field>
+            <field name="dst_table_name">public.iac_purchase_order</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_po_iac_purchase_order_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_po_iac_purchase_order_ref</field>
+
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_POPartner">
+            <field name="group_line_name">POPartner</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PO"/>
+            <field name="src_table_name">ep_temp_master.po_partner</field>
+            <field name="dst_table_name">public.iac_purchase_order_partner</field>
+
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_PODetail">
+            <field name="group_line_name">PODetail</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_PO"/>
+            <field name="src_table_name">ep_temp_master.po_detail</field>
+            <field name="dst_table_name">public.iac_purchase_order_line</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_po_iac_purchase_order_line_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_po_iac_purchase_order_line_ref</field>
+
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_StorageLocation">
+            <field name="group_line_name">StorageLocation</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_MASTER"/>
+            <field name="src_table_name">ep_temp_master.storage_location</field>
+            <field name="dst_table_name">public.storage_location</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_master_storage_location_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_master_storage_location_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_master_storage_location_ref_2</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_Vendor">
+            <field name="group_line_name">Vendor</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_VENDOR"/>
+            <field name="src_table_name">ep_temp_master.vendor</field>
+            <field name="dst_table_name">public.vendor</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_vendor_vendor_insert</field>
+
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_VendorPlant">
+            <field name="group_line_name">VendorPlant</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_VENDOR"/>
+            <field name="src_table_name">ep_temp_master.vendor_plant</field>
+            <field name="dst_table_name">public.vendor_plant</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_vendor_vendor_plant_insert</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_VendorBank">
+            <field name="group_line_name">VendorBank</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_VENDOR"/>
+            <field name="src_table_name">ep_temp_master.vendor_bank</field>
+            <field name="dst_table_name">public.vendor_bank</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_vendor_vendor_bank_insert</field>
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_VendorCertified">
+            <field name="group_line_name">VendorCertified</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_VENDOR"/>
+            <field name="src_table_name">ep_temp_master.vendor_certified</field>
+            <field name="dst_table_name">public.vendor_certified</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_vendor_vendor_certified_insert</field>
+
+        </record>
+        <record model="iac.interface.temp.table.group.line" id="iac_interface_temp_table_group_line_Address">
+            <field name="group_line_name">Address</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_VENDOR"/>
+            <field name="src_table_name">ep_temp_master.address</field>
+            <field name="dst_table_name">public.address</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_vendor_address_insert</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_VS_WEBFLOW_IQC_DATA">
+            <field name="group_line_name">VS_WEBFLOW_IQC_DATA</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_IQCDATA"/>
+            <field name="src_table_name">ep_temp_master.vs_webflow_iqc_data</field>
+            <field name="dst_table_name">public.vs_webflow_iqc_data</field>
+            <field name="db_func_name_1">ep_temp_master.sp_job_iqcdata_vs_webflow_iqc_data_insert</field>
+            <field name="db_func_name_2">ep_temp_master.sp_job_iqcdata_vs_webflow_iqc_data_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_job_iqcdata_vs_webflow_iqc_data_ref_2</field>
+        </record>
+
+
+        <!--forecast -->
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_IAC_TRAW">
+            <field name="group_line_name">IAC_TRAW</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_FORECAST"/>
+            <field name="src_table_name">ep_temp_master.iac_traw_data</field>
+            <field name="dst_table_name">public.iac_traw_data</field>
+            <field name="db_func_name_1">ep_temp_master.proc_trans_table_iac_traw_data</field>
+            <field name="db_func_name_2">ep_temp_master.proc_trans_table_iac_traw_data_ref</field>
+            <field name="db_func_name_3">ep_temp_master.proc_trans_table_iac_traw_data_ref_2</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_IAC_TCOLUMN_TITLE">
+            <field name="group_line_name">IAC_TCOLUMN_TITLE</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_FORECAST"/>
+            <field name="src_table_name">ep_temp_master.iac_tcolumn_title</field>
+            <field name="dst_table_name">public.iac_tcolumn_title</field>
+            <field name="db_func_name_1">ep_temp_master.proc_trans_table_iac_tcolumn_title</field>
+            <field name="sequence">2</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_IAC_TDELIVERY_HOLIDAY">
+            <field name="group_line_name">IAC_TDELIVERY_HOLIDAY</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_FORECAST"/>
+            <field name="src_table_name">ep_temp_master.iac_tdelivery_holiday</field>
+            <field name="dst_table_name">public.iac_tdelivery_holiday</field>
+            <field name="db_func_name_1">ep_temp_master.proc_trans_table_iac_tdelivery_holiday</field>
+            <field name="sequence">3</field>
+        </record>
+
+        <!--
+
+
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_IAC_TJOB_STATUS">
+            <field name="group_line_name">IAC_TJOB_STATUS</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_FORECAST"/>
+            <field name="src_table_name">ep_temp_master.iac_tcolumn_title</field>
+            <field name="dst_table_name">public.iac_tcolumn_title</field>
+            <field name="db_func_name_1">ep_temp_master.proc_trans_table_iac_tjob_status</field>
+            <field name="db_func_name_2">ep_temp_master.proc_trans_table_iac_tjob_status_ref</field>
+            <field name="db_func_name_3">ep_temp_master.proc_trans_table_iac_tjob_status_ref_2</field>
+        </record>
+        -->
+
+        <!--数据迁移使用的配置数据 -->
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_group_line_iac_purchase_order">
+            <field name="group_line_name">iac_purchase_order</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_PO"/>
+
+            <field name="src_table_name">ep_temp_master.iac_purchase_order</field>
+            <field name="dst_table_name">public.iac_purchase_order</field>
+            <field name="db_func_name_1">ep_temp_master.sp_po_group_iac_purchase_order_ref</field>
+            <field name="db_func_name_2">ep_temp_master.sp_po_group_iac_purchase_order_insert</field>
+        </record>
+
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_group_line_iac_purchase_order_line">
+            <field name="group_line_name">iac_purchase_order_line</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_PO"/>
+            <field name="src_table_name">ep_temp_master.iac_purchase_order_line</field>
+            <field name="dst_table_name">public.iac_purchase_order_line</field>
+            <field name="db_func_name_1">ep_temp_master.sp_po_group_iac_purchase_order_line_ref</field>
+
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_group_line_iac_purchase_order_history">
+            <field name="group_line_name">iac_purchase_order_history</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_PO"/>
+
+            <field name="src_table_name">ep_temp_master.iac_purchase_order_history</field>
+            <field name="dst_table_name">public.iac_purchase_order_history</field>
+            <field name="db_func_name_1">ep_temp_master.sp_po_group_iac_purchase_order_history_ref</field>
+
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_group_line_iac_purchase_order_line_history">
+            <field name="group_line_name">iac_purchase_order_line_history</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_PO"/>
+
+            <field name="src_table_name">ep_temp_master.iac_purchase_order_line_history</field>
+            <field name="dst_table_name">public.iac_purchase_order_line_history</field>
+            <field name="db_func_name_1">ep_temp_master.sp_po_group_iac_purchase_order_line_history_ref</field>
+        </record>
+
+
+        <!--unconfirm summary -->
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_group_line_iac_purchase_order_unconfirm_summary">
+            <field name="group_line_name">iac_purchase_order_unconfirm_summary</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_PO_UNCONFIRM"/>
+
+            <field name="src_table_name">ep_temp_master.iac_purchase_order_unconfirm_summary</field>
+            <field name="dst_table_name">public.iac_purchase_order_unconfirm_summary</field>
+            <field name="db_func_name_1">ep_temp_master.sp_po_unconfirm_group_iac_purchase_order_unconfirm_summary_ref</field>
+            <field name="db_func_name_2">ep_temp_master.sp_po_unconfirm_group_iac_purchase_order_unconfirm_summary_inse</field>
+        </record>
+
+
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_group_line_iac_purchase_order_unconfirm_detail">
+            <field name="group_line_name">iac_purchase_order_unconfirm_detail</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_PO_UNCONFIRM"/>
+
+            <field name="src_table_name">ep_temp_master.iac_purchase_order_unconfirm_detail</field>
+            <field name="dst_table_name">public.iac_purchase_order_unconfirm_detail</field>
+            <field name="db_func_name_1">ep_temp_master.sp_po_unconfirm_group_iac_purchase_order_unconfirm_detail_ref</field>
+            <field name="db_func_name_2">ep_temp_master.sp_po_unconfirm_group_iac_purchase_order_unconfirm_detail_inser</field>
+        </record>
+
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_iac_asn">
+            <field name="group_line_name">iac_asn</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_ASN"/>
+
+            <field name="src_table_name">ep_temp_master.iac_asn</field>
+            <field name="dst_table_name">public.iac_asn</field>
+            <field name="db_func_name_1">ep_temp_master.sp_asn_group_iac_asn_ref</field>
+            <field name="db_func_name_2">ep_temp_master.sp_asn_group_iac_asn_insert</field>
+            <field name="db_func_name_3">ep_temp_master.sp_asn_group_iac_asn_ref_2</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_iac_asn_line">
+            <field name="group_line_name">iac_asn_line</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_ASN"/>
+
+            <field name="src_table_name">ep_temp_master.iac_asn_line</field>
+            <field name="dst_table_name">public.iac_asn_line</field>
+            <field name="db_func_name_1">ep_temp_master.sp_asn_group_iac_asn_line_ref</field>
+            <field name="db_func_name_3">ep_temp_master.sp_asn_group_iac_asn_line_ref_2</field>
+            <field name="update_miss_flag">Y</field>
+        </record>
+
+        <record model="iac.interface.temp.table.group.line"
+                id="iac_interface_temp_table_group_line_iac_rfq">
+            <field name="group_line_name">iac_rfq</field>
+            <field name="group_id" ref="iac_interface_temp_table_group_TRANS_RFQ"/>
+
+            <field name="src_table_name">ep_temp_master.iac_rfq</field>
+            <field name="dst_table_name">public.iac_rfq</field>
+            <field name="db_func_name_1">ep_temp_master.sp_rfq_group_iac_rfq_ref</field>
+            <field name="db_func_name_2">ep_temp_master.sp_rfq_group_iac_rfq_insert</field>
+        </record>
+
+    </data>
+</odoo>
